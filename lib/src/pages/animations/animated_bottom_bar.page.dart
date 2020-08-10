@@ -46,47 +46,39 @@ class _AnimatedBottomBarPageState extends State<AnimatedBottomBarPage> {
 class AnimatedBottomNav extends StatelessWidget {
   final int currentIndex;
   final Function(int) onChange;
+  final _items = <_Item>[
+    _Item(title: 'Home', icon: Icons.home),
+    _Item(title: 'User', icon: Icons.verified_user),
+    _Item(title: 'Menu', icon: Icons.menu),
+  ];
 
-  const AnimatedBottomNav({Key key, this.currentIndex, this.onChange}) : super(key: key);
+  AnimatedBottomNav({
+    Key key,
+    this.currentIndex,
+    this.onChange,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final map = _items.asMap();
+    final children = map.keys.map((index) => _buildNavItem(map[index], index)).toList();
+
     return Container(
       height: kToolbarHeight,
       decoration: BoxDecoration(color: Colors.white),
-      child: Row(
-        children: <Widget>[
-          Expanded(
-            child: InkWell(
-              onTap: () => onChange(0),
-              child: BottomNavItem(
-                icon: Icons.home,
-                title: "Home",
-                isActive: currentIndex == 0,
-              ),
-            ),
-          ),
-          Expanded(
-            child: InkWell(
-              onTap: () => onChange(1),
-              child: BottomNavItem(
-                icon: Icons.verified_user,
-                title: "User",
-                isActive: currentIndex == 1,
-              ),
-            ),
-          ),
-          Expanded(
-            child: InkWell(
-              onTap: () => onChange(2),
-              child: BottomNavItem(
-                icon: Icons.menu,
-                title: "Menu",
-                isActive: currentIndex == 2,
-              ),
-            ),
-          ),
-        ],
+      child: Row(children: children),
+    );
+  }
+
+  Widget _buildNavItem(_Item item, int index) {
+    return Expanded(
+      child: InkWell(
+        onTap: () => onChange(index),
+        child: BottomNavItem(
+          icon: item.icon,
+          title: item.title,
+          isActive: currentIndex == index,
+        ),
       ),
     );
   }
@@ -99,8 +91,14 @@ class BottomNavItem extends StatelessWidget {
   final Color inactiveColor;
   final String title;
 
-  const BottomNavItem({Key key, this.isActive = false, this.icon, this.activeColor, this.inactiveColor, this.title})
-      : super(key: key);
+  const BottomNavItem({
+    Key key,
+    this.isActive = false,
+    this.icon,
+    this.activeColor,
+    this.inactiveColor,
+    this.title,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -116,33 +114,40 @@ class BottomNavItem extends StatelessWidget {
       },
       duration: Duration(milliseconds: 500),
       reverseDuration: Duration(milliseconds: 200),
-      child: isActive
-          ? Container(
-              color: Colors.white,
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    title,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: activeColor ?? Theme.of(context).primaryColor,
-                    ),
-                  ),
-                  hSizedBox5,
-                  Container(
-                    width: 5.0,
-                    height: 5.0,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: activeColor ?? Theme.of(context).primaryColor,
-                    ),
-                  ),
-                ],
-              ),
-            )
-          : Icon(icon, color: inactiveColor ?? Colors.grey),
+      child: isActive ? _activeContent(context) : _inactiveContent(context),
     );
   }
+
+  Widget _inactiveContent(BuildContext context) {
+    return Icon(icon, color: inactiveColor ?? Colors.grey);
+  }
+
+  Widget _activeContent(BuildContext context) {
+    final color = activeColor ?? Theme.of(context).primaryColor;
+    return Container(
+      color: Colors.white,
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text(
+            title,
+            style: TextStyle(fontWeight: FontWeight.bold, color: color),
+          ),
+          hSizedBox5,
+          Container(
+            width: 10,
+            height: 10,
+            decoration: BoxDecoration(shape: BoxShape.circle, color: color),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _Item {
+  final IconData icon;
+  final String title;
+  _Item({this.icon, this.title});
 }

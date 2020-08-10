@@ -1,4 +1,5 @@
-import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'dart:io';
 
 class Github {
   static const String accountName = 'mosamuhana';
@@ -15,9 +16,30 @@ class Github {
 
   static String getFileContentUrl(String filePath) => '$repositoryUrlRaw/$branch/$filePath';
 
+  /*
   static Future<String> getFileContent(String filePath) async {
     final url = getFileContentUrl(filePath);
     final res = await http.get(url);
     return res.body;
+  }
+  */
+
+  static Future<String> getFileContent(String filePath) async {
+    final url = Uri.parse(getFileContentUrl(filePath));
+    final httpClient = new HttpClient();
+    String content;
+
+    try {
+      final req = await httpClient.getUrl(url);
+      final res = await req.close();
+      final lines = await res.transform(utf8.decoder).toList();
+      content = lines.join('');
+    } catch (e) {
+      rethrow;
+    } finally {
+      httpClient.close();
+    }
+
+    return content;
   }
 }

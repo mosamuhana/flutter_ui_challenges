@@ -13,7 +13,10 @@ class AnimatedListOnePage extends StatefulWidget {
 
 class _AnimatedListOnePageState extends State<AnimatedListOnePage> {
   List<String> items;
-  GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
+  final listKey = GlobalKey<AnimatedListState>();
+  final tween = Tween<Offset>(begin: Offset(1, 0), end: Offset.zero);
+
+  AnimatedListState get listState => listKey.currentState;
 
   @override
   void initState() {
@@ -24,59 +27,56 @@ class _AnimatedListOnePageState extends State<AnimatedListOnePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Animated List One"),
-      ),
+      appBar: AppBar(title: Text("Animated List One")),
       backgroundColor: Colors.grey.shade300,
       body: AnimatedList(
-        key: _listKey,
+        key: listKey,
         initialItemCount: items.length,
-        itemBuilder: (context, index, anim) {
-          return SlideTransition(
-            position: Tween<Offset>(begin: Offset(1, 0), end: Offset.zero).animate(anim),
-            child: BorderedContainer(
-              margin: const EdgeInsets.symmetric(
-                vertical: 4.0,
-                horizontal: 8.0,
-              ),
-              padding: const EdgeInsets.all(0),
-              child: ListTile(
-                title: Text(items[index]),
-                trailing: IconButton(
-                  icon: Icon(Icons.clear),
-                  onPressed: () {
-                    _listKey.currentState.removeItem(index, (context, animation) {
-                      String removedItem = items.removeAt(index);
-                      return SizeTransition(
-                        sizeFactor: animation,
-                        axis: Axis.vertical,
-                        child: BorderedContainer(
-                            margin: const EdgeInsets.symmetric(
-                              vertical: 4.0,
-                              horizontal: 8.0,
-                            ),
-                            padding: const EdgeInsets.all(0),
-                            child: ListTile(
-                              title: Text(removedItem),
-                            )),
-                      );
-                    });
-                    setState(() {});
-                  },
-                ),
-              ),
-            ),
-          );
-        },
+        itemBuilder: _itemBuilder,
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: () {
-          places.shuffle();
-          items.insert(items.length, places[0]);
-          _listKey.currentState.insertItem(items.length - 1);
-          setState(() {});
-        },
+        onPressed: _onAddItem,
+      ),
+    );
+  }
+
+  Widget _itemBuilder(BuildContext context, int index, Animation<double> animation) {
+    return SlideTransition(
+      position: tween.animate(animation),
+      child: BorderedContainer(
+        margin: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
+        padding: const EdgeInsets.all(0),
+        child: ListTile(
+          title: Text(items[index]),
+          trailing: IconButton(
+            icon: Icon(Icons.clear),
+            onPressed: () {
+              listState.removeItem(index, (context, animation) => _onItemRemoved(context, animation, index));
+              setState(() {});
+            },
+          ),
+        ),
+      ),
+    );
+  }
+
+  void _onAddItem() {
+    places.shuffle();
+    items.insert(items.length, places[0]);
+    listState.insertItem(items.length - 1);
+    setState(() {});
+  }
+
+  Widget _onItemRemoved(BuildContext context, Animation<double> animation, int index) {
+    final removedItem = items.removeAt(index);
+    return SizeTransition(
+      sizeFactor: animation,
+      axis: Axis.vertical,
+      child: BorderedContainer(
+        margin: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
+        padding: const EdgeInsets.all(0),
+        child: ListTile(title: Text(removedItem)),
       ),
     );
   }

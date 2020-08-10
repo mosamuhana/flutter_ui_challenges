@@ -50,7 +50,7 @@ class DesignPreviewPage extends StatelessWidget {
         ),
         body: TabBarView(
           children: <Widget>[
-            AlwaysAliveWidget(child: MyCodeView(filePath: path)),
+            AlwaysAliveWidget(child: MyCodeView(path: path)),
             AlwaysAliveWidget(child: page),
           ],
         ),
