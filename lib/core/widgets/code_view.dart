@@ -4,8 +4,8 @@ import 'package:animated_floatactionbuttons/animated_floatactionbuttons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../github.dart';
 import '../helper.dart';
-import '../constants.dart';
 import '../res/code_highlighter.dart';
 
 const _textStyle = TextStyle(fontFamily: 'monospace', fontSize: 12.0);
@@ -15,7 +15,10 @@ class MyCodeView extends StatefulWidget {
 
   MyCodeView({@required this.filePath});
 
-  String get githubPath => '$githubRepo/blob/master/$filePath';
+  //String get githubPath => '$githubRepo/blob/master/$filePath';
+  //String get githubPath => '$githubRepo/blob/master/$filePath';
+  String get remoteUrl => Github.getFileUrl(filePath);
+  //String get remoteContentUrl => Github.getFileContentUrl(filePath);
 
   @override
   MyCodeViewState createState() => MyCodeViewState();
@@ -59,7 +62,7 @@ class MyCodeViewState extends State<MyCodeView> {
         child: Icon(Icons.content_copy),
         tooltip: 'Copy code link to clipboard',
         onPressed: () async {
-          await Clipboard.setData(ClipboardData(text: widget.githubPath));
+          await Clipboard.setData(ClipboardData(text: widget.remoteUrl));
           final snackBar = SnackBar(content: Text('Code link copied to Clipboard!'));
           Scaffold.of(context).showSnackBar(snackBar);
         },
@@ -68,7 +71,7 @@ class MyCodeViewState extends State<MyCodeView> {
         heroTag: "open",
         child: Icon(Icons.open_in_new),
         tooltip: 'View code on github',
-        onPressed: () => tryLaunchUrl(this.widget.githubPath),
+        onPressed: () => tryLaunchUrl(this.widget.remoteUrl),
       ),
       FloatingActionButton(
         heroTag: "zoom_out",
@@ -88,7 +91,8 @@ class MyCodeViewState extends State<MyCodeView> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: rootBundle.loadString(widget.filePath) ?? 'Error loading source code from $this.filePath',
+      //future: rootBundle.loadString(widget.remoteContentUrl) ?? 'Error loading source code from ${Github.getFileUrl(widget.filePath)}',
+      future: Github.getFileContent(widget.filePath),
       builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
         if (!snapshot.hasData) {
           return Center(child: CircularProgressIndicator());

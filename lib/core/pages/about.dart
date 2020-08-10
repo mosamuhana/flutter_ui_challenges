@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../github.dart';
 import '../helper.dart';
-import '../constants.dart';
 import '../models.dart';
 import '../data/developers_list.dart';
 import '../ui_constants.dart';
@@ -41,7 +41,7 @@ class AboutPage extends StatelessWidget {
               title: 'Github',
               desc: 'Find codes to all the UIs in our github repository.',
               icon: FontAwesomeIcons.github,
-              url: githubRepo,
+              url: Github.repositoryUrl,
               style: style,
             ),
             hSizedBox20,
@@ -50,7 +50,7 @@ class AboutPage extends StatelessWidget {
               desc:
                   'Subscribe our youtube channel to see us build some of these UIs as well as other flutter tutorials and resources.',
               icon: FontAwesomeIcons.youtube,
-              url: youtubeChannel,
+              url: Github.youtubeChannel,
               style: style,
             ),
             hSizedBox20,
@@ -60,7 +60,7 @@ class AboutPage extends StatelessWidget {
             hSizedBox10,
             MaterialButton(
               color: Colors.grey.shade200,
-              onPressed: () => tryLaunchUrl(privacyUrl),
+              onPressed: () => tryLaunchUrl(Github.privacyUrl),
               child: Text("Privacy Policy"),
             )
           ],

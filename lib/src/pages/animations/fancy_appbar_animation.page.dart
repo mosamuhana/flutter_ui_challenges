@@ -7,9 +7,7 @@ const _minAppBarHeight = 80.0;
 const _radius = 30.0;
 
 class FancyAppbarAnimationPage extends StatefulWidget {
-  //static final String path = "lib/src/pages/animations/fancy_appbar_animation.page.dart";
-  static final String path =
-      "https://raw.githubusercontent.com/lohanidamodar/flutter_ui_challenges/master/lib/src/pages/animations/anim3.dart";
+  static final String path = "lib/src/pages/animations/fancy_appbar_animation.page.dart";
 
   @override
   _FancyAppbarAnimationPageState createState() => _FancyAppbarAnimationPageState();

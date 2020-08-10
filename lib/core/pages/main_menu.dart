@@ -91,7 +91,7 @@ class _MainMenuState extends State<MainMenu> {
   void _openPage(BuildContext context, SubMenuItem item, OpenMode mode) {
     Widget page = item.page;
     if (mode == OpenMode.CODE) {
-      page = DesignPreviewsPage(page: item.page, title: item.title, path: item.path);
+      page = DesignPreviewPage(page: item.page, title: item.title, path: item.path);
     }
     Navigator.push(context, MaterialPageRoute(builder: (_) => page));
   }

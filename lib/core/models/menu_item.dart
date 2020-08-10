@@ -7,7 +7,10 @@ class MenuItem {
   final List<SubMenuItem> items;
   final IconData icon;
 
-  String get fullTitle => "$title (${items?.length ?? 0} layouts)";
+  String get fullTitle {
+    final n = items?.length ?? 0;
+    return n == 0 ? title : "$title ($n layouts)";
+  }
 
   MenuItem({
     Key key,

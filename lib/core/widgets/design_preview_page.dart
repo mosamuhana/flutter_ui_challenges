@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:share/share.dart';
 
 import '../constants.dart';
+import '../github.dart';
 import 'code_view.dart';
 import 'keep_alive.dart';
 
@@ -18,12 +19,12 @@ final _tabs = <Widget>[
   Tab(child: _createListTile('Preview', Icons.phone_android, Colors.white)),
 ];
 
-class DesignPreviewsPage extends StatelessWidget {
+class DesignPreviewPage extends StatelessWidget {
   final String title;
   final Widget page;
   final String path;
 
-  const DesignPreviewsPage({
+  const DesignPreviewPage({
     Key key,
     @required this.title,
     @required this.page,
@@ -41,12 +42,11 @@ class DesignPreviewsPage extends StatelessWidget {
             IconButton(
               icon: Icon(FontAwesomeIcons.shareSquare),
               tooltip: "Open full preview",
-              onPressed: () => Share.share('$githubRepo/blob/master/$path'),
+              //onPressed: () => Share.share('$githubRepo/blob/master/$path'),
+              onPressed: () => Share.share(Github.getFileUrl(path)),
             )
           ],
-          bottom: TabBar(
-            tabs: _tabs,
-          ),
+          bottom: TabBar(tabs: _tabs),
         ),
         body: TabBarView(
           children: <Widget>[

@@ -1,7 +1,7 @@
 export 'widgets/code_view.dart';
 export 'widgets/empty_message.dart';
 export 'widgets/keep_alive.dart';
-export 'widgets/preview.dart';
+export 'widgets/design_preview_page.dart';
 export 'widgets/rounded_bordered_container.dart';
 export 'widgets/p_network_image.dart';
 export 'widgets/swiper_pagination.dart';
