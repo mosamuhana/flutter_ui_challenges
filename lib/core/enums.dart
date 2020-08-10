@@ -1,0 +1,1 @@
+enum OpenMode { CODE, PREVIEW }
