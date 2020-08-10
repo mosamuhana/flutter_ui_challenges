@@ -1,15 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../src/furniture_app/furniture_app.dart';
-import '../src/khalti_clone/main.dart';
-import '../src/nic_asia_clone/nic_asia_app.dart';
-
 import '../src/pages/animations/bottom_reveal_animation.page.dart';
 import '../src/pages/animations/fancy_appbar_animation.page.dart';
 import '../src/pages/animations/animated_bottom_bar.page.dart';
 import '../src/pages/animations/animated_list_one.page.dart';
 import '../src/pages/animations/hero_animation.page.dart';
+
+import '../src/pages/profile/profile1.dart';
+import '../src/pages/profile/profile2.dart';
+import '../src/pages/profile/profile3.dart';
+import '../src/pages/profile/profile4.dart';
+import '../src/pages/profile/profile5.dart';
+import '../src/pages/profile/profile6.dart';
+import '../src/pages/profile/profile7.dart';
+import '../src/pages/profile/profile8.dart';
+import '../src/pages/profile/profile9.dart';
+
+import '../src/furniture_app/furniture_app.dart';
+import '../src/khalti_clone/main.dart';
+import '../src/nic_asia_clone/nic_asia_app.dart';
 
 import '../src/pages/bike/bike_details.dart';
 import '../src/pages/bike/home_page.dart';
@@ -98,16 +108,6 @@ import '../src/pages/onboarding/intro5.dart';
 import '../src/pages/onboarding/intro6.dart';
 import '../src/pages/onboarding/landing1.dart';
 import '../src/pages/onboarding/smart_wallet_onboarding.dart';
-
-import '../src/pages/profile/profile1.dart';
-import '../src/pages/profile/profile2.dart';
-import '../src/pages/profile/profile3.dart';
-import '../src/pages/profile/profile4.dart';
-import '../src/pages/profile/profile5.dart';
-import '../src/pages/profile/profile6.dart';
-import '../src/pages/profile/profile7.dart';
-import '../src/pages/profile/profile8.dart';
-import '../src/pages/profile/profile9.dart';
 
 import '../src/pages/quiz_app/check_answers.dart';
 import '../src/pages/quiz_app/demo_values.dart';
