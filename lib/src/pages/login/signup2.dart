@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-// TODO: (ME) replaced hasFloatingPlaceholder with floatingLabelBehavior
 class SignupTwoPage extends StatelessWidget {
   static final String path = "lib/src/pages/login/signup2.dart";
   @override
@@ -38,8 +37,7 @@ class SignupTwoPage extends StatelessWidget {
               child: TextField(
                 decoration: InputDecoration(
                   labelText: "Email",
-                  //hasFloatingPlaceholder: true,
-                  floatingLabelBehavior: FloatingLabelBehavior.always,
+                  floatingLabelBehavior: FloatingLabelBehavior.auto,
                 ),
               ),
             ),
@@ -49,8 +47,7 @@ class SignupTwoPage extends StatelessWidget {
                 obscureText: true,
                 decoration: InputDecoration(
                   labelText: "Password",
-                  //hasFloatingPlaceholder: true,
-                  floatingLabelBehavior: FloatingLabelBehavior.always,
+                  floatingLabelBehavior: FloatingLabelBehavior.auto,
                 ),
               ),
             ),
@@ -60,8 +57,7 @@ class SignupTwoPage extends StatelessWidget {
                 obscureText: true,
                 decoration: InputDecoration(
                   labelText: "Confirm password",
-                  //hasFloatingPlaceholder: true,
-                  floatingLabelBehavior: FloatingLabelBehavior.always,
+                  floatingLabelBehavior: FloatingLabelBehavior.auto,
                 ),
               ),
             ),

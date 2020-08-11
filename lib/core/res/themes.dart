@@ -21,9 +21,7 @@ ThemeData buildDefaultTheme() {
     inputDecorationTheme: InputDecorationTheme(
       border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
       contentPadding: const EdgeInsets.all(16.0),
-      // TODO: (ME) replaced hasFloatingPlaceholder with floatingLabelBehavior
-      //hasFloatingPlaceholder: true,
-      floatingLabelBehavior: FloatingLabelBehavior.always,
+      floatingLabelBehavior: FloatingLabelBehavior.auto,
     ),
   );
 }
