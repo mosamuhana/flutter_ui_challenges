@@ -34,13 +34,11 @@ class _Video {
   });
 }
 
-const _base = 'https://firebasestorage.googleapis.com/v0/b/dl-flutter-ui-challenges.appspot.com/o';
-
 final _dev = _Developer(
   firstName: 'Cimple',
   lastName: 'Sid',
-  avatar: '$_base/img%2Fdev_sid.png?alt=media',
-  backdropPhoto: '$_base/img%2Fbackdrop.png?alt=media',
+  avatar: '$STORE_BASE_URL/img%2Fdev_sid.png?alt=media',
+  backdropPhoto: '$STORE_BASE_URL/img%2Fbackdrop.png?alt=media',
   location: 'Mahendranagar, Nepal',
   biography: 'Siddhartha  Joshi is a Flutter dev  '
       'Lorem Ipsum is simply dummy text of the printing and typesetting industry.  '
@@ -48,22 +46,22 @@ final _dev = _Developer(
   videos: <_Video>[
     _Video(
       title: 'WIFI hacking part 1',
-      thumbnail: '$_base/img%2Fvideo1_thumb.png?alt=media',
+      thumbnail: '$STORE_BASE_URL/img%2Fvideo1_thumb.png?alt=media',
       url: 'https://www.youtube.com/watch?v=06qoTsKYWKE',
     ),
     _Video(
       title: 'WIFI hacking part 2',
-      thumbnail: '$_base/img%2Fvideo2_thumb.png?alt=media',
+      thumbnail: '$STORE_BASE_URL/img%2Fvideo2_thumb.png?alt=media',
       url: 'https://www.youtube.com/watch?v=3XG4c5_mGCM',
     ),
     _Video(
       title: 'WIFI hacking part 3',
-      thumbnail: '$_base/img%2Fvideo3_thumb.png?alt=media',
+      thumbnail: '$STORE_BASE_URL/img%2Fvideo3_thumb.png?alt=media',
       url: 'https://www.youtube.com/watch?v=C29QstsxWQE',
     ),
     _Video(
       title: 'Find facebook users location',
-      thumbnail: '$_base/img%2Fvideo4_thumb.png?alt=media',
+      thumbnail: '$STORE_BASE_URL/img%2Fvideo4_thumb.png?alt=media',
       url: 'https://www.youtube.com/watch?v=J9zhKtL_gH0',
     ),
   ],

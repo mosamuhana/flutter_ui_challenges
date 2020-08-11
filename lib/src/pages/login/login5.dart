@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/res/assets.dart';
+import '../../../core/constants.dart';
+import '../../../core/res/assets.dart' as assets;
 import '../../../core/widgets.dart';
+
+const String foodLogo = '$STORE_BASE_URL/food%2Flogo.png?alt=media';
 
 class LoginFivePage extends StatelessWidget {
   static final String path = "lib/src/pages/login/login5.dart";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,7 +18,11 @@ class LoginFivePage extends StatelessWidget {
         decoration: BoxDecoration(gradient: LinearGradient(colors: [Colors.lightGreen, Colors.green])),
         child: Column(
           children: <Widget>[
-            Container(margin: const EdgeInsets.only(top: 40.0, bottom: 20.0), height: 80, child: PNetworkImage(foodLogo)),
+            Container(
+              margin: const EdgeInsets.only(top: 40.0, bottom: 20.0),
+              height: 80,
+              child: PNetworkImage(assets.foodLogo),
+            ),
             Text(
               "Good In Food".toUpperCase(),
               style: TextStyle(color: Colors.white70, fontSize: 24.0, fontWeight: FontWeight.bold),

@@ -17,6 +17,19 @@ import '../src/pages/profile/profile7.dart';
 import '../src/pages/profile/profile8.dart';
 import '../src/pages/profile/profile9.dart';
 
+import '../src/pages/login/auth1.dart';
+import '../src/pages/login/auth2.dart';
+import '../src/pages/login/auth3.dart';
+import '../src/pages/login/login1.dart';
+import '../src/pages/login/login2.dart';
+import '../src/pages/login/login3.dart';
+import '../src/pages/login/login4.dart';
+import '../src/pages/login/login5.dart';
+import '../src/pages/login/login6.dart';
+import '../src/pages/login/login7.dart';
+import '../src/pages/login/signup1.dart';
+import '../src/pages/login/signup2.dart';
+
 import '../src/furniture_app/furniture_app.dart';
 import '../src/khalti_clone/main.dart';
 import '../src/nic_asia_clone/nic_asia_app.dart';
@@ -67,19 +80,6 @@ import '../src/pages/invitation/invitation1.dart';
 
 import '../src/pages/lists/list1.dart';
 import '../src/pages/lists/list2.dart';
-
-import '../src/pages/login/auth1.dart';
-import '../src/pages/login/auth2.dart';
-import '../src/pages/login/auth3.dart';
-import '../src/pages/login/login1.dart';
-import '../src/pages/login/login2.dart';
-import '../src/pages/login/login3.dart';
-import '../src/pages/login/login4.dart';
-import '../src/pages/login/login5.dart';
-import '../src/pages/login/login6.dart';
-import '../src/pages/login/login7.dart';
-import '../src/pages/login/signup1.dart';
-import '../src/pages/login/signup2.dart';
 
 import '../src/pages/misc/bottomsheet.dart';
 import '../src/pages/misc/chat2.dart';
@@ -162,9 +162,9 @@ final List<dynamic> pages = [
     title: "Authentication",
     icon: Icons.lock,
     items: [
-      SubMenuItem("Auth Three", AuthThreePage(), path: AuthThreePage.path),
       SubMenuItem("Auth One", AuthOnePage(), path: AuthOnePage.path),
       SubMenuItem("Auth Two", AuthTwoPage(), path: AuthTwoPage.path),
+      SubMenuItem("Auth Three", AuthThreePage(), path: AuthThreePage.path),
       SubMenuItem("Login One", LoginOnePage(), path: LoginOnePage.path),
       SubMenuItem("Login Two", LoginTwoPage(), path: LoginTwoPage.path),
       SubMenuItem("Login Three", LoginThreePage(), path: LoginThreePage.path),

@@ -1,6 +1,7 @@
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
+import 'package:flutter_ui_challenges/core/constants.dart';
 import 'package:flutter_ui_challenges/core/ui_constants.dart';
 
 import '../../../core/helper.dart';
