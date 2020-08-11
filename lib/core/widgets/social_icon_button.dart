@@ -2,20 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../enums.dart';
 import '../helper.dart';
+
+enum SocialType { facebook, github, youtube, instagram, twitter }
 
 class SocialIconButton extends StatelessWidget {
   final String name;
   final SocialType type;
+  final Color color;
 
   const SocialIconButton({
     Key key,
     this.name,
+    this.color,
     @required this.type,
   }) : super(key: key);
 
-  Color get color {
+  Color _getColor() {
     switch (type) {
       case SocialType.facebook:
         return Colors.indigo;
@@ -23,6 +26,10 @@ class SocialIconButton extends StatelessWidget {
         return Colors.black;
       case SocialType.youtube:
         return Colors.red;
+      case SocialType.instagram:
+        return Colors.orange[400];
+      case SocialType.twitter:
+        return Colors.blue;
     }
     return Colors.black;
   }
@@ -35,6 +42,10 @@ class SocialIconButton extends StatelessWidget {
         return FontAwesomeIcons.github;
       case SocialType.youtube:
         return FontAwesomeIcons.youtube;
+      case SocialType.instagram:
+        return FontAwesomeIcons.instagram;
+      case SocialType.twitter:
+        return FontAwesomeIcons.twitter;
     }
     return null;
   }
@@ -48,6 +59,10 @@ class SocialIconButton extends StatelessWidget {
         return 'https://github.com/$name';
       case SocialType.youtube:
         return 'https://youtube.com/c/$name';
+      case SocialType.instagram:
+        return 'https://www.instagram.com/$name';
+      case SocialType.twitter:
+        return 'https://twitter.com/$name';
     }
     return null;
   }
@@ -55,7 +70,7 @@ class SocialIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      color: color,
+      color: color ?? _getColor(),
       icon: Icon(icon),
       onPressed: url == null ? null : _onPressed,
     );
