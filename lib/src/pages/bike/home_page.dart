@@ -2,24 +2,39 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../../core/res/assets.dart';
-import '../../../core/ui_constants.dart';
 import 'bike_details.dart';
+import 'widgets/bike_list_item.dart';
+import 'widgets/category_chooser.dart';
+
+const _hbox16 = SizedBox(height: 16);
+const _hbox10 = SizedBox(height: 10);
+const _hbox20 = SizedBox(height: 20);
+const _wbox10 = SizedBox(width: 10);
+const _wbox20 = SizedBox(width: 20);
+
+const _padding_l16_t16 = EdgeInsets.only(left: 16, top: 16);
+const _padding_h16 = EdgeInsets.symmetric(horizontal: 16);
+
+final _circularBorder4 = BorderRadius.circular(4);
+
+const _whiteBold20Style = TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20);
+const _whiteSemiBold18Style = TextStyle(color: Colors.white, fontWeight: FontWeight.w500, fontSize: 18);
+
+const _moneyBillIcon = Icon(FontAwesomeIcons.moneyBill, size: 30);
 
 class BikeHomePage extends StatelessWidget {
   static final String path = "lib/src/pages/bike/home_page.dart";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Bikes'),
-      ),
+      appBar: AppBar(title: Text('Bikes')),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
+          children: [
             Padding(
-              padding: const EdgeInsets.only(left: 16.0, top: 16.0),
+              padding: _padding_l16_t16,
               child: Text(
                 "Categories",
                 style: Theme.of(context).textTheme.subtitle1,
@@ -28,65 +43,13 @@ class BikeHomePage extends StatelessWidget {
             CategoryChooser(
               onTap: (category) => Navigator.pushNamed(context, 'category_bikes', arguments: category),
             ),
-            hSizedBox10,
+            _hbox10,
+            _swiper,
+            _hbox16,
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Card(
-                child: Container(
-                  height: 150,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(4.0),
-                    color: Colors.indigo,
-                  ),
-                  child: Swiper(
-                    itemCount: 2,
-                    itemBuilder: (context, index) {
-                      return Row(
-                        children: <Widget>[
-                          wSizedBox20,
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Text(
-                                  "Buy, Sell, Exchange",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20.0,
-                                  ),
-                                ),
-                                Text(
-                                  "All in one place",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 18.0,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          wSizedBox10,
-                          CircleAvatar(
-                            backgroundColor: Colors.indigo.shade800,
-                            radius: 50,
-                            child: Icon(FontAwesomeIcons.moneyBill, size: 30),
-                          ),
-                          wSizedBox20,
-                        ],
-                      );
-                    },
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 16.0),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              padding: _padding_h16,
               child: Row(
-                children: <Widget>[
+                children: [
                   Text(
                     "Recent Posts",
                     style: Theme.of(context).textTheme.subtitle1,
@@ -99,186 +62,74 @@ class BikeHomePage extends StatelessWidget {
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Column(
-                children: <Widget>[
-                  BikeListItem(
-                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => BikeDetailsPage())),
-                  ),
-                  BikeListItem(
-                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => BikeDetailsPage())),
-                  ),
-                  BikeListItem(
-                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => BikeDetailsPage())),
-                  ),
-                  BikeListItem(
-                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => BikeDetailsPage())),
-                  ),
-                ],
-              ),
-            ),
-            hSizedBox20,
+            _posts(context),
+            _hbox20,
           ],
         ),
       ),
     );
   }
-}
 
-class CategoryChooser extends StatelessWidget {
-  final Function(String) onTap;
-  const CategoryChooser({
-    Key key,
-    this.onTap,
-  }) : super(key: key);
-  final List<String> types = const ["Standard", "Cruiser", "Sports", "Dirt", "Scooter", "Electric"];
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 100,
-      child: ListView.separated(
-        padding: const EdgeInsets.symmetric(
-          vertical: 8.0,
-          horizontal: 16.0,
-        ),
-        scrollDirection: Axis.horizontal,
-        itemCount: types.length,
-        itemBuilder: (context, index) {
-          String type = types[index];
-          return GestureDetector(
-            onTap: onTap != null ? () => onTap(type) : null,
-            child: Column(
-              children: <Widget>[
-                Container(
-                  width: 60.0,
-                  height: 60.0,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(image: NetworkImage(bike), fit: BoxFit.cover),
-                    color: Colors.white,
-                    shape: BoxShape.circle,
-                  ),
-                ),
-                hSizedBox5,
-                Text(
-                  type,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ],
-            ),
-          );
-        },
-        separatorBuilder: (context, index) => wSizedBox10,
-      ),
-    );
-  }
-}
-
-class BikeListItem extends StatelessWidget {
-  final String thirdTitle;
-  final bool imageRight;
-  final double elevation;
-  final void Function() onTap;
-
-  const BikeListItem({Key key, this.thirdTitle, this.imageRight = false, this.elevation = 0.5, this.onTap})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final String title = "Bajaj Pulsar 220F";
-    return Card(
-      elevation: elevation,
-      child: InkWell(
-        borderRadius: BorderRadius.circular(4.0),
-        onTap: onTap,
-        child: Row(
-          children: <Widget>[
-            _buildThumbnail(),
-            Expanded(
-              child: Container(
-                padding: const EdgeInsets.all(16.0),
-                width: double.infinity,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Row(
+  Widget get _swiper {
+    return Padding(
+      padding: _padding_h16,
+      child: Card(
+        child: Container(
+          height: 150,
+          decoration: BoxDecoration(
+            borderRadius: _circularBorder4,
+            color: Colors.indigo,
+          ),
+          child: Swiper(
+            itemCount: 2,
+            itemBuilder: (context, index) {
+              return Row(
+                children: [
+                  _wbox20,
+                  Expanded(
+                    child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Expanded(
-                          child: Text(
-                            title,
-                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.0),
-                            softWrap: true,
-                          ),
-                        ),
-                        _buildTag(context)
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text("Buy, Sell, Exchange", style: _whiteBold20Style),
+                        Text("All in one place", style: _whiteSemiBold18Style),
                       ],
                     ),
-                    hSizedBox5,
-                    Text.rich(
-                      TextSpan(
-                        children: [
-                          TextSpan(
-                            text: "Year 2019",
-                          ),
-                        ],
-                      ),
-                      style: TextStyle(color: Colors.grey.shade700),
-                    ),
-                    hSizedBox5,
-                    Row(
-                      children: <Widget>[
-                        Text("Condition"),
-                        wSizedBox10,
-                        Icon(Icons.star, color: Colors.yellow),
-                        Icon(Icons.star, color: Colors.yellow),
-                        Icon(Icons.star, color: Colors.yellow),
-                        Icon(Icons.star, color: Colors.yellow),
-                        Icon(Icons.star, color: Colors.yellow),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
+                  ),
+                  _wbox10,
+                  CircleAvatar(
+                    backgroundColor: Colors.indigo.shade800,
+                    radius: 50,
+                    child: _moneyBillIcon,
+                  ),
+                  _wbox20,
+                ],
+              );
+            },
+          ),
         ),
       ),
     );
   }
 
-  Container _buildThumbnail() {
-    return Container(
-      height: 120,
-      width: 100,
-      decoration: BoxDecoration(
-        borderRadius: imageRight
-            ? BorderRadius.only(
-                topRight: Radius.circular(4.0),
-                bottomRight: Radius.circular(4.0),
-              )
-            : BorderRadius.only(
-                topLeft: Radius.circular(4.0),
-                bottomLeft: Radius.circular(4.0),
-              ),
-        image: DecorationImage(image: NetworkImage(bike), fit: BoxFit.cover),
-      ),
-    );
-  }
-
-  Container _buildTag(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(
-        vertical: 5.0,
-        horizontal: 8.0,
-      ),
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(20.0), color: Theme.of(context).primaryColor),
-      child: Text(
-        "Rs. 1,80,000",
-        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+  Widget _posts(BuildContext context) {
+    return Padding(
+      padding: _padding_h16,
+      child: Column(
+        children: [
+          BikeListItem(
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => BikeDetailsPage())),
+          ),
+          BikeListItem(
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => BikeDetailsPage())),
+          ),
+          BikeListItem(
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => BikeDetailsPage())),
+          ),
+          BikeListItem(
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => BikeDetailsPage())),
+          ),
+        ],
       ),
     );
   }

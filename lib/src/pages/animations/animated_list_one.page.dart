@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../bike/bike_details.dart';
+import '../../../core/widgets.dart';
 
 List<String> places = ["Nuwakot", "Dhaulagiri", "Rara", "Muktinath", "Pashupatinath"];
 

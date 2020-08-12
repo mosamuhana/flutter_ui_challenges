@@ -32,6 +32,9 @@ class SettingsThreePage extends StatefulWidget {
 
 class _SettingsThreePageState extends State<SettingsThreePage> {
   final settings = _Settings();
+  bool receivedNotification = true;
+  bool receivedNewsletter = false;
+  bool receivedNewsletterEnabled = false;
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +75,12 @@ class _SettingsThreePageState extends State<SettingsThreePage> {
             onTap: () {},
           ),
           _hDivider,
-          _createBoolSetting(settings.privateAccount),
+          SwitchListTile(
+            activeColor: Colors.purple,
+            value: true,
+            title: Text("Private Account"),
+            onChanged: (val) {},
+          ),
         ],
       ),
     );
@@ -83,13 +91,33 @@ class _SettingsThreePageState extends State<SettingsThreePage> {
       margin: _padding_v8_h0,
       child: Column(
         children: <Widget>[
-          _createBoolSetting(settings.receivedNotification),
+          SwitchListTile(
+            activeColor: Colors.purple,
+            value: receivedNotification,
+            title: Text("Received notification"),
+            onChanged: (v) => setState(() => receivedNotification = v),
+          ),
           _hDivider,
-          _createBoolSetting(settings.receivedNewsletter),
+          SwitchListTile(
+            activeColor: Colors.purple,
+            value: receivedNewsletter,
+            title: Text("Received newsletter"),
+            onChanged: !receivedNewsletterEnabled ? null : (v) => setState(() => receivedNewsletter = v),
+          ),
           _hDivider,
-          _createBoolSetting(settings.receivedOfferNotification),
+          SwitchListTile(
+            activeColor: Colors.purple,
+            value: true,
+            title: Text("Received Offer Notification"),
+            onChanged: (v) {},
+          ),
           _hDivider,
-          _createBoolSetting(settings.receivedAppUpdates),
+          SwitchListTile(
+            activeColor: Colors.purple,
+            value: true,
+            title: Text("Received App Updates"),
+            onChanged: null,
+          ),
         ],
       ),
     );
@@ -105,26 +133,15 @@ class _SettingsThreePageState extends State<SettingsThreePage> {
       ),
     );
   }
-
-  Widget _createBoolSetting(_BoolSetting setting) {
-    return SwitchListTile(
-      activeColor: Colors.purple,
-      value: setting.value,
-      title: Text(setting.title),
-      onChanged: !setting.enabled ? null : (v) => setState(() => setting.value = v),
-    );
-  }
 }
 
 class _Settings {
-  static const PRIVATE_ACCOUNT = 'PRIVATE_ACCOUNT';
   static const RECEIVED_NOTIFICATION = 'RECEIVED_NOTIFICATION';
   static const RECEIVED_NEWSLETTER = 'RECEIVED_NEWSLETTER';
   static const RECEIVED_OFFER_NOTIFICATION = 'RECEIVED_OFFER_NOTIFICATION';
   static const RECEIVED_APP_UPDATES = 'RECEIVED_APP_UPDATES';
 
   Map<String, _BoolSetting> _map = <String, _BoolSetting>{
-    PRIVATE_ACCOUNT: _BoolSetting(title: 'Private Account', value: true, enabled: true),
     RECEIVED_NOTIFICATION: _BoolSetting(title: 'Received notification', value: true, enabled: true),
     RECEIVED_NEWSLETTER: _BoolSetting(title: 'Received newsletter', value: false, enabled: false),
     RECEIVED_OFFER_NOTIFICATION: _BoolSetting(title: 'Received Offer Notification', value: true, enabled: true),
@@ -135,7 +152,6 @@ class _Settings {
   _BoolSetting get receivedNewsletter => _map[RECEIVED_NEWSLETTER];
   _BoolSetting get receivedOfferNotification => _map[RECEIVED_OFFER_NOTIFICATION];
   _BoolSetting get receivedAppUpdates => _map[RECEIVED_APP_UPDATES];
-  _BoolSetting get privateAccount => _map[PRIVATE_ACCOUNT];
 }
 
 class _BoolSetting {

@@ -1,169 +1,59 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/res/assets.dart';
-import '../../../core/ui_constants.dart';
 import '../../../core/widgets.dart';
+import 'bike.dart';
+import 'widgets/specs_block.dart';
 
-class BikeDetailsPage extends StatelessWidget {
+const _hbox5 = SizedBox(height: 5);
+const _hbox10 = SizedBox(height: 10);
+const _hbox30 = SizedBox(height: 30);
+
+// ignore: non_constant_identifier_names
+const _boldStyle = TextStyle(fontWeight: FontWeight.bold);
+const _priceStyle = TextStyle(color: Colors.white, fontWeight: FontWeight.bold);
+
+const _padding_all0 = EdgeInsets.all(0);
+const _padding_all16 = EdgeInsets.all(16);
+const _padding_l6_b4 = EdgeInsets.only(left: 6, bottom: 4);
+const _padding_v4 = EdgeInsets.symmetric(vertical: 4);
+
+class BikeDetailsPage extends StatefulWidget {
   static final String path = "lib/src/pages/bike/bike_details.dart";
-  final TextStyle bold = TextStyle(fontWeight: FontWeight.bold);
+
+  @override
+  _BikeDetailsPageState createState() => _BikeDetailsPageState();
+}
+
+class _BikeDetailsPageState extends State<BikeDetailsPage> {
   @override
   Widget build(BuildContext context) {
-    final String title = "Bajaj Pulsar 220F";
     return Scaffold(
-      appBar: AppBar(title: Text(title), elevation: 0),
+      appBar: AppBar(title: Text(bike_data.name), elevation: 0),
       body: Stack(
-        children: <Widget>[
+        children: [
           SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Stack(
-                  children: <Widget>[
-                    Container(
-                      height: 250,
-                      width: double.infinity,
-                      child: PNetworkImage(bike, fit: BoxFit.cover),
-                    ),
-                    Positioned(
-                      left: 20.0,
-                      bottom: 10.0,
-                      child: Row(
-                        children: <Widget>[
-                          Icon(Icons.star, color: Colors.amber),
-                          Icon(Icons.star, color: Colors.amber),
-                          Icon(Icons.star, color: Colors.amber),
-                          Icon(Icons.star, color: Colors.amber),
-                          Icon(Icons.star, color: Colors.amber),
-                        ],
-                      ),
-                    ),
-                    Positioned(
-                      right: 10.0,
-                      bottom: 0,
-                      child: Chip(
-                        elevation: 0,
-                        labelStyle: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-                        backgroundColor: Theme.of(context).primaryColor,
-                        label: Text("Rs. 1,80,000"),
-                      ),
-                    )
-                  ],
-                ),
+              children: [
+                _bikeImage,
                 Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: _padding_all16,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.only(left: 6.0, bottom: 4.0),
-                        child: Text(
-                          "Key Specs",
-                          style: Theme.of(context).textTheme.headline6,
-                        ),
-                      ),
-                      SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          children: <Widget>[
-                            SpecsBlock(
-                              label: "Engine",
-                              value: "220 cc",
-                              icon: Icon(Icons.apps),
-                            ),
-                            SpecsBlock(
-                              label: "Mileage",
-                              value: "150 kmpl",
-                              icon: Icon(Icons.apps),
-                            ),
-                            SpecsBlock(
-                              label: "Brakes",
-                              value: "ABS",
-                              icon: Icon(Icons.apps),
-                            ),
-                            SpecsBlock(
-                              label: "Fuel Tank",
-                              value: "12 L",
-                              icon: Icon(Icons.apps),
-                            ),
-                          ],
-                        ),
-                      ),
-                      hSizedBox10,
-                      Padding(
-                        padding: const EdgeInsets.only(left: 6.0, bottom: 4.0),
-                        child: Text(
-                          "Free Gifts",
-                          style: Theme.of(context).textTheme.subtitle1,
-                        ),
-                      ),
-                      hSizedBox5,
-                      Padding(
-                        padding: const EdgeInsets.only(left: 6.0, bottom: 4.0),
-                        child: Text("helmet, Gloves, Rain Coat, Bike Cover,"),
-                      ),
-                      hSizedBox10,
-                      Padding(
-                        padding: const EdgeInsets.only(left: 6.0, bottom: 4.0),
-                        child: Text(
-                          "Specification",
-                          style: Theme.of(context).textTheme.headline6,
-                        ),
-                      ),
-                      BorderedContainer(
-                        padding: const EdgeInsets.all(0),
-                        margin: const EdgeInsets.symmetric(vertical: 4.0),
-                        child: ListTile(
-                          title: Text("Manufactured Year"),
-                          trailing: Text("2019", style: bold),
-                        ),
-                      ),
-                      BorderedContainer(
-                        padding: const EdgeInsets.all(0),
-                        margin: const EdgeInsets.symmetric(vertical: 4.0),
-                        child: ListTile(
-                          title: Text("Number (Lot)"),
-                          trailing: Text("Bagmati 80", style: bold),
-                        ),
-                      ),
-                      BorderedContainer(
-                        padding: const EdgeInsets.all(0),
-                        margin: const EdgeInsets.symmetric(vertical: 4.0),
-                        child: ListTile(
-                          title: Text("Category"),
-                          trailing: Text("Standard", style: bold),
-                        ),
-                      ),
-                      BorderedContainer(
-                        margin: const EdgeInsets.symmetric(vertical: 4.0),
-                        padding: const EdgeInsets.all(0),
-                        child: ListTile(
-                          title: Text("Engine Serviced?"),
-                          trailing: Text("Half", style: bold),
-                        ),
-                      ),
-                      BorderedContainer(
-                        margin: const EdgeInsets.symmetric(vertical: 4.0),
-                        padding: const EdgeInsets.all(0),
-                        child: ListTile(
-                          title: Text("Ground Clearance"),
-                          trailing: Text("150 mm", style: bold),
-                        ),
-                      ),
-                      BorderedContainer(
-                        margin: const EdgeInsets.symmetric(
-                          vertical: 4.0,
-                        ),
-                        padding: const EdgeInsets.all(0),
-                        child: ListTile(
-                          title: Text("Seat height"),
-                          trailing: Text("700 mm", style: bold),
-                        ),
-                      ),
+                    children: [
+                      _headline('Key Specs'),
+                      _keySpecs,
+                      _hbox10,
+                      _subtitle('Free Gifts'),
+                      _hbox5,
+                      _freeGifts,
+                      _hbox10,
+                      _headline('Specification'),
+                      ..._specificationInfo,
                     ],
                   ),
                 ),
-                hSizedBox30,
+                _hbox30,
               ],
             ),
           ),
@@ -181,94 +71,141 @@ class BikeDetailsPage extends StatelessWidget {
       ),
     );
   }
-}
 
-class BorderedContainer extends StatelessWidget {
-  final String title;
-  final Widget child;
-  final double height;
-  final double width;
-  final EdgeInsets padding;
-  final EdgeInsets margin;
-  final Color color;
-  final double elevation;
-
-  const BorderedContainer({
-    Key key,
-    this.title,
-    this.child,
-    this.height,
-    this.padding,
-    this.margin,
-    this.color,
-    this.width = double.infinity,
-    this.elevation = 0.5,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      elevation: elevation,
-      color: color,
-      margin: margin ?? const EdgeInsets.all(0),
-      child: Container(
-        padding: padding ?? const EdgeInsets.all(16.0),
-        width: width,
-        height: height,
-        child: title == null
-            ? child
-            : Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    title,
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28.0),
-                  ),
-                  if (child != null) ...[
-                    hSizedBox10,
-                    child,
-                  ]
-                ],
-              ),
+  Widget _headline(String title) {
+    return Padding(
+      padding: _padding_l6_b4,
+      child: Text(
+        title,
+        style: Theme.of(context).textTheme.headline6,
       ),
     );
   }
-}
 
-class SpecsBlock extends StatelessWidget {
-  const SpecsBlock({
-    Key key,
-    this.icon,
-    this.label,
-    this.value,
-  }) : super(key: key);
-
-  final Widget icon;
-  final String label;
-  final String value;
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: <Widget>[
-            icon,
-            const SizedBox(height: 2.0),
-            Text(
-              label,
-              style: TextStyle(color: Colors.grey.shade800),
-            ),
-            hSizedBox5,
-            Text(
-              value,
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-          ],
-        ),
+  Widget _subtitle(String title) {
+    return Padding(
+      padding: _padding_l6_b4,
+      child: Text(
+        title,
+        style: Theme.of(context).textTheme.subtitle1,
       ),
     );
+  }
+
+  Widget get _bikeImage {
+    return Stack(
+      children: [
+        Container(
+          height: 250,
+          width: double.infinity,
+          child: PNetworkImage(bike_data.image, fit: BoxFit.cover),
+        ),
+        Positioned(
+          left: 20,
+          bottom: 10,
+          child: Rating(value: 4),
+        ),
+        Positioned(
+          right: 10,
+          bottom: 0,
+          child: Chip(
+            elevation: 0,
+            labelStyle: _priceStyle,
+            backgroundColor: Theme.of(context).primaryColor,
+            label: Text(bike_data.price),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget get _freeGifts {
+    return Padding(
+      padding: _padding_l6_b4,
+      child: Text(bike_data?.freeGifts?.join(', ') ?? ''),
+    );
+  }
+
+  Widget get _keySpecs {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: [
+          SpecsBlock(
+            label: "Engine",
+            value: bike_data.engine,
+            icon: Icon(Icons.apps),
+          ),
+          SpecsBlock(
+            label: "Mileage",
+            value: bike_data.mileage,
+            icon: Icon(Icons.apps),
+          ),
+          SpecsBlock(
+            label: "Brakes",
+            value: bike_data.breaks,
+            icon: Icon(Icons.apps),
+          ),
+          SpecsBlock(
+            label: "Fuel Tank",
+            value: bike_data.fuelTank,
+            icon: Icon(Icons.apps),
+          ),
+        ],
+      ),
+    );
+  }
+
+  List<Widget> get _specificationInfo {
+    return [
+      BorderedContainer(
+        padding: _padding_all0,
+        margin: _padding_v4,
+        child: ListTile(
+          title: Text("Manufactured Year"),
+          trailing: Text("2019", style: _boldStyle),
+        ),
+      ),
+      BorderedContainer(
+        padding: _padding_all0,
+        margin: _padding_v4,
+        child: ListTile(
+          title: Text("Number (Lot)"),
+          trailing: Text("Bagmati 80", style: _boldStyle),
+        ),
+      ),
+      BorderedContainer(
+        padding: _padding_all0,
+        margin: _padding_v4,
+        child: ListTile(
+          title: Text("Category"),
+          trailing: Text("Standard", style: _boldStyle),
+        ),
+      ),
+      BorderedContainer(
+        padding: _padding_all0,
+        margin: _padding_v4,
+        child: ListTile(
+          title: Text("Engine Serviced?"),
+          trailing: Text("Half", style: _boldStyle),
+        ),
+      ),
+      BorderedContainer(
+        padding: _padding_all0,
+        margin: _padding_v4,
+        child: ListTile(
+          title: Text("Ground Clearance"),
+          trailing: Text("150 mm", style: _boldStyle),
+        ),
+      ),
+      BorderedContainer(
+        margin: _padding_v4,
+        padding: _padding_all0,
+        child: ListTile(
+          title: Text("Seat height"),
+          trailing: Text("700 mm", style: _boldStyle),
+        ),
+      ),
+    ];
   }
 }

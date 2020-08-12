@@ -34,12 +34,12 @@ import '../src/pages/settings/settings1.dart';
 import '../src/pages/settings/settings2.dart';
 import '../src/pages/settings/settings3.dart';
 
+import '../src/pages/bike/bike_details.dart';
+import '../src/pages/bike/home_page.dart';
+
 import '../src/furniture_app/furniture_app.dart';
 import '../src/khalti_clone/main.dart';
 import '../src/nic_asia_clone/nic_asia_app.dart';
-
-import '../src/pages/bike/bike_details.dart';
-import '../src/pages/bike/home_page.dart';
 
 import '../src/pages/blog/article1.dart';
 import '../src/pages/blog/article2.dart';

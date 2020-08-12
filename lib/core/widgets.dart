@@ -14,3 +14,5 @@ export 'widgets/springy_slider/springy_slider.dart';
 export 'widgets/back_icon_button.dart';
 export 'widgets/avatar.dart';
 export 'widgets/social_icon_button.dart';
+export 'widgets/bordered_container.dart';
+export 'widgets/rating.dart';
