@@ -4,10 +4,9 @@ import '../../../core/res/assets.dart';
 import '../../../core/widgets.dart';
 
 const Color primary = Color(0xffE20056);
-const TextStyle whiteBoldText = TextStyle(
-  fontWeight: FontWeight.bold,
-  color: Colors.white,
-);
+
+const TextStyle whiteBoldText = TextStyle(fontWeight: FontWeight.bold, color: Colors.white);
+
 const TextStyle whiteText = TextStyle(
   color: Colors.white,
 );

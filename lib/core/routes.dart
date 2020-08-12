@@ -30,6 +30,10 @@ import '../src/pages/login/login7.dart';
 import '../src/pages/login/signup1.dart';
 import '../src/pages/login/signup2.dart';
 
+import '../src/pages/settings/settings1.dart';
+import '../src/pages/settings/settings2.dart';
+import '../src/pages/settings/settings3.dart';
+
 import '../src/furniture_app/furniture_app.dart';
 import '../src/khalti_clone/main.dart';
 import '../src/nic_asia_clone/nic_asia_app.dart';
@@ -114,10 +118,6 @@ import '../src/pages/quiz_app/demo_values.dart';
 import '../src/pages/quiz_app/home.dart';
 import '../src/pages/quiz_app/quiz_finished.dart';
 import '../src/pages/quiz_app/quiz_page.dart';
-
-import '../src/pages/settings/settings1.dart';
-import '../src/pages/settings/settings2.dart';
-import '../src/pages/settings/settings3.dart';
 
 import '../src/pages/todo/todo2.dart';
 import '../src/pages/todo/todo_home1.dart';
