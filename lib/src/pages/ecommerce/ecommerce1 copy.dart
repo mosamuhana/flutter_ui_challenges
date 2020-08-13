@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
 
 import '../../../core/constants.dart';
 import '../../../core/widgets.dart';
@@ -43,27 +44,13 @@ class _EcommerceOnePageState extends State<EcommerceOnePage> {
         title: Text('Flutter UIs'),
         elevation: 0,
       ),
-      body: _body,
-      bottomNavigationBar: _bottomNavigationBar,
-    );
-  }
-
-  Widget get _body {
-    return SafeArea(
-      child: ListView(
-        children: [
-          _imageListSlider,
-          _categoriesList,
-          _flashSales,
-          _popularList,
-          Center(child: Text('Just for You', style: _bold20Style)),
-          _buildTopItems(0),
-          _buildTopItems(2),
-          _buildTopItems(4),
-          _buildTopItems(6),
-          _buildTopItems(8),
-        ],
+      body: SafeArea(
+        child: ListView.builder(
+          itemCount: 10,
+          itemBuilder: _buildListView,
+        ),
       ),
+      bottomNavigationBar: _bottomNavigationBar,
     );
   }
 
@@ -88,98 +75,39 @@ class _EcommerceOnePageState extends State<EcommerceOnePage> {
     );
   }
 
-  Widget get _imageListSlider {
+  Widget _buildListView(_, index) {
+    if (index == 0) return _buildSlider();
+    if (index == 1) return _buildCategoriesGrid();
+    if (index == 2) return _buildFlashSales();
+    if (index == 3) return _popularList;
+    if (index == 4) return Center(child: Text('Just for You', style: _bold20Style));
     return Container(
-      height: 120,
-      child: Stack(
+      padding: _insetsSymmetricH10V5,
+      child: Row(
         children: [
-          ClipPath(
-            clipper: DiagonalPathClipperOne(),
-            child: Container(
-              height: 110,
-              color: Colors.deepPurple,
-            ),
-          ),
-          ImageListSlider(images: images),
-        ],
-      ),
-    );
-  }
-
-  Widget get _categoriesList {
-    return Container(
-      height: 110,
-      child: GridView.builder(
-        padding: _insetsAll10,
-        scrollDirection: Axis.horizontal,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 1,
-          mainAxisSpacing: 10,
-        ),
-        itemCount: categories.length,
-        itemBuilder: (_, i) {
-          return GestureDetector(
-            onTap: () => print(categories[i]),
+          Expanded(
             child: Column(
               children: [
-                CircleAvatar(
-                  backgroundColor: Colors.blue,
-                  maxRadius: 30,
-                  child: _whiteHomeIcon,
-                ),
-                _hbox8,
-                Text(categories[i % categories.length])
+                PNetworkImage(images[index % images.length]),
+                _hbox10,
+                Text('Top Quality fashion item', softWrap: true),
+                _hbox10,
+                Text('Rs.1,254', style: _redBold18Style)
               ],
             ),
-          );
-        },
-      ),
-    );
-  }
-
-  Widget get _flashSales {
-    return Container(
-      height: 200,
-      padding: _insetsAll10,
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  Text('Flash Sales', style: _boldStyle),
-                  _wbox10,
-                  Container(
-                    color: Colors.black,
-                    padding: _insetsSymmetricH5V2,
-                    child: Text('02', style: _whiteStyle),
-                  ),
-                  _wbox5,
-                  Container(
-                    color: Colors.black,
-                    padding: _insetsSymmetricH5V2,
-                    child: Text('20', style: _whiteStyle),
-                  ),
-                  _wbox5,
-                  Container(
-                    color: Colors.black,
-                    padding: _insetsSymmetricH5V2,
-                    child: Text('30', style: _whiteStyle),
-                  ),
-                ],
-              ),
-              Text('SHOP MORE >>', style: _redStyle)
-            ],
           ),
-          _hbox10,
-          Row(
-            children: [
-              _buildFlashSaleItem(0),
-              _buildFlashSaleItem(1),
-              _buildFlashSaleItem(2),
-            ],
-          )
+          _wbox10,
+          Expanded(
+            child: Column(
+              children: [
+                PNetworkImage(images[(index - 1) % images.length]),
+                _hbox10,
+                Text('Top Quality fashion item', softWrap: true),
+                _hbox10,
+                Text('Rs.1,254', style: _redBold18Style)
+              ],
+            ),
+          ),
         ],
       ),
     );
@@ -215,29 +143,64 @@ class _EcommerceOnePageState extends State<EcommerceOnePage> {
     );
   }
 
-  Widget _buildTopItem(int index) {
-    final item = _topItems[index % _topItems.length];
-    return Expanded(
+  Widget _buildFlashSales() {
+    return Container(
+      height: 200,
+      padding: _insetsAll10,
       child: Column(
         children: [
-          PNetworkImage(item.image),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  Text(
+                    'Flash Sales',
+                    style: _boldStyle,
+                  ),
+                  _wbox10,
+                  Container(
+                    color: Colors.black,
+                    padding: _insetsSymmetricH5V2,
+                    child: Text(
+                      '02',
+                      style: _whiteStyle,
+                    ),
+                  ),
+                  _wbox5,
+                  Container(
+                    color: Colors.black,
+                    padding: _insetsSymmetricH5V2,
+                    child: Text(
+                      '20',
+                      style: _whiteStyle,
+                    ),
+                  ),
+                  _wbox5,
+                  Container(
+                    color: Colors.black,
+                    padding: _insetsSymmetricH5V2,
+                    child: Text(
+                      '30',
+                      style: _whiteStyle,
+                    ),
+                  ),
+                ],
+              ),
+              Text(
+                'SHOP MORE >>',
+                style: _redStyle,
+              )
+            ],
+          ),
           _hbox10,
-          Text(item.title, softWrap: true),
-          _hbox10,
-          Text(item.price, style: _redBold18Style)
-        ],
-      ),
-    );
-  }
-
-  Widget _buildTopItems(int index) {
-    return Container(
-      padding: _insetsSymmetricH10V5,
-      child: Row(
-        children: [
-          _buildTopItem(index),
-          _wbox10,
-          _buildTopItem(index + 1),
+          Row(
+            children: [
+              _buildFlashSaleItem(0),
+              _buildFlashSaleItem(1),
+              _buildFlashSaleItem(2),
+            ],
+          )
         ],
       ),
     );
@@ -260,17 +223,31 @@ class _EcommerceOnePageState extends State<EcommerceOnePage> {
             Stack(
               children: [
                 ClipPath(
-                  clipper: _shapeClipper,
-                  child: Container(height: 20, color: Colors.red.shade200),
+                  clipper: ShapeBorderClipper(
+                    shape: StadiumBorder(
+                      side: BorderSide(width: 1, style: BorderStyle.solid, color: Colors.red),
+                    ),
+                  ),
+                  child: Container(
+                    height: 20,
+                    color: Colors.red.shade200,
+                  ),
                 ),
                 ClipPath(
-                  clipper: _shapeClipper,
+                  clipper: ShapeBorderClipper(
+                    shape: StadiumBorder(
+                      side: BorderSide(width: 1, style: BorderStyle.solid, color: Colors.red),
+                    ),
+                  ),
                   child: Container(
                     padding: _insetsL10,
                     height: 20,
                     width: 70,
                     color: Colors.red,
-                    child: Text('12 Sold', style: _whiteStyle),
+                    child: Text(
+                      '12 Sold',
+                      style: _whiteStyle,
+                    ),
                   ),
                 ),
               ],
@@ -279,6 +256,65 @@ class _EcommerceOnePageState extends State<EcommerceOnePage> {
             Text('Rs.275')
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildSlider() {
+    return Container(
+      height: 120,
+      child: Stack(
+        children: [
+          ClipPath(
+            clipper: DiagonalPathClipperOne(),
+            child: Container(
+              height: 110,
+              color: Colors.deepPurple,
+            ),
+          ),
+          Container(
+            padding: _insetsSymmetricH20,
+            child: Swiper(
+              autoplay: true,
+              itemBuilder: (BuildContext context, int index) {
+                return PNetworkImage(images[index], fit: BoxFit.cover);
+              },
+              itemCount: 4,
+              pagination: SwiperPagination(),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildCategoriesGrid() {
+    return Container(
+      height: 110,
+      child: GridView.builder(
+        padding: _insetsAll10,
+        scrollDirection: Axis.horizontal,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 1,
+          mainAxisSpacing: 10,
+        ),
+        itemCount: categories.length,
+        itemBuilder: (_, int index) {
+          return GestureDetector(
+            onTap: () => print(categories[index]),
+            child: Column(
+              children: [
+                CircleAvatar(
+                  backgroundColor: Colors.blue,
+                  maxRadius: 30,
+                  child: _whiteHomeIcon,
+                ),
+                _hbox8,
+                Text(categories[index % categories.length])
+              ],
+            ),
+          );
+        },
       ),
     );
   }
@@ -312,6 +348,41 @@ class _PopularItemWidget extends StatelessWidget {
             child: PNetworkImage(item.image, fit: BoxFit.cover),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _ImageSlides extends StatelessWidget {
+  final List<String> images;
+
+  const _ImageSlides({Key key, this.images}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 120,
+      child: Stack(
+        children: [
+          ClipPath(
+            clipper: DiagonalPathClipperOne(),
+            child: Container(
+              height: 110,
+              color: Colors.deepPurple,
+            ),
+          ),
+          Container(
+            padding: _insetsSymmetricH20,
+            child: Swiper(
+              autoplay: true,
+              itemBuilder: (BuildContext context, int index) {
+                return PNetworkImage(images[index], fit: BoxFit.cover);
+              },
+              itemCount: 4,
+              pagination: SwiperPagination(),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -351,59 +422,6 @@ final _popularItems = [
   ),
 ];
 
-final _topItems = <_TopItem>[
-  _TopItem(
-    title: 'Top Quality fashion item',
-    price: 'Rs.1,254',
-    image: '$STORE_BASE_URL/img%2F1.jpg?alt=media',
-  ),
-  _TopItem(
-    title: 'Top Quality fashion item',
-    price: 'Rs.1,254',
-    image: '$STORE_BASE_URL/img%2F2.jpg?alt=media',
-  ),
-  _TopItem(
-    title: 'Top Quality fashion item',
-    price: 'Rs.1,254',
-    image: '$STORE_BASE_URL/img%2F3.jpg?alt=media',
-  ),
-  _TopItem(
-    title: 'Top Quality fashion item',
-    price: 'Rs.1,254',
-    image: '$STORE_BASE_URL/img%2F4.jpg?alt=media',
-  ),
-  _TopItem(
-    title: 'Top Quality fashion item',
-    price: 'Rs.1,254',
-    image: '$STORE_BASE_URL/img%2F1.jpg?alt=media',
-  ),
-  _TopItem(
-    title: 'Top Quality fashion item',
-    price: 'Rs.1,254',
-    image: '$STORE_BASE_URL/img%2F2.jpg?alt=media',
-  ),
-  _TopItem(
-    title: 'Top Quality fashion item',
-    price: 'Rs.1,254',
-    image: '$STORE_BASE_URL/img%2F3.jpg?alt=media',
-  ),
-  _TopItem(
-    title: 'Top Quality fashion item',
-    price: 'Rs.1,254',
-    image: '$STORE_BASE_URL/img%2F4.jpg?alt=media',
-  ),
-  _TopItem(
-    title: 'Top Quality fashion item',
-    price: 'Rs.1,254',
-    image: '$STORE_BASE_URL/img%2F1.jpg?alt=media',
-  ),
-  _TopItem(
-    title: 'Top Quality fashion item',
-    price: 'Rs.1,254',
-    image: '$STORE_BASE_URL/img%2F2.jpg?alt=media',
-  ),
-];
-
 class _NavItem {
   final String id;
   final String title;
@@ -418,12 +436,6 @@ class _PopularItem {
   _PopularItem({this.title, this.subtitle, this.image});
 }
 
-class _TopItem {
-  final String title;
-  final String price;
-  final String image;
-  _TopItem({this.title, this.price, this.image});
-}
 // ----------------------------------------------------------------------------------
 // Private Static Contents ----------------------------------------------------------
 // ----------------------------------------------------------------------------------
@@ -453,6 +465,4 @@ const _insetsSymmetricH5V2 = EdgeInsets.symmetric(vertical: 2, horizontal: 5);
 const _insetsAll10 = EdgeInsets.all(10);
 const _insetsAll5 = EdgeInsets.all(5);
 const _insetsL10 = EdgeInsets.only(left: 10);
-
-const _redBorderSide = BorderSide(width: 1, style: BorderStyle.solid, color: Colors.red);
-const _shapeClipper = ShapeBorderClipper(shape: StadiumBorder(side: _redBorderSide));
+const _insetsSymmetricH20 = EdgeInsets.symmetric(horizontal: 20);

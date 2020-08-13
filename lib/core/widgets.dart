@@ -16,3 +16,4 @@ export 'widgets/avatar.dart';
 export 'widgets/social_icon_button.dart';
 export 'widgets/bordered_container.dart';
 export 'widgets/rating.dart';
+export 'widgets/image_list_slider.dart';
