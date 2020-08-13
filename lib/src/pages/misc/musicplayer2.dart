@@ -75,7 +75,7 @@ class MusicPlayerTwoPage extends StatelessWidget {
               color: Colors.black,
               child: Text(
                 "My Playlist, 348 Songs".toUpperCase(),
-                style: whiteText,
+                style: _whiteStyle,
               ),
             ),
             ListTile(
@@ -143,3 +143,5 @@ class MusicPlayerTwoPage extends StatelessWidget {
     );
   }
 }
+
+const TextStyle _whiteStyle = TextStyle(color: Colors.white);

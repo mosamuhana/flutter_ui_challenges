@@ -37,6 +37,25 @@ import '../src/pages/settings/settings3.dart';
 import '../src/pages/bike/bike_details.dart';
 import '../src/pages/bike/home_page.dart';
 
+import '../src/pages/lists/list1.dart';
+import '../src/pages/lists/list2.dart';
+
+import '../src/pages/invitation/inauth.dart';
+import '../src/pages/invitation/inlanding.dart';
+import '../src/pages/invitation/invitation1.dart';
+
+import '../src/pages/ecommerce/cart1.dart';
+import '../src/pages/ecommerce/cart2.dart';
+import '../src/pages/ecommerce/checkout1.dart';
+import '../src/pages/ecommerce/confirm_order1.dart';
+import '../src/pages/ecommerce/ecommerce1.dart';
+import '../src/pages/ecommerce/ecommerce2.dart';
+import '../src/pages/ecommerce/ecommerce4.dart';
+import '../src/pages/ecommerce/ecommerce5.dart';
+import '../src/pages/ecommerce/ecommerce_detail1.dart';
+import '../src/pages/ecommerce/ecommerce_detail2.dart';
+import '../src/pages/ecommerce/ecommerce_detail3.dart';
+
 import '../src/furniture_app/furniture_app.dart';
 import '../src/khalti_clone/main.dart';
 import '../src/nic_asia_clone/nic_asia_app.dart';
@@ -53,18 +72,6 @@ import '../src/pages/dashboard/dash3.dart';
 
 import '../src/pages/dialogs/dialogs.dart';
 
-import '../src/pages/ecommerce/cart1.dart';
-import '../src/pages/ecommerce/cart2.dart';
-import '../src/pages/ecommerce/checkout1.dart';
-import '../src/pages/ecommerce/confirm_order1.dart';
-import '../src/pages/ecommerce/ecommerce1.dart';
-import '../src/pages/ecommerce/ecommerce2.dart';
-import '../src/pages/ecommerce/ecommerce4.dart';
-import '../src/pages/ecommerce/ecommerce5.dart';
-import '../src/pages/ecommerce/ecommerce_detail1.dart';
-import '../src/pages/ecommerce/ecommerce_detail2.dart';
-import '../src/pages/ecommerce/ecommerce_detail3.dart';
-
 import '../src/pages/food/avocado.dart';
 import '../src/pages/food/cake.dart';
 import '../src/pages/food/fdhome.dart';
@@ -77,13 +84,6 @@ import '../src/pages/grocery/ghome.dart';
 
 import '../src/pages/hotel/details.dart';
 import '../src/pages/hotel/hhome.dart';
-
-import '../src/pages/invitation/inauth.dart';
-import '../src/pages/invitation/inlanding.dart';
-import '../src/pages/invitation/invitation1.dart';
-
-import '../src/pages/lists/list1.dart';
-import '../src/pages/lists/list2.dart';
 
 import '../src/pages/misc/bottomsheet.dart';
 import '../src/pages/misc/chat2.dart';
@@ -214,18 +214,18 @@ final List<dynamic> pages = [
     title: "Ecommerce",
     icon: Icons.shopping_basket,
     items: [
+      SubMenuItem("Cart One", CartOnePage(), path: CartOnePage.path),
       SubMenuItem("Cart Two", CartTwoPage(), path: CartTwoPage.path),
-      SubMenuItem("Ecommerce Four", EcommerceFourPage(), path: EcommerceFourPage.path),
       SubMenuItem("Checkout One", CheckoutOnePage(), path: CheckoutOnePage.path),
+      SubMenuItem("Confirm Order", ConfirmOrderPage(), path: ConfirmOrderPage.path),
+      SubMenuItem("Rounded Details Page", EcommerceDetailThreePage(), path: EcommerceDetailThreePage.path),
       SubMenuItem("Ecommerce One", EcommerceOnePage(), path: EcommerceOnePage.path),
       SubMenuItem("Ecommerce Two", EcommerceTwoPage(), path: EcommerceTwoPage.path),
       SubMenuItem("Ecommerce Three", SliverAppbarPage(), path: SliverAppbarPage.path),
+      SubMenuItem("Ecommerce Four", EcommerceFourPage(), path: EcommerceFourPage.path),
       SubMenuItem("Ecommerce Grocery", EcommerceFivePage(), path: EcommerceFivePage.path),
-      SubMenuItem("Confirm Order", ConfirmOrderPage(), path: ConfirmOrderPage.path),
-      SubMenuItem("Ecommerce Cart One", CartOnePage(), path: CartOnePage.path),
       SubMenuItem("Ecommerce Details One", EcommerceDetailOnePage(), path: EcommerceDetailOnePage.path),
       SubMenuItem("Ecommerce Details Two", EcommerceDetailTwoPage(), path: EcommerceDetailTwoPage.path),
-      SubMenuItem("Rounded Details Page", EcommerceDetailThreePage(), path: EcommerceDetailThreePage.path),
     ],
   ),
   MenuItem(

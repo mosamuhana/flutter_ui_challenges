@@ -1,167 +1,143 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../../core/text_styles.dart';
-import '../../../core/res/assets.dart';
+import '../../../core/constants.dart';
+
 import '../../../core/widgets.dart';
 
 class InvitationAuthPage extends StatefulWidget {
   static final String path = "lib/src/pages/invitation/inauth.dart";
+
   @override
   _InvitationAuthPageState createState() => _InvitationAuthPageState();
 }
 
 class _InvitationAuthPageState extends State<InvitationAuthPage> {
-  bool signupForm;
-  @override
-  void initState() {
-    super.initState();
-    signupForm = true;
-  }
+  bool signupForm = true;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
-        children: <Widget>[
-          FractionallySizedBox(
-            heightFactor: 0.5,
-            child: Container(
-              color: Colors.pink,
-            ),
-          ),
-          SingleChildScrollView(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              children: <Widget>[
-                const SizedBox(height: kToolbarHeight - 16.0),
-                Container(
-                  alignment: Alignment.topCenter,
-                  height: (MediaQuery.of(context).size.height / 2) - 150,
-                  child: PNetworkImage(
-                    INVITE_ILLUSTRATION,
-                    fit: BoxFit.contain,
-                  ),
-                ),
-                const SizedBox(height: 20.0),
-                Container(
-                  decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10.0), boxShadow: [
-                    BoxShadow(
-                      color: Colors.pink,
-                      offset: Offset(5, 5),
-                      blurRadius: 10.0,
-                    )
-                  ]),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      Container(
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          color: Colors.grey.shade100,
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(10.0),
-                            topRight: Radius.circular(10.0),
-                          ),
-                        ),
-                        child: ToggleButtons(
-                          renderBorder: false,
-                          selectedColor: Colors.pink,
-                          fillColor: Colors.transparent,
-                          children: <Widget>[
-                            Padding(
-                              padding: const EdgeInsets.all(16.0),
-                              child: Text(
-                                "Sign Up",
-                                style: boldTextStyle,
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                "Sign In",
-                                style: boldTextStyle,
-                              ),
-                            ),
-                          ],
-                          isSelected: [signupForm, !signupForm],
-                          onPressed: (index) {
-                            setState(() {
-                              signupForm = index == 0;
-                            });
-                          },
-                        ),
-                      ),
-                      AnimatedSwitcher(
-                        duration: Duration(
-                          milliseconds: 200,
-                        ),
-                        child: signupForm ? SignUp() : SignIn(),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 20.0),
-                Text("Or connect with"),
-                const SizedBox(height: 10.0),
-                Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16.0,
-                  ),
-                  child: OutlineButton.icon(
-                    padding: const EdgeInsets.all(16.0),
-                    icon: Icon(
-                      FontAwesomeIcons.google,
-                      color: Colors.red,
-                    ),
-                    label: Text("Google"),
-                    onPressed: () {},
-                  ),
-                )
-              ],
-            ),
-          ),
+        children: [
+          _back,
+          _content,
         ],
+      ),
+    );
+  }
+
+  Widget get _back {
+    return FractionallySizedBox(
+      heightFactor: 0.5,
+      child: Container(color: Colors.pink),
+    );
+  }
+
+  Widget get _content {
+    return SingleChildScrollView(
+      padding: _insetsAll16,
+      child: Column(
+        children: [
+          _hboxTop,
+          _image,
+          _hbox20,
+          Container(
+            decoration: _formContainerDecoration,
+            child: _formContainer,
+          ),
+          _hbox20,
+          Text("Or connect with"),
+          _hbox10,
+          _googleButton,
+        ],
+      ),
+    );
+  }
+
+  Widget get _image {
+    return Container(
+      alignment: Alignment.topCenter,
+      height: (MediaQuery.of(context).size.height / 2) - 150,
+      child: PNetworkImage(_logoImageUrl, fit: BoxFit.contain),
+    );
+  }
+
+  Widget get _formContainer {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          width: double.infinity,
+          decoration: _formContainerTopbarDecoration,
+          child: ToggleButtons(
+            renderBorder: false,
+            selectedColor: Colors.pink,
+            fillColor: Colors.transparent,
+            children: [
+              Padding(
+                padding: _insetsAll16,
+                child: Text("Sign Up", style: _boldStyle),
+              ),
+              Padding(
+                padding: _insetsAll8,
+                child: Text("Sign In", style: _boldStyle),
+              ),
+            ],
+            isSelected: [signupForm, !signupForm],
+            onPressed: (index) => setState(() => signupForm = index == 0),
+          ),
+        ),
+        AnimatedSwitcher(
+          duration: Duration(milliseconds: 200),
+          child: signupForm ? _SignUp() : _SignIn(),
+        ),
+      ],
+    );
+  }
+
+  Widget get _googleButton {
+    return Container(
+      width: double.infinity,
+      padding: _insetsSymmetricH16,
+      child: OutlineButton.icon(
+        padding: _insetsAll16,
+        icon: _googleIcon,
+        label: Text("Google"),
+        onPressed: () {},
       ),
     );
   }
 }
 
-class SignUp extends StatelessWidget {
+class _SignUp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(16.0),
+      padding: _insetsAll16,
       child: Column(
-        children: <Widget>[
+        children: [
           TextField(
             decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              contentPadding: const EdgeInsets.all(
-                16.0,
-              ),
+              border: _outlineInputBorder,
+              contentPadding: _insetsAll16,
               hintText: "enter your email",
             ),
           ),
-          const SizedBox(height: 16.0),
+          _hbox16,
           TextField(
             decoration: InputDecoration(
-              border: OutlineInputBorder(),
+              border: _outlineInputBorder,
               hintText: "phone",
-              contentPadding: const EdgeInsets.all(
-                16.0,
-              ),
+              contentPadding: _insetsAll16,
               prefixText: "+977 ",
-              prefixStyle: boldTextStyle.copyWith(color: Colors.black),
+              prefixStyle: _blackBoldStyle,
             ),
           ),
-          const SizedBox(height: 16.0),
+          _hbox16,
           Container(
             width: double.infinity,
-            padding: const EdgeInsets.symmetric(
-              horizontal: 32.0,
-            ),
+            padding: _insetsSymmetricH32,
             child: RaisedButton(
               elevation: 0,
               highlightElevation: 0,
@@ -171,47 +147,41 @@ class SignUp extends StatelessWidget {
               child: Text("Sign up"),
             ),
           ),
-          const SizedBox(height: 10.0),
+          _hbox10,
         ],
       ),
     );
   }
 }
 
-class SignIn extends StatelessWidget {
+class _SignIn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(16.0),
+      padding: _insetsAll16,
       child: Column(
-        children: <Widget>[
+        children: [
           TextField(
             decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              contentPadding: const EdgeInsets.all(
-                16.0,
-              ),
+              border: _outlineInputBorder,
+              contentPadding: _insetsAll16,
               hintText: "enter your email or phone",
             ),
           ),
-          const SizedBox(height: 16.0),
+          _hbox16,
           TextField(
             obscureText: true,
             decoration: InputDecoration(
-              border: OutlineInputBorder(),
+              border: _outlineInputBorder,
               hintText: "password",
-              contentPadding: const EdgeInsets.all(
-                16.0,
-              ),
-              prefixStyle: boldTextStyle.copyWith(color: Colors.black),
+              contentPadding: _insetsAll16,
+              prefixStyle: _blackBoldStyle,
             ),
           ),
-          const SizedBox(height: 16.0),
+          _hbox16,
           Container(
             width: double.infinity,
-            padding: const EdgeInsets.symmetric(
-              horizontal: 32.0,
-            ),
+            padding: _insetsSymmetricH32,
             child: RaisedButton(
               elevation: 0,
               highlightElevation: 0,
@@ -220,9 +190,50 @@ class SignIn extends StatelessWidget {
               child: Text("Sign In"),
             ),
           ),
-          const SizedBox(height: 10.0),
+          _hbox10,
         ],
       ),
     );
   }
 }
+
+// ----------------------------------------------------------------------------------
+// Private Static Contents ----------------------------------------------------------
+// ----------------------------------------------------------------------------------
+
+const _logoImageUrl = "$STORE_BASE_URL/img%2Finvite.png?alt=media";
+
+const _boldStyle = TextStyle(fontWeight: FontWeight.bold);
+final _blackBoldStyle = _boldStyle.copyWith(color: Colors.black);
+
+const _hboxTop = SizedBox(height: kToolbarHeight - 16);
+const _hbox10 = SizedBox(height: 10);
+const _hbox16 = SizedBox(height: 16);
+const _hbox20 = SizedBox(height: 20);
+
+const _circularRadius10 = Radius.circular(10);
+
+const _insetsAll8 = EdgeInsets.all(8);
+const _insetsAll16 = EdgeInsets.all(16);
+const _insetsSymmetricH16 = EdgeInsets.symmetric(horizontal: 16);
+const _insetsSymmetricH32 = EdgeInsets.symmetric(horizontal: 32);
+
+const _googleIcon = Icon(FontAwesomeIcons.google, color: Colors.red);
+
+final _formContainerDecoration = BoxDecoration(
+  color: Colors.white,
+  borderRadius: BorderRadius.circular(10),
+  boxShadow: [
+    BoxShadow(color: Colors.pink, offset: Offset(5, 5), blurRadius: 10),
+  ],
+);
+
+final _formContainerTopbarDecoration = BoxDecoration(
+  color: Colors.grey.shade100,
+  borderRadius: BorderRadius.only(
+    topLeft: _circularRadius10,
+    topRight: _circularRadius10,
+  ),
+);
+
+const _outlineInputBorder = OutlineInputBorder();

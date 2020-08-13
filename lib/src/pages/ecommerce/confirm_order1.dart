@@ -1,122 +1,178 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/ui_constants.dart';
-
-class ConfirmOrderPage extends StatelessWidget {
+class ConfirmOrderPage extends StatefulWidget {
   static final String path = "lib/src/pages/ecommerce/confirm_order1.dart";
-  final String address = "Chabahil, Kathmandu";
-  final String phone = "9818522122";
-  final double total = 500;
-  final double delivery = 100;
+
+  @override
+  _ConfirmOrderPageState createState() => _ConfirmOrderPageState();
+}
+
+class _ConfirmOrderPageState extends State<ConfirmOrderPage> {
+  String address;
+  String contact;
+  String deliveryOption;
+
+  @override
+  void initState() {
+    address = _order.address;
+    contact = _order.phone;
+    deliveryOption = 'Cash on Delivery';
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Confirm Order")),
-      body: _buildBody(context),
-    );
-  }
-
-  Widget _buildBody(BuildContext context) {
-    return SingleChildScrollView(
-      padding: EdgeInsets.only(left: 20.0, right: 20.0, top: 40.0, bottom: 10.0),
-      child: Column(
-        children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text("Subtotal"),
-              Text("Rs. $total"),
-            ],
-          ),
-          hSizedBox10,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text("Delivery fee"),
-              Text("Rs. $delivery"),
-            ],
-          ),
-          hSizedBox10,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text(
-                "Total",
-                style: Theme.of(context).textTheme.headline6,
-              ),
-              Text("Rs. ${total + delivery}", style: Theme.of(context).textTheme.headline6),
-            ],
-          ),
-          hSizedBox20,
-          Container(
-              color: Colors.grey.shade200,
-              padding: EdgeInsets.all(8.0),
-              width: double.infinity,
-              child: Text("Delivery Address".toUpperCase())),
-          Column(
-            children: <Widget>[
-              RadioListTile(
-                selected: true,
-                value: address,
-                groupValue: address,
-                title: Text(address),
-                onChanged: (value) {},
-              ),
-              RadioListTile(
-                selected: false,
-                value: "New Address",
-                groupValue: address,
-                title: Text("Choose new delivery address"),
-                onChanged: (value) {},
-              ),
-              Container(
-                  color: Colors.grey.shade200,
-                  padding: EdgeInsets.all(8.0),
-                  width: double.infinity,
-                  child: Text("Contact Number".toUpperCase())),
-              RadioListTile(
-                selected: true,
-                value: phone,
-                groupValue: phone,
-                title: Text(phone),
-                onChanged: (value) {},
-              ),
-              RadioListTile(
-                selected: false,
-                value: "New Phone",
-                groupValue: phone,
-                title: Text("Choose new contact number"),
-                onChanged: (value) {},
-              ),
-            ],
-          ),
-          hSizedBox20,
-          Container(
-            color: Colors.grey.shade200,
-            padding: EdgeInsets.all(8.0),
-            width: double.infinity,
-            child: Text("Payment Option".toUpperCase()),
-          ),
-          RadioListTile(
-            groupValue: true,
-            value: true,
-            title: Text("Cash on Delivery"),
-            onChanged: (value) {},
-          ),
-          Container(
-            width: double.infinity,
-            child: RaisedButton(
-              color: Theme.of(context).primaryColor,
-              onPressed: () => {},
-              child: Text(
-                "Confirm Order",
-                style: TextStyle(color: Colors.white),
-              ),
-            ),
-          )
-        ],
+      body: SingleChildScrollView(
+        padding: _insetsSymmetricH20V10,
+        child: Column(
+          children: [
+            ..._totalDetails,
+            _hbox20,
+            _deliveryAddress,
+            _contactNumber,
+            _hbox20,
+            _paymentOption,
+            _confirmOrderButton,
+          ],
+        ),
       ),
     );
   }
+
+  List<Widget> get _totalDetails {
+    return [
+      _totalDetailRow('Subtotal', _order.total),
+      _hbox10,
+      _totalDetailRow('Delivery fee', _order.deliveryFee),
+      _hbox10,
+      _totalDetailRow('Total', _order.total + _order.deliveryFee, Theme.of(context).textTheme.headline6),
+    ];
+  }
+
+  Widget get _deliveryAddress {
+    final addresses = <String>[
+      _order.address,
+      'New Address',
+    ];
+
+    return Column(
+      children: [
+        _title('DELIVERY ADDRESS'),
+        for (var item in addresses)
+          RadioListTile(
+            value: item,
+            groupValue: address,
+            title: Text(item),
+            onChanged: (value) => setState(() => address = value),
+          ),
+      ],
+    );
+  }
+
+  Widget get _contactNumber {
+    final contacts = <String>[
+      _order.phone,
+      'New Phone',
+    ];
+
+    return Column(
+      children: [
+        _title('CONTACT NUMBER'),
+        for (var item in contacts)
+          RadioListTile(
+            value: item,
+            groupValue: contact,
+            title: Text(item),
+            onChanged: (value) => setState(() => contact = value),
+          ),
+      ],
+    );
+  }
+
+  Widget get _paymentOption {
+    const options = ['Cash on Delivery', 'Credit Card'];
+    return Column(
+      children: [
+        _title('PAYMENT OPTION'),
+        for (var item in options)
+          RadioListTile(
+            value: item,
+            groupValue: deliveryOption,
+            title: Text(item),
+            onChanged: (value) => setState(() => deliveryOption = value),
+          ),
+      ],
+    );
+  }
+
+  Widget get _confirmOrderButton {
+    return Container(
+      width: double.infinity,
+      child: RaisedButton(
+        color: Theme.of(context).primaryColor,
+        child: Text(
+          "Confirm Order",
+          style: _whiteStyle,
+        ),
+        onPressed: () => print('Confirm Order'),
+      ),
+    );
+  }
+
+  Widget _title(String text) {
+    return Container(
+      color: Colors.grey.shade200,
+      padding: _insetsAll8,
+      width: double.infinity,
+      child: Text(text),
+    );
+  }
+
+  Widget _totalDetailRow(String name, double value, [TextStyle style]) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(name, style: style),
+        Text("Rs. $value", style: style),
+      ],
+    );
+  }
 }
+
+// ----------------------------------------------------------------------------------
+// Privates -------------------------------------------------------------------------
+// ----------------------------------------------------------------------------------
+
+final _order = _Order(
+  address: 'Chabahil, Kathmandu',
+  phone: '+98-1852-2122',
+  total: 500,
+  deliveryFee: 100,
+);
+
+class _Order {
+  final String address;
+  final String phone;
+  final double total;
+  final double deliveryFee;
+  _Order({
+    this.address,
+    this.phone,
+    this.total,
+    this.deliveryFee,
+  });
+}
+
+// ----------------------------------------------------------------------------------
+// Private Static Contents ----------------------------------------------------------
+// ----------------------------------------------------------------------------------
+
+const _hbox10 = SizedBox(height: 10);
+const _hbox20 = SizedBox(height: 20);
+
+const _insetsSymmetricH20V10 = EdgeInsets.symmetric(horizontal: 20, vertical: 10);
+const _insetsAll8 = EdgeInsets.all(8);
+
+const _whiteStyle = TextStyle(color: Colors.white);
