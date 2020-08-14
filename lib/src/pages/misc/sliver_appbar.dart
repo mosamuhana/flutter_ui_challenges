@@ -7,195 +7,144 @@ import '../../../core/widgets.dart';
 class SliverAppbarPage extends StatelessWidget {
   static final String path = "lib/src/pages/misc/sliver_appbar.dart";
 
-  final List<String> images = [
-    '$STORE_BASE_URL/img%2F1.jpg?alt=media',
-    '$STORE_BASE_URL/img%2Fb1.jpg?alt=media',
-    '$STORE_BASE_URL/img%2F2.jpg?alt=media',
-    '$STORE_BASE_URL/img%2F3.jpg?alt=media',
-    '$STORE_BASE_URL/img%2F4.jpg?alt=media',
-    '$STORE_BASE_URL/img%2F5.jpg?alt=media',
-    '$STORE_BASE_URL/img%2Fb2.jpg?alt=media',
-    '$STORE_BASE_URL/img%2F6.jpg?alt=media',
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          SliverAppBar(
-            expandedHeight: 150,
-            pinned: true,
-            flexibleSpace: FlexibleSpaceBar(
-              title: Text('Welcome To Shop'),
-              background: PNetworkImage(_imageUrl, fit: BoxFit.cover),
-            ),
-            actions: [
-              IconButton(
-                icon: _favoriteBorderIcon,
-                tooltip: 'Favorites',
-                onPressed: () {/* ... */},
-              ),
-            ],
-          ),
-          SliverToBoxAdapter(
-            child: Container(
-              color: Colors.deepOrange,
-              child: Padding(
-                padding: _insetsAll8,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    MaterialButton(
-                      onPressed: () {},
-                      child: Text('NEW ARRIVALS', style: _whiteBoldStyle),
-                    ),
-                    MaterialButton(
-                      onPressed: () {},
-                      child: Text('SEE ALL', style: _whiteNormalStyle),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          SliverPadding(
-            padding: _insetsL16R16,
-            sliver: SliverGrid(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 10,
-                childAspectRatio: 1,
-                crossAxisCount: 2,
-              ),
-              delegate: SliverChildBuilderDelegate(
-                (context, i) => _buildItems(i, context),
-                childCount: images.length,
-              ),
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: Container(
-              margin: _insetsT20,
-              color: Colors.pink,
-              child: Padding(
-                padding: _insetsAll8,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    MaterialButton(
-                      onPressed: () {},
-                      child: Text('FEATURED', style: _whiteBoldStyle),
-                    ),
-                    MaterialButton(
-                      onPressed: () {},
-                      child: Text('SEE ALL', style: _whiteNormalStyle),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: _imageListSlider,
-          ),
-          SliverToBoxAdapter(
-            child: Container(
-              padding: _insetsAll20,
-              color: Colors.pink,
-              child: Text('RECOMMENDED FOR YOU', style: _whiteBoldStyle),
-            ),
-          ),
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (context, index) => _buildListItem(index),
-              childCount: images.length,
-            ),
-          ),
+          _sliverAppBar,
+          _sliverTopBar,
+          _sliverShopGrid,
+          _featuredBar,
+          _sliverImageSlider,
+          _recommendedForYouBar,
+          _sliverShopList,
         ],
       ),
     );
   }
 
-  Widget get _imageListSlider {
-    return Container(
-      padding: _insetsB20,
-      height: 200,
+  Widget get _sliverAppBar {
+    return SliverAppBar(
+      expandedHeight: 150,
+      pinned: true,
+      flexibleSpace: FlexibleSpaceBar(
+        title: Text('Welcome To Shop'),
+        background: PNetworkImage(_imageUrl, fit: BoxFit.cover),
+      ),
+      actions: [
+        IconButton(
+          icon: _favoriteBorderIcon,
+          tooltip: 'Favorites',
+          onPressed: () {/* ... */},
+        ),
+      ],
+    );
+  }
+
+  Widget get _sliverTopBar {
+    return SliverToBoxAdapter(
       child: Container(
-        child: Swiper(
-          autoplay: true,
-          itemBuilder: (context, index) => PNetworkImage(images[index], fit: BoxFit.cover),
-          itemCount: 4,
-          pagination: SwiperPagination(),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildItems(int index, BuildContext context) {
-    final imageUrl = images[index % images.length];
-    final tag = "item$index";
-    return Container(
-      height: 200,
-      child: GestureDetector(
-        onTap: () => _navigateToItem(context, tag, imageUrl),
-        child: Column(
-          children: [
-            Expanded(
-              child: Hero(
-                tag: tag,
-                child: PNetworkImage(imageUrl, fit: BoxFit.cover),
+        color: Colors.deepOrange,
+        child: Padding(
+          padding: _insetsAll8,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              MaterialButton(
+                onPressed: () {},
+                child: Text('NEW ARRIVALS', style: _whiteBoldStyle),
               ),
-            ),
-            SizedBox(height: 10),
-            Text('Top Quality fashion item', softWrap: true),
-            SizedBox(height: 10),
-            Text('Rs.1,254', style: _redBold18Style),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildListItem(int index) {
-    return Container(
-      height: 100,
-      child: Card(
-        child: Center(
-          child: ListTile(
-            leading: CircleAvatar(
-              radius: 40,
-              backgroundImage: NetworkImage(images[index % images.length]),
-            ),
-            title: Text('Top Quality fashion item', softWrap: true),
-            subtitle: Text('Rs.1,254', style: _redBold18Style),
+              MaterialButton(
+                onPressed: () {},
+                child: Text('SEE ALL', style: _whiteNormalStyle),
+              ),
+            ],
           ),
         ),
       ),
     );
   }
 
-  void _navigateToItem(BuildContext context, String tag, String imageUrl) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (_) => _FashionItemPage(
-          tag: tag,
-          imageUrl: imageUrl,
+  Widget get _sliverShopGrid {
+    return SliverPadding(
+      padding: _insetsL16R16,
+      sliver: SliverGrid(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          mainAxisSpacing: 10,
+          crossAxisSpacing: 10,
+          childAspectRatio: 1,
+          crossAxisCount: 2,
         ),
+        delegate: SliverChildBuilderDelegate(
+          (_, i) => _ShopItemCard(item: _shopItems[i]),
+          childCount: _shopItems.length,
+        ),
+      ),
+    );
+  }
+
+  Widget get _featuredBar {
+    return SliverToBoxAdapter(
+      child: Container(
+        margin: _insetsT20,
+        color: Colors.pink,
+        child: Padding(
+          padding: _insetsAll8,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              MaterialButton(
+                onPressed: () {},
+                child: Text('FEATURED', style: _whiteBoldStyle),
+              ),
+              MaterialButton(
+                onPressed: () {},
+                child: Text('SEE ALL', style: _whiteNormalStyle),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget get _sliverImageSlider {
+    return SliverToBoxAdapter(
+      child: _ImageSlider(images: _images),
+    );
+  }
+
+  Widget get _recommendedForYouBar {
+    return SliverToBoxAdapter(
+      child: Container(
+        padding: _insetsAll20,
+        color: Colors.pink,
+        child: Text('RECOMMENDED FOR YOU', style: _whiteBoldStyle),
+      ),
+    );
+  }
+
+  Widget get _sliverShopList {
+    return SliverList(
+      delegate: SliverChildBuilderDelegate(
+        (_, i) => _ItemCard(item: _shopItems[i]),
+        childCount: _shopItems.length,
       ),
     );
   }
 }
 
 // ----------------------------------------------------------------------------------
-// Privates ------------------------------------------------------------------
+// Private Widgets ------------------------------------------------------------------
 // ----------------------------------------------------------------------------------
 
 class _FashionItemPage extends StatelessWidget {
-  final String tag;
-  final String imageUrl;
+  final _ShopItem item;
 
-  const _FashionItemPage({Key key, this.tag, this.imageUrl}) : super(key: key);
+  const _FashionItemPage({Key key, this.item}) : super(key: key);
+
+  String get tag => 'shopItem${item.id}';
 
   @override
   Widget build(BuildContext context) {
@@ -216,16 +165,13 @@ class _FashionItemPage extends StatelessWidget {
                 Expanded(
                   child: Hero(
                     tag: tag,
-                    child: PNetworkImage(imageUrl, fit: BoxFit.cover),
+                    child: PNetworkImage(item.image, fit: BoxFit.cover),
                   ),
                 ),
                 SizedBox(height: 10),
-                Text('Top Quality fashion item', softWrap: true),
+                Text(item.title, softWrap: true),
                 SizedBox(height: 10),
-                Text(
-                  'Rs.1,254',
-                  style: _redBold18Style,
-                )
+                Text(item.price, style: _redBold18Style)
               ],
             ),
           ),
@@ -233,6 +179,123 @@ class _FashionItemPage extends StatelessWidget {
       ),
     );
   }
+}
+
+class _ShopItemCard extends StatelessWidget {
+  final _ShopItem item;
+
+  const _ShopItemCard({Key key, this.item}) : super(key: key);
+
+  String get tag => 'shopItem${item.id}';
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 200,
+      child: GestureDetector(
+        onTap: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(builder: (_) => _FashionItemPage(item: item)),
+          );
+        },
+        child: Column(
+          children: [
+            Expanded(
+              child: Hero(
+                tag: tag,
+                child: PNetworkImage(item.image, fit: BoxFit.cover),
+              ),
+            ),
+            SizedBox(height: 10),
+            Text(item.title, softWrap: true),
+            SizedBox(height: 10),
+            Text(item.price, style: _redBold18Style),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _ItemCard extends StatelessWidget {
+  final _ShopItem item;
+
+  const _ItemCard({Key key, this.item}) : super(key: key);
+
+  String get tag => 'shopItem${item.id}';
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 100,
+      child: Card(
+        child: Center(
+          child: ListTile(
+            leading: CircleAvatar(radius: 40, backgroundImage: NetworkImage(item.image)),
+            title: Text(item.title, softWrap: true),
+            subtitle: Text(item.price, style: _redBold18Style),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _ImageSlider extends StatelessWidget {
+  final List<String> images;
+
+  const _ImageSlider({Key key, @required this.images}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: _insetsB20,
+      height: 200,
+      child: Container(
+        child: Swiper(
+          autoplay: true,
+          itemBuilder: (context, index) => PNetworkImage(images[index], fit: BoxFit.cover),
+          itemCount: images.length,
+          pagination: SwiperPagination(),
+        ),
+      ),
+    );
+  }
+}
+// ----------------------------------------------------------------------------------
+// Private Data ---------------------------------------------------------------------
+// ----------------------------------------------------------------------------------
+
+final List<String> _images = [
+  '$STORE_BASE_URL/img%2F1.jpg?alt=media',
+  '$STORE_BASE_URL/img%2Fb1.jpg?alt=media',
+  '$STORE_BASE_URL/img%2F2.jpg?alt=media',
+  '$STORE_BASE_URL/img%2F3.jpg?alt=media',
+  '$STORE_BASE_URL/img%2F4.jpg?alt=media',
+  '$STORE_BASE_URL/img%2F5.jpg?alt=media',
+  '$STORE_BASE_URL/img%2Fb2.jpg?alt=media',
+  '$STORE_BASE_URL/img%2F6.jpg?alt=media',
+];
+
+final _shopItems = <_ShopItem>[
+  _ShopItem(id: 1, title: 'Top Quality fashion item', price: 'Rs.1,254', image: '$STORE_BASE_URL/img%2F1.jpg?alt=media'),
+  _ShopItem(id: 2, title: 'Top Quality fashion item', price: 'Rs.1,254', image: '$STORE_BASE_URL/img%2Fb1.jpg?alt=media'),
+  _ShopItem(id: 3, title: 'Top Quality fashion item', price: 'Rs.1,254', image: '$STORE_BASE_URL/img%2F2.jpg?alt=media'),
+  _ShopItem(id: 4, title: 'Top Quality fashion item', price: 'Rs.1,254', image: '$STORE_BASE_URL/img%2F3.jpg?alt=media'),
+  _ShopItem(id: 5, title: 'Top Quality fashion item', price: 'Rs.1,254', image: '$STORE_BASE_URL/img%2F4.jpg?alt=media'),
+  _ShopItem(id: 6, title: 'Top Quality fashion item', price: 'Rs.1,254', image: '$STORE_BASE_URL/img%2F5.jpg?alt=media'),
+  _ShopItem(id: 7, title: 'Top Quality fashion item', price: 'Rs.1,254', image: '$STORE_BASE_URL/img%2Fb2.jpg?alt=media'),
+  _ShopItem(id: 8, title: 'Top Quality fashion item', price: 'Rs.1,254', image: '$STORE_BASE_URL/img%2F6.jpg?alt=media'),
+];
+
+class _ShopItem {
+  final int id;
+  final String title;
+  final String price;
+  final String image;
+  _ShopItem({this.id, this.title, this.price, this.image});
+
+  String get tag => 'shopItem$id';
 }
 
 // ----------------------------------------------------------------------------------

@@ -221,8 +221,8 @@ final List<dynamic> pages = [
       SubMenuItem("Rounded Details Page", EcommerceDetailThreePage(), path: EcommerceDetailThreePage.path),
       SubMenuItem("Ecommerce One", EcommerceOnePage(), path: EcommerceOnePage.path),
       SubMenuItem("Ecommerce Two", EcommerceTwoPage(), path: EcommerceTwoPage.path),
-      // ................
       SubMenuItem("Ecommerce Three", SliverAppbarPage(), path: SliverAppbarPage.path), // misc
+      // ................
       SubMenuItem("Ecommerce Four", EcommerceFourPage(), path: EcommerceFourPage.path),
       SubMenuItem("Ecommerce Grocery", EcommerceFivePage(), path: EcommerceFivePage.path),
       SubMenuItem("Ecommerce Details One", EcommerceDetailOnePage(), path: EcommerceDetailOnePage.path),
