@@ -100,7 +100,7 @@ class _EcommerceOnePageState extends State<EcommerceOnePage> {
               color: Colors.deepPurple,
             ),
           ),
-          ImageListSlider(images: images),
+          ImageListSlider(images: images, padding: _insetsSymmetricH20),
         ],
       ),
     );
@@ -453,6 +453,7 @@ const _insetsSymmetricH5V2 = EdgeInsets.symmetric(vertical: 2, horizontal: 5);
 const _insetsAll10 = EdgeInsets.all(10);
 const _insetsAll5 = EdgeInsets.all(5);
 const _insetsL10 = EdgeInsets.only(left: 10);
+const _insetsSymmetricH20 = EdgeInsets.symmetric(horizontal: 20);
 
 const _redBorderSide = BorderSide(width: 1, style: BorderStyle.solid, color: Colors.red);
 const _shapeClipper = ShapeBorderClipper(shape: StadiumBorder(side: _redBorderSide));

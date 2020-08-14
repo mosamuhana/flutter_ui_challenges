@@ -5,13 +5,14 @@ import 'p_network_image.dart';
 
 class ImageListSlider extends StatelessWidget {
   final List<String> images;
+  final EdgeInsetsGeometry padding;
 
-  const ImageListSlider({Key key, this.images}) : super(key: key);
+  const ImageListSlider({Key key, this.images, this.padding}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: _insetsSymmetricH20,
+      padding: padding,
       child: Swiper(
         autoplay: true,
         itemBuilder: (_, i) => PNetworkImage(images[i], fit: BoxFit.cover),
@@ -21,5 +22,3 @@ class ImageListSlider extends StatelessWidget {
     );
   }
 }
-
-const _insetsSymmetricH20 = EdgeInsets.symmetric(horizontal: 20);

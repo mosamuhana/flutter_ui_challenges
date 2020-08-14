@@ -1,160 +1,156 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
-import '../../../core/res/assets.dart' as assets;
+import '../../../core/constants.dart';
 import '../../../core/widgets.dart';
 
 class SliverAppbarPage extends StatelessWidget {
   static final String path = "lib/src/pages/misc/sliver_appbar.dart";
+
   final List<String> images = [
-    assets.images[0],
-    assets.backgroundImages[0],
-    assets.images[1],
-    assets.images[2],
-    assets.images[3],
-    assets.images[4],
-    assets.backgroundImages[1],
-    assets.images[5]
+    '$STORE_BASE_URL/img%2F1.jpg?alt=media',
+    '$STORE_BASE_URL/img%2Fb1.jpg?alt=media',
+    '$STORE_BASE_URL/img%2F2.jpg?alt=media',
+    '$STORE_BASE_URL/img%2F3.jpg?alt=media',
+    '$STORE_BASE_URL/img%2F4.jpg?alt=media',
+    '$STORE_BASE_URL/img%2F5.jpg?alt=media',
+    '$STORE_BASE_URL/img%2Fb2.jpg?alt=media',
+    '$STORE_BASE_URL/img%2F6.jpg?alt=media',
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: CustomScrollView(
-        slivers: <Widget>[
+        slivers: [
           SliverAppBar(
-              expandedHeight: 150.0,
-              pinned: true,
-              flexibleSpace: FlexibleSpaceBar(
-                title: Text('Welcome To Shop'),
-                background: PNetworkImage(assets.images[1], fit: BoxFit.cover),
+            expandedHeight: 150,
+            pinned: true,
+            flexibleSpace: FlexibleSpaceBar(
+              title: Text('Welcome To Shop'),
+              background: PNetworkImage(_imageUrl, fit: BoxFit.cover),
+            ),
+            actions: [
+              IconButton(
+                icon: _favoriteBorderIcon,
+                tooltip: 'Favorites',
+                onPressed: () {/* ... */},
               ),
-              actions: <Widget>[
-                IconButton(
-                  icon: const Icon(Icons.favorite_border),
-                  tooltip: 'Favorites',
-                  onPressed: () {/* ... */},
-                ),
-              ]),
+            ],
+          ),
           SliverToBoxAdapter(
             child: Container(
-                color: Colors.deepOrange,
-                child: Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      MaterialButton(
-                          onPressed: () {},
-                          child: Text("New Arrivals".toUpperCase(),
-                              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold))),
-                      MaterialButton(
-                          onPressed: () {},
-                          child: Text("See All".toUpperCase(),
-                              style: TextStyle(color: Colors.white, fontWeight: FontWeight.w400))),
-                    ],
-                  ),
-                )),
+              color: Colors.deepOrange,
+              child: Padding(
+                padding: _insetsAll8,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    MaterialButton(
+                      onPressed: () {},
+                      child: Text('NEW ARRIVALS', style: _whiteBoldStyle),
+                    ),
+                    MaterialButton(
+                      onPressed: () {},
+                      child: Text('SEE ALL', style: _whiteNormalStyle),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ),
           SliverPadding(
-            padding: EdgeInsets.only(left: 16.0, right: 16.0),
+            padding: _insetsL16R16,
             sliver: SliverGrid(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  mainAxisSpacing: 10.0, crossAxisSpacing: 10.0, childAspectRatio: 1.0, crossAxisCount: 2),
+                mainAxisSpacing: 10,
+                crossAxisSpacing: 10,
+                childAspectRatio: 1,
+                crossAxisCount: 2,
+              ),
               delegate: SliverChildBuilderDelegate(
-                (BuildContext context, int index) {
-                  return _buildItems(index, context);
-                },
+                (context, i) => _buildItems(i, context),
                 childCount: images.length,
               ),
             ),
           ),
           SliverToBoxAdapter(
             child: Container(
-                margin: EdgeInsets.only(top: 20.0),
-                color: Colors.pink,
-                child: Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      MaterialButton(
-                          onPressed: () {},
-                          child: Text("Featured".toUpperCase(),
-                              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold))),
-                      MaterialButton(
-                          onPressed: () {},
-                          child: Text("See All".toUpperCase(),
-                              style: TextStyle(color: Colors.white, fontWeight: FontWeight.w400))),
-                    ],
-                  ),
-                )),
+              margin: _insetsT20,
+              color: Colors.pink,
+              child: Padding(
+                padding: _insetsAll8,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    MaterialButton(
+                      onPressed: () {},
+                      child: Text('FEATURED', style: _whiteBoldStyle),
+                    ),
+                    MaterialButton(
+                      onPressed: () {},
+                      child: Text('SEE ALL', style: _whiteNormalStyle),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ),
           SliverToBoxAdapter(
-            child: _buildSlider(),
+            child: _imageListSlider,
           ),
           SliverToBoxAdapter(
             child: Container(
-                padding: EdgeInsets.all(20.0),
-                color: Colors.pink,
-                child: Text("Recommended for you".toUpperCase(),
-                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold))),
+              padding: _insetsAll20,
+              color: Colors.pink,
+              child: Text('RECOMMENDED FOR YOU', style: _whiteBoldStyle),
+            ),
           ),
           SliverList(
             delegate: SliverChildBuilderDelegate(
-              (BuildContext context, int index) {
-                return _buildListItem(index);
-              },
+              (context, index) => _buildListItem(index),
               childCount: images.length,
             ),
-          )
+          ),
         ],
       ),
     );
   }
 
-  Widget _buildSlider() {
+  Widget get _imageListSlider {
     return Container(
-      padding: EdgeInsets.only(bottom: 20.0),
-      height: 200.0,
+      padding: _insetsB20,
+      height: 200,
       child: Container(
         child: Swiper(
           autoplay: true,
-          itemBuilder: (BuildContext context, int index) {
-            return new PNetworkImage(
-              images[index],
-              fit: BoxFit.cover,
-            );
-          },
+          itemBuilder: (context, index) => PNetworkImage(images[index], fit: BoxFit.cover),
           itemCount: 4,
-          pagination: new SwiperPagination(),
+          pagination: SwiperPagination(),
         ),
       ),
     );
   }
 
   Widget _buildItems(int index, BuildContext context) {
+    final imageUrl = images[index % images.length];
+    final tag = "item$index";
     return Container(
       height: 200,
       child: GestureDetector(
-        onTap: () => _onTapItem(context, index),
+        onTap: () => _navigateToItem(context, tag, imageUrl),
         child: Column(
-          children: <Widget>[
-            Expanded(child: Hero(tag: "item$index", child: PNetworkImage(images[index % images.length], fit: BoxFit.cover))),
-            SizedBox(
-              height: 10.0,
+          children: [
+            Expanded(
+              child: Hero(
+                tag: tag,
+                child: PNetworkImage(imageUrl, fit: BoxFit.cover),
+              ),
             ),
-            Text(
-              'Top Quality fashion item',
-              softWrap: true,
-            ),
-            SizedBox(
-              height: 10.0,
-            ),
-            Text(
-              'Rs.1,254',
-              style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, color: Colors.red),
-            )
+            SizedBox(height: 10),
+            Text('Top Quality fashion item', softWrap: true),
+            SizedBox(height: 10),
+            Text('Rs.1,254', style: _redBold18Style),
           ],
         ),
       ),
@@ -163,66 +159,97 @@ class SliverAppbarPage extends StatelessWidget {
 
   Widget _buildListItem(int index) {
     return Container(
-        height: 100,
-        child: Card(
-          child: Center(
-            child: ListTile(
-              leading: CircleAvatar(
-                radius: 40,
-                backgroundImage: NetworkImage(images[index % images.length]),
-              ),
-              title: Text(
-                'Top Quality fashion item',
-                softWrap: true,
-              ),
-              subtitle: Text(
-                'Rs.1,254',
-                style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, color: Colors.red),
-              ),
+      height: 100,
+      child: Card(
+        child: Center(
+          child: ListTile(
+            leading: CircleAvatar(
+              radius: 40,
+              backgroundImage: NetworkImage(images[index % images.length]),
             ),
+            title: Text('Top Quality fashion item', softWrap: true),
+            subtitle: Text('Rs.1,254', style: _redBold18Style),
           ),
-        ));
+        ),
+      ),
+    );
   }
 
-  _onTapItem(BuildContext pcontext, int index) {
-    Navigator.of(pcontext).push(MaterialPageRoute<void>(builder: (BuildContext context) {
-      return Scaffold(
-        appBar: AppBar(
-          title: const Text('Top quality fashion item'),
+  void _navigateToItem(BuildContext context, String tag, String imageUrl) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => _FashionItemPage(
+          tag: tag,
+          imageUrl: imageUrl,
         ),
-        body: Material(
-          child: Container(
-            // The blue background emphasizes that it's a new route.
-            color: Colors.white,
-            padding: const EdgeInsets.all(16.0),
-            alignment: Alignment.topLeft,
-            child: GestureDetector(
-              onTap: () => Navigator.pop(context),
-              child: Column(
-                children: <Widget>[
-                  Expanded(
-                      child:
-                          Hero(tag: "item$index", child: PNetworkImage(images[index % images.length], fit: BoxFit.cover))),
-                  SizedBox(
-                    height: 10.0,
+      ),
+    );
+  }
+}
+
+// ----------------------------------------------------------------------------------
+// Privates ------------------------------------------------------------------
+// ----------------------------------------------------------------------------------
+
+class _FashionItemPage extends StatelessWidget {
+  final String tag;
+  final String imageUrl;
+
+  const _FashionItemPage({Key key, this.tag, this.imageUrl}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Top quality fashion item'),
+      ),
+      body: Material(
+        child: Container(
+          // The blue background emphasizes that it's a new route.
+          color: Colors.white,
+          padding: _insetsAll16,
+          alignment: Alignment.topLeft,
+          child: GestureDetector(
+            onTap: () => Navigator.pop(context),
+            child: Column(
+              children: [
+                Expanded(
+                  child: Hero(
+                    tag: tag,
+                    child: PNetworkImage(imageUrl, fit: BoxFit.cover),
                   ),
-                  Text(
-                    'Top Quality fashion item',
-                    softWrap: true,
-                  ),
-                  SizedBox(
-                    height: 10.0,
-                  ),
-                  Text(
-                    'Rs.1,254',
-                    style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, color: Colors.red),
-                  )
-                ],
-              ),
+                ),
+                SizedBox(height: 10),
+                Text('Top Quality fashion item', softWrap: true),
+                SizedBox(height: 10),
+                Text(
+                  'Rs.1,254',
+                  style: _redBold18Style,
+                )
+              ],
             ),
           ),
         ),
-      );
-    }));
+      ),
+    );
   }
 }
+
+// ----------------------------------------------------------------------------------
+// Private Static Contents ----------------------------------------------------------
+// ----------------------------------------------------------------------------------
+
+const _imageUrl = '$STORE_BASE_URL/img%2F2.jpg?alt=media';
+
+const _whiteBoldStyle = TextStyle(color: Colors.white, fontWeight: FontWeight.bold);
+const _whiteNormalStyle = TextStyle(color: Colors.white, fontWeight: FontWeight.w400);
+const _redBold18Style = TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.red);
+
+const _favoriteBorderIcon = Icon(Icons.favorite_border);
+
+const _insetsL16R16 = EdgeInsets.only(left: 16, right: 16);
+const _insetsT20 = EdgeInsets.only(top: 20);
+const _insetsB20 = EdgeInsets.only(bottom: 20);
+const _insetsAll8 = EdgeInsets.all(8);
+const _insetsAll16 = EdgeInsets.all(16);
+const _insetsAll20 = EdgeInsets.all(20);
