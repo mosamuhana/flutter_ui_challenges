@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../../core/ui_constants.dart';
-
 class DashboardTwoPage extends StatelessWidget {
   static final String path = "lib/src/pages/dashboard/dash2.dart";
-  final TextStyle whiteText = TextStyle(color: Colors.white);
+
+  final String progressTitle = 'Overall\nDaily Progress';
+  final int progressPercent = 55;
+
+  int get progressRemaining => 100 - progressPercent;
+
+  double get progressValue => progressPercent / 100.0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,187 +21,164 @@ class DashboardTwoPage extends StatelessWidget {
         title: Text("Dashboard"),
         centerTitle: true,
       ),
-      body: _buildBody(context),
-    );
-  }
-
-  Widget _buildBody(BuildContext context) {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        children: <Widget>[
-          _buildHeader(),
-          const SizedBox(height: 50.0),
-          Row(
-            children: <Widget>[
-              Expanded(
-                child: Column(
-                  children: <Widget>[
-                    Container(
-                      height: 190,
-                      color: Colors.blue,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          ListTile(
-                            title: Text(
-                              "9,850",
-                              style: Theme.of(context).textTheme.headline4.copyWith(
-                                    color: Colors.white,
-                                    fontSize: 24.0,
-                                  ),
-                            ),
-                            trailing: Icon(
-                              FontAwesomeIcons.walking,
-                              color: Colors.white,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 16.0),
-                            child: Text(
-                              'Steps',
-                              style: whiteText,
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                    hSizedBox10,
-                    Container(
-                      height: 120,
-                      color: Colors.green,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          ListTile(
-                            title: Text(
-                              "70 bpm",
-                              style: Theme.of(context).textTheme.headline4.copyWith(
-                                    color: Colors.white,
-                                    fontSize: 24.0,
-                                  ),
-                            ),
-                            trailing: Icon(
-                              FontAwesomeIcons.heartbeat,
-                              color: Colors.white,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 16.0),
-                            child: Text(
-                              'Avg. Heart Rate',
-                              style: whiteText,
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              wSizedBox10,
-              Expanded(
-                child: Column(
-                  children: <Widget>[
-                    Container(
-                      height: 120,
-                      color: Colors.red,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          ListTile(
-                            title: Text(
-                              "2,430",
-                              style: Theme.of(context).textTheme.headline4.copyWith(
-                                    color: Colors.white,
-                                    fontSize: 24.0,
-                                  ),
-                            ),
-                            trailing: Icon(
-                              FontAwesomeIcons.fire,
-                              color: Colors.white,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 16.0),
-                            child: Text(
-                              'Calories Burned',
-                              style: whiteText,
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                    hSizedBox10,
-                    Container(
-                      height: 190,
-                      color: Colors.yellow,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          ListTile(
-                            title: Text(
-                              "15 kms",
-                              style: Theme.of(context).textTheme.headline4.copyWith(
-                                    fontSize: 24.0,
-                                    color: Colors.black,
-                                  ),
-                            ),
-                            trailing: Icon(
-                              FontAwesomeIcons.road,
-                              color: Colors.black,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 16.0),
-                            child: Text(
-                              'Distance',
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              )
-            ],
-          )
-        ],
+      body: SingleChildScrollView(
+        padding: _insets16,
+        child: Column(
+          children: [
+            _header,
+            _hbox50,
+            _tilesGrid,
+          ],
+        ),
       ),
     );
   }
 
-  Widget _buildHeader() {
+  Widget get _header {
     return Row(
-      children: <Widget>[
+      children: [
         Container(
           height: 100,
           width: 100,
-          padding: const EdgeInsets.all(8.0),
+          padding: _insets8,
           child: CircularProgressIndicator(
-            value: 0.5,
+            value: progressValue,
             valueColor: AlwaysStoppedAnimation(Colors.blue),
             backgroundColor: Colors.grey.shade700,
           ),
         ),
-        wSizedBox20,
+        _wbox20,
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(
-                "Overall\nDaily Progress",
-                style: whiteText.copyWith(fontSize: 20.0),
-              ),
-              hSizedBox20,
-              Text(
-                "45% to go",
-                style: TextStyle(color: Colors.grey, fontSize: 16.0),
-              ),
+            children: [
+              Text(progressTitle, style: _whiteS20Style),
+              _hbox20,
+              Text("$progressRemaining% to go", style: _greyS16Style),
             ],
           ),
         )
       ],
     );
   }
+
+  Widget get _tilesGrid {
+    return Row(
+      children: [
+        Expanded(
+          child: Column(
+            children: [
+              _TileContainer(
+                backgroundColor: Colors.blue,
+                color: Colors.white,
+                title: '9,850',
+                subtitle: 'Steps',
+                height: 190,
+                icon: FontAwesomeIcons.walking,
+              ),
+              _hbox10,
+              _TileContainer(
+                backgroundColor: Colors.green,
+                color: Colors.white,
+                title: '70 bpm',
+                subtitle: 'Avg. Heart Rate',
+                height: 120,
+                icon: FontAwesomeIcons.heartbeat,
+              ),
+            ],
+          ),
+        ),
+        _wbox10,
+        Expanded(
+          child: Column(
+            children: [
+              _TileContainer(
+                backgroundColor: Colors.red,
+                color: Colors.white,
+                title: '2,430',
+                subtitle: 'Calories Burned',
+                height: 120,
+                icon: FontAwesomeIcons.fire,
+              ),
+              _hbox10,
+              _TileContainer(
+                backgroundColor: Colors.yellow,
+                color: Colors.black,
+                title: '15 kms',
+                subtitle: 'Distance',
+                height: 190,
+                icon: FontAwesomeIcons.road,
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
 }
+
+// ----------------------------------------------------------------------------------
+// Private Widgets ------------------------------------------------------------------
+// ----------------------------------------------------------------------------------
+
+class _TileContainer extends StatelessWidget {
+  final Color color;
+  final Color backgroundColor;
+  final double height;
+  final String title;
+  final String subtitle;
+  final IconData icon;
+
+  const _TileContainer({
+    Key key,
+    this.color = Colors.white,
+    @required this.backgroundColor,
+    @required this.height,
+    @required this.title,
+    @required this.subtitle,
+    @required this.icon,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final titleStyle = Theme.of(context).textTheme.headline4.copyWith(color: color, fontSize: 24);
+
+    return Container(
+      height: height,
+      color: backgroundColor,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ListTile(
+            title: Text(title, style: titleStyle),
+            trailing: Icon(icon, color: color),
+          ),
+          Padding(
+            padding: _insetsL16,
+            child: Text(
+              subtitle,
+              style: TextStyle(color: color),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+// ----------------------------------------------------------------------------------
+// Private Static Contents ----------------------------------------------------------
+// ----------------------------------------------------------------------------------
+
+const _hbox10 = SizedBox(height: 10);
+const _hbox20 = SizedBox(height: 20);
+const _hbox50 = SizedBox(height: 50);
+const _wbox10 = SizedBox(width: 10);
+const _wbox20 = SizedBox(width: 20);
+
+const _whiteS20Style = TextStyle(color: Colors.white, fontSize: 20);
+const _greyS16Style = TextStyle(color: Colors.grey, fontSize: 16);
+
+const _insets8 = EdgeInsets.all(8);
+const _insets16 = EdgeInsets.all(16);
+const _insetsL16 = EdgeInsets.only(left: 16);

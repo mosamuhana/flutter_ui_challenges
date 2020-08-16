@@ -1,253 +1,128 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/res/assets.dart';
-import '../../../core/ui_constants.dart';
+import '../../../core/constants.dart';
 
-class DashboardThreePage extends StatelessWidget {
+class DashboardThreePage extends StatefulWidget {
   static final String path = "lib/src/pages/dashboard/dash3.dart";
-  final String avatar = avatars[0];
-  final TextStyle whiteText = TextStyle(color: Colors.white);
+
+  @override
+  _DashboardThreePageState createState() => _DashboardThreePageState();
+}
+
+class _DashboardThreePageState extends State<DashboardThreePage> {
+  int currentNavIndex = 0;
+
+  final avatarImage = '$STORE_BASE_URL/img%2F1.jpg?alt=media';
+  final profileTitle = 'Dashboard';
+  final profileName = 'Dr. John Doe';
+  final profileDescription = 'Md, (General Medium), DM\n(Cardiology)';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: _buildBody(context),
-      bottomNavigationBar: _buildBottomBar(),
+      bottomNavigationBar: _bottomNavigationBar,
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _header,
+            _hbox20,
+            Padding(
+              padding: _insetsL16,
+              child: Text("Appointments", style: _boldS18Style),
+            ),
+            _chartsCard,
+            ..._tilesGrid,
+            _hbox20,
+          ],
+        ),
+      ),
     );
   }
 
-  Widget _buildBottomBar() {
+  Widget get _bottomNavigationBar {
+    BottomNavigationBarItem _createNavItem(String title, IconData icon) =>
+        BottomNavigationBarItem(icon: Icon(icon), title: Text(title));
+
     return BottomNavigationBar(
-      selectedItemColor: Colors.grey.shade800,
+      selectedItemColor: Colors.black,
       unselectedItemColor: Colors.grey,
-      currentIndex: 0,
-      onTap: (i) {},
+      currentIndex: currentNavIndex,
+      onTap: (i) => setState(() => currentNavIndex = i),
       items: [
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          title: Text("Home"),
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.person_add),
-          title: Text("Refer"),
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.history),
-          title: Text("History"),
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.person_outline),
-          title: Text("Profile"),
-        ),
+        _createNavItem('Home', Icons.home),
+        _createNavItem('Refer', Icons.person_add),
+        _createNavItem('History', Icons.history),
+        _createNavItem('Profile', Icons.person_outline),
       ],
     );
   }
 
-  Widget _buildBody(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          _buildHeader(),
-          hSizedBox20,
-          Padding(
-            padding: const EdgeInsets.only(left: 16.0),
-            child: Text(
-              "Appointments",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0),
-            ),
-          ),
-          Card(
-            elevation: 4.0,
-            color: Colors.white,
-            margin: const EdgeInsets.all(16.0),
-            child: Row(
-              children: <Widget>[
-                Expanded(
-                  child: ListTile(
-                    leading: Container(
-                      alignment: Alignment.bottomCenter,
-                      width: 45.0,
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: <Widget>[
-                          Container(
-                            height: 20,
-                            width: 8.0,
-                            color: Colors.grey.shade300,
-                          ),
-                          const SizedBox(width: 4.0),
-                          Container(
-                            height: 25,
-                            width: 8.0,
-                            color: Colors.grey.shade300,
-                          ),
-                          const SizedBox(width: 4.0),
-                          Container(
-                            height: 40,
-                            width: 8.0,
-                            color: Colors.blue,
-                          ),
-                          const SizedBox(width: 4.0),
-                          Container(
-                            height: 30,
-                            width: 8.0,
-                            color: Colors.grey.shade300,
-                          ),
-                        ],
-                      ),
-                    ),
-                    title: Text("Today"),
-                    subtitle: Text("18 patients"),
-                  ),
-                ),
-                VerticalDivider(),
-                Expanded(
-                  child: ListTile(
-                    leading: Container(
-                      alignment: Alignment.bottomCenter,
-                      width: 45.0,
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: <Widget>[
-                          Container(
-                            height: 20,
-                            width: 8.0,
-                            color: Colors.grey.shade300,
-                          ),
-                          const SizedBox(width: 4.0),
-                          Container(
-                            height: 25,
-                            width: 8.0,
-                            color: Colors.grey.shade300,
-                          ),
-                          const SizedBox(width: 4.0),
-                          Container(
-                            height: 40,
-                            width: 8.0,
-                            color: Colors.red,
-                          ),
-                          const SizedBox(width: 4.0),
-                          Container(
-                            height: 30,
-                            width: 8.0,
-                            color: Colors.grey.shade300,
-                          ),
-                        ],
-                      ),
-                    ),
-                    title: Text("Canceled"),
-                    subtitle: Text("7 patients"),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Row(
-              children: <Widget>[
-                Expanded(
-                  flex: 2,
-                  child: _buildTile(
-                    color: Colors.pink,
-                    icon: Icons.portrait,
-                    title: "Number of Patient",
-                    data: "1200",
-                  ),
-                ),
-                const SizedBox(width: 16.0),
-                Expanded(
-                  child: _buildTile(
-                    color: Colors.green,
-                    icon: Icons.portrait,
-                    title: "Admitted",
-                    data: "857",
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 16.0),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Row(
-              children: <Widget>[
-                Expanded(
-                  child: _buildTile(
-                    color: Colors.blue,
-                    icon: Icons.favorite,
-                    title: "Discharged",
-                    data: "864",
-                  ),
-                ),
-                const SizedBox(width: 16.0),
-                Expanded(
-                  child: _buildTile(
-                    color: Colors.pink,
-                    icon: Icons.portrait,
-                    title: "Dropped",
-                    data: "857",
-                  ),
-                ),
-                const SizedBox(width: 16.0),
-                Expanded(
-                  child: _buildTile(
-                    color: Colors.blue,
-                    icon: Icons.favorite,
-                    title: "Arrived",
-                    data: "698",
-                  ),
-                ),
-              ],
-            ),
-          ),
-          hSizedBox20,
-        ],
-      ),
-    );
-  }
-
-  Container _buildHeader() {
+  Widget get _header {
     return Container(
-      padding: const EdgeInsets.fromLTRB(0, 50.0, 0, 32.0),
+      padding: _insetsL0T50R0B32,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(20.0),
-          bottomRight: Radius.circular(20.0),
-        ),
+        borderRadius: _circularBottomBorder20,
         color: Colors.blue,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
+        children: [
           ListTile(
-            title: Text(
-              "Dashboard",
-              style: whiteText.copyWith(fontWeight: FontWeight.bold, fontSize: 20.0),
-            ),
+            title: Text(profileTitle, style: _whiteBoldS20Style),
             trailing: CircleAvatar(
-              radius: 25.0,
-              backgroundImage: NetworkImage(avatar),
+              radius: 25,
+              backgroundImage: NetworkImage(avatarImage),
             ),
           ),
-          hSizedBox10,
+          _hbox10,
           Padding(
-            padding: const EdgeInsets.only(left: 16.0),
-            child: Text(
-              "Dr. John Doe",
-              style: whiteText.copyWith(
-                fontSize: 18.0,
-                fontWeight: FontWeight.w500,
+            padding: _insetsL16,
+            child: Text(profileName, style: _whiteW500S18Style),
+          ),
+          _hbox5,
+          Padding(
+            padding: _insetsL16,
+            child: Text(profileDescription, style: _whiteStyle),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget get _chartsCard {
+    return Card(
+      elevation: 4,
+      color: Colors.white,
+      margin: _insets16,
+      child: Row(
+        children: [
+          Expanded(
+            child: ListTile(
+              leading: _BarChart(
+                barWidth: 8,
+                activeColor: Colors.blue,
+                inactiveColor: Colors.grey.shade300,
+                activeIndex: 2,
+                values: [20, 25, 40, 30],
               ),
+              title: Text("Today"),
+              subtitle: Text("18 patients"),
             ),
           ),
-          hSizedBox5,
-          Padding(
-            padding: const EdgeInsets.only(left: 16.0),
-            child: Text(
-              "Md, (General Medium), DM\n(Cardiology)",
-              style: whiteText,
+          _verticalDivider,
+          Expanded(
+            child: ListTile(
+              leading: _BarChart(
+                barWidth: 8,
+                activeColor: Colors.red,
+                inactiveColor: Colors.grey.shade300,
+                activeIndex: 2,
+                values: [20, 25, 40, 30],
+              ),
+              title: Text("Canceled"),
+              subtitle: Text("7 patients"),
             ),
           ),
         ],
@@ -255,32 +130,197 @@ class DashboardThreePage extends StatelessWidget {
     );
   }
 
-  Container _buildTile({Color color, IconData icon, String title, String data}) {
-    return Container(
-      padding: const EdgeInsets.all(8.0),
-      height: 150.0,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(4.0),
-        color: color,
+  List<Widget> get _tilesGrid {
+    return [
+      Padding(
+        padding: _insetsH16,
+        child: Row(
+          children: [
+            Expanded(
+              flex: 2,
+              child: _TileContainer(
+                icon: Icons.portrait,
+                title: 'Number of Patient',
+                data: '1200',
+                color: Colors.white,
+                backgroundColor: Colors.pink,
+                height: 150,
+              ),
+            ),
+            _wbox16,
+            Expanded(
+              child: _TileContainer(
+                icon: Icons.portrait,
+                title: 'Admitted',
+                data: '857',
+                color: Colors.white,
+                backgroundColor: Colors.green,
+                height: 150,
+              ),
+            ),
+          ],
+        ),
       ),
+      _hbox16,
+      Padding(
+        padding: _insetsH16,
+        child: Row(
+          children: [
+            Expanded(
+              child: _TileContainer(
+                icon: Icons.favorite,
+                title: 'Discharged',
+                data: '864',
+                color: Colors.white,
+                backgroundColor: Colors.blue,
+                height: 150,
+              ),
+            ),
+            _wbox16,
+            Expanded(
+              child: _TileContainer(
+                icon: Icons.portrait,
+                title: 'Dropped',
+                data: '857',
+                color: Colors.white,
+                backgroundColor: Colors.pink,
+                height: 150,
+              ),
+            ),
+            _wbox16,
+            Expanded(
+              child: _TileContainer(
+                icon: Icons.favorite,
+                title: 'Arrived',
+                data: '698',
+                color: Colors.white,
+                backgroundColor: Colors.blue,
+                height: 150,
+              ),
+            ),
+          ],
+        ),
+      ),
+    ];
+  }
+}
+
+// ----------------------------------------------------------------------------------
+// Private Widgets ----------------------------------------------------------
+// ----------------------------------------------------------------------------------
+
+class _BarChart extends StatelessWidget {
+  final double barWidth;
+  final List<double> values;
+  final int activeIndex;
+  final Color activeColor;
+  final Color inactiveColor;
+
+  const _BarChart({
+    Key key,
+    this.barWidth = 8,
+    this.inactiveColor,
+    this.activeColor,
+    @required this.values,
+    @required this.activeIndex,
+  })  : assert(values != null && values.length > 1),
+        super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final width = values.length * barWidth + (values.length - 1) * 4;
+    print('Bar Width: $width');
+
+    return Container(
+      alignment: Alignment.bottomCenter,
+      width: width,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: _bars,
+      ),
+    );
+  }
+
+  List<Widget> get _bars {
+    final _inactiveColor = inactiveColor ?? Colors.grey.shade300;
+    final _activeColor = activeColor ?? Colors.blue;
+    final list = <Widget>[];
+
+    values.asMap().forEach((index, value) {
+      final color = activeIndex == index ? _activeColor : _inactiveColor;
+      if (index > 0) list.add(_wbox4);
+      list.add(Container(width: barWidth, height: value, color: color));
+    });
+
+    return list;
+  }
+}
+
+class _TileContainer extends StatelessWidget {
+  final double height;
+  final String title;
+  final IconData icon;
+  final String data;
+  final Color color;
+  final Color backgroundColor;
+
+  const _TileContainer({
+    Key key,
+    @required this.height,
+    @required this.title,
+    @required this.icon,
+    @required this.data,
+    @required this.backgroundColor,
+    this.color = Colors.white,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final titleStyle = TextStyle(color: color, fontWeight: FontWeight.bold);
+
+    return Container(
+      padding: _insets8,
+      height: height,
+      decoration: BoxDecoration(borderRadius: _circularBorder4, color: backgroundColor),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: <Widget>[
-          Icon(
-            icon,
-            color: Colors.white,
-          ),
-          Text(
-            title,
-            style: whiteText.copyWith(fontWeight: FontWeight.bold),
-          ),
-          Text(
-            data,
-            style: whiteText.copyWith(fontWeight: FontWeight.bold, fontSize: 20.0),
-          ),
+        children: [
+          Icon(icon, color: color),
+          Text(title, style: titleStyle),
+          Text(data, style: titleStyle.copyWith(fontSize: 20)),
         ],
       ),
     );
   }
 }
+
+// ----------------------------------------------------------------------------------
+// Private Static Contents ----------------------------------------------------------
+// ----------------------------------------------------------------------------------
+
+const _hbox5 = SizedBox(height: 5);
+const _hbox10 = SizedBox(height: 10);
+const _hbox16 = SizedBox(height: 16);
+const _hbox20 = SizedBox(height: 20);
+const _wbox4 = SizedBox(width: 4);
+const _wbox16 = SizedBox(width: 16);
+
+const _whiteStyle = TextStyle(color: Colors.white);
+const _boldS18Style = TextStyle(fontWeight: FontWeight.bold, fontSize: 18);
+const _whiteBoldS20Style = TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20);
+const _whiteW500S18Style = TextStyle(color: Colors.white, fontWeight: FontWeight.w500, fontSize: 18);
+
+const _insets8 = EdgeInsets.all(8);
+const _insets16 = EdgeInsets.all(16);
+const _insetsL16 = EdgeInsets.only(left: 16);
+const _insetsH16 = EdgeInsets.symmetric(horizontal: 16);
+const _insetsL0T50R0B32 = EdgeInsets.fromLTRB(0, 50, 0, 32);
+
+const _verticalDivider = VerticalDivider();
+
+const _circularRadius20 = Radius.circular(20);
+const _circularRadius4 = Radius.circular(4);
+
+const _circularBorder4 = BorderRadius.all(_circularRadius4);
+const _circularBottomBorder20 = BorderRadius.only(bottomLeft: _circularRadius20, bottomRight: _circularRadius20);

@@ -1,13 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/res/assets.dart';
-import '../../../core/ui_constants.dart';
-
-final priceTextStyle = TextStyle(
-  color: Colors.grey.shade600,
-  fontSize: 20.0,
-  fontWeight: FontWeight.bold,
-);
+import '../../../core/constants.dart';
 
 class FoodCheckoutOnePage extends StatelessWidget {
   static final String path = "lib/src/pages/food/food_checkout.dart";
@@ -34,81 +27,81 @@ class FoodCheckoutOnePage extends StatelessWidget {
           ),
           ListView(
             padding: const EdgeInsets.fromLTRB(
-              16.0,
-              kToolbarHeight + 40.0,
-              16.0,
-              16.0,
+              16,
+              kToolbarHeight + 40,
+              16,
+              16,
             ),
             children: [
               Text(
                 "My Order",
-                style: TextStyle(color: Colors.black, fontSize: 24.0, fontWeight: FontWeight.bold),
+                style: TextStyle(color: Colors.black, fontSize: 24, fontWeight: FontWeight.bold),
               ),
-              hSizedBox30,
+              _hbox30,
               OrderListItem(
                 item: OrderItem(
                   title: "Manana Burger",
                   qty: 2,
                   price: 12,
                   bgColor: Colors.deepOrange,
-                  image: burger,
+                  image: _burger,
                 ),
               ),
-              hSizedBox20,
+              _hbox20,
               OrderListItem(
-                item: OrderItem(title: "Burger", qty: 1, price: 15, bgColor: Colors.deepOrange, image: burger1),
+                item: OrderItem(title: "Burger", qty: 1, price: 15, bgColor: Colors.deepOrange, image: _burger1),
               ),
-              hSizedBox20,
+              _hbox20,
               OrderListItem(
-                item: OrderItem(title: "French Fries", qty: 1, price: 8, bgColor: Colors.deepOrange, image: frenchFries),
+                item: OrderItem(title: "French Fries", qty: 1, price: 8, bgColor: Colors.deepOrange, image: _frenchFries),
               ),
-              hSizedBox20,
+              _hbox20,
               _buildDivider(),
-              hSizedBox20,
+              _hbox20,
               Row(
                 children: [
-                  const SizedBox(width: 40.0),
+                  const SizedBox(width: 40),
                   Text(
                     "VAT (10%)",
-                    style: priceTextStyle,
+                    style: _greyBoldS20Style,
                   ),
                   Spacer(),
                   Text(
                     "\$2",
-                    style: priceTextStyle,
+                    style: _greyBoldS20Style,
                   ),
-                  wSizedBox20,
+                  _wbox20,
                 ],
               ),
-              hSizedBox20,
+              _hbox20,
               _buildDivider(),
-              hSizedBox10,
+              _hbox10,
               Row(
                 children: [
-                  const SizedBox(width: 40.0),
+                  const SizedBox(width: 40),
                   Text(
                     "Total",
-                    style: priceTextStyle.copyWith(color: Colors.black),
+                    style: _greyBoldS20Style.copyWith(color: Colors.black),
                   ),
                   Spacer(),
                   Text(
                     "\$49",
-                    style: priceTextStyle.copyWith(color: Colors.indigo),
+                    style: _greyBoldS20Style.copyWith(color: Colors.indigo),
                   ),
-                  wSizedBox20,
+                  _wbox20,
                 ],
               ),
-              hSizedBox10,
+              _hbox10,
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 8.0),
+                padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 8),
                 child: RaisedButton(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(16),
                   elevation: 0,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                   color: Colors.yellow.shade700,
                   child: Text(
                     "Next",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                   ),
                   onPressed: () {},
                 ),
@@ -122,15 +115,108 @@ class FoodCheckoutOnePage extends StatelessWidget {
 
   Container _buildDivider() {
     return Container(
-      height: 2.0,
+      height: 2,
       width: double.maxFinite,
       decoration: BoxDecoration(
         color: Colors.grey.shade300,
-        borderRadius: BorderRadius.circular(5.0),
+        borderRadius: BorderRadius.circular(5),
       ),
     );
   }
 }
+
+// ----------------------------------------------------------------------------------
+// Private Widgets ------------------------------------------------------------------
+// ----------------------------------------------------------------------------------
+
+class OrderListItem extends StatelessWidget {
+  final OrderItem item;
+
+  const OrderListItem({Key key, this.item}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      child: Row(
+        children: [
+          Container(
+            width: 100,
+            height: 100,
+            clipBehavior: Clip.antiAlias,
+            decoration: BoxDecoration(
+              color: item.bgColor,
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: item.image != null ? Image.network(item.image, fit: BoxFit.cover) : null,
+          ),
+          _wbox20,
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  item.title,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                _hbox10,
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.grey, width: 1),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  height: 40,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      IconButton(
+                        iconSize: 18,
+                        padding: const EdgeInsets.all(2),
+                        icon: Icon(Icons.remove),
+                        onPressed: () {},
+                      ),
+                      Text(
+                        "${item.qty}",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
+                      ),
+                      IconButton(
+                        iconSize: 18,
+                        padding: const EdgeInsets.all(2),
+                        icon: Icon(Icons.add),
+                        onPressed: () {},
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+          _wbox10,
+          Text(
+            "\$${item.price * item.qty}",
+            style: _greyBoldS20Style,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// ----------------------------------------------------------------------------------
+// Private Data ---------------------------------------------------------------------
+// ----------------------------------------------------------------------------------
+
+const _burger = '$STORE_BASE_URL/food%2Fburger.jpg?alt=media';
+const _burger1 = '$STORE_BASE_URL/food%2Fburger1.jpg?alt=media';
+const _frenchFries = '$STORE_BASE_URL/food%2Ffrench-fries.jpg?alt=media';
 
 class OrderItem {
   final String title;
@@ -141,83 +227,14 @@ class OrderItem {
   OrderItem({this.title, this.qty, this.price, this.image, this.bgColor});
 }
 
-class OrderListItem extends StatelessWidget {
-  final OrderItem item;
+// ----------------------------------------------------------------------------------
+// Private Static Contents ----------------------------------------------------------
+// ----------------------------------------------------------------------------------
 
-  const OrderListItem({Key key, this.item}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-      child: Row(
-        children: [
-          Container(
-            width: 100,
-            height: 100,
-            clipBehavior: Clip.antiAlias,
-            decoration: BoxDecoration(
-              color: item.bgColor,
-              borderRadius: BorderRadius.circular(20.0),
-            ),
-            child: item.image != null ? Image.network(item.image, fit: BoxFit.cover) : null,
-          ),
-          wSizedBox20,
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  item.title,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                hSizedBox10,
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey, width: 1.0),
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  height: 40.0,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      IconButton(
-                        iconSize: 18.0,
-                        padding: const EdgeInsets.all(2.0),
-                        icon: Icon(Icons.remove),
-                        onPressed: () {},
-                      ),
-                      Text(
-                        "${item.qty}",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18.0,
-                        ),
-                      ),
-                      IconButton(
-                        iconSize: 18.0,
-                        padding: const EdgeInsets.all(2.0),
-                        icon: Icon(Icons.add),
-                        onPressed: () {},
-                      ),
-                    ],
-                  ),
-                )
-              ],
-            ),
-          ),
-          wSizedBox10,
-          Text(
-            "\$${item.price * item.qty}",
-            style: priceTextStyle,
-          ),
-        ],
-      ),
-    );
-  }
-}
+const _hbox10 = SizedBox(height: 10);
+const _hbox20 = SizedBox(height: 20);
+const _hbox30 = SizedBox(height: 30);
+const _wbox10 = SizedBox(width: 10);
+const _wbox20 = SizedBox(width: 20);
+
+final _greyBoldS20Style = TextStyle(color: Colors.grey.shade600, fontSize: 20, fontWeight: FontWeight.bold);
