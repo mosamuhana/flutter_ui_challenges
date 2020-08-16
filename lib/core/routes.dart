@@ -252,9 +252,9 @@ final List<dynamic> pages = [
     title: "Food",
     icon: Icons.fastfood,
     items: [
-      // ................
       SubMenuItem("Food Order Checkout", FoodCheckoutOnePage(), path: FoodCheckoutOnePage.path),
       SubMenuItem("Fruits Add to Cart", AvocadoPage(), path: AvocadoPage.path),
+      // ................
       SubMenuItem("Cake Details", CakePage(), path: CakePage.path),
       SubMenuItem("Recipe List", RecipeListPage(), path: RecipeListPage.path),
       SubMenuItem("Recipe Single", RecipeSinglePage(), path: RecipeSinglePage.path),
