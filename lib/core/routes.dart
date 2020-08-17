@@ -73,7 +73,7 @@ import '../src/pages/dashboard/dash3.dart';
 import '../src/pages/dialogs/dialogs.dart';
 
 import '../src/pages/food/avocado.dart';
-import '../src/pages/food/cake.dart';
+import '../src/pages/food/cake_details.dart';
 import '../src/pages/food/food_delivery.dart';
 import '../src/pages/food/food_checkout.dart';
 import '../src/pages/food/recipe_details.dart';
@@ -254,11 +254,10 @@ final List<dynamic> pages = [
     items: [
       SubMenuItem("Food Order Checkout", FoodCheckoutOnePage(), path: FoodCheckoutOnePage.path),
       SubMenuItem("Fruits Add to Cart", AvocadoPage(), path: AvocadoPage.path),
-      SubMenuItem("Cake Details", CakePage(), path: CakePage.path),
+      SubMenuItem("Cake Details", CakeDetailsPage(), path: CakeDetailsPage.path),
       SubMenuItem("Recipe List", RecipeListPage(), path: RecipeListPage.path),
       SubMenuItem("Recipe Single", RecipeSinglePage(), path: RecipeSinglePage.path),
       SubMenuItem("Recipe Details", RecipeDetailsPage(), path: RecipeDetailsPage.path),
-      // ................
       SubMenuItem("Food Delivery", FoodDeliveryHomePage(), path: FoodDeliveryHomePage.path),
     ],
   ),
@@ -266,6 +265,7 @@ final List<dynamic> pages = [
     title: "Quiz app",
     icon: FontAwesomeIcons.question,
     items: [
+      // ................
       SubMenuItem("Quiz Home", QuizHomePage(), path: QuizHomePage.path),
       SubMenuItem("Quiz Page", QuizPage(questions: demoQuestions, category: categories[9]), path: QuizPage.path),
       SubMenuItem("Quiz Result", QuizFinishedPage(questions: demoQuestions, answers: demoAnswers),

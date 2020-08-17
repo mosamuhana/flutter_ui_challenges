@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import '../../../core/constants.dart';
 import '../../../core/widgets.dart';
 
-class CakePage extends StatefulWidget {
-  static final String path = "lib/src/pages/food/cake.dart";
+class CakeDetailsPage extends StatefulWidget {
+  static final String path = "lib/src/pages/food/cake_details.dart";
 
   @override
-  _CakePageState createState() => _CakePageState();
+  _CakeDetailsPageState createState() => _CakeDetailsPageState();
 }
 
-class _CakePageState extends State<CakePage> {
+class _CakeDetailsPageState extends State<CakeDetailsPage> {
   final String productName = 'Fruits Cake';
   final String productDescription = 'strawberry & kiwi special';
   final String productImage = '$STORE_BASE_URL/food%2Fcake.png?alt=media';
