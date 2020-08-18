@@ -4,9 +4,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class TodoHomeOnePage extends StatelessWidget {
   static final String path = "lib/src/pages/todo/todo_home1.dart";
 
-  final Color color1 = Color(0xffFA696C);
-  final Color color2 = Color(0xffFA8165);
-  final Color color3 = Color(0xffFB8964);
+  final color1 = Color(0xffFA696C);
+  final color2 = Color(0xffFA8165);
+  final color3 = Color(0xffFB8964);
 
   final List tasks = [
     {"title": "Buy computer science book from Agarwal book store", "completed": true},
