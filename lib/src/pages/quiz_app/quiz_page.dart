@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 
-import 'category.dart';
-import 'question.dart';
+import 'models/category.dart';
+import 'models/question.dart';
 import 'quiz_finished.dart';
 
 class QuizPage extends StatefulWidget {
   static final String path = "lib/src/pages/quiz_app/quiz_page.dart";
+
   final List<Question> questions;
   final Category category;
 
@@ -17,20 +18,32 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
-  final TextStyle _questionStyle = TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500, color: Colors.white);
-
   int _currentIndex = 0;
-  final Map<int, dynamic> _answers = {};
-  final GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
+  final _answers = <int, dynamic>{};
+  final _key = GlobalKey<ScaffoldState>();
+
+  List<Question> get questions => widget.questions;
+
+  Question get currentQuestion => questions[_currentIndex];
 
   @override
   Widget build(BuildContext context) {
-    Question question = widget.questions[_currentIndex];
-    final List<dynamic> options = question.incorrectAnswers;
-    if (!options.contains(question.correctAnswer)) {
-      options.add(question.correctAnswer);
+    //Question currentQuestion = questions[_currentIndex];
+    final options = [...currentQuestion.incorrectAnswers];
+
+    if (!options.contains(currentQuestion.correctAnswer)) {
+      options.add(currentQuestion.correctAnswer);
       options.shuffle();
     }
+
+    final choices = options.map((option) {
+      return RadioListTile(
+        title: Text("$option"),
+        groupValue: _answers[_currentIndex],
+        value: option,
+        onChanged: (value) => setState(() => _answers[_currentIndex] = option),
+      );
+    }).toList();
 
     return WillPopScope(
       onWillPop: _onWillPop,
@@ -42,66 +55,36 @@ class _QuizPageState extends State<QuizPage> {
           elevation: 0,
         ),
         body: Stack(
-          children: <Widget>[
-            ClipPath(
-              clipper: WaveClipperTwo(),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.deepPurple,
-                ),
-                height: 200,
-              ),
-            ),
+          children: [
+            _backgroundWave,
             Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: _insets16,
               child: Column(
-                children: <Widget>[
+                children: [
                   Row(
-                    children: <Widget>[
+                    children: [
                       CircleAvatar(
                         backgroundColor: Colors.white70,
                         child: Text("${_currentIndex + 1}"),
                       ),
-                      SizedBox(width: 16.0),
+                      _wbox16,
                       Expanded(
                         child: Text(
-                          widget.questions[_currentIndex].question,
+                          currentQuestion.question,
                           softWrap: true,
-                          style: _questionStyle,
+                          style: _whiteW500S18Style,
                         ),
                       ),
                     ],
                   ),
-                  SizedBox(height: 20.0),
+                  _hbox20,
                   Card(
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        ...options.map((option) => RadioListTile(
-                              title: Text("$option"),
-                              groupValue: _answers[_currentIndex],
-                              value: option,
-                              onChanged: (value) {
-                                setState(() {
-                                  _answers[_currentIndex] = option;
-                                });
-                              },
-                            )),
-                      ],
+                      children: choices,
                     ),
                   ),
-                  Expanded(
-                    child: Container(
-                      alignment: Alignment.bottomCenter,
-                      child: RaisedButton(
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-                        color: Theme.of(context).primaryColor,
-                        textColor: Colors.white,
-                        child: Text(_currentIndex == (widget.questions.length - 1) ? "Submit" : "Next"),
-                        onPressed: _nextSubmit,
-                      ),
-                    ),
-                  )
+                  _submitNextButton,
                 ],
               ),
             )
@@ -111,45 +94,76 @@ class _QuizPageState extends State<QuizPage> {
     );
   }
 
+  Widget get _submitNextButton {
+    return Expanded(
+      child: Container(
+        alignment: Alignment.bottomCenter,
+        child: RaisedButton(
+          shape: _submitNextButtonShape,
+          color: Theme.of(context).primaryColor,
+          textColor: Colors.white,
+          child: Text(_currentIndex == (questions.length - 1) ? "Submit" : "Next"),
+          onPressed: _nextSubmit,
+        ),
+      ),
+    );
+  }
+
   void _nextSubmit() {
     if (_answers[_currentIndex] == null) {
-      _key.currentState.showSnackBar(SnackBar(
-        content: Text("You must select an answer to continue."),
-      ));
+      _key.currentState.showSnackBar(SnackBar(content: Text("You must select an answer to continue.")));
       return;
     }
-    if (_currentIndex < (widget.questions.length - 1)) {
-      setState(() {
-        _currentIndex++;
-      });
+
+    if (_currentIndex < (questions.length - 1)) {
+      setState(() => _currentIndex++);
     } else {
       Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (_) => QuizFinishedPage(questions: widget.questions, answers: _answers)));
+        MaterialPageRoute(builder: (_) => QuizFinishedPage(questions: questions, answers: _answers)),
+      );
     }
   }
 
-  Future<bool> _onWillPop() async {
+  Future<bool> _onWillPop() {
     return showDialog<bool>(
-        context: context,
-        builder: (_) {
-          return AlertDialog(
-            content: Text("Are you sure you want to quit the quiz? All your progress will be lost."),
-            title: Text("Warning!"),
-            actions: <Widget>[
-              FlatButton(
-                child: Text("Yes"),
-                onPressed: () {
-                  Navigator.pop(context, true);
-                },
-              ),
-              FlatButton(
-                child: Text("No"),
-                onPressed: () {
-                  Navigator.pop(context, false);
-                },
-              ),
-            ],
-          );
-        });
+      context: context,
+      builder: (_) {
+        return AlertDialog(
+          content: Text("Are you sure you want to quit the quiz? All your progress will be lost."),
+          title: Text("Warning!"),
+          actions: [
+            FlatButton(
+              child: Text("Yes"),
+              onPressed: () => Navigator.pop(context, true),
+            ),
+            FlatButton(
+              child: Text("No"),
+              onPressed: () => Navigator.pop(context, false),
+            ),
+          ],
+        );
+      },
+    );
   }
 }
+
+// ----------------------------------------------------------------------------------
+// Private Static Data --------------------------------------------------------------
+// ----------------------------------------------------------------------------------
+
+const _whiteW500S18Style = TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color: Colors.white);
+
+const _hbox20 = SizedBox(height: 20);
+const _wbox16 = SizedBox(width: 16);
+
+const _insets16 = EdgeInsets.all(16);
+
+final _submitNextButtonShape = RoundedRectangleBorder(borderRadius: BorderRadius.circular(20));
+
+final _backgroundWave = ClipPath(
+  clipper: WaveClipperTwo(),
+  child: Container(
+    decoration: BoxDecoration(color: Colors.deepPurple),
+    height: 200,
+  ),
+);

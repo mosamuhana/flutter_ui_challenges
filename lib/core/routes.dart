@@ -114,7 +114,7 @@ import '../src/pages/onboarding/landing1.dart';
 import '../src/pages/onboarding/smart_wallet_onboarding.dart';
 
 import '../src/pages/quiz_app/check_answers.dart';
-import '../src/pages/quiz_app/demo_values.dart';
+import '../src/pages/quiz_app/models/demo_values.dart';
 import '../src/pages/quiz_app/home.dart';
 import '../src/pages/quiz_app/quiz_finished.dart';
 import '../src/pages/quiz_app/quiz_page.dart';
@@ -265,7 +265,6 @@ final List<dynamic> pages = [
     title: "Quiz app",
     icon: FontAwesomeIcons.question,
     items: [
-      // ................
       SubMenuItem("Quiz Home", QuizHomePage(), path: QuizHomePage.path),
       SubMenuItem("Quiz Page", QuizPage(questions: demoQuestions, category: categories[9]), path: QuizPage.path),
       SubMenuItem("Quiz Result", QuizFinishedPage(questions: demoQuestions, answers: demoAnswers),
@@ -278,10 +277,11 @@ final List<dynamic> pages = [
     title: "Todo",
     icon: FontAwesomeIcons.tasks,
     items: [
-      SubMenuItem("Todo Home Three", TodoHomeThreePage(), path: TodoHomeThreePage.path),
-      SubMenuItem("Todo Week View", TodoTwoPage(), path: TodoTwoPage.path),
+      // ................
       SubMenuItem("Todo Home One", TodoHomeOnePage(), path: TodoHomeOnePage.path),
       SubMenuItem("Todo Home Two", TodoHomeTwoPage(), path: TodoHomeTwoPage.path),
+      SubMenuItem("Todo Home Three", TodoHomeThreePage(), path: TodoHomeThreePage.path),
+      SubMenuItem("Todo Week View", TodoTwoPage(), path: TodoTwoPage.path),
     ],
   ),
   MenuItem(

@@ -3,9 +3,11 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class TodoHomeOnePage extends StatelessWidget {
   static final String path = "lib/src/pages/todo/todo_home1.dart";
+
   final Color color1 = Color(0xffFA696C);
   final Color color2 = Color(0xffFA8165);
   final Color color3 = Color(0xffFB8964);
+
   final List tasks = [
     {"title": "Buy computer science book from Agarwal book store", "completed": true},
     {"title": "Send updated logo and source files", "completed": false},
@@ -44,17 +46,21 @@ class TodoHomeOnePage extends StatelessWidget {
               ),
             ),
             SizedBox(height: 30.0),
-            ...tasks.map((task) => Padding(
+            ...tasks.map(
+              (task) => Padding(
                 padding: const EdgeInsets.only(left: 10.0),
                 child: ListTile(
-                    title: Text(
-                  task["title"],
-                  style: TextStyle(
-                      decoration: task["completed"] ? TextDecoration.lineThrough : TextDecoration.none,
-                      decorationColor: Colors.red,
-                      fontSize: 22.0,
-                      color: Colors.black),
-                )))),
+                  title: Text(
+                    task["title"],
+                    style: TextStyle(
+                        decoration: task["completed"] ? TextDecoration.lineThrough : TextDecoration.none,
+                        decorationColor: Colors.red,
+                        fontSize: 22.0,
+                        color: Colors.black),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
@@ -109,18 +115,24 @@ class TodoHomeOnePage extends StatelessWidget {
             child: Container(
               width: 350,
               decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  gradient: LinearGradient(colors: [color1, color2]),
-                  boxShadow: [BoxShadow(color: color2, offset: Offset(4.0, 4.0), blurRadius: 10.0)]),
+                shape: BoxShape.circle,
+                gradient: LinearGradient(colors: [color1, color2]),
+                boxShadow: [
+                  BoxShadow(color: color2, offset: Offset(4.0, 4.0), blurRadius: 10.0),
+                ],
+              ),
             ),
           ),
           Container(
             width: 100,
             height: 100,
             decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                gradient: LinearGradient(colors: [color3, color2]),
-                boxShadow: [BoxShadow(color: color3, offset: Offset(1.0, 1.0), blurRadius: 4.0)]),
+              shape: BoxShape.circle,
+              gradient: LinearGradient(colors: [color3, color2]),
+              boxShadow: [
+                BoxShadow(color: color3, offset: Offset(1.0, 1.0), blurRadius: 4.0),
+              ],
+            ),
           ),
           Positioned(
             top: 100,
@@ -129,9 +141,12 @@ class TodoHomeOnePage extends StatelessWidget {
               width: 50,
               height: 50,
               decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  gradient: LinearGradient(colors: [color3, color2]),
-                  boxShadow: [BoxShadow(color: color3, offset: Offset(1.0, 1.0), blurRadius: 4.0)]),
+                shape: BoxShape.circle,
+                gradient: LinearGradient(colors: [color3, color2]),
+                boxShadow: [
+                  BoxShadow(color: color3, offset: Offset(1.0, 1.0), blurRadius: 4.0),
+                ],
+              ),
             ),
           ),
           Container(
@@ -147,12 +162,16 @@ class TodoHomeOnePage extends StatelessWidget {
                 Text(
                   "You have 2 remaining\ntasks for today!",
                   style: TextStyle(color: Colors.white, fontSize: 18.0),
-                )
+                ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );
   }
 }
+
+// ----------------------------------------------------------------------------------
+// Private Static Data --------------------------------------------------------------
+// ----------------------------------------------------------------------------------
