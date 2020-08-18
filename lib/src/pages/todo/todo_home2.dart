@@ -14,16 +14,16 @@ class TodoHomeTwoPage extends StatelessWidget {
       body: HeaderFooterwidget(
         header: _buildDateHeader(DateTime.now()),
         body: SingleChildScrollView(
-          padding: const EdgeInsets.all(32.0),
+          padding: EdgeInsets.all(32),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
+            children: [
               _buildTask(color: Colors.pink.shade300),
-              const SizedBox(height: 20.0),
+              SizedBox(height: 20),
               _buildTaskTwo(),
-              const SizedBox(height: 20.0),
+              SizedBox(height: 20),
               _buildTask(color: Colors.indigo.shade300),
-              const SizedBox(height: 20.0),
+              SizedBox(height: 20),
               _buildTaskTwo(),
             ],
           ),
@@ -35,13 +35,13 @@ class TodoHomeTwoPage extends StatelessWidget {
 
   Container _buildBottomBar() {
     return Container(
-      padding: const EdgeInsets.symmetric(
-        vertical: 8.0,
-        horizontal: 16.0,
+      padding: EdgeInsets.symmetric(
+        vertical: 8,
+        horizontal: 16,
       ),
       child: Row(
-        children: <Widget>[
-          SizedBox(width: 5.0),
+        children: [
+          SizedBox(width: 5),
           Expanded(
             child: TextField(
               textCapitalization: TextCapitalization.sentences,
@@ -64,48 +64,47 @@ class TodoHomeTwoPage extends StatelessWidget {
   }
 
   Widget _buildDateHeader(DateTime date) {
-    final TextStyle boldStyle =
-        TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 24, letterSpacing: 2.0);
+    final TextStyle boldStyle = TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 24, letterSpacing: 2);
     return Row(
-      children: <Widget>[
+      children: [
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10.0),
+          padding: EdgeInsets.symmetric(vertical: 10),
           child: MaterialButton(
             minWidth: 0,
             elevation: 0,
             highlightElevation: 0,
             textColor: Colors.pink,
-            padding: const EdgeInsets.symmetric(
-              vertical: 16.0,
-              horizontal: 8.0,
+            padding: EdgeInsets.symmetric(
+              vertical: 16,
+              horizontal: 8,
             ),
             color: Colors.white,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
             onPressed: () {},
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
+              children: [
                 Text(DateFormat.MMM().format(date).toUpperCase()),
-                const SizedBox(height: 5.0),
+                SizedBox(height: 5),
                 Text(
                   DateFormat.d().format(date),
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0),
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                 )
               ],
             ),
           ),
         ),
-        const SizedBox(width: 20.0),
+        SizedBox(width: 20),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
+          children: [
             Text(
               DateFormat.EEEE().format(date).toUpperCase(),
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.white,
-                letterSpacing: 2.0,
+                letterSpacing: 2,
               ),
             ),
             Text(
@@ -122,28 +121,28 @@ class TodoHomeTwoPage extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(20.0),
-          bottomRight: Radius.circular(20.0),
-          bottomLeft: Radius.circular(20.0),
+          topLeft: Radius.circular(20),
+          bottomRight: Radius.circular(20),
+          bottomLeft: Radius.circular(20),
         ),
         color: Colors.white70,
       ),
-      padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0),
+      padding: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
       width: double.infinity,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
+        children: [
           Text(
             "10:30 - 11:30AM",
             style: TextStyle(letterSpacing: 2.5, color: Colors.pink),
           ),
-          const SizedBox(height: 5.0),
+          SizedBox(height: 5),
           Text(
             "Meeting With",
-            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.pink, fontSize: 16.0),
+            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.pink, fontSize: 16),
           ),
           Text("John Doe"),
-          const SizedBox(height: 5.0),
+          SizedBox(height: 5),
           Divider(
             color: Colors.pink,
           ),
@@ -156,24 +155,24 @@ class TodoHomeTwoPage extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
-          topRight: Radius.circular(20.0),
-          bottomLeft: Radius.circular(20.0),
-          bottomRight: Radius.circular(20.0),
+          topRight: Radius.circular(20),
+          bottomLeft: Radius.circular(20),
+          bottomRight: Radius.circular(20),
         ),
         color: color,
       ),
-      padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0),
+      padding: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
+        children: [
           Text(
             "10:30 - 11:30AM",
             style: TextStyle(letterSpacing: 2.5, color: Colors.white),
           ),
-          const SizedBox(height: 5.0),
+          SizedBox(height: 5),
           Text(
             "Meeting With",
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0, color: Colors.white),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white),
           ),
           Text("John Doe")
         ],
@@ -207,7 +206,7 @@ class HeaderFooterwidget extends StatelessWidget {
 
   Stack _buildBody() {
     return Stack(
-      children: <Widget>[
+      children: [
         Positioned(
           top: 20,
           bottom: 120,
@@ -232,24 +231,23 @@ class HeaderFooterwidget extends StatelessWidget {
           width: 10,
           height: 60,
           child: DecoratedBox(
-            decoration:
-                BoxDecoration(color: headerColor, borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20.0))),
+            decoration: BoxDecoration(color: headerColor, borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20))),
           ),
         ),
         Column(
-          children: <Widget>[
+          children: [
             _buildHeader(),
             Expanded(
               child: Container(
-                margin: const EdgeInsets.only(right: 10.0),
+                margin: EdgeInsets.only(right: 10),
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(20.0),
+                  borderRadius: BorderRadius.circular(20),
                 ),
                 child: body,
               ),
             ),
-            const SizedBox(height: 10.0),
+            SizedBox(height: 10),
             footer,
           ],
         ),
@@ -262,10 +260,10 @@ class HeaderFooterwidget extends StatelessWidget {
       height: headerHeight,
       width: double.infinity,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.only(bottomLeft: Radius.circular(30.0)),
+        borderRadius: BorderRadius.only(bottomLeft: Radius.circular(30)),
         color: headerColor,
       ),
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
       child: header,
     );
   }

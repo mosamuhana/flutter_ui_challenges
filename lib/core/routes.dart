@@ -277,8 +277,8 @@ final List<dynamic> pages = [
     title: "Todo",
     icon: FontAwesomeIcons.tasks,
     items: [
-      // ................
       SubMenuItem("Todo Home One", TodoHomeOnePage(), path: TodoHomeOnePage.path),
+      // ................
       SubMenuItem("Todo Home Two", TodoHomeTwoPage(), path: TodoHomeTwoPage.path),
       SubMenuItem("Todo Home Three", TodoHomeThreePage(), path: TodoHomeThreePage.path),
       SubMenuItem("Todo Week View", TodoTwoPage(), path: TodoTwoPage.path),
