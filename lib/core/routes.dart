@@ -121,7 +121,8 @@ import '../src/pages/quiz_app/quiz_page.dart';
 
 import '../src/pages/todo/todo2.dart';
 import '../src/pages/todo/todo_home1.dart';
-import '../src/pages/todo/todo_home2.dart';
+//import '../src/pages/todo/todo_home2.dart';
+import '../src/pages/todo/todo_home2/page.dart';
 import '../src/pages/todo/todo_home3.dart';
 
 import '../src/pages/travel/tdestination.dart';
