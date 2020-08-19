@@ -119,11 +119,10 @@ import '../src/pages/quiz_app/home.dart';
 import '../src/pages/quiz_app/quiz_finished.dart';
 import '../src/pages/quiz_app/quiz_page.dart';
 
-import '../src/pages/todo/todo2.dart';
-import '../src/pages/todo/todo_home1.dart';
-//import '../src/pages/todo/todo_home2.dart';
+import '../src/pages/todo/todo_home1/page.dart';
 import '../src/pages/todo/todo_home2/page.dart';
-import '../src/pages/todo/todo_home3.dart';
+import '../src/pages/todo/todo_home3/page.dart';
+import '../src/pages/todo/todo_home4/page.dart';
 
 import '../src/pages/travel/tdestination.dart';
 import '../src/pages/travel/thome.dart';
@@ -278,11 +277,11 @@ final List<dynamic> pages = [
     title: "Todo",
     icon: FontAwesomeIcons.tasks,
     items: [
-      SubMenuItem("Todo Home One", TodoHomeOnePage(), path: TodoHomeOnePage.path),
+      SubMenuItem("Todo Home 1", TodoHome1Page(), path: TodoHome1Page.path),
+      SubMenuItem("Todo Home 2", TodoHome2Page(), path: TodoHome2Page.path),
+      SubMenuItem("Todo Home 3", TodoHome3Page(), path: TodoHome3Page.path),
       // ................
-      SubMenuItem("Todo Home Two", TodoHomeTwoPage(), path: TodoHomeTwoPage.path),
-      SubMenuItem("Todo Home Three", TodoHomeThreePage(), path: TodoHomeThreePage.path),
-      SubMenuItem("Todo Week View", TodoTwoPage(), path: TodoTwoPage.path),
+      SubMenuItem("Todo Home 4", TodoHome4Page(), path: TodoHome4Page.path),
     ],
   ),
   MenuItem(

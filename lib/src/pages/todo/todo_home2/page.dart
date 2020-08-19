@@ -3,12 +3,12 @@ import 'package:intl/intl.dart';
 
 import '_header_footer_widget.dart';
 
-class TodoHomeTwoPage extends StatelessWidget {
+class TodoHome2Page extends StatelessWidget {
   static final String path = "lib/src/pages/todo/todo_home2/page.dart";
 
   final DateTime date;
 
-  TodoHomeTwoPage({DateTime date})
+  TodoHome2Page({DateTime date})
       : this.date = date ?? DateTime.now(),
         super();
 
@@ -94,7 +94,7 @@ class TodoHomeTwoPage extends StatelessWidget {
               style: TextStyle(color: Colors.white70),
               decoration: InputDecoration(
                 border: InputBorder.none,
-                hintText: "jot down your task",
+                hintText: "task name",
                 hintStyle: TextStyle(color: Colors.white54),
               ),
             ),

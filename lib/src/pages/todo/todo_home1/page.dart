@@ -3,14 +3,14 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class TodoHomeOnePage extends StatefulWidget {
-  static final String path = "lib/src/pages/todo/todo_home1.dart";
+class TodoHome1Page extends StatefulWidget {
+  static final String path = "lib/src/pages/todo/todo_home1/page.dart";
 
   @override
-  _TodoHomeOnePageState createState() => _TodoHomeOnePageState();
+  _TodoHome1PageState createState() => _TodoHome1PageState();
 }
 
-class _TodoHomeOnePageState extends State<TodoHomeOnePage> {
+class _TodoHome1PageState extends State<TodoHome1Page> {
   final _tasks = [..._todoList];
   ScrollController _controller;
   int _index = 0;

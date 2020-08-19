@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../../core/constants.dart';
+import '../../../../core/constants.dart';
 
-class TodoHomeThreePage extends StatelessWidget {
-  static final String path = "lib/src/pages/todo/todo_home3.dart";
+class TodoHome3Page extends StatelessWidget {
+  static final String path = "lib/src/pages/todo/todo_home3/page.dart";
 
   @override
   Widget build(BuildContext context) {
