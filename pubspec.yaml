@@ -25,6 +25,7 @@ dependencies:
   crop: ^0.1.2
   share: ^0.6.4+3
   http:
+  faker:
 
 
 dev_dependencies:

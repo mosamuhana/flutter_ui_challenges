@@ -1,14 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:faker/faker.dart';
 
 import '_header_widget.dart';
+import '_week_widget.dart';
+import '_meeting_widget.dart';
+import 'meeting.dart';
 
-final List<String> _weekDays = ["S", "M", "T", "W", "T", "F", "S"];
-final List<int> _dates = [5, 6, 7, 8, 9, 10, 11];
+class TodoHome4Page extends StatefulWidget {
+  static final String path = 'lib/src/pages/todo/todo_home4/page.dart';
 
-class TodoHome4Page extends StatelessWidget {
-  static final String path = "lib/src/pages/todo/todo_home4/page.dart";
+  @override
+  _TodoHome4PageState createState() => _TodoHome4PageState();
+}
 
-  final int selected = 5;
+class _TodoHome4PageState extends State<TodoHome4Page> {
+  DateTime selectedDate;
+
+  String get month => DateFormat('MMM').format(selectedDate).toUpperCase();
+  String get day => DateFormat('dd').format(selectedDate);
+
+  @override
+  void initState() {
+    selectedDate = DateTime.now();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,45 +37,21 @@ class TodoHome4Page extends StatelessWidget {
         elevation: 0,
       ),
       body: HeaderWidget(
-        header: Container(
-          padding: _insets16,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: _insetsL16,
-                child: Text(
-                  "January".toUpperCase(),
-                  style: TextStyle(color: Colors.grey.shade700, fontWeight: FontWeight.bold, fontSize: 16, letterSpacing: 2),
-                ),
-              ),
-              Row(
-                children: _weekDays.map(_createWeekDay).toList(),
-              ),
-              Row(
-                children: _dates.map(_createDate).toList(),
-              ),
-              _hbox10,
-            ],
-          ),
+        header: WeekWidget(
+          date: DateTime.now(),
+          onDaySelect: (day) {
+            print('Selected day: ${day.toString()}');
+            selectedDate = day;
+            setState(() {});
+          },
         ),
+        //header: WeekWidget(date: DateTime(2020, 8, 1)),
         body: SingleChildScrollView(
           padding: _insets32,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _buildTaskWithDate(),
-              _hbox20,
-              _buildTask(),
-              _hbox20,
-              _buildTask(),
-              _hbox20,
-              _buildTaskWithDate(),
-              _hbox20,
-              _buildTask(),
-              _hbox20,
-              _buildTask(),
-              _hbox20,
+              ..._buildMeetings(),
             ],
           ),
         ),
@@ -67,114 +59,86 @@ class TodoHome4Page extends StatelessWidget {
     );
   }
 
-  Row _buildTaskWithDate() {
-    return Row(
-      children: [
-        Text(
-          "JAN\n10",
-          textAlign: TextAlign.center,
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, letterSpacing: 1.5),
-        ),
-        _wbox20,
-        Expanded(
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(20),
-                bottomRight: Radius.circular(20),
-                bottomLeft: Radius.circular(20),
-              ),
-              color: Colors.white70,
-            ),
-            padding: _insetsH32V16,
-            width: double.infinity,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "10:30 - 11:30AM",
-                  style: TextStyle(letterSpacing: 2.5, color: Colors.deepPurple),
-                ),
-                _hbox5,
-                Text(
-                  "Meeting With",
-                  style: TextStyle(fontWeight: FontWeight.bold, color: Colors.deepPurple, fontSize: 16),
-                ),
-                Text("John Doe")
-              ],
-            ),
-          ),
-        )
-      ],
-    );
+  List<Widget> _buildMeetings() {
+    final meetings = _getMettings();
+    final list = <Widget>[];
+
+    for (var i = 0; i < meetings.length; i++) {
+      var meeting = meetings[i];
+      var isFirst = i == 0;
+      Widget item = MeetingWidget(meeting: meeting, isFirst: isFirst);
+      if (isFirst) {
+        list.add(Row(
+          children: [
+            Text('${meeting.month}\n${meeting.day}', textAlign: TextAlign.center, style: _whiteBoldStyle),
+            _wbox20,
+            Expanded(child: item),
+          ],
+        ));
+      } else {
+        list.add(item);
+      }
+      list.add(_hbox20);
+    }
+
+    return list;
   }
 
-  Container _buildTask() {
-    return Container(
-      padding: _insetsL70,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "10:30 - 11:30AM",
-            style: TextStyle(letterSpacing: 2.5, color: Colors.white),
-          ),
-          _hbox5,
-          Text(
-            "Meeting With",
-            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 16),
-          ),
-          Text("John Doe")
-        ],
+  List<Meeting> _getMettings() {
+    final faker = new Faker();
+    var a = DateFormat('MMM-dd-EEE').format(selectedDate).split('-');
+    var month = a[0];
+    var day = a[1];
+    return [
+      Meeting(
+        month: month,
+        day: day,
+        timeFrom: '09:00 AM',
+        timeTo: '09:30 AM',
+        meetWith: faker.person.name(),
       ),
-    );
-  }
-
-  Widget _createWeekDay(String weekDay) {
-    return Expanded(
-      child: Container(
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          color: _weekDays.indexOf(weekDay) == selected ? Colors.orange.shade100 : Colors.transparent,
-          borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
-        ),
-        padding: _insetsT20B8,
-        child: Text(
-          weekDay,
-          style: _weekDays.indexOf(weekDay) == selected ? _selectedStyle : _daysStyle,
-        ),
+      Meeting(
+        month: month,
+        day: day,
+        timeFrom: '09:30 AM',
+        timeTo: '10:00 AM',
+        meetWith: faker.person.name(),
       ),
-    );
-  }
-
-  Widget _createDate(int date) {
-    return Expanded(
-      child: Container(
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          color: _dates.indexOf(date) == selected ? Colors.orange.shade100 : Colors.transparent,
-          borderRadius: BorderRadius.vertical(bottom: Radius.circular(30)),
-        ),
-        padding: _insetsT8B20,
-        child: Text("$date", style: _dates.indexOf(date) == selected ? _selectedStyle : _daysStyle),
+      Meeting(
+        month: month,
+        day: day,
+        timeFrom: '10:00 AM',
+        timeTo: '10:30 AM',
+        meetWith: faker.person.name(),
       ),
-    );
+      Meeting(
+        month: month,
+        day: day,
+        timeFrom: '09:00 AM',
+        timeTo: '09:30 AM',
+        meetWith: faker.person.name(),
+      ),
+      Meeting(
+        month: month,
+        day: day,
+        timeFrom: '09:30 AM',
+        timeTo: '10:00 AM',
+        meetWith: faker.person.name(),
+      ),
+      Meeting(
+        month: month,
+        day: day,
+        timeFrom: '10:00 AM',
+        timeTo: '10:30 AM',
+        meetWith: faker.person.name(),
+      ),
+    ];
   }
 
-  // private Resources
-  final _hbox5 = SizedBox(height: 5);
-  final _hbox10 = SizedBox(height: 10);
   final _hbox20 = SizedBox(height: 20);
   final _wbox20 = SizedBox(width: 20);
 
-  final _selectedStyle = TextStyle(color: Colors.deepOrange, fontWeight: FontWeight.bold);
-  final _daysStyle = TextStyle(fontWeight: FontWeight.bold, color: Colors.grey.shade800);
-
-  final _insetsT8B20 = EdgeInsets.only(top: 8, bottom: 20);
-  final _insetsT20B8 = EdgeInsets.only(top: 20, bottom: 8);
-  final _insets16 = EdgeInsets.all(16);
   final _insets32 = EdgeInsets.all(32);
-  final _insetsL16 = EdgeInsets.only(left: 16);
-  final _insetsL70 = EdgeInsets.only(left: 70);
-  final _insetsH32V16 = EdgeInsets.symmetric(horizontal: 32, vertical: 16);
+
+  final _whiteBoldStyle = TextStyle(color: Colors.white, fontWeight: FontWeight.bold, letterSpacing: 1.5);
 }
