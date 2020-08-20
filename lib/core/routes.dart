@@ -289,8 +289,8 @@ final List<dynamic> pages = [
     icon: Icons.airplanemode_active,
     items: [
       // ................
-      SubMenuItem("Travel Home", TravelHome1Page(), path: TravelHome1Page.path),
-      SubMenuItem("Travel Home2", TravelHome2Page(), path: TravelHome2Page.path),
+      SubMenuItem("Travel Home 1", TravelHome1Page(), path: TravelHome1Page.path),
+      SubMenuItem("Travel Home 2", TravelHome2Page(), path: TravelHome2Page.path),
       SubMenuItem("Travel Nepal", TravelNepalPage(), path: TravelNepalPage.path),
       SubMenuItem("Travel Destination Detail", DestinationPage(), path: DestinationPage.path),
     ],
