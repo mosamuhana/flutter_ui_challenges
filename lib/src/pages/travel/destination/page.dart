@@ -6,7 +6,7 @@ import '../../../../core/res/assets.dart';
 import '../../../../core/widgets.dart';
 
 class DestinationPage extends StatelessWidget {
-  static final String path = "lib/src/pages/travel/tdestination.dart";
+  static final String path = "lib/src/pages/travel/destination/page.dart";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
