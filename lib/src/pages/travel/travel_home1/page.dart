@@ -1,27 +1,27 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/res/assets.dart';
-import '../../../core/widgets.dart';
-import 'tdestination.dart';
+import '../../../../core/res/assets.dart';
+import '../../../../core/widgets.dart';
+import '../tdestination.dart';
 
-class TravelHomePage extends StatelessWidget {
-  static final String path = "lib/src/pages/travel/thome.dart";
+class TravelHome1Page extends StatelessWidget {
+  static final String path = "lib/src/pages/travel/travel_home1/page.dart";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: ListView(
-          children: <Widget>[
+          children: [
             Container(
-              padding: EdgeInsets.all(16.0),
+              padding: EdgeInsets.all(16),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
+                children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text("Hello Raj Kumar,", style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold)),
+                    children: [
+                      Text("Hello Raj Kumar,", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                       Text(
                         "Where do you want to go?",
                         style: TextStyle(color: Colors.grey.shade700),
@@ -36,9 +36,9 @@ class TravelHomePage extends StatelessWidget {
               ),
             ),
             Container(
-              padding: EdgeInsets.only(left: 16.0, right: 16.0, bottom: 8.0),
+              padding: EdgeInsets.only(left: 16, right: 16, bottom: 8),
               child: Material(
-                elevation: 5.0,
+                elevation: 5,
                 child: TextField(
                   decoration: InputDecoration(
                       hintText: "Find destination", prefixIcon: Icon(Icons.location_on), border: InputBorder.none),
@@ -71,15 +71,15 @@ class TravelHomePage extends StatelessWidget {
 
   Widget _buildItem({String title}) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Material(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
-        elevation: 5.0,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+        elevation: 5,
         child: Container(
-          padding: EdgeInsets.all(16.0),
+          padding: EdgeInsets.all(16),
           child: Text(title,
               style: TextStyle(
-                fontSize: 20.0,
+                fontSize: 20,
               )),
         ),
       ),
@@ -88,36 +88,36 @@ class TravelHomePage extends StatelessWidget {
 
   Container _buildFeaturedItem({String image, String title, String subtitle}) {
     return Container(
-      padding: EdgeInsets.only(left: 16.0, top: 8.0, right: 16.0, bottom: 16.0),
+      padding: EdgeInsets.only(left: 16, top: 8, right: 16, bottom: 16),
       child: Material(
-        elevation: 5.0,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
+        elevation: 5,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
         child: Stack(
-          children: <Widget>[
+          children: [
             ClipRRect(
-                borderRadius: BorderRadius.circular(5.0),
+                borderRadius: BorderRadius.circular(5),
                 child: PNetworkImage(
                   image,
                   fit: BoxFit.cover,
                 )),
             Positioned(
-              right: 10.0,
-              top: 10.0,
+              right: 10,
+              top: 10,
               child: IconButton(
                 onPressed: () {},
                 icon: Icon(Icons.favorite_border, color: Colors.white),
               ),
             ),
             Positioned(
-              bottom: 20.0,
+              bottom: 20,
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 color: Colors.black.withOpacity(0.7),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.end,
-                  children: <Widget>[
-                    Text(title, style: TextStyle(color: Colors.white, fontSize: 20.0, fontWeight: FontWeight.bold)),
+                  children: [
+                    Text(title, style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold)),
                     Text(subtitle, style: TextStyle(color: Colors.white))
                   ],
                 ),
