@@ -125,9 +125,9 @@ import '../src/pages/todo/todo_home3/page.dart';
 import '../src/pages/todo/todo_home4/page.dart';
 
 import '../src/pages/travel/travel_home1/page.dart';
-import '../src/pages/travel/travel_home.dart';
-import '../src/pages/travel/tdestination.dart';
-import '../src/pages/travel/travel_nepal.dart';
+import '../src/pages/travel/travel_home2/page.dart';
+import '../src/pages/travel/destination/page.dart';
+import '../src/pages/travel/travel_nepal/page.dart';
 
 import 'models.dart';
 
@@ -290,7 +290,7 @@ final List<dynamic> pages = [
     items: [
       // ................
       SubMenuItem("Travel Home", TravelHome1Page(), path: TravelHome1Page.path),
-      SubMenuItem("Travel Home2", TravelHome(), path: TravelHome.path),
+      SubMenuItem("Travel Home2", TravelHome2Page(), path: TravelHome2Page.path),
       SubMenuItem("Travel Nepal", TravelNepalPage(), path: TravelNepalPage.path),
       SubMenuItem("Travel Destination Detail", DestinationPage(), path: DestinationPage.path),
     ],

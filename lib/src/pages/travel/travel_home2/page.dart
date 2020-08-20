@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/widgets.dart';
+import '../../../../core/widgets.dart';
 
-class TravelHome extends StatelessWidget {
-  static final String path = "lib/src/pages/travel/travel_home.dart";
+class TravelHome2Page extends StatelessWidget {
+  static final String path = "lib/src/pages/travel/travel_home2/page.dart";
 
   @override
   Widget build(BuildContext context) {

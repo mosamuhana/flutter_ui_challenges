@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
-import '../../../core/res/assets.dart';
-import '../../../core/widgets.dart';
+import '../../../../core/res/assets.dart';
+import '../../../../core/widgets.dart';
 
 class TravelNepalPage extends StatelessWidget {
-  static final String path = "lib/src/pages/travel/travel_nepal.dart";
+  static final String path = "lib/src/pages/travel/travel_nepal/page.dart";
   @override
   Widget build(BuildContext context) {
     return Scaffold(

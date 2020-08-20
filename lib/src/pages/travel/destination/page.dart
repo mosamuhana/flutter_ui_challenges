@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
-import '../../../core/res/assets.dart';
-import '../../../core/widgets.dart';
+import '../../../../core/res/assets.dart';
+import '../../../../core/widgets.dart';
 
 class DestinationPage extends StatelessWidget {
   static final String path = "lib/src/pages/travel/tdestination.dart";

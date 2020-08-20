@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/res/assets.dart';
 import '../../../../core/widgets.dart';
-import '../tdestination.dart';
+import '../destination/page.dart';
 
 class TravelHome1Page extends StatelessWidget {
   static final String path = "lib/src/pages/travel/travel_home1/page.dart";
