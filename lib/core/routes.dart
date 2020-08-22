@@ -56,10 +56,6 @@ import '../src/pages/ecommerce/ecommerce_detail1.dart';
 import '../src/pages/ecommerce/ecommerce_detail2.dart';
 import '../src/pages/ecommerce/ecommerce_detail3.dart';
 
-import '../src/furniture_app/furniture_app.dart';
-import '../src/khalti_clone/main.dart';
-import '../src/nic_asia_clone/nic_asia_app.dart';
-
 import '../src/pages/blog/article1.dart';
 import '../src/pages/blog/article2.dart';
 import '../src/pages/blog/bhome1.dart';
@@ -70,8 +66,6 @@ import '../src/pages/dashboard/dash1.dart';
 import '../src/pages/dashboard/dash2.dart';
 import '../src/pages/dashboard/dash3.dart';
 
-import '../src/pages/dialogs/dialogs.dart';
-
 import '../src/pages/food/avocado.dart';
 import '../src/pages/food/cake_details.dart';
 import '../src/pages/food/food_delivery.dart';
@@ -79,39 +73,6 @@ import '../src/pages/food/food_checkout.dart';
 import '../src/pages/food/recipe_details.dart';
 import '../src/pages/food/recipe_list.dart';
 import '../src/pages/food/recipe_single.dart';
-
-import '../src/pages/grocery/ghome.dart';
-
-import '../src/pages/hotel/details.dart';
-import '../src/pages/hotel/hhome.dart';
-
-import '../src/pages/misc/bottomsheet.dart';
-import '../src/pages/misc/chat2.dart';
-import '../src/pages/misc/chatui.dart';
-import '../src/pages/misc/crop.dart';
-import '../src/pages/misc/form_elements.dart';
-import '../src/pages/misc/gallery1.dart';
-import '../src/pages/misc/image_popup.dart';
-import '../src/pages/misc/loaders.dart';
-import '../src/pages/misc/musicplayer.dart';
-import '../src/pages/misc/musicplayer2.dart';
-import '../src/pages/misc/navybar.dart';
-import '../src/pages/misc/sliders.dart';
-import '../src/pages/misc/sliver_appbar.dart';
-import '../src/pages/misc/springy_slider_page.dart';
-
-import '../src/pages/navigation/drawer1.dart';
-import '../src/pages/navigation/drawer2.dart';
-import '../src/pages/navigation/hiddenmenu.dart';
-import '../src/pages/navigation/menu1.dart';
-
-import '../src/pages/onboarding/intro2.dart';
-import '../src/pages/onboarding/intro3.dart';
-import '../src/pages/onboarding/intro4.dart';
-import '../src/pages/onboarding/intro5.dart';
-import '../src/pages/onboarding/intro6.dart';
-import '../src/pages/onboarding/landing1.dart';
-import '../src/pages/onboarding/smart_wallet_onboarding.dart';
 
 import '../src/pages/quiz_app/check_answers.dart';
 import '../src/pages/quiz_app/models/demo_values.dart';
@@ -128,6 +89,46 @@ import '../src/pages/travel/travel_home1/page.dart';
 import '../src/pages/travel/travel_home2/page.dart';
 import '../src/pages/travel/destination/page.dart';
 import '../src/pages/travel/travel_nepal/page.dart';
+
+import '../src/pages/hotel/details.dart';
+import '../src/pages/hotel/home.dart';
+
+import '../src/pages/navigation/dark_drawer_menu.dart';
+import '../src/pages/navigation/light_drawer_menu.dart';
+import '../src/pages/navigation/hidden_menu.dart';
+import '../src/pages/navigation/menu_one.dart';
+import '../src/pages/navigation/fancy_bottom_navigation.dart';
+
+import '../src/pages/onboarding/intro2.dart';
+import '../src/pages/onboarding/intro3.dart';
+import '../src/pages/onboarding/intro4.dart';
+import '../src/pages/onboarding/intro5.dart';
+import '../src/pages/onboarding/intro6.dart';
+import '../src/pages/onboarding/landing1.dart';
+import '../src/pages/onboarding/smart_wallet_onboarding.dart';
+
+//...
+
+import '../src/khalti_clone/main.dart';
+import '../src/pages/grocery/ghome.dart';
+import '../src/nic_asia_clone/nic_asia_app.dart';
+import '../src/furniture_app/furniture_app.dart';
+
+import '../src/pages/dialogs/dialogs.dart';
+
+import '../src/pages/misc/bottomsheet.dart';
+import '../src/pages/misc/chat2.dart';
+import '../src/pages/misc/chatui.dart';
+import '../src/pages/misc/crop.dart';
+import '../src/pages/misc/form_elements.dart';
+import '../src/pages/misc/gallery1.dart';
+import '../src/pages/misc/image_popup.dart';
+import '../src/pages/misc/loaders.dart';
+import '../src/pages/misc/musicplayer.dart';
+import '../src/pages/misc/musicplayer2.dart';
+import '../src/pages/misc/sliders.dart';
+import '../src/pages/misc/sliver_appbar.dart';
+import '../src/pages/misc/springy_slider_page.dart';
 
 import 'models.dart';
 
@@ -288,7 +289,6 @@ final List<dynamic> pages = [
     title: "Travel",
     icon: Icons.airplanemode_active,
     items: [
-      // ................
       SubMenuItem("Travel Home 1", TravelHome1Page(), path: TravelHome1Page.path),
       SubMenuItem("Travel Home 2", TravelHome2Page(), path: TravelHome2Page.path),
       SubMenuItem("Travel Nepal", TravelNepalPage(), path: TravelNepalPage.path),
@@ -309,9 +309,10 @@ final List<dynamic> pages = [
     items: [
       SubMenuItem("Menu One", MenuOnePage(), path: MenuOnePage.path),
       SubMenuItem("Hidden Menu", HiddenMenuPage(), path: HiddenMenuPage.path),
-      SubMenuItem("Dark Drawer Menu", DarkDrawerPage(), path: DarkDrawerPage.path),
-      SubMenuItem("Light Drawer Menu", LightDrawerPage(), path: LightDrawerPage.path),
-      SubMenuItem("Fancy Bottom Navigation ", FancyBottomBarPage(), path: FancyBottomBarPage.path),
+      SubMenuItem("Dark Drawer Menu", DarkDrawerMenuPage(), path: DarkDrawerMenuPage.path),
+      SubMenuItem("Light Drawer Menu", LightDrawerMenuPage(), path: LightDrawerMenuPage.path),
+      // ................
+      SubMenuItem("Fancy Bottom Navigation", FancyBottomNavigationPage(), path: FancyBottomNavigationPage.path),
     ],
   ),
   MenuItem(

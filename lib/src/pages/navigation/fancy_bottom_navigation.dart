@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-class FancyBottomBarPage extends StatefulWidget {
-  static final String path = "lib/src/pages/misc/navybar.dart";
+class FancyBottomNavigationPage extends StatefulWidget {
+  static final String path = "lib/src/pages/navigation/fancy_bottom_navigation.dart";
+
   @override
-  _FancyBottomBarPageState createState() => _FancyBottomBarPageState();
+  _FancyBottomNavigationPageState createState() => _FancyBottomNavigationPageState();
 }
 
-class _FancyBottomBarPageState extends State<FancyBottomBarPage> {
+class _FancyBottomNavigationPageState extends State<FancyBottomNavigationPage> {
   @override
   void dispose() {
     indexcontroller.close();
