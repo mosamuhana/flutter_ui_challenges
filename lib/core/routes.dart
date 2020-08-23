@@ -97,42 +97,41 @@ import '../src/pages/navigation/dark_drawer_menu.dart';
 import '../src/pages/navigation/light_drawer_menu.dart';
 import '../src/pages/navigation/hidden_menu.dart';
 import '../src/pages/navigation/menu_one.dart';
-import '../src/pages/navigation/fancy_bottom_navigation.dart';
+import '../src/pages/navigation/fancy_bottom_navigation/page.dart';
 
-import '../src/pages/onboarding/intro2.dart';
-import '../src/pages/onboarding/intro3.dart';
-import '../src/pages/onboarding/intro4.dart';
-import '../src/pages/onboarding/intro5.dart';
-import '../src/pages/onboarding/intro6.dart';
-import '../src/pages/onboarding/landing1.dart';
+import '../src/pages/onboarding/onboarding1.dart';
+import '../src/pages/onboarding/onboarding2.dart';
+import '../src/pages/onboarding/onboarding3.dart';
+import '../src/pages/onboarding/onboarding4.dart';
+import '../src/pages/onboarding/onboarding5.dart';
+import '../src/pages/onboarding/onboarding6.dart';
 import '../src/pages/onboarding/smart_wallet_onboarding.dart';
 
-//...
+import '../src/apps/khalti/main.dart';
+import '../src/apps/grocery/ghome.dart';
+import '../src/apps/nic_asia/nic_asia_app.dart';
+import '../src/apps/furniture/furniture_app.dart';
 
-import '../src/khalti_clone/main.dart';
-import '../src/pages/grocery/ghome.dart';
-import '../src/nic_asia_clone/nic_asia_app.dart';
-import '../src/furniture_app/furniture_app.dart';
-
-import '../src/pages/dialogs/dialogs.dart';
+import '../src/pages/dialogs/alert_dialogs/page.dart';
 
 import '../src/pages/misc/bottomsheet.dart';
-import '../src/pages/misc/chat2.dart';
+import '../src/pages/misc/chat_messages/page.dart';
 import '../src/pages/misc/chatui.dart';
-import '../src/pages/misc/crop.dart';
-import '../src/pages/misc/form_elements.dart';
-import '../src/pages/misc/gallery1.dart';
-import '../src/pages/misc/image_popup.dart';
-import '../src/pages/misc/loaders.dart';
-import '../src/pages/misc/musicplayer.dart';
-import '../src/pages/misc/musicplayer2.dart';
-import '../src/pages/misc/sliders.dart';
-import '../src/pages/misc/sliver_appbar.dart';
-import '../src/pages/misc/springy_slider_page.dart';
+import '../src/pages/misc/image_crop/page.dart';
+import '../src/pages/misc/form_elements/page.dart';
+import '../src/pages/misc/gallery_one/page.dart';
+import '../src/pages/misc/image_popup/page.dart';
+import '../src/pages/misc/loaders/page.dart';
+import '../src/pages/misc/musicplayer_one/page.dart';
+import '../src/pages/misc/musicplayer_two/page.dart';
+import '../src/pages/misc/sliders/page.dart';
+import '../src/pages/misc/sliver_app_bar/page.dart';
+import '../src/pages/misc/springy_slider_page/page.dart';
 
 import 'models.dart';
 
 final List<dynamic> pages = [
+  /*
   MenuItem(
     title: "Animations",
     icon: FontAwesomeIcons.truckMoving,
@@ -311,7 +310,6 @@ final List<dynamic> pages = [
       SubMenuItem("Hidden Menu", HiddenMenuPage(), path: HiddenMenuPage.path),
       SubMenuItem("Dark Drawer Menu", DarkDrawerMenuPage(), path: DarkDrawerMenuPage.path),
       SubMenuItem("Light Drawer Menu", LightDrawerMenuPage(), path: LightDrawerMenuPage.path),
-      // ................
       SubMenuItem("Fancy Bottom Navigation", FancyBottomNavigationPage(), path: FancyBottomNavigationPage.path),
     ],
   ),
@@ -319,17 +317,38 @@ final List<dynamic> pages = [
     title: "Onboarding",
     icon: Icons.info,
     items: [
-      SubMenuItem("Onboarding 6", IntroSixPage(), path: IntroSixPage.path),
-      SubMenuItem("Landing Page", LandingOnePage(), path: LandingOnePage.path),
-      SubMenuItem("Onboarding 4", IntroFourPage(), path: IntroFourPage.path),
+      SubMenuItem("Onboarding 1", Onboarding1Page(), path: Onboarding1Page.path),
+      SubMenuItem("Onboarding 2", Onboarding2Page(), path: Onboarding2Page.path),
+      SubMenuItem("Onboarding 3", Onboarding3Page(), path: Onboarding3Page.path),
+      SubMenuItem("Onboarding 4", Onboarding4Page(), path: Onboarding4Page.path),
+      SubMenuItem("Onboarding 5", Onboarding5Page(), path: Onboarding5Page.path),
+      SubMenuItem("Onboarding 6", Onboarding6Page(), path: Onboarding6Page.path),
       SubMenuItem("Smart Wallet Onboarding", SmartWalletOnboardingPage(), path: SmartWalletOnboardingPage.path),
-      SubMenuItem("Onboarding 2", IntroTwoPage(), path: IntroTwoPage.path),
-      SubMenuItem("Onboarding 3", IntroThreePage(), path: IntroThreePage.path),
-      SubMenuItem("Onboarding 5", Intro5(), path: Intro5.path),
+    ],
+  ),
+  */
+  MenuItem(
+    title: "Miscellaneous",
+    items: [
+      // ................
+      SubMenuItem('Image Crop', ImageCropPage(), path: ImageCropPage.path, icon: Icons.crop),
+      SubMenuItem("Gallery One", GalleryOnePage(), path: GalleryOnePage.path),
+      SubMenuItem('Music player One', MusicPlayerOnePage(), path: MusicPlayerOnePage.path),
+      SubMenuItem("Music Player Two", MusicPlayerTwoPage(), path: MusicPlayerTwoPage.path),
+      SubMenuItem("Image Popup", ImagePopupPage(), path: ImagePopupPage.path),
+      SubMenuItem("Chat Messaages", ChatMessaagesPage(), path: ChatMessaagesPage.path),
+      SubMenuItem("Form Elements", FormElementsPage(), path: FormElementsPage.path),
+      SubMenuItem("Sliders", SlidersPage(), path: SlidersPage.path),
+      SubMenuItem("Alert Dialogs", AlertDialogsPage(), path: AlertDialogsPage.path),
+      SubMenuItem("Springy Slider", SpringySliderPage(), path: SpringySliderPage.path),
+      SubMenuItem("Sliver App Bar", SliverAppBarPage(), path: SliverAppBarPage.path),
+      SubMenuItem("Loaders", LoadersPage(), path: LoadersPage.path),
+      SubMenuItem("ChatUi", ChatUi(), path: ChatUi.path),
+      SubMenuItem('Bottomsheet', BottomSheetAwesome(), path: BottomSheetAwesome.path),
     ],
   ),
   MenuItem(
-    title: "UI Kits (Clones)",
+    title: "Apps (Clones)",
     items: [
       SubMenuItem('Khalti App', KhaltiApp(), path: KhaltiApp.path),
       SubMenuItem("Grocery UI Kit", GroceryHomePage(), path: GroceryHomePage.path),
@@ -337,25 +356,6 @@ final List<dynamic> pages = [
       SubMenuItem("Furniture App", FurnitureApp(), path: FurnitureApp.path),
     ],
     icon: Icons.account_balance_wallet,
-  ),
-  MenuItem(
-    title: "Miscellaneous",
-    items: [
-      SubMenuItem('Image/Widget Crop', CropPage(), path: CropPage.path, icon: Icons.crop),
-      SubMenuItem("Gallery One", GalleryPageOne(), path: GalleryPageOne.path),
-      SubMenuItem("Music Player Two", MusicPlayerTwoPage(), path: MusicPlayerTwoPage.path),
-      SubMenuItem("Image Popup", ImagePopupPage(), path: ImagePopupPage.path),
-      SubMenuItem("Chat Messaages", ChatTwoPage(), path: ChatTwoPage.path),
-      SubMenuItem("Form Elements", FormElementPage(), path: FormElementPage.path),
-      SubMenuItem("Sliders", SlidersPage(), path: SlidersPage.path),
-      SubMenuItem("Alert Dialogs", DialogsPage(), path: DialogsPage.path),
-      SubMenuItem("Springy Slider", SpringySliderPage(), path: SpringySliderPage.path),
-      SubMenuItem("Sliver App Bar", SliverAppbarPage(), path: SliverAppbarPage.path),
-      SubMenuItem("Loaders", LoadersPage(), path: LoadersPage.path),
-      SubMenuItem("ChatUi", ChatUi(), path: ChatUi.path),
-      SubMenuItem('Bottomsheet', BottomSheetAwesome(), path: BottomSheetAwesome.path),
-      SubMenuItem('Music player', MusicPlayer(), path: MusicPlayer.path),
-    ],
   ),
 ];
 

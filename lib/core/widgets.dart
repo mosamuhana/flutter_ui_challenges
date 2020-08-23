@@ -5,8 +5,6 @@ export 'widgets/design_preview_page.dart';
 export 'widgets/rounded_bordered_container.dart';
 export 'widgets/p_network_image.dart';
 export 'widgets/swiper_pagination.dart';
-export 'widgets/dialogs/beautiful_alert_dialog.dart';
-export 'widgets/dialogs/payment_success_dialog.dart';
 export 'widgets/p_checkbox_list_tile.dart';
 export 'widgets/loader_one.dart';
 export 'widgets/loader_two.dart';
