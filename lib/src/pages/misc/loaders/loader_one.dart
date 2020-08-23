@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../ui_constants.dart';
-
 class LoaderOne extends StatefulWidget {
   final Color color;
 
   const LoaderOne({Key key, this.color}) : super(key: key);
+
   _LoaderOneState createState() => _LoaderOneState();
 }
 
@@ -34,30 +33,34 @@ class _LoaderOneState extends State<LoaderOne> with SingleTickerProviderStateMix
 
   @override
   Widget build(BuildContext context) {
+    var color = widget.color;
+    var value = animation.value;
     return Center(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
+        children: [
           Container(
-            color: widget.color,
-            height: 3.0,
-            width: animation.value * 75.0,
+            color: color,
+            height: 3,
+            width: value * 75,
           ),
-          hSizedBox5,
+          _hbox5,
           Container(
-            color: widget.color,
-            height: 3.0,
-            width: animation.value * 50.0,
+            color: color,
+            height: 3,
+            width: value * 50,
           ),
-          hSizedBox5,
+          _hbox5,
           Container(
-            color: widget.color,
-            height: 3.0,
-            width: animation.value * 35.0,
+            color: color,
+            height: 3,
+            width: value * 35,
           ),
         ],
       ),
     );
   }
+
+  final _hbox5 = SizedBox(height: 5);
 }

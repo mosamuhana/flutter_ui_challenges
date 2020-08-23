@@ -114,9 +114,9 @@ import '../src/apps/furniture/furniture_app.dart';
 
 import '../src/pages/dialogs/alert_dialogs/page.dart';
 
-import '../src/pages/misc/bottomsheet.dart';
+import '../src/pages/misc/bottom_sheet_awesome/page.dart';
 import '../src/pages/misc/chat_messages/page.dart';
-import '../src/pages/misc/chatui.dart';
+import '../src/pages/misc/chatui/page.dart';
 import '../src/pages/misc/image_crop/page.dart';
 import '../src/pages/misc/form_elements/page.dart';
 import '../src/pages/misc/gallery_one/page.dart';
@@ -343,8 +343,8 @@ final List<dynamic> pages = [
       SubMenuItem("Springy Slider", SpringySliderPage(), path: SpringySliderPage.path),
       SubMenuItem("Sliver App Bar", SliverAppBarPage(), path: SliverAppBarPage.path),
       SubMenuItem("Loaders", LoadersPage(), path: LoadersPage.path),
-      SubMenuItem("ChatUi", ChatUi(), path: ChatUi.path),
-      SubMenuItem('Bottomsheet', BottomSheetAwesome(), path: BottomSheetAwesome.path),
+      SubMenuItem("ChatUi", ChatUiPage(), path: ChatUiPage.path),
+      SubMenuItem('BottomSheet Awesome', BottomSheetAwesome(), path: BottomSheetAwesome.path),
     ],
   ),
   MenuItem(

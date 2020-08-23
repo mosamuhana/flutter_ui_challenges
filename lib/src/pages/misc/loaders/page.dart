@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/widgets.dart';
+import 'loader_one.dart';
+import 'loader_two.dart';
 
 class LoadersPage extends StatelessWidget {
   static final String path = "lib/src/pages/misc/loaders/page.dart";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,18 +16,16 @@ class LoadersPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
+          children: [
             LoaderOne(color: Colors.red),
-            SizedBox(
-              height: 10.0,
-            ),
+            _hbox10,
             LoaderTwo(),
-            SizedBox(
-              height: 10.0,
-            ),
+            _hbox10,
           ],
         ),
       ),
     );
   }
+
+  final _hbox10 = SizedBox(height: 10);
 }
