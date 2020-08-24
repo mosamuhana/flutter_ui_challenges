@@ -131,7 +131,6 @@ import '../src/pages/misc/springy_slider_page/page.dart';
 import 'models.dart';
 
 final List<dynamic> pages = [
-  /*
   MenuItem(
     title: "Animations",
     icon: FontAwesomeIcons.truckMoving,
@@ -221,7 +220,6 @@ final List<dynamic> pages = [
       SubMenuItem("Rounded Details Page", EcommerceDetailThreePage(), path: EcommerceDetailThreePage.path),
       SubMenuItem("Ecommerce One", EcommerceOnePage(), path: EcommerceOnePage.path),
       SubMenuItem("Ecommerce Two", EcommerceTwoPage(), path: EcommerceTwoPage.path),
-      SubMenuItem("Ecommerce Three", SliverAppbarPage(), path: SliverAppbarPage.path), // misc
       SubMenuItem("Ecommerce Four", EcommerceFourPage(), path: EcommerceFourPage.path),
       SubMenuItem("Ecommerce Grocery", EcommerceFivePage(), path: EcommerceFivePage.path),
       SubMenuItem("Ecommerce Details One", EcommerceDetailOnePage(), path: EcommerceDetailOnePage.path),
@@ -326,7 +324,6 @@ final List<dynamic> pages = [
       SubMenuItem("Smart Wallet Onboarding", SmartWalletOnboardingPage(), path: SmartWalletOnboardingPage.path),
     ],
   ),
-  */
   MenuItem(
     title: "Miscellaneous",
     items: [

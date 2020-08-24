@@ -21,22 +21,19 @@ class _BottomSheetAwesomeState extends State<BottomSheetAwesome> {
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
-        actions: <Widget>[
+        actions: [
           InkWell(
             onTap: () => showAwesomeSheet(),
             child: Container(
               alignment: Alignment.center,
               height: 10,
-              margin: EdgeInsets.all(8),
-              padding: EdgeInsets.symmetric(horizontal: 8),
+              margin: _insets8,
+              padding: _insetsH8,
               decoration: BoxDecoration(
                 border: Border.all(width: 1, color: Colors.white),
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: _circularBorder10,
               ),
-              child: Text(
-                progress.length == 0 ? "0/100" : "${progress.length}/100 ",
-                style: _whiteStyle,
-              ),
+              child: Text("${progress.length == 0 ? 0 : progress.length}/100 ", style: _whiteStyle),
             ),
           ),
         ],
@@ -46,79 +43,93 @@ class _BottomSheetAwesomeState extends State<BottomSheetAwesome> {
         physics: NeverScrollableScrollPhysics(),
         controller: _pageController,
         onPageChanged: (i) => setState(() => currentIndex = i),
-        itemBuilder: (context, index) {
-          return Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.all(16),
-                child: Text(description, textAlign: TextAlign.justify, style: _w600Style),
-              ),
-              RaisedButton(
-                color: progress.containsKey(progress[index]) ? Theme.of(context).primaryColor : Colors.grey.shade800,
-                onPressed: () {
-                  if (progress.containsKey(progress[index])) {
-                    setState(() => progress.remove(progress[index]));
-                  } else {
-                    setState(() => progress[index] = index);
-                  }
-                },
-                child: Text(
-                  progress.containsKey(progress[index])
-                      ? 'Unselect Page ${currentIndex + 1}'
-                      : 'Select Page ${currentIndex + 1}',
-                  style: _whiteStyle,
-                ),
-              ),
-              Container(
-                child: Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: <Widget>[
-                      RaisedButton(
-                        child: Icon(Icons.chevron_left, color: Colors.white),
-                        color: Theme.of(context).primaryColor,
-                        onPressed: () {
-                          _pageController.animateToPage(
-                            _pageController.page.ceil() - 1,
-                            duration: Duration(seconds: 1),
-                            curve: Curves.easeInBack,
-                          );
-                        },
-                      ),
-                      SizedBox(width: 5),
-                      Container(
-                        padding: EdgeInsets.fromLTRB(15, 0, 10, 0),
-                        decoration: BoxDecoration(
-                          border: Border.all(width: 1, color: Theme.of(context).primaryColor),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Text('Page ${currentIndex + 1}', style: _w700S35Style),
-                      ),
-                      RaisedButton(
-                        child: Icon(Icons.chevron_right, color: Colors.white),
-                        color: Theme.of(context).primaryColor,
-                        onPressed: () {
-                          _pageController.animateToPage(
-                            _pageController.page.ceil() + 1,
-                            duration: Duration(seconds: 1),
-                            curve: Curves.easeIn,
-                          );
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          );
-        },
+        itemBuilder: _pageViewItemBuilder,
         itemCount: 100,
       ),
     );
   }
 
+  Widget _pageViewItemBuilder(context, index) {
+    final pageNum = currentIndex + 1;
+    final inProgress = progress.containsKey(progress[index]);
+    final buttonText = inProgress ? 'Unselect Page $pageNum' : 'Select Page $pageNum';
+    final buttonColor = inProgress ? Theme.of(context).primaryColor : Colors.grey.shade800;
+
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Padding(
+          padding: _insets16,
+          child: Text(
+            description,
+            textAlign: TextAlign.justify,
+            style: _w600Style,
+          ),
+        ),
+        RaisedButton(
+          color: buttonColor,
+          onPressed: () {
+            if (inProgress) {
+              progress.remove(progress[index]);
+            } else {
+              progress[index] = index;
+            }
+            setState(() {});
+          },
+          child: Text(buttonText, style: _whiteStyle),
+        ),
+        Container(
+          child: Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                RaisedButton(
+                  child: _chevronLeftIcon,
+                  color: Theme.of(context).primaryColor,
+                  onPressed: () {
+                    _pageController.animateToPage(
+                      _pageController.page.ceil() - 1,
+                      duration: Duration(seconds: 1),
+                      curve: Curves.easeInBack,
+                    );
+                  },
+                ),
+                _wbox5,
+                Container(
+                  padding: _insetsL15T0R10B0,
+                  decoration: BoxDecoration(
+                    border: Border.all(width: 1, color: Theme.of(context).primaryColor),
+                    borderRadius: _circularBorder10,
+                  ),
+                  child: Text('Page $pageNum', style: _w700S35Style),
+                ),
+                RaisedButton(
+                  child: _chevronRightIcon,
+                  color: Theme.of(context).primaryColor,
+                  onPressed: () {
+                    _pageController.animateToPage(
+                      _pageController.page.ceil() + 1,
+                      duration: Duration(seconds: 1),
+                      curve: Curves.easeIn,
+                    );
+                  },
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
   Future<dynamic> showAwesomeSheet() {
+    void onTap(int index) {
+      setState(() {
+        _pageController.jumpToPage(index);
+        Navigator.pop(context);
+      });
+    }
+
     return showModalBottomSheet<dynamic>(
       context: context,
       builder: (context) {
@@ -127,15 +138,15 @@ class _BottomSheetAwesomeState extends State<BottomSheetAwesome> {
           builder: (context) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
+              children: [
                 Container(
-                  padding: EdgeInsets.all(10),
+                  padding: _insets10,
                   child: Text(" Sheet", style: _s20Style),
                 ),
                 Divider(height: 0),
                 Expanded(
                   child: GridView.builder(
-                    itemBuilder: (_, i) => getTile(i),
+                    itemBuilder: (_, i) => getTile(i, onTap),
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 8,
                     ),
@@ -150,35 +161,46 @@ class _BottomSheetAwesomeState extends State<BottomSheetAwesome> {
     );
   }
 
-  Widget getTile(int index) {
+  Widget getTile(int index, ValueChanged<int> onTap) {
     bool hasVisited = progress[index] != null;
+    final borderColor = currentIndex == index ? Theme.of(context).primaryColor : Colors.black12;
+    final color = hasVisited ? Theme.of(context).primaryColor : Colors.white;
+    final style = hasVisited ? _whiteStyle : _blackStyle;
+
     return GestureDetector(
-      onTap: () {
-        setState(() {
-          _pageController.jumpToPage(index);
-          Navigator.pop(context);
-        });
-      },
+      onTap: () => onTap(index),
       child: Container(
-        margin: EdgeInsets.all(5),
-        padding: EdgeInsets.all(5),
+        margin: _insets5,
+        padding: _insets5,
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5),
-          border: Border.all(color: currentIndex == index ? Theme.of(context).primaryColor : Colors.black12),
-          color: hasVisited ? Theme.of(context).primaryColor : Colors.white,
+          borderRadius: _circularBorder5,
+          border: Border.all(color: borderColor),
+          color: color,
         ),
-        child: Text(
-          "${index + 1}",
-          style: hasVisited ? _whiteStyle : _blackStyle,
-        ),
+        child: Text("${index + 1}", style: style),
       ),
     );
   }
+
+  final _wbox5 = SizedBox(width: 5);
 
   final _whiteStyle = TextStyle(color: Colors.white);
   final _blackStyle = TextStyle(color: Colors.black);
   final _w600Style = TextStyle(fontWeight: FontWeight.w600);
   final _w700S35Style = TextStyle(fontWeight: FontWeight.w700, fontSize: 35);
   final _s20Style = TextStyle(fontSize: 20);
+
+  final _insets5 = EdgeInsets.all(5);
+  final _insets8 = EdgeInsets.all(8);
+  final _insets10 = EdgeInsets.all(10);
+  final _insets16 = EdgeInsets.all(16);
+  final _insetsH8 = EdgeInsets.symmetric(horizontal: 8);
+  final _insetsL15T0R10B0 = EdgeInsets.fromLTRB(15, 0, 10, 0);
+
+  final _circularBorder5 = BorderRadius.circular(5);
+  final _circularBorder10 = BorderRadius.circular(10);
+
+  final _chevronLeftIcon = Icon(Icons.chevron_left, color: Colors.white);
+  final _chevronRightIcon = Icon(Icons.chevron_right, color: Colors.white);
 }
