@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/ui_constants.dart';
+import '../../../../core/ui_constants.dart';
 
 class AnimatedBottomBarPage extends StatefulWidget {
-  static final String path = "lib/src/pages/animations/animated_bottom_bar.page.dart";
+  static final String path = "lib/src/pages/animations/animated_bottom_bar/page.dart";
 
   @override
   _AnimatedBottomBarPageState createState() => _AnimatedBottomBarPageState();

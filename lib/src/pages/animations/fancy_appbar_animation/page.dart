@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/ui_constants.dart';
-
-const _maxAppBarHeight = 190.0;
-const _minAppBarHeight = 80.0;
-const _radius = 30.0;
-
 class FancyAppbarAnimationPage extends StatefulWidget {
-  static final String path = "lib/src/pages/animations/fancy_appbar_animation.page.dart";
+  static final String path = "lib/src/pages/animations/fancy_appbar_animation/page.dart";
 
   @override
   _FancyAppbarAnimationPageState createState() => _FancyAppbarAnimationPageState();
@@ -16,20 +10,24 @@ class FancyAppbarAnimationPage extends StatefulWidget {
 class _FancyAppbarAnimationPageState extends State<FancyAppbarAnimationPage> {
   final pageTitle = 'Awesome and simple app bar hiding animation';
 
-  ScrollController _scrollController = ScrollController();
-  Color appBarBackground;
+  final scrollController = ScrollController();
   double topPosition;
 
   @override
   void initState() {
-    topPosition = -_minAppBarHeight;
-    appBarBackground = Colors.transparent;
     super.initState();
-    _scrollController.addListener(_onScroll);
+    topPosition = -_minAppBarHeight;
+    scrollController.addListener(_onScroll);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    scrollController.dispose();
   }
 
   void _onScroll() {
-    final offset = _scrollController.offset;
+    final offset = scrollController.offset;
     if (offset > 50) {
       if (topPosition < 0) {
         topPosition = -130 + offset;
@@ -50,34 +48,34 @@ class _FancyAppbarAnimationPageState extends State<FancyAppbarAnimationPage> {
     return Scaffold(
       backgroundColor: Colors.grey.shade300,
       body: Stack(
-        children: <Widget>[
+        children: [
           SingleChildScrollView(
-            controller: _scrollController,
+            controller: scrollController,
             child: Column(
-              children: <Widget>[
-                _buildFancyAppBar(context),
-                hSizedBox20,
+              children: [
+                _appBar,
+                _hbox20,
                 Container(height: 300, color: Colors.orange),
-                hSizedBox10,
+                _hbox10,
                 Container(height: 300, color: Colors.red),
-                hSizedBox10,
+                _hbox10,
                 Container(height: 300, color: Colors.yellow),
-                hSizedBox10,
+                _hbox10,
                 Container(height: 300, color: Colors.pink),
-                hSizedBox20,
+                _hbox20,
               ],
             ),
           ),
-          _buildFloatingAppBar(context),
-          _buildStandardAppBar(context),
+          _floatingAppBar,
+          _standardAppBar,
         ],
       ),
     );
   }
 
-  Widget _buildFancyAppBar(BuildContext context) {
+  Widget get _appBar {
     return Container(
-      padding: const EdgeInsets.only(left: 16.0, right: 50),
+      padding: _insetsL16R50,
       height: _maxAppBarHeight,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(bottomRight: Radius.circular(_radius)),
@@ -86,26 +84,19 @@ class _FancyAppbarAnimationPageState extends State<FancyAppbarAnimationPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          const SizedBox(height: _minAppBarHeight - 10.0),
-          Text(
-            pageTitle,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24.0),
-          ),
-          hSizedBox20,
-          Text(
-            "AWESOME",
-            style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold, color: Colors.orange),
-          )
+        children: [
+          SizedBox(height: _minAppBarHeight - 10),
+          Text(pageTitle, style: _boldStyle),
+          _hbox20,
+          Text("AWESOME", style: _orangeBoldS16Style)
         ],
       ),
     );
   }
 
-  Widget _buildFloatingAppBar(BuildContext context) {
+  Widget get _floatingAppBar {
     double opacity = (topPosition + _minAppBarHeight) / _minAppBarHeight;
     opacity = opacity > 1 || opacity < 0 ? 1 : opacity;
-    //print('topPosition: $topPosition');
 
     return Positioned(
       top: topPosition,
@@ -113,7 +104,7 @@ class _FancyAppbarAnimationPageState extends State<FancyAppbarAnimationPage> {
       right: 0,
       child: Container(
         height: _minAppBarHeight,
-        padding: const EdgeInsets.only(left: 50, top: 25.0, right: 20.0),
+        padding: _insetsL50T25R20,
         alignment: Alignment.centerLeft,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.only(bottomRight: Radius.circular(_radius)),
@@ -124,10 +115,7 @@ class _FancyAppbarAnimationPageState extends State<FancyAppbarAnimationPage> {
           softWrap: false,
           overflow: TextOverflow.ellipsis,
           child: Semantics(
-            child: Text(
-              pageTitle,
-              style: TextStyle(color: Colors.black, fontSize: 18.0, fontWeight: FontWeight.bold),
-            ),
+            child: Text(pageTitle, style: _blackBoldS18Style),
             header: true,
           ),
         ),
@@ -135,7 +123,7 @@ class _FancyAppbarAnimationPageState extends State<FancyAppbarAnimationPage> {
     );
   }
 
-  Widget _buildStandardAppBar(BuildContext context) {
+  Widget get _standardAppBar {
     return SizedBox(
       height: _minAppBarHeight,
       child: AppBar(
@@ -145,4 +133,18 @@ class _FancyAppbarAnimationPageState extends State<FancyAppbarAnimationPage> {
       ),
     );
   }
+
+  final _hbox10 = SizedBox(height: 10);
+  final _hbox20 = SizedBox(height: 20);
+
+  final _orangeBoldS16Style = TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.orange);
+  final _boldStyle = TextStyle(fontWeight: FontWeight.bold, fontSize: 24);
+  final _blackBoldS18Style = TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold);
+
+  final _insetsL50T25R20 = EdgeInsets.only(left: 50, top: 25, right: 20);
+  final _insetsL16R50 = EdgeInsets.only(left: 16, right: 50);
 }
+
+const double _maxAppBarHeight = 190;
+const double _minAppBarHeight = 80;
+const double _radius = 30;

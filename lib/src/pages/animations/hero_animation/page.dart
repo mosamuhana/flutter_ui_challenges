@@ -1,47 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
-import '../../../core/ui_constants.dart';
-import '../../../core/widgets.dart';
-import 'hero_animation_details.page.dart';
-import 'data/products.dart';
-
-const _duration1 = Duration(seconds: 1);
-
-final _headerText = Text.rich(
-  TextSpan(
-    children: [
-      TextSpan(text: "Best items", style: TextStyle(fontWeight: FontWeight.bold)),
-      TextSpan(text: " from around"),
-    ],
-  ),
-);
+import '../../../../core/widgets.dart';
+import 'back_icon_button.dart';
+import 'hero_animation_details.dart';
+import 'product.dart';
+import 'data.dart' show products;
 
 class HeroAnimationPage extends StatefulWidget {
-  static final String path = "lib/src/pages/animations/hero_animation.page.dart";
+  static final String path = "lib/src/pages/animations/hero_animation/page.dart";
 
   @override
   _HeroAnimationPageState createState() => _HeroAnimationPageState();
 }
 
 class _HeroAnimationPageState extends State<HeroAnimationPage> with SingleTickerProviderStateMixin {
+  final _swiperController = SwiperController();
+  AnimationController _controller;
   int currentIndex = 0;
   int prevIndex = 0;
-  final SwiperController _swiperController = SwiperController();
-  AnimationController _controller;
 
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
-      duration: const Duration(seconds: 1),
-      vsync: this,
-    )..forward();
+    _controller = AnimationController(duration: _duration1, vsync: this)..forward();
   }
 
   @override
   void dispose() {
     _controller.dispose();
+    _swiperController.dispose();
     super.dispose();
   }
 
@@ -49,17 +37,17 @@ class _HeroAnimationPageState extends State<HeroAnimationPage> with SingleTicker
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
-        children: <Widget>[
-          hSizedBox20,
+        children: [
+          _hbox20,
           Align(
             alignment: Alignment.topLeft,
-            child: BackIconButton(),
+            child: _backIconButton,
           ),
           _headerText,
           Expanded(
             flex: 2,
             child: Swiper(
-              physics: BouncingScrollPhysics(),
+              physics: _bouncingScrollPhysics,
               viewportFraction: 0.8,
               itemCount: products.length,
               loop: false,
@@ -69,7 +57,7 @@ class _HeroAnimationPageState extends State<HeroAnimationPage> with SingleTicker
             ),
           ),
           Stack(
-            children: <Widget>[
+            children: [
               _buildDesc(0),
               _buildDesc(1),
               _buildDesc(2),
@@ -83,22 +71,20 @@ class _HeroAnimationPageState extends State<HeroAnimationPage> with SingleTicker
   Widget _itemBuilder(BuildContext context, int index) {
     final product = products[index];
 
-    final imageHero = Hero(
-      tag: "image_${product.id}",
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(20.0),
-        child: PNetworkImage(product.imageUrl, fit: BoxFit.cover),
-      ),
-    );
-
     return Container(
-      padding: const EdgeInsets.all(16.0),
+      padding: _insets16,
       child: Column(
-        children: <Widget>[
+        children: [
           Expanded(
             child: GestureDetector(
               onTap: () => _showDetails(product),
-              child: imageHero,
+              child: Hero(
+                tag: product.imageTag,
+                child: ClipRRect(
+                  borderRadius: _circularBorder20,
+                  child: PNetworkImage(product.image, fit: BoxFit.cover),
+                ),
+              ),
             ),
           ),
         ],
@@ -108,20 +94,17 @@ class _HeroAnimationPageState extends State<HeroAnimationPage> with SingleTicker
 
   Widget _buildDesc(int index) {
     final product = products[index];
-
+    final double opacity = currentIndex == index ? 1 : 0;
     final size = MediaQuery.of(context).size;
+
     final titleStyle = TextStyle(
       color: Theme.of(context).primaryColor,
-      fontSize: 18.0,
-      fontWeight: FontWeight.bold,
-    );
-    final priceStyle = TextStyle(
-      fontSize: 30.0,
+      fontSize: 18,
       fontWeight: FontWeight.bold,
     );
 
     final titleHero = Hero(
-      tag: "title_${product.id}",
+      tag: product.nameTag,
       child: Material(
         type: MaterialType.transparency,
         child: SizedBox(
@@ -136,7 +119,7 @@ class _HeroAnimationPageState extends State<HeroAnimationPage> with SingleTicker
     );
 
     final priceHero = Hero(
-      tag: "price_${product.id}",
+      tag: product.priceTag,
       child: Material(
         type: MaterialType.transparency,
         child: SizedBox(
@@ -144,7 +127,7 @@ class _HeroAnimationPageState extends State<HeroAnimationPage> with SingleTicker
           child: Text(
             '\$${product.price}',
             textAlign: TextAlign.center,
-            style: priceStyle,
+            style: _s30BoldStyle,
           ),
         ),
       ),
@@ -152,17 +135,17 @@ class _HeroAnimationPageState extends State<HeroAnimationPage> with SingleTicker
 
     return AnimatedOpacity(
       duration: _duration1,
-      opacity: currentIndex == index ? 1 : 0,
+      opacity: opacity,
       child: Container(
         width: double.infinity,
         child: Column(
           mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            hSizedBox10,
+          children: [
+            _hbox10,
             titleHero,
-            hSizedBox10,
+            _hbox10,
             priceHero,
-            hSizedBox20,
+            _hbox20,
           ],
         ),
       ),
@@ -171,20 +154,43 @@ class _HeroAnimationPageState extends State<HeroAnimationPage> with SingleTicker
 
   void _onIndexChanged(int index) {
     _controller.reverse();
-    setState(() {
-      prevIndex = currentIndex;
-      currentIndex = index;
-      _controller.forward();
-    });
+    prevIndex = currentIndex;
+    currentIndex = index;
+    _controller.forward();
+    setState(() {});
   }
 
   void _showDetails(Product product) {
     Navigator.push(
       context,
       PageRouteBuilder(
-        transitionDuration: Duration(seconds: 1),
-        pageBuilder: (context, _, __) => HeroAnimationDetailsPage(product: product),
+        transitionDuration: _duration1,
+        pageBuilder: (context, _, __) => HeroAnimationDetails(product: product),
       ),
     );
   }
+
+  final _headerText = Text.rich(
+    TextSpan(
+      children: [
+        TextSpan(text: "Best items", style: TextStyle(fontWeight: FontWeight.bold)),
+        TextSpan(text: " from around"),
+      ],
+    ),
+  );
+
+  final _hbox10 = SizedBox(height: 10);
+  final _hbox20 = SizedBox(height: 20);
+
+  final _insets16 = EdgeInsets.all(16);
+
+  final _duration1 = Duration(seconds: 1);
+
+  final _s30BoldStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+
+  final _bouncingScrollPhysics = BouncingScrollPhysics();
+
+  final _circularBorder20 = BorderRadius.circular(20);
+
+  final _backIconButton = BackIconButton();
 }

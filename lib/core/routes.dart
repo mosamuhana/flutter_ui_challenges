@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../src/pages/animations/bottom_reveal_animation.page.dart';
-import '../src/pages/animations/fancy_appbar_animation.page.dart';
-import '../src/pages/animations/animated_bottom_bar.page.dart';
+import '../src/pages/animations/bottom_reveal_animation/page.dart';
+import '../src/pages/animations/fancy_appbar_animation/page.dart';
+import '../src/pages/animations/animated_bottom_bar/page.dart';
 import '../src/pages/animations/animated_list_one.page.dart';
-import '../src/pages/animations/hero_animation.page.dart';
+import '../src/pages/animations/hero_animation/page.dart';
 
 import '../src/pages/profile/profile1.dart';
 import '../src/pages/profile/profile2.dart';
@@ -142,6 +142,7 @@ final List<dynamic> pages = [
       SubMenuItem("Animated List One", AnimatedListOnePage(), path: AnimatedListOnePage.path),
     ],
   ),
+  /*
   MenuItem(
     title: "Profile",
     icon: Icons.person,
@@ -354,6 +355,7 @@ final List<dynamic> pages = [
     ],
     icon: Icons.account_balance_wallet,
   ),
+  */
 ];
 
 SubMenuItem getItemForKey(String key) {
