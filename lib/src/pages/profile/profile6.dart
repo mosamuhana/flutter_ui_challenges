@@ -11,7 +11,7 @@ part 'data/profile_data6.dart';
 
 const _shadow = BoxShadow(spreadRadius: 2.0, blurRadius: 10.0, color: Colors.black26);
 
-class ProfileSixPage extends StatelessWidget {
+class Profile6Page extends StatelessWidget {
   static final String path = "lib/src/pages/profile/profile6.dart";
 
   @override

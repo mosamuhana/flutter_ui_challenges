@@ -1,28 +1,21 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/widgets.dart';
-
-List<String> places = ["Nuwakot", "Dhaulagiri", "Rara", "Muktinath", "Pashupatinath"];
+import '../../../../core/widgets.dart';
 
 class AnimatedListOnePage extends StatefulWidget {
-  static final String path = "lib/src/pages/animations/animated_list_one.page.dart";
+  static final String path = "lib/src/pages/animations/animated_list_one/page.dart";
 
   @override
   _AnimatedListOnePageState createState() => _AnimatedListOnePageState();
 }
 
 class _AnimatedListOnePageState extends State<AnimatedListOnePage> {
-  List<String> items;
   final listKey = GlobalKey<AnimatedListState>();
   final tween = Tween<Offset>(begin: Offset(1, 0), end: Offset.zero);
 
-  AnimatedListState get listState => listKey.currentState;
+  final List<String> items = <String>["Kathmandu", "Bhaktapur", "Pokhara", "Mount Everest"];
 
-  @override
-  void initState() {
-    items = ["Kathmandu", "Bhaktapur", "Pokhara", "Mount Everest"];
-    super.initState();
-  }
+  AnimatedListState get listState => listKey.currentState;
 
   @override
   Widget build(BuildContext context) {
@@ -32,25 +25,25 @@ class _AnimatedListOnePageState extends State<AnimatedListOnePage> {
       body: AnimatedList(
         key: listKey,
         initialItemCount: items.length,
-        itemBuilder: _itemBuilder,
+        itemBuilder: _listItemBuilder,
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+        child: _addIcon,
         onPressed: _onAddItem,
       ),
     );
   }
 
-  Widget _itemBuilder(BuildContext context, int index, Animation<double> animation) {
+  Widget _listItemBuilder(BuildContext context, int index, Animation<double> animation) {
     return SlideTransition(
       position: tween.animate(animation),
       child: BorderedContainer(
-        margin: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
-        padding: const EdgeInsets.all(0),
+        margin: _insetsH8V4,
+        padding: _insets0,
         child: ListTile(
           title: Text(items[index]),
           trailing: IconButton(
-            icon: Icon(Icons.clear),
+            icon: _clearIcon,
             onPressed: () {
               listState.removeItem(index, (context, animation) => _onItemRemoved(context, animation, index));
               setState(() {});
@@ -62,22 +55,53 @@ class _AnimatedListOnePageState extends State<AnimatedListOnePage> {
   }
 
   void _onAddItem() {
-    places.shuffle();
-    items.insert(items.length, places[0]);
+    _places.shuffle();
+    items.insert(items.length, _places[0]);
     listState.insertItem(items.length - 1);
     setState(() {});
   }
 
   Widget _onItemRemoved(BuildContext context, Animation<double> animation, int index) {
     final removedItem = items.removeAt(index);
+
     return SizeTransition(
       sizeFactor: animation,
       axis: Axis.vertical,
       child: BorderedContainer(
-        margin: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
-        padding: const EdgeInsets.all(0),
+        margin: _insetsH8V4,
+        padding: _insets0,
         child: ListTile(title: Text(removedItem)),
       ),
     );
   }
+
+  Widget _buildItem(int index, [bool hasTrailing = false]) {
+    Widget trailing;
+    if (hasTrailing) {
+      trailing = IconButton(
+        icon: _clearIcon,
+        onPressed: () {
+          listState.removeItem(index, (context, animation) => _onItemRemoved(context, animation, index));
+          setState(() {});
+        },
+      );
+    }
+
+    return BorderedContainer(
+      margin: _insetsH8V4,
+      padding: _insets0,
+      child: ListTile(
+        title: Text(items[index]),
+        trailing: trailing,
+      ),
+    );
+  }
+
+  final _addIcon = Icon(Icons.add);
+  final _clearIcon = Icon(Icons.clear);
+
+  final _insets0 = EdgeInsets.all(0);
+  final _insetsH8V4 = EdgeInsets.symmetric(vertical: 4, horizontal: 8);
 }
+
+const _places = <String>["Nuwakot", "Dhaulagiri", "Rara", "Muktinath", "Pashupatinath"];

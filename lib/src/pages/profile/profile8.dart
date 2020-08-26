@@ -7,7 +7,7 @@ import '../../../core/widgets.dart';
 const _avatar = '$STORE_BASE_URL/img%2F1.jpg?alt=media';
 const _backImage = '$STORE_BASE_URL/img%2F2.jpg?alt=media';
 
-class ProfileEightPage extends StatelessWidget {
+class Profile8Page extends StatelessWidget {
   static final String path = "lib/src/pages/profile/profile8.dart";
 
   @override

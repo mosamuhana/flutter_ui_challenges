@@ -23,7 +23,7 @@ final _account = _Account(
   ],
 );
 
-class ProfileTwoPage extends StatelessWidget {
+class Profile2Page extends StatelessWidget {
   static final String path = "lib/src/pages/profile/profile2.dart";
 
   @override

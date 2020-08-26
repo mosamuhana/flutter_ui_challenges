@@ -25,7 +25,7 @@ final _profile = _Profile(
   ],
 );
 
-class ProfileNinePage extends StatelessWidget {
+class Profile9Page extends StatelessWidget {
   static final String path = "lib/src/pages/profile/profile9.dart";
 
   @override

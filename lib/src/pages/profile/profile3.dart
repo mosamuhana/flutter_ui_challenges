@@ -25,7 +25,7 @@ final _account = _Account(
   ],
 );
 
-class ProfileThreePage extends StatelessWidget {
+class Profile3Page extends StatelessWidget {
   static final String path = "lib/src/pages/profile/profile3.dart";
 
   @override

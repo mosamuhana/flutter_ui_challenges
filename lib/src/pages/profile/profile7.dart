@@ -8,7 +8,7 @@ import '../../../core/widgets.dart';
 const _base = 'https://firebasestorage.googleapis.com/v0/b/dl-flutter-ui-challenges.appspot.com/o';
 const String _rocket = '$_base/img%2Frocket.png?alt=media';
 
-class ProfileSevenPage extends StatelessWidget {
+class Profile7Page extends StatelessWidget {
   static final String path = "lib/src/pages/profile/profile7.dart";
 
   final _backHeader = Container(width: double.infinity, height: 330, color: Colors.deepOrange);

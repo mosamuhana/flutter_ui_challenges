@@ -4,10 +4,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../src/pages/animations/bottom_reveal_animation/page.dart';
 import '../src/pages/animations/fancy_appbar_animation/page.dart';
 import '../src/pages/animations/animated_bottom_bar/page.dart';
-import '../src/pages/animations/animated_list_one.page.dart';
+import '../src/pages/animations/animated_list_one/page.dart';
 import '../src/pages/animations/hero_animation/page.dart';
 
-import '../src/pages/profile/profile1.dart';
+import '../src/pages/profile/profile1/page.dart';
 import '../src/pages/profile/profile2.dart';
 import '../src/pages/profile/profile3.dart';
 import '../src/pages/profile/profile4.dart';
@@ -131,6 +131,7 @@ import '../src/pages/misc/springy_slider_page/page.dart';
 import 'models.dart';
 
 final List<dynamic> pages = [
+  /*
   MenuItem(
     title: "Animations",
     icon: FontAwesomeIcons.truckMoving,
@@ -142,22 +143,23 @@ final List<dynamic> pages = [
       SubMenuItem("Animated List One", AnimatedListOnePage(), path: AnimatedListOnePage.path),
     ],
   ),
-  /*
+  */
   MenuItem(
     title: "Profile",
     icon: Icons.person,
     items: [
-      SubMenuItem("Profile One", ProfileOnePage(), path: ProfileOnePage.path),
-      SubMenuItem("Profile Two", ProfileTwoPage(), path: ProfileTwoPage.path),
-      SubMenuItem("Profile Three", ProfileThreePage(), path: ProfileThreePage.path),
-      SubMenuItem("Profile Four", ProfileFourPage(), path: ProfileFourPage.path),
-      SubMenuItem("Profile Five", ProfileFivePage(), path: ProfileFivePage.path),
-      SubMenuItem("Profile Six", ProfileSixPage(), path: ProfileSixPage.path),
-      SubMenuItem("Profile Seven", ProfileSevenPage(), path: ProfileSevenPage.path),
-      SubMenuItem("Profile Eight", ProfileEightPage(), path: ProfileEightPage.path),
-      SubMenuItem("Profile Nine", ProfileNinePage(), path: ProfileNinePage.path),
+      SubMenuItem("Profile 1", Profile1Page(), path: Profile1Page.path),
+      SubMenuItem("Profile 2", Profile2Page(), path: Profile2Page.path),
+      SubMenuItem("Profile 3", Profile3Page(), path: Profile3Page.path),
+      SubMenuItem("Profile 4", Profile4Page(), path: Profile4Page.path),
+      SubMenuItem("Profile 5", Profile5Page(), path: Profile5Page.path),
+      SubMenuItem("Profile 6", Profile6Page(), path: Profile6Page.path),
+      SubMenuItem("Profile 7", Profile7Page(), path: Profile7Page.path),
+      SubMenuItem("Profile 8", Profile8Page(), path: Profile8Page.path),
+      SubMenuItem("Profile 9", Profile9Page(), path: Profile9Page.path),
     ],
   ),
+  /*
   MenuItem(
     title: "Authentication",
     icon: Icons.lock,

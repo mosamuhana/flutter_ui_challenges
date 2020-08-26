@@ -40,7 +40,7 @@ final _account = _Account(
   ],
 );
 
-class ProfileFourPage extends StatelessWidget {
+class Profile4Page extends StatelessWidget {
   static final String path = "lib/src/pages/profile/profile4.dart";
 
   @override

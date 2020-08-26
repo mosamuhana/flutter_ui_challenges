@@ -1,16 +1,26 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/res/assets.dart' as assets;
+import '../../../../core/res/assets.dart' as assets;
 
-final _dummyData = <String, String>{
-  'Email': 'ram@kumar.com',
-  'Phone': '+977 9818225533',
-  'Twitter': '@ramkumar',
-  'Facebook': 'facebook.com/ramkumar',
-};
+class Profile1Page extends StatelessWidget {
+  static final String path = "lib/src/pages/profile/profile1/page.dart";
 
-class ProfileOnePage extends StatelessWidget {
-  static final String path = "lib/src/pages/profile/profile1.dart";
+  final _dummyData = <String, String>{
+    'Email': 'ram@kumar.com',
+    'Phone': '+977 9818225533',
+    'Twitter': '@ramkumar',
+    'Facebook': 'facebook.com/ramkumar',
+  };
+  final profile = _Profile(
+    name: 'Ram Kumar',
+    address: 'Kathmandu, Nepal',
+    email: 'ram@kumar.com',
+    phone: '+977 9818225533',
+    twitter: '@ramkumar',
+    facebook: 'facebook.com/ramkumar',
+    followers: 0,
+    following: 0,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -150,4 +160,25 @@ class ProfileOnePage extends StatelessWidget {
   void _onMessage() {
     print('MESSAGE');
   }
+}
+
+class _Profile {
+  final String name;
+  final String address;
+  final String email;
+  final String phone;
+  final String twitter;
+  final String facebook;
+  final int followers;
+  final int following;
+  _Profile({
+    this.name,
+    this.address,
+    this.email,
+    this.phone,
+    this.twitter,
+    this.facebook,
+    this.followers,
+    this.following,
+  });
 }

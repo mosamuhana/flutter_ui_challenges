@@ -5,7 +5,7 @@ import '../../../core/res/assets.dart' as assets;
 import '../../../core/ui_constants.dart';
 import '../../../core/widgets.dart';
 
-class ProfileFivePage extends StatelessWidget {
+class Profile5Page extends StatelessWidget {
   static final String path = "lib/src/pages/profile/profile5.dart";
   final Color color1 = Color(0xffFC5CF0);
   final Color color2 = Color(0xffFE8852);
