@@ -8,14 +8,14 @@ import '../src/pages/animations/animated_list_one/page.dart';
 import '../src/pages/animations/hero_animation/page.dart';
 
 import '../src/pages/profile/profile1/page.dart';
-import '../src/pages/profile/profile2.dart';
-import '../src/pages/profile/profile3.dart';
-import '../src/pages/profile/profile4.dart';
-import '../src/pages/profile/profile5.dart';
-import '../src/pages/profile/profile6.dart';
-import '../src/pages/profile/profile7.dart';
-import '../src/pages/profile/profile8.dart';
-import '../src/pages/profile/profile9.dart';
+import '../src/pages/profile/profile2/page.dart';
+import '../src/pages/profile/profile3/page.dart';
+import '../src/pages/profile/profile4/page.dart';
+import '../src/pages/profile/profile5/page.dart';
+import '../src/pages/profile/profile6/page.dart';
+import '../src/pages/profile/profile7/page.dart';
+import '../src/pages/profile/profile8/page.dart';
+import '../src/pages/profile/profile9/page.dart';
 
 import '../src/pages/login/auth1.dart';
 import '../src/pages/login/auth2.dart';
@@ -143,7 +143,6 @@ final List<dynamic> pages = [
       SubMenuItem("Animated List One", AnimatedListOnePage(), path: AnimatedListOnePage.path),
     ],
   ),
-  */
   MenuItem(
     title: "Profile",
     icon: Icons.person,
@@ -159,7 +158,7 @@ final List<dynamic> pages = [
       SubMenuItem("Profile 9", Profile9Page(), path: Profile9Page.path),
     ],
   ),
-  /*
+  */
   MenuItem(
     title: "Authentication",
     icon: Icons.lock,
@@ -178,6 +177,7 @@ final List<dynamic> pages = [
       SubMenuItem("Signup Two", SignupTwoPage(), path: SignupTwoPage.path),
     ],
   ),
+  /*
   MenuItem(
     title: "Settings",
     icon: Icons.dashboard,
