@@ -65,14 +65,14 @@ final _termsAndConditions = Padding(
   ),
 );
 
-class SignupTwoPage extends StatefulWidget {
-  static final String path = "lib/src/pages/login/signup2.dart";
+class Signup2Page extends StatefulWidget {
+  static final String path = "lib/src/pages/login/signup2/page.dart";
 
   @override
-  _SignupTwoPageState createState() => _SignupTwoPageState();
+  _Signup2PageState createState() => _Signup2PageState();
 }
 
-class _SignupTwoPageState extends State<SignupTwoPage> {
+class _Signup2PageState extends State<Signup2Page> {
   String email = '';
   String password = '';
   String passwordConfirm = '';

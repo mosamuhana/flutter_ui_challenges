@@ -1,90 +1,13 @@
 import 'package:flutter/material.dart';
 
-const _hbox20 = SizedBox(height: 20);
-const _hbox25 = SizedBox(height: 25);
-const _hbox30 = SizedBox(height: 30);
-const _hbox40 = SizedBox(height: 40);
-
-const _emailIcon = Icon(Icons.email, color: Colors.red);
-const _passwordIcon = Icon(Icons.lock, color: Colors.red);
-
-const _fieldBorderRadius = BorderRadius.all(Radius.circular(30));
-const _fieldContentPadding = EdgeInsets.symmetric(horizontal: 25, vertical: 13);
-const _fieldPadding = EdgeInsets.symmetric(horizontal: 32);
-
-const _loginButtonDecoration = BoxDecoration(
-  borderRadius: BorderRadius.all(Radius.circular(100)),
-  color: Color(0xffff3a5a),
-);
-
-const _forgotPasswordStyle = TextStyle(color: Colors.red, fontSize: 12, fontWeight: FontWeight.w700);
-const _loginButtonStyle = TextStyle(color: Colors.white, fontWeight: FontWeight.w700, fontSize: 18);
-const _signupStyle =
-    TextStyle(color: Colors.red, fontWeight: FontWeight.w500, fontSize: 12, decoration: TextDecoration.underline);
-
-final _clip1 = ClipPath(
-  clipper: _WaveClipper2(),
-  child: Container(
-    child: Column(),
-    width: double.infinity,
-    height: 300,
-    decoration: BoxDecoration(
-      gradient: LinearGradient(colors: [Color(0x22ff3a5a), Color(0x22fe494d)]),
-    ),
-  ),
-);
-
-final _clip2 = ClipPath(
-  clipper: _WaveClipper3(),
-  child: Container(
-    child: Column(),
-    width: double.infinity,
-    height: 300,
-    decoration: BoxDecoration(gradient: LinearGradient(colors: [Color(0x44ff3a5a), Color(0x44fe494d)])),
-  ),
-);
-
-final _clip3 = ClipPath(
-  clipper: _WaveClipper1(),
-  child: Container(
-    child: Column(
-      children: <Widget>[
-        _hbox40,
-        Icon(Icons.fastfood, color: Colors.white, size: 60),
-        _hbox20,
-        Text(
-          "Taste Me",
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700, fontSize: 30),
-        ),
-      ],
-    ),
-    width: double.infinity,
-    height: 300,
-    decoration: BoxDecoration(gradient: LinearGradient(colors: [Color(0xffff3a5a), Color(0xfffe494d)])),
-  ),
-);
-
-final _background = Stack(
-  children: <Widget>[
-    _clip1,
-    _clip2,
-    _clip3,
-  ],
-);
-
-final _dontHaveAnAccountText = Text(
-  "Don't have an Account ? ",
-  style: TextStyle(color: Colors.black, fontSize: 12, fontWeight: FontWeight.normal),
-);
-
-class LoginSevenPage extends StatefulWidget {
-  static final String path = "lib/src/pages/login/login7.dart";
+class Login7Page extends StatefulWidget {
+  static final String path = "lib/src/pages/login/login7/page.dart";
 
   @override
-  _LoginSevenPageState createState() => _LoginSevenPageState();
+  _Login7PageState createState() => _Login7PageState();
 }
 
-class _LoginSevenPageState extends State<LoginSevenPage> {
+class _Login7PageState extends State<Login7Page> {
   String email = '';
   String password = '';
 
@@ -277,3 +200,80 @@ class _WaveClipper3 extends CustomClipper<Path> {
   @override
   bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }
+
+const _hbox20 = SizedBox(height: 20);
+const _hbox25 = SizedBox(height: 25);
+const _hbox30 = SizedBox(height: 30);
+const _hbox40 = SizedBox(height: 40);
+
+const _emailIcon = Icon(Icons.email, color: Colors.red);
+const _passwordIcon = Icon(Icons.lock, color: Colors.red);
+
+const _fieldBorderRadius = BorderRadius.all(Radius.circular(30));
+const _fieldContentPadding = EdgeInsets.symmetric(horizontal: 25, vertical: 13);
+const _fieldPadding = EdgeInsets.symmetric(horizontal: 32);
+
+const _loginButtonDecoration = BoxDecoration(
+  borderRadius: BorderRadius.all(Radius.circular(100)),
+  color: Color(0xffff3a5a),
+);
+
+const _forgotPasswordStyle = TextStyle(color: Colors.red, fontSize: 12, fontWeight: FontWeight.w700);
+const _loginButtonStyle = TextStyle(color: Colors.white, fontWeight: FontWeight.w700, fontSize: 18);
+const _signupStyle =
+    TextStyle(color: Colors.red, fontWeight: FontWeight.w500, fontSize: 12, decoration: TextDecoration.underline);
+
+final _clip1 = ClipPath(
+  clipper: _WaveClipper2(),
+  child: Container(
+    child: Column(),
+    width: double.infinity,
+    height: 300,
+    decoration: BoxDecoration(
+      gradient: LinearGradient(colors: [Color(0x22ff3a5a), Color(0x22fe494d)]),
+    ),
+  ),
+);
+
+final _clip2 = ClipPath(
+  clipper: _WaveClipper3(),
+  child: Container(
+    child: Column(),
+    width: double.infinity,
+    height: 300,
+    decoration: BoxDecoration(gradient: LinearGradient(colors: [Color(0x44ff3a5a), Color(0x44fe494d)])),
+  ),
+);
+
+final _clip3 = ClipPath(
+  clipper: _WaveClipper1(),
+  child: Container(
+    child: Column(
+      children: <Widget>[
+        _hbox40,
+        Icon(Icons.fastfood, color: Colors.white, size: 60),
+        _hbox20,
+        Text(
+          "Taste Me",
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700, fontSize: 30),
+        ),
+      ],
+    ),
+    width: double.infinity,
+    height: 300,
+    decoration: BoxDecoration(gradient: LinearGradient(colors: [Color(0xffff3a5a), Color(0xfffe494d)])),
+  ),
+);
+
+final _background = Stack(
+  children: <Widget>[
+    _clip1,
+    _clip2,
+    _clip3,
+  ],
+);
+
+final _dontHaveAnAccountText = Text(
+  "Don't have an Account ? ",
+  style: TextStyle(color: Colors.black, fontSize: 12, fontWeight: FontWeight.normal),
+);

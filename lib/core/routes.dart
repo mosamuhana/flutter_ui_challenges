@@ -17,18 +17,18 @@ import '../src/pages/profile/profile7/page.dart';
 import '../src/pages/profile/profile8/page.dart';
 import '../src/pages/profile/profile9/page.dart';
 
-import '../src/pages/login/auth1.dart';
-import '../src/pages/login/auth2.dart';
-import '../src/pages/login/auth3.dart';
-import '../src/pages/login/login1.dart';
-import '../src/pages/login/login2.dart';
-import '../src/pages/login/login3.dart';
-import '../src/pages/login/login4.dart';
-import '../src/pages/login/login5.dart';
-import '../src/pages/login/login6.dart';
-import '../src/pages/login/login7.dart';
-import '../src/pages/login/signup1.dart';
-import '../src/pages/login/signup2.dart';
+import '../src/pages/login/auth1/page.dart';
+import '../src/pages/login/auth2/page.dart';
+import '../src/pages/login/auth3/page.dart';
+import '../src/pages/login/login1/page.dart';
+import '../src/pages/login/login2/page.dart';
+import '../src/pages/login/login3/page.dart';
+import '../src/pages/login/login4/page.dart';
+import '../src/pages/login/login5/page.dart';
+import '../src/pages/login/login6/page.dart';
+import '../src/pages/login/login7/page.dart';
+import '../src/pages/login/signup1/page.dart';
+import '../src/pages/login/signup2/page.dart';
 
 import '../src/pages/settings/settings1.dart';
 import '../src/pages/settings/settings2.dart';
@@ -163,18 +163,20 @@ final List<dynamic> pages = [
     title: "Authentication",
     icon: Icons.lock,
     items: [
-      SubMenuItem("Auth One", AuthOnePage(), path: AuthOnePage.path),
-      SubMenuItem("Auth Two", AuthTwoPage(), path: AuthTwoPage.path),
-      SubMenuItem("Auth Three", AuthThreePage(), path: AuthThreePage.path),
-      SubMenuItem("Login One", LoginOnePage(), path: LoginOnePage.path),
-      SubMenuItem("Login Two", LoginTwoPage(), path: LoginTwoPage.path),
-      SubMenuItem("Login Three", LoginThreePage(), path: LoginThreePage.path),
-      SubMenuItem("Login Four", LoginFourPage(), path: LoginFourPage.path),
-      SubMenuItem("Login Five", LoginFivePage(), path: LoginFivePage.path),
-      SubMenuItem("Login Six", LoginSixPage(), path: LoginSixPage.path),
-      SubMenuItem("Login Seven", LoginSevenPage(), path: LoginSevenPage.path),
-      SubMenuItem("Signup One", SignupOnePage(), path: SignupOnePage.path),
-      SubMenuItem("Signup Two", SignupTwoPage(), path: SignupTwoPage.path),
+      /*
+      SubMenuItem("Auth 1", Auth1Page(), path: Auth1Page.path),
+      SubMenuItem("Auth 2", Auth2Page(), path: Auth2Page.path),
+      SubMenuItem("Auth 3", Auth3Page(), path: Auth3Page.path),
+      SubMenuItem("Login 1", Login1Page(), path: Login1Page.path),
+      SubMenuItem("Login 2", Login2Page(), path: Login2Page.path),
+      SubMenuItem("Login 3", Login3Page(), path: Login3Page.path),
+      SubMenuItem("Login 4", Login4Page(), path: Login4Page.path),
+      SubMenuItem("Login 5", Login5Page(), path: Login5Page.path),
+      SubMenuItem("Login 6", Login6Page(), path: Login6Page.path),
+      */
+      SubMenuItem("Login 7", Login7Page(), path: Login7Page.path),
+      SubMenuItem("Signup 1", Signup1Page(), path: Signup1Page.path),
+      SubMenuItem("Signup 2", Signup2Page(), path: Signup2Page.path),
     ],
   ),
   /*

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 
-import '../../../core/constants.dart';
+import '../../../../core/constants.dart';
 //import '../../../core/ui_constants.dart';
-import '../../../core/widgets.dart';
+import '../../../../core/widgets.dart';
 
 const String _logoImageUrl = '$STORE_BASE_URL/img%2Forigami.png?alt=media';
 
@@ -53,14 +53,14 @@ final _avatar = Row(
   ],
 );
 
-class SignupOnePage extends StatefulWidget {
-  static final String path = "lib/src/pages/login/signup1.dart";
+class Signup1Page extends StatefulWidget {
+  static final String path = "lib/src/pages/login/signup1/page.dart";
 
   @override
-  _SignupOnePageState createState() => _SignupOnePageState();
+  _Signup1PageState createState() => _Signup1PageState();
 }
 
-class _SignupOnePageState extends State<SignupOnePage> {
+class _Signup1PageState extends State<Signup1Page> {
   String email = '';
   String password = '';
   String passwordConfirm = '';
