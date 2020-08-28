@@ -41,7 +41,7 @@ import '../src/pages/lists/list1/page.dart';
 import '../src/pages/lists/list2/page.dart';
 
 import '../src/pages/invitation/auth/page.dart';
-import '../src/pages/invitation/inlanding.dart';
+import '../src/pages/invitation/landing.dart';
 import '../src/pages/invitation/invitation1.dart';
 
 import '../src/pages/ecommerce/cart1.dart';
