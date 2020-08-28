@@ -158,12 +158,12 @@ final List<dynamic> pages = [
       SubMenuItem("Profile 9", Profile9Page(), path: Profile9Page.path),
     ],
   ),
-  */
   MenuItem(
     title: "Authentication",
     icon: Icons.lock,
     items: [
       /*
+      */
       SubMenuItem("Auth 1", Auth1Page(), path: Auth1Page.path),
       SubMenuItem("Auth 2", Auth2Page(), path: Auth2Page.path),
       SubMenuItem("Auth 3", Auth3Page(), path: Auth3Page.path),
@@ -173,13 +173,12 @@ final List<dynamic> pages = [
       SubMenuItem("Login 4", Login4Page(), path: Login4Page.path),
       SubMenuItem("Login 5", Login5Page(), path: Login5Page.path),
       SubMenuItem("Login 6", Login6Page(), path: Login6Page.path),
-      */
       SubMenuItem("Login 7", Login7Page(), path: Login7Page.path),
       SubMenuItem("Signup 1", Signup1Page(), path: Signup1Page.path),
       SubMenuItem("Signup 2", Signup2Page(), path: Signup2Page.path),
     ],
   ),
-  /*
+  */
   MenuItem(
     title: "Settings",
     icon: Icons.dashboard,
@@ -189,6 +188,7 @@ final List<dynamic> pages = [
       SubMenuItem("Settings Three", SettingsThreePage(), path: SettingsThreePage.path),
     ],
   ),
+  /*
   MenuItem(
     title: "Motorbike App",
     icon: Icons.list,

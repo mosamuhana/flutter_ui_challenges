@@ -104,6 +104,15 @@ class _Auth3PageState extends State<Auth3Page> {
                       onDismiss: () => setState(() => type = null),
                     ),
             ),
+            Positioned(
+              top: 0,
+              left: 0,
+              right: 0,
+              child: AppBar(
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+              ),
+            ),
           ],
         ),
       ),
