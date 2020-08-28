@@ -30,12 +30,12 @@ import '../src/pages/login/login7/page.dart';
 import '../src/pages/login/signup1/page.dart';
 import '../src/pages/login/signup2/page.dart';
 
-import '../src/pages/settings/settings1.dart';
-import '../src/pages/settings/settings2.dart';
-import '../src/pages/settings/settings3.dart';
+import '../src/pages/settings/settings1/page.dart';
+import '../src/pages/settings/settings2/page.dart';
+import '../src/pages/settings/settings3/page.dart';
 
 import '../src/pages/bike/bike_details.dart';
-import '../src/pages/bike/home_page.dart';
+import '../src/pages/bike/page.dart';
 
 import '../src/pages/lists/list1.dart';
 import '../src/pages/lists/list2.dart';
@@ -178,17 +178,16 @@ final List<dynamic> pages = [
       SubMenuItem("Signup 2", Signup2Page(), path: Signup2Page.path),
     ],
   ),
-  */
   MenuItem(
     title: "Settings",
     icon: Icons.dashboard,
     items: [
-      SubMenuItem("Settings One", SettingsOnePage(), path: SettingsOnePage.path),
-      SubMenuItem("Settings Two", SettingsTwoPage(), path: SettingsTwoPage.path),
-      SubMenuItem("Settings Three", SettingsThreePage(), path: SettingsThreePage.path),
+      SubMenuItem("Settings 1", Settings1Page(), path: Settings1Page.path),
+      SubMenuItem("Settings 2", Settings2Page(), path: Settings2Page.path),
+      SubMenuItem("Settings 3", Settings3Page(), path: Settings3Page.path),
     ],
   ),
-  /*
+  */
   MenuItem(
     title: "Motorbike App",
     icon: Icons.list,
@@ -197,6 +196,7 @@ final List<dynamic> pages = [
       SubMenuItem("Bike Details Page", BikeDetailsPage(), path: BikeDetailsPage.path),
     ],
   ),
+  /*
   MenuItem(
     title: "Lists",
     icon: Icons.list,

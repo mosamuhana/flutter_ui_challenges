@@ -1,5 +1,3 @@
-import '../../../core/constants.dart';
-
 class Bike {
   final String name;
   final String image;
@@ -32,25 +30,3 @@ class Bike {
     this.freeGifts,
   });
 }
-
-final bike_data = Bike(
-  name: 'Bajaj Pulsar 220F',
-  image: "$STORE_BASE_URL/bike%2Fbike1.jpg?alt=media",
-  price: 'Rs. 1,80,000',
-  engine: '220 cc',
-  mileage: '150 kmpl',
-  breaks: 'ABS',
-  fuelTank: '12 L',
-  year: '2019',
-  lot: 'Bagmati 80',
-  category: 'Standard',
-  engineServiced: 'Half',
-  groundClearance: '150 mm',
-  seatHeight: '700 mm',
-  freeGifts: [
-    'helmet',
-    'Gloves',
-    'Rain Coat',
-    'Bike Cover',
-  ],
-);

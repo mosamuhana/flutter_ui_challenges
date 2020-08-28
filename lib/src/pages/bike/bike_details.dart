@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/constants.dart';
 import '../../../core/widgets.dart';
 import 'bike.dart';
-import 'widgets/specs_block.dart';
+import 'specs_block.dart';
 
 const _hbox5 = SizedBox(height: 5);
 const _hbox10 = SizedBox(height: 10);
@@ -25,6 +26,28 @@ class BikeDetailsPage extends StatefulWidget {
 }
 
 class _BikeDetailsPageState extends State<BikeDetailsPage> {
+  final bike_data = Bike(
+    name: 'Bajaj Pulsar 220F',
+    image: "$STORE_BASE_URL/bike%2Fbike1.jpg?alt=media",
+    price: 'Rs. 1,80,000',
+    engine: '220 cc',
+    mileage: '150 kmpl',
+    breaks: 'ABS',
+    fuelTank: '12 L',
+    year: '2019',
+    lot: 'Bagmati 80',
+    category: 'Standard',
+    engineServiced: 'Half',
+    groundClearance: '150 mm',
+    seatHeight: '700 mm',
+    freeGifts: [
+      'helmet',
+      'Gloves',
+      'Rain Coat',
+      'Bike Cover',
+    ],
+  );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

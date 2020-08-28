@@ -1,29 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/constants.dart';
-import '../../../../core/widgets.dart';
-
-const String _bikeImage = "$STORE_BASE_URL/bike%2Fbike1.jpg?alt=media";
-
-const _hbox5 = SizedBox(height: 5);
-const _wbox10 = SizedBox(width: 10);
-
-const _paddingAll16 = EdgeInsets.all(16);
-
-final _yearStyle = TextStyle(color: Colors.grey.shade700);
-const _titleStyle = TextStyle(fontWeight: FontWeight.bold, fontSize: 14);
-
-final _circularBorder4 = BorderRadius.circular(4);
-
-final _circularBorderRight4 = BorderRadius.only(
-  topRight: Radius.circular(4),
-  bottomRight: Radius.circular(4),
-);
-
-final _circularBorderLeft4 = BorderRadius.only(
-  topLeft: Radius.circular(4),
-  bottomLeft: Radius.circular(4),
-);
+import '../../../core/constants.dart';
+import '../../../core/widgets.dart';
 
 class BikeListItem extends StatelessWidget {
   final String thirdTitle;
@@ -31,7 +9,7 @@ class BikeListItem extends StatelessWidget {
   final double elevation;
   final void Function() onTap;
 
-  const BikeListItem({
+  BikeListItem({
     Key key,
     this.thirdTitle,
     this.imageRight = false,
@@ -140,4 +118,26 @@ class BikeListItem extends StatelessWidget {
       ),
     );
   }
+
+  final String _bikeImage = "$STORE_BASE_URL/bike%2Fbike1.jpg?alt=media";
+
+  final _hbox5 = SizedBox(height: 5);
+  final _wbox10 = SizedBox(width: 10);
+
+  final _paddingAll16 = EdgeInsets.all(16);
+
+  final _yearStyle = TextStyle(color: Colors.grey.shade700);
+  final _titleStyle = TextStyle(fontWeight: FontWeight.bold, fontSize: 14);
+
+  final _circularBorder4 = BorderRadius.circular(4);
+
+  final _circularBorderRight4 = BorderRadius.only(
+    topRight: Radius.circular(4),
+    bottomRight: Radius.circular(4),
+  );
+
+  final _circularBorderLeft4 = BorderRadius.only(
+    topLeft: Radius.circular(4),
+    bottomLeft: Radius.circular(4),
+  );
 }

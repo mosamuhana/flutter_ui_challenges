@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/constants.dart';
+import '../../../core/constants.dart';
 
 const String _bikeImage = "$STORE_BASE_URL/bike%2Fbike1.jpg?alt=media";
 
