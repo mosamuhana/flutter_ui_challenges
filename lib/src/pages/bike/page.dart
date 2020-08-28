@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'bike_details.dart';
 import 'bike_list_item.dart';
-import 'category_chooser.dart';
+import 'details.dart';
+import 'data.dart';
 
 class BikeHomePage extends StatelessWidget {
   static final String path = "lib/src/pages/bike/page.dart";
@@ -19,34 +18,25 @@ class BikeHomePage extends StatelessWidget {
           children: [
             Padding(
               padding: _insetsL16T16,
-              child: Text(
-                "Categories",
-                style: Theme.of(context).textTheme.subtitle1,
-              ),
+              child: Text("Categories", style: Theme.of(context).textTheme.subtitle1),
             ),
-            CategoryChooser(
-              onTap: (category) => Navigator.pushNamed(context, 'category_bikes', arguments: category),
-            ),
+            _buildCategories(context),
             _hbox10,
-            _swiper,
-            _hbox16,
             Padding(
               padding: _insetsH16,
-              child: Row(
-                children: [
-                  Text(
-                    "Recent Posts",
-                    style: Theme.of(context).textTheme.subtitle1,
+              child: Card(
+                child: Container(
+                  height: 150,
+                  decoration: _cardDecoration,
+                  child: Swiper(
+                    itemCount: dummyData.swiperItems.length,
+                    itemBuilder: (_, i) => _buildSwiperItem(i),
                   ),
-                  Spacer(),
-                  FlatButton(
-                    child: Text("View all"),
-                    onPressed: () {},
-                  ),
-                ],
+                ),
               ),
             ),
-            _posts(context),
+            _hbox16,
+            _buildPosts(context),
             _hbox20,
           ],
         ),
@@ -54,66 +44,100 @@ class BikeHomePage extends StatelessWidget {
     );
   }
 
-  Widget get _swiper {
-    return Padding(
-      padding: _insetsH16,
-      child: Card(
-        child: Container(
-          height: 150,
-          decoration: BoxDecoration(
-            borderRadius: _circularBorder4,
-            color: Colors.indigo,
-          ),
-          child: Swiper(
-            itemCount: 2,
-            itemBuilder: (context, index) {
-              return Row(
-                children: [
-                  _wbox20,
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("Buy, Sell, Exchange", style: _whiteBold20Style),
-                        Text("All in one place", style: _whiteW500S18Style),
-                      ],
-                    ),
-                  ),
-                  _wbox10,
-                  CircleAvatar(
-                    backgroundColor: Colors.indigo.shade800,
-                    radius: 50,
-                    child: _moneyBillIcon,
-                  ),
-                  _wbox20,
-                ],
-              );
-            },
+  Widget _buildPosts(BuildContext context) {
+    List<Widget> children = dummyData.bikes.map((item) {
+      return BikeListItem(
+        item: item,
+        onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => DetailsPage(item: item))),
+      );
+    }).toList();
+
+    return Column(
+      children: [
+        Padding(
+          padding: _insetsH16,
+          child: Row(
+            children: [
+              Text(
+                "Recent Posts",
+                style: Theme.of(context).textTheme.subtitle1,
+              ),
+              Spacer(),
+              FlatButton(
+                child: Text("View all"),
+                onPressed: () {},
+              ),
+            ],
           ),
         ),
-      ),
+        Padding(
+          padding: _insetsH16,
+          child: Column(
+            children: children,
+          ),
+        ),
+      ],
     );
   }
 
-  Widget _posts(BuildContext context) {
-    return Padding(
-      padding: _insetsH16,
-      child: Column(
-        children: [
-          BikeListItem(
-            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => BikeDetailsPage())),
+  Widget _buildSwiperItem(int index) {
+    var item = dummyData.swiperItems[index];
+    return Row(
+      children: [
+        _wbox20,
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(item.title, style: _whiteBold20Style),
+              Text(item.subtitle, style: _whiteW500S18Style),
+            ],
           ),
-          BikeListItem(
-            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => BikeDetailsPage())),
-          ),
-          BikeListItem(
-            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => BikeDetailsPage())),
-          ),
-          BikeListItem(
-            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => BikeDetailsPage())),
-          ),
-        ],
+        ),
+        _wbox10,
+        CircleAvatar(
+          backgroundColor: Colors.indigo.shade800,
+          radius: 50,
+          child: Icon(item.icon, size: 30),
+        ),
+        _wbox20,
+      ],
+    );
+  }
+
+  Widget _buildCategories(BuildContext context) {
+    return Container(
+      height: 100,
+      child: ListView.separated(
+        padding: _insetsH16V8,
+        scrollDirection: Axis.horizontal,
+        itemCount: dummyData.categories.length,
+        itemBuilder: (_, index) {
+          var item = dummyData.categories[index];
+          return GestureDetector(
+            onTap: () {
+              print('Select Category: ${item.name}');
+              //Navigator.pushNamed(context, 'category_bikes', arguments: category);
+            },
+            child: Column(
+              children: <Widget>[
+                Container(
+                  width: 60,
+                  height: 60,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(image: NetworkImage(item.image), fit: BoxFit.cover),
+                    color: Colors.white,
+                    shape: BoxShape.circle,
+                  ),
+                ),
+                _hbox5,
+                Text(item.name, style: _w500Style),
+              ],
+            ),
+          );
+        },
+        separatorBuilder: (context, index) => _wbox10,
       ),
     );
   }
@@ -123,14 +147,15 @@ class BikeHomePage extends StatelessWidget {
   final _hbox20 = SizedBox(height: 20);
   final _wbox10 = SizedBox(width: 10);
   final _wbox20 = SizedBox(width: 20);
+  final _hbox5 = SizedBox(height: 5);
 
   final _insetsL16T16 = EdgeInsets.only(left: 16, top: 16);
   final _insetsH16 = EdgeInsets.symmetric(horizontal: 16);
-
-  final _circularBorder4 = BorderRadius.circular(4);
+  final _insetsH16V8 = EdgeInsets.symmetric(vertical: 8, horizontal: 16);
 
   final _whiteBold20Style = TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20);
   final _whiteW500S18Style = TextStyle(color: Colors.white, fontWeight: FontWeight.w500, fontSize: 18);
+  final _w500Style = TextStyle(fontWeight: FontWeight.w500);
 
-  final _moneyBillIcon = Icon(FontAwesomeIcons.moneyBill, size: 30);
+  final _cardDecoration = BoxDecoration(borderRadius: BorderRadius.circular(4), color: Colors.indigo);
 }

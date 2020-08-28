@@ -1,48 +1,37 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/constants.dart';
 import '../../../core/widgets.dart';
+import 'models.dart';
 
 class BikeListItem extends StatelessWidget {
-  final String thirdTitle;
-  final bool imageRight;
-  final double elevation;
-  final void Function() onTap;
+  final Bike item;
+  final VoidCallback onTap;
 
   BikeListItem({
     Key key,
-    this.thirdTitle,
-    this.imageRight = false,
-    this.elevation = 0.5,
     this.onTap,
+    @required this.item,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: elevation,
+      elevation: 0.5,
       child: InkWell(
         borderRadius: _circularBorder4,
         onTap: onTap,
         child: Row(
           children: [
-            _thumbnail,
-            Expanded(
-              child: Container(
-                padding: _paddingAll16,
-                width: double.infinity,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    _title(context),
-                    _hbox5,
-                    _year,
-                    _hbox5,
-                    _condition,
-                  ],
-                ),
+            Container(
+              height: 120,
+              width: 100,
+              decoration: BoxDecoration(
+                borderRadius: _circularLeftBorder4,
+                image: DecorationImage(image: NetworkImage(item.image), fit: BoxFit.cover),
               ),
+            ),
+            Expanded(
+              child: _buildDetails(context),
             ),
           ],
         ),
@@ -50,94 +39,54 @@ class BikeListItem extends StatelessWidget {
     );
   }
 
-  Widget _title(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Expanded(
-          child: Text(
-            'Bajaj Pulsar 220F',
-            style: _titleStyle,
-            softWrap: true,
-          ),
-        ),
-        _buildTag(context)
-      ],
-    );
-  }
-
-  Widget get _year {
-    return Text.rich(
-      TextSpan(
+  Widget _buildDetails(BuildContext context) {
+    return Container(
+      padding: _insets10,
+      width: double.infinity,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          TextSpan(text: "Year 2019"),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: Text('${item.name}', style: _boldS14Style, softWrap: true),
+              ),
+              Container(
+                padding: _insetsH8V5,
+                decoration: BoxDecoration(borderRadius: _circularBorder20, color: Theme.of(context).primaryColor),
+                child: Text('${item.price}', style: _whiteBoldStyle),
+              ),
+            ],
+          ),
+          _hbox5,
+          Text.rich(TextSpan(children: [TextSpan(text: "Year ${item.year}")]), style: _greyStyle),
+          _hbox5,
+          Row(
+            children: [
+              Text("Condition"),
+              _wbox10,
+              Rating(value: 5),
+            ],
+          ),
         ],
       ),
-      style: _yearStyle,
     );
   }
-
-  Widget get _condition {
-    return Row(
-      children: [
-        Text("Condition"),
-        _wbox10,
-        Rating(value: 5),
-      ],
-    );
-  }
-
-  Widget get _thumbnail {
-    BorderRadius borderRadius;
-    if (imageRight) {
-      borderRadius = _circularBorderRight4;
-    } else {
-      borderRadius = _circularBorderLeft4;
-    }
-
-    return Container(
-      height: 120,
-      width: 100,
-      decoration: BoxDecoration(
-        borderRadius: borderRadius,
-        image: DecorationImage(image: NetworkImage(_bikeImage), fit: BoxFit.cover),
-      ),
-    );
-  }
-
-  Widget _buildTag(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        color: Theme.of(context).primaryColor,
-      ),
-      child: Text(
-        "Rs. 1,80,000",
-        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-      ),
-    );
-  }
-
-  final String _bikeImage = "$STORE_BASE_URL/bike%2Fbike1.jpg?alt=media";
 
   final _hbox5 = SizedBox(height: 5);
   final _wbox10 = SizedBox(width: 10);
 
-  final _paddingAll16 = EdgeInsets.all(16);
+  final _insets10 = EdgeInsets.all(10);
+  final _insetsH8V5 = EdgeInsets.symmetric(vertical: 5, horizontal: 8);
 
-  final _yearStyle = TextStyle(color: Colors.grey.shade700);
-  final _titleStyle = TextStyle(fontWeight: FontWeight.bold, fontSize: 14);
+  final _greyStyle = TextStyle(color: Colors.grey.shade700);
+  final _boldS14Style = TextStyle(fontWeight: FontWeight.bold, fontSize: 14);
+  final _whiteBoldStyle = TextStyle(color: Colors.white, fontWeight: FontWeight.bold);
 
   final _circularBorder4 = BorderRadius.circular(4);
+  final _circularBorder20 = BorderRadius.circular(20);
 
-  final _circularBorderRight4 = BorderRadius.only(
-    topRight: Radius.circular(4),
-    bottomRight: Radius.circular(4),
-  );
-
-  final _circularBorderLeft4 = BorderRadius.only(
-    topLeft: Radius.circular(4),
-    bottomLeft: Radius.circular(4),
-  );
+  final _circularLeftBorder4 = BorderRadius.only(topLeft: Radius.circular(4), bottomLeft: Radius.circular(4));
 }

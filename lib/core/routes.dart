@@ -34,13 +34,13 @@ import '../src/pages/settings/settings1/page.dart';
 import '../src/pages/settings/settings2/page.dart';
 import '../src/pages/settings/settings3/page.dart';
 
-import '../src/pages/bike/bike_details.dart';
+import '../src/pages/bike/details.dart';
 import '../src/pages/bike/page.dart';
 
-import '../src/pages/lists/list1.dart';
-import '../src/pages/lists/list2.dart';
+import '../src/pages/lists/list1/page.dart';
+import '../src/pages/lists/list2/page.dart';
 
-import '../src/pages/invitation/inauth.dart';
+import '../src/pages/invitation/auth/page.dart';
 import '../src/pages/invitation/inlanding.dart';
 import '../src/pages/invitation/invitation1.dart';
 
@@ -187,24 +187,23 @@ final List<dynamic> pages = [
       SubMenuItem("Settings 3", Settings3Page(), path: Settings3Page.path),
     ],
   ),
-  */
   MenuItem(
     title: "Motorbike App",
     icon: Icons.list,
     items: [
-      SubMenuItem("Home Page", BikeHomePage(), path: BikeHomePage.path),
-      SubMenuItem("Bike Details Page", BikeDetailsPage(), path: BikeDetailsPage.path),
+      SubMenuItem("Home", BikeHomePage(), path: BikeHomePage.path),
+      //SubMenuItem("Bike Details Page", BikeDetailsPage(), path: BikeDetailsPage.path),
     ],
   ),
-  /*
   MenuItem(
     title: "Lists",
     icon: Icons.list,
     items: [
-      SubMenuItem("Places List One", PlaceList1(), path: PlaceList1.path),
-      SubMenuItem("List Two", SchoolList(), path: SchoolList.path),
+      SubMenuItem("List 1", List1Page(), path: List1Page.path),
+      SubMenuItem("List 2", List2Page(), path: List2Page.path),
     ],
   ),
+  */
   MenuItem(
     title: "Invitation",
     icon: Icons.list,
@@ -214,6 +213,7 @@ final List<dynamic> pages = [
       SubMenuItem("Details Page", InvitationPageOne(), path: InvitationPageOne.path),
     ],
   ),
+  /*
   MenuItem(
     title: "Ecommerce",
     icon: Icons.shopping_basket,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../src/pages/bike/bike_details.dart';
+import '../../src/pages/bike/details.dart';
 import '../enums.dart';
 import '../models.dart';
 import '../routes.dart';
