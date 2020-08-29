@@ -7,8 +7,15 @@ import 'item_counter.dart';
 
 class ItemCard extends StatelessWidget {
   final Item item;
+  final VoidCallback onDelete;
+  final ValueChanged<int> onChangeCount;
 
-  ItemCard({Key key, @required this.item}) : super(key: key);
+  ItemCard({
+    Key key,
+    @required this.item,
+    this.onDelete,
+    this.onChangeCount,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,16 +25,38 @@ class ItemCard extends StatelessWidget {
       height: 130,
       child: Row(
         children: [
-          _image,
+          Container(
+            width: 130,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: NetworkImage(ITEM_IMAGE),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
           Flexible(
             child: Padding(
               padding: _insetsH10,
               child: Column(
                 children: [
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      _itemName,
-                      _deleteButton,
+                      Text(
+                        '${item.name}',
+                        overflow: TextOverflow.fade,
+                        softWrap: true,
+                        style: _w600S15Style,
+                      ),
+                      Container(
+                        width: 50,
+                        child: IconButton(
+                          onPressed: () => onDelete?.call(),
+                          color: Colors.red,
+                          icon: Icon(Icons.delete),
+                          iconSize: 20,
+                        ),
+                      ),
                     ],
                   ),
                   Row(
@@ -46,13 +75,11 @@ class ItemCard extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      _shipsFreeButton,
+                      Text("Ships Free", style: _orangeStyle),
                       _spacer,
                       ItemCounter(
                         value: item.count,
-                        onChange: (value) {
-                          print('new value: $value');
-                        },
+                        onChange: (value) => onChangeCount?.call(value),
                       ),
                     ],
                   ),
@@ -63,45 +90,6 @@ class ItemCard extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  Widget get _image {
-    return Container(
-      width: 130,
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: NetworkImage(ITEM_IMAGE),
-          fit: BoxFit.cover,
-        ),
-      ),
-    );
-  }
-
-  Widget get _itemName {
-    return Flexible(
-      child: Text(
-        '${item.name}',
-        overflow: TextOverflow.fade,
-        softWrap: true,
-        style: _w600S15Style,
-      ),
-    );
-  }
-
-  Widget get _deleteButton {
-    return Container(
-      width: 50,
-      child: IconButton(
-        onPressed: () => print("Delete"),
-        color: Colors.red,
-        icon: Icon(Icons.delete),
-        iconSize: 20,
-      ),
-    );
-  }
-
-  Widget get _shipsFreeButton {
-    return Text("Ships Free", style: _orangeStyle);
   }
 
   final _spacer = Spacer();

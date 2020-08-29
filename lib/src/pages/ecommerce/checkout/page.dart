@@ -25,7 +25,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Text("Choose your plan", style: _pageTitleStyle),
+            Text("Choose your plan", style: _boldS24Style),
             _hbox20,
             ..._offerPlans,
             _hbox30,
@@ -42,13 +42,13 @@ class _CheckoutPageState extends State<CheckoutPage> {
     return [
       Row(
         children: [
-          _PlanOffer(
+          _buildPlanOffer(
             title: 'Free',
             subtitle: '7 days',
             active: selectedIndex == 0,
             onTap: () => setState(() => selectedIndex = 0),
           ),
-          _PlanOffer(
+          _buildPlanOffer(
             title: '\$450',
             subtitle: 'Per week',
             active: selectedIndex == 1,
@@ -58,13 +58,13 @@ class _CheckoutPageState extends State<CheckoutPage> {
       ),
       Row(
         children: [
-          _PlanOffer(
+          _buildPlanOffer(
             title: '\$900',
             subtitle: 'Per month',
             active: selectedIndex == 2,
             onTap: () => setState(() => selectedIndex = 2),
           ),
-          _PlanOffer(
+          _buildPlanOffer(
             title: '\$2000',
             subtitle: 'Lifetime',
             active: selectedIndex == 3,
@@ -77,17 +77,17 @@ class _CheckoutPageState extends State<CheckoutPage> {
 
   List<Widget> get _paymentMethods {
     return [
-      _PaymentMethod(
+      _buildPaymentMethod(
         title: 'Paypal',
         icon: _paypalIcon,
         onTap: () => print('Paypal'),
       ),
-      _PaymentMethod(
+      _buildPaymentMethod(
         title: 'Google Pay',
         icon: _googleWalletIcon,
         onTap: () => print('Google Pay'),
       ),
-      _PaymentMethod(
+      _buildPaymentMethod(
         title: 'Apple Pay',
         icon: _applePayIcon,
         onTap: () => print('Apple Pay'),
@@ -98,10 +98,10 @@ class _CheckoutPageState extends State<CheckoutPage> {
   Widget get _continueButton {
     return Container(
       width: double.infinity,
-      padding: _insetsSymmetricH32V16,
+      padding: _insetsH32V16,
       child: RaisedButton(
         elevation: 0,
-        padding: _insetsAll24,
+        padding: _insets24,
         shape: _circularShape10,
         child: Text("Continue"),
         color: Colors.indigo,
@@ -112,70 +112,11 @@ class _CheckoutPageState extends State<CheckoutPage> {
       ),
     );
   }
-}
 
-// ----------------------------------------------------------------------------------
-// Privates ------------------------------------------------------------------
-// ----------------------------------------------------------------------------------
-
-class _PlanOffer extends StatelessWidget {
-  final bool active;
-  final String title;
-  final String subtitle;
-  final VoidCallback onTap;
-
-  const _PlanOffer({
-    Key key,
-    @required this.title,
-    @required this.subtitle,
-    this.active = false,
-    this.onTap,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: GestureDetector(
-        onTap: onTap,
-        child: RoundedContainer(
-          color: !active ? null : Colors.indigo,
-          margin: _insetsSymmetricH8V8,
-          child: Column(
-            children: [
-              Text(
-                title,
-                style: !active ? _titleStyle : _titleStyle.copyWith(color: Colors.white),
-              ),
-              _hbox5,
-              Text(
-                subtitle,
-                style: !active ? _subtitleStyle : _subtitleStyle.copyWith(color: Colors.white60),
-              )
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _PaymentMethod extends StatelessWidget {
-  final String title;
-  final Widget icon;
-  final VoidCallback onTap;
-
-  const _PaymentMethod({
-    Key key,
-    @required this.title,
-    @required this.icon,
-    this.onTap,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
+  Widget _buildPaymentMethod({String title, Widget icon, VoidCallback onTap}) {
     return RoundedContainer(
-      margin: _insetsAll8,
-      padding: _insetsAll8,
+      margin: _insets8,
+      padding: _insets8,
       child: ListTile(
         leading: icon,
         title: Text(title),
@@ -184,28 +125,49 @@ class _PaymentMethod extends StatelessWidget {
       ),
     );
   }
+
+  Widget _buildPlanOffer({String title, String subtitle, VoidCallback onTap, bool active}) {
+    return Expanded(
+      child: GestureDetector(
+        onTap: onTap,
+        child: RoundedContainer(
+          color: !active ? null : Colors.indigo,
+          margin: _insetsH8V8,
+          child: Column(
+            children: [
+              Text(
+                title,
+                style: !active ? _boldStyle : _boldStyle.copyWith(color: Colors.white),
+              ),
+              _hbox5,
+              Text(
+                subtitle,
+                style: !active ? _greyS12Style : _greyS12Style.copyWith(color: Colors.white60),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  final _hbox5 = SizedBox(height: 5);
+  final _hbox20 = SizedBox(height: 20);
+  final _hbox30 = SizedBox(height: 30);
+
+  final _insetsH8V8 = EdgeInsets.symmetric(horizontal: 8, vertical: 8);
+  final _insetsH32V16 = EdgeInsets.symmetric(vertical: 16, horizontal: 32);
+  final _insets8 = EdgeInsets.all(8);
+  final _insets24 = EdgeInsets.all(24);
+
+  final _greyS12Style = TextStyle(color: Colors.grey, fontSize: 12);
+  final _boldStyle = TextStyle(fontWeight: FontWeight.bold);
+  final _boldS24Style = TextStyle(fontWeight: FontWeight.bold, fontSize: 24);
+
+  final _arrowForwardIosIcon = Icon(Icons.arrow_forward_ios);
+  final _paypalIcon = Icon(FontAwesomeIcons.paypal, color: Colors.indigo);
+  final _googleWalletIcon = Icon(FontAwesomeIcons.googleWallet, color: Colors.indigo);
+  final _applePayIcon = Icon(FontAwesomeIcons.applePay, color: Colors.indigo);
+
+  final _circularShape10 = RoundedRectangleBorder(borderRadius: BorderRadius.circular(10));
 }
-
-// ----------------------------------------------------------------------------------
-// Private Static Contents ----------------------------------------------------------
-// ----------------------------------------------------------------------------------
-
-const _hbox5 = SizedBox(height: 5);
-const _hbox20 = SizedBox(height: 20);
-const _hbox30 = SizedBox(height: 30);
-
-const _insetsSymmetricH8V8 = EdgeInsets.symmetric(horizontal: 8, vertical: 8);
-const _insetsSymmetricH32V16 = EdgeInsets.symmetric(vertical: 16, horizontal: 32);
-const _insetsAll8 = EdgeInsets.all(8);
-const _insetsAll24 = EdgeInsets.all(24);
-
-const _subtitleStyle = TextStyle(color: Colors.grey, fontSize: 12);
-const _titleStyle = TextStyle(fontWeight: FontWeight.bold);
-const _pageTitleStyle = TextStyle(fontWeight: FontWeight.bold, fontSize: 24);
-
-const _arrowForwardIosIcon = Icon(Icons.arrow_forward_ios);
-const _paypalIcon = Icon(FontAwesomeIcons.paypal, color: Colors.indigo);
-const _googleWalletIcon = Icon(FontAwesomeIcons.googleWallet, color: Colors.indigo);
-const _applePayIcon = Icon(FontAwesomeIcons.applePay, color: Colors.indigo);
-
-final _circularShape10 = RoundedRectangleBorder(borderRadius: BorderRadius.circular(10));

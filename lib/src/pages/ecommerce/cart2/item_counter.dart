@@ -29,6 +29,7 @@ class _ItemCounterState extends State<ItemCounter> {
       children: [
         _buildButton(
           icon: Icons.remove,
+          iconColor: Colors.redAccent,
           onTap: count <= 1 ? null : _decrement,
         ),
         _wbox4,
@@ -41,6 +42,7 @@ class _ItemCounterState extends State<ItemCounter> {
         _wbox4,
         _buildButton(
           icon: Icons.add,
+          iconColor: Colors.green,
           onTap: count >= 100 ? null : _increment,
         ),
       ],
@@ -81,6 +83,9 @@ class _ItemCounterState extends State<ItemCounter> {
   final _insets6 = EdgeInsets.all(6);
   final _insets8 = EdgeInsets.all(8);
   final _wbox4 = SizedBox(width: 4);
+
+  final _removeIcon = Icon(Icons.remove, color: Colors.redAccent, size: 20);
+  final _addIcon = Icon(Icons.add, color: Colors.green, size: 20);
 
   final _circularDecoration50 = BoxDecoration(borderRadius: BorderRadius.circular(50));
 }

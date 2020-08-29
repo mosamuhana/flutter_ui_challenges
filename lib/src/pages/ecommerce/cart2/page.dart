@@ -8,14 +8,27 @@ class Cart2Page extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final items = dummyItemList;
     return Scaffold(
       appBar: AppBar(title: Text('My Cart')),
       body: Column(
         children: [
           Flexible(
             child: ListView.builder(
-              itemCount: dummyItemList.length,
-              itemBuilder: (context, int index) => ItemCard(item: dummyItemList[index]),
+              itemCount: items.length,
+              itemBuilder: (_, int i) {
+                var item = items[i];
+                return ItemCard(
+                  item: item,
+                  onDelete: () {
+                    print('[$item] Delete');
+                  },
+                  onChangeCount: (value) {
+                    print('[$item] Change Count: $value');
+                    item.count = value;
+                  },
+                );
+              },
             ),
           ),
           _checkoutSection,

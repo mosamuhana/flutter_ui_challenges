@@ -12,6 +12,13 @@ class _ConfirmOrderPageState extends State<ConfirmOrderPage> {
   String contact;
   String deliveryOption;
 
+  final _order = _Order(
+    address: 'Chabahil, Kathmandu',
+    phone: '+98-1852-2122',
+    total: 500,
+    deliveryFee: 100,
+  );
+
   @override
   void initState() {
     address = _order.address;
@@ -22,109 +29,80 @@ class _ConfirmOrderPageState extends State<ConfirmOrderPage> {
 
   @override
   Widget build(BuildContext context) {
+    final addresses = <String>[_order.address, 'New Address'];
+    final contacts = <String>[_order.phone, 'New Phone'];
+    const paymentOptions = <String>['Cash on Delivery', 'Credit Card'];
+
     return Scaffold(
       appBar: AppBar(title: Text("Confirm Order")),
       body: SingleChildScrollView(
-        padding: _insetsSymmetricH20V10,
+        padding: _insetsH20V10,
         child: Column(
           children: [
-            ..._totalDetails,
+            _totalDetailRow('Subtotal', _order.total),
+            _hbox10,
+            _totalDetailRow('Delivery fee', _order.deliveryFee),
+            _hbox10,
+            _totalDetailRow('Total', _order.total + _order.deliveryFee, Theme.of(context).textTheme.headline6),
             _hbox20,
-            _deliveryAddress,
-            _contactNumber,
+            Column(
+              children: [
+                _buildTitle('DELIVERY ADDRESS'),
+                for (var item in addresses)
+                  RadioListTile(
+                    value: item,
+                    groupValue: address,
+                    title: Text(item),
+                    onChanged: (value) => setState(() => address = value),
+                  ),
+              ],
+            ),
+            Column(
+              children: [
+                _buildTitle('CONTACT NUMBER'),
+                for (var item in contacts)
+                  RadioListTile(
+                    value: item,
+                    groupValue: contact,
+                    title: Text(item),
+                    onChanged: (value) => setState(() => contact = value),
+                  ),
+              ],
+            ),
             _hbox20,
-            _paymentOption,
-            _confirmOrderButton,
+            Column(
+              children: [
+                _buildTitle('PAYMENT OPTION'),
+                for (var item in paymentOptions)
+                  RadioListTile(
+                    value: item,
+                    groupValue: deliveryOption,
+                    title: Text(item),
+                    onChanged: (value) => setState(() => deliveryOption = value),
+                  ),
+              ],
+            ),
+            Container(
+              width: double.infinity,
+              child: RaisedButton(
+                color: Theme.of(context).primaryColor,
+                child: Text(
+                  "Confirm Order",
+                  style: _whiteStyle,
+                ),
+                onPressed: () => print('Confirm Order'),
+              ),
+            ),
           ],
         ),
       ),
     );
   }
 
-  List<Widget> get _totalDetails {
-    return [
-      _totalDetailRow('Subtotal', _order.total),
-      _hbox10,
-      _totalDetailRow('Delivery fee', _order.deliveryFee),
-      _hbox10,
-      _totalDetailRow('Total', _order.total + _order.deliveryFee, Theme.of(context).textTheme.headline6),
-    ];
-  }
-
-  Widget get _deliveryAddress {
-    final addresses = <String>[
-      _order.address,
-      'New Address',
-    ];
-
-    return Column(
-      children: [
-        _title('DELIVERY ADDRESS'),
-        for (var item in addresses)
-          RadioListTile(
-            value: item,
-            groupValue: address,
-            title: Text(item),
-            onChanged: (value) => setState(() => address = value),
-          ),
-      ],
-    );
-  }
-
-  Widget get _contactNumber {
-    final contacts = <String>[
-      _order.phone,
-      'New Phone',
-    ];
-
-    return Column(
-      children: [
-        _title('CONTACT NUMBER'),
-        for (var item in contacts)
-          RadioListTile(
-            value: item,
-            groupValue: contact,
-            title: Text(item),
-            onChanged: (value) => setState(() => contact = value),
-          ),
-      ],
-    );
-  }
-
-  Widget get _paymentOption {
-    const options = ['Cash on Delivery', 'Credit Card'];
-    return Column(
-      children: [
-        _title('PAYMENT OPTION'),
-        for (var item in options)
-          RadioListTile(
-            value: item,
-            groupValue: deliveryOption,
-            title: Text(item),
-            onChanged: (value) => setState(() => deliveryOption = value),
-          ),
-      ],
-    );
-  }
-
-  Widget get _confirmOrderButton {
-    return Container(
-      width: double.infinity,
-      child: RaisedButton(
-        color: Theme.of(context).primaryColor,
-        child: Text(
-          "Confirm Order",
-          style: _whiteStyle,
-        ),
-        onPressed: () => print('Confirm Order'),
-      ),
-    );
-  }
-
-  Widget _title(String text) {
+  Widget _buildTitle(String text) {
     return Container(
       color: Colors.grey.shade200,
-      padding: _insetsAll8,
+      padding: _insets8,
       width: double.infinity,
       child: Text(text),
     );
@@ -139,18 +117,15 @@ class _ConfirmOrderPageState extends State<ConfirmOrderPage> {
       ],
     );
   }
+
+  final _hbox10 = SizedBox(height: 10);
+  final _hbox20 = SizedBox(height: 20);
+
+  final _insetsH20V10 = EdgeInsets.symmetric(horizontal: 20, vertical: 10);
+  final _insets8 = EdgeInsets.all(8);
+
+  final _whiteStyle = TextStyle(color: Colors.white);
 }
-
-// ----------------------------------------------------------------------------------
-// Privates -------------------------------------------------------------------------
-// ----------------------------------------------------------------------------------
-
-final _order = _Order(
-  address: 'Chabahil, Kathmandu',
-  phone: '+98-1852-2122',
-  total: 500,
-  deliveryFee: 100,
-);
 
 class _Order {
   final String address;
@@ -164,15 +139,3 @@ class _Order {
     this.deliveryFee,
   });
 }
-
-// ----------------------------------------------------------------------------------
-// Private Static Contents ----------------------------------------------------------
-// ----------------------------------------------------------------------------------
-
-const _hbox10 = SizedBox(height: 10);
-const _hbox20 = SizedBox(height: 20);
-
-const _insetsSymmetricH20V10 = EdgeInsets.symmetric(horizontal: 20, vertical: 10);
-const _insetsAll8 = EdgeInsets.all(8);
-
-const _whiteStyle = TextStyle(color: Colors.white);
