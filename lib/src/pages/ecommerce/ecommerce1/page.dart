@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 
-import '../../../core/constants.dart';
-import '../../../core/widgets.dart';
+import '../../../../core/constants.dart';
+import '../../../../core/widgets.dart';
 
-class EcommerceOnePage extends StatefulWidget {
-  static final String path = "lib/src/pages/ecommerce/ecommerce1.dart";
+class Ecommerce1Page extends StatefulWidget {
+  static final String path = "lib/src/pages/ecommerce/ecommerce1/page.dart";
 
   @override
-  _EcommerceOnePageState createState() => _EcommerceOnePageState();
+  _Ecommerce1PageState createState() => _Ecommerce1PageState();
 }
 
-class _EcommerceOnePageState extends State<EcommerceOnePage> {
+class _Ecommerce1PageState extends State<Ecommerce1Page> {
   int currentNavIndex = 0;
 
   final List<String> categories = [

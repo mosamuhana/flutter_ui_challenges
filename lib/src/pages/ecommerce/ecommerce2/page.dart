@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../../core/constants.dart';
-import '../../../core/ui_constants.dart';
+import '../../../../core/constants.dart';
+import '../../../../core/ui_constants.dart';
 
-class EcommerceTwoPage extends StatelessWidget {
-  static final String path = "lib/src/pages/ecommerce/ecommerce2.dart";
+class Ecommerce2Page extends StatelessWidget {
+  static final String path = "lib/src/pages/ecommerce/ecommerce2/page.dart";
 
   @override
   Widget build(BuildContext context) {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ConfirmOrderPage extends StatefulWidget {
-  static final String path = "lib/src/pages/ecommerce/confirm_order1.dart";
+  static final String path = "lib/src/pages/ecommerce/confirm_order/page.dart";
 
   @override
   _ConfirmOrderPageState createState() => _ConfirmOrderPageState();

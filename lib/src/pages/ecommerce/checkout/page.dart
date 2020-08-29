@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../../core/widgets.dart';
+import '../../../../core/widgets.dart';
 
-class CheckoutOnePage extends StatefulWidget {
-  static final String path = "lib/src/pages/ecommerce/cart1.dart";
+class CheckoutPage extends StatefulWidget {
+  static final String path = "lib/src/pages/ecommerce/checkout/page.dart";
 
   @override
-  _CheckoutOnePageState createState() => _CheckoutOnePageState();
+  _CheckoutPageState createState() => _CheckoutPageState();
 }
 
-class _CheckoutOnePageState extends State<CheckoutOnePage> {
+class _CheckoutPageState extends State<CheckoutPage> {
   int selectedIndex = 2;
 
   @override

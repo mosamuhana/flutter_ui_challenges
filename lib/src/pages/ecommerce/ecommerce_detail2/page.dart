@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/constants.dart';
-import '../../../core/widgets.dart';
+import '../../../../core/constants.dart';
+import '../../../../core/widgets.dart';
 
-class EcommerceDetailTwoPage extends StatefulWidget {
-  static final String path = "lib/src/pages/ecommerce/ecommerce_detail2.dart";
+class EcommerceDetail2Page extends StatefulWidget {
+  static final String path = "lib/src/pages/ecommerce/ecommerce_detail2/page.dart";
 
   @override
-  _EcommerceDetailTwoPageState createState() => _EcommerceDetailTwoPageState();
+  _EcommerceDetail2PageState createState() => _EcommerceDetail2PageState();
 }
 
-class _EcommerceDetailTwoPageState extends State<EcommerceDetailTwoPage> {
+class _EcommerceDetail2PageState extends State<EcommerceDetail2Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

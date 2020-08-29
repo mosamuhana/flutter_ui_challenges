@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/constants.dart';
-import '../../../core/widgets.dart';
+import '../../../../core/constants.dart';
+import '../../../../core/widgets.dart';
 
-class EcommerceFivePage extends StatefulWidget {
-  static final String path = "lib/src/pages/ecommerce/ecommerce5.dart";
+class Ecommerce4Page extends StatefulWidget {
+  static final String path = "lib/src/pages/ecommerce/ecommerce4/page.dart";
 
   @override
-  _EcommerceFivePageState createState() => _EcommerceFivePageState();
+  _Ecommerce4PageState createState() => _Ecommerce4PageState();
 }
 
-class _EcommerceFivePageState extends State<EcommerceFivePage> {
+class _Ecommerce4PageState extends State<Ecommerce4Page> {
   int currentNavIndex = 1;
   final _searchController = TextEditingController(text: '');
 

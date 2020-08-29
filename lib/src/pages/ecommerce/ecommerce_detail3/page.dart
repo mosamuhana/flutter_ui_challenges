@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/constants.dart';
-import '../../../core/widgets.dart';
+import '../../../../core/constants.dart';
+import '../../../../core/widgets.dart';
 
-class EcommerceDetailThreePage extends StatelessWidget {
-  static final String path = "lib/src/pages/ecommerce/ecommerce_detail3.dart";
+class EcommerceDetail3Page extends StatelessWidget {
+  static final String path = "lib/src/pages/ecommerce/ecommerce_detail3/page.dart";
 
   @override
   Widget build(BuildContext context) {

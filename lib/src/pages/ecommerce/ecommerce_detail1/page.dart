@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/constants.dart';
-import '../../../core/widgets.dart';
+import '../../../../core/constants.dart';
+import '../../../../core/widgets.dart';
 
-class EcommerceDetailOnePage extends StatefulWidget {
-  static final String path = "lib/src/pages/ecommerce/ecommerce_detail1.dart";
+class EcommerceDetail1Page extends StatefulWidget {
+  static final String path = "lib/src/pages/ecommerce/ecommerce_detail1/page.dart";
 
   @override
-  _EcommerceDetailOnePageState createState() => _EcommerceDetailOnePageState();
+  _EcommerceDetail1PageState createState() => _EcommerceDetail1PageState();
 }
 
-class _EcommerceDetailOnePageState extends State<EcommerceDetailOnePage> {
+class _EcommerceDetail1PageState extends State<EcommerceDetail1Page> {
   _Product selectedProduct;
 
   @override

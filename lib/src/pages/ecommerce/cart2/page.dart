@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/constants.dart';
-import '../../../core/widgets.dart';
+import '../../../../core/constants.dart';
+import '../../../../core/widgets.dart';
 
-class CartTwoPage extends StatelessWidget {
+class Cart2Page extends StatelessWidget {
   static final String path = "lib/src/pages/ecommerce/cart2.dart";
 
   @override

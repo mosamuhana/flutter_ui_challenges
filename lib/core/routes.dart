@@ -41,20 +41,20 @@ import '../src/pages/lists/list1/page.dart';
 import '../src/pages/lists/list2/page.dart';
 
 import '../src/pages/invitation/auth/page.dart';
-import '../src/pages/invitation/landing.dart';
-import '../src/pages/invitation/invitation1.dart';
+import '../src/pages/invitation/landing/page.dart';
+import '../src/pages/invitation/invitation/page.dart';
 
-import '../src/pages/ecommerce/cart1.dart';
-import '../src/pages/ecommerce/cart2.dart';
-import '../src/pages/ecommerce/checkout1.dart';
-import '../src/pages/ecommerce/confirm_order1.dart';
-import '../src/pages/ecommerce/ecommerce1.dart';
-import '../src/pages/ecommerce/ecommerce2.dart';
-import '../src/pages/ecommerce/ecommerce4.dart';
-import '../src/pages/ecommerce/ecommerce5.dart';
-import '../src/pages/ecommerce/ecommerce_detail1.dart';
-import '../src/pages/ecommerce/ecommerce_detail2.dart';
-import '../src/pages/ecommerce/ecommerce_detail3.dart';
+import '../src/pages/ecommerce/cart1/page.dart';
+import '../src/pages/ecommerce/cart2/page.dart';
+import '../src/pages/ecommerce/checkout/page.dart';
+import '../src/pages/ecommerce/confirm_order/page.dart';
+import '../src/pages/ecommerce/ecommerce1/page.dart';
+import '../src/pages/ecommerce/ecommerce2/page.dart';
+import '../src/pages/ecommerce/ecommerce3/page.dart';
+import '../src/pages/ecommerce/ecommerce4/page.dart';
+import '../src/pages/ecommerce/ecommerce_detail1/page.dart';
+import '../src/pages/ecommerce/ecommerce_detail2/page.dart';
+import '../src/pages/ecommerce/ecommerce_detail3/page.dart';
 
 import '../src/pages/blog/article1.dart';
 import '../src/pages/blog/article2.dart';
@@ -203,34 +203,34 @@ final List<dynamic> pages = [
       SubMenuItem("List 2", List2Page(), path: List2Page.path),
     ],
   ),
-  */
   MenuItem(
     title: "Invitation",
     icon: Icons.list,
     items: [
       SubMenuItem("Auth Page", InvitationAuthPage(), path: InvitationAuthPage.path),
       SubMenuItem("Landing Page", InvitationLandingPage(), path: InvitationLandingPage.path),
-      SubMenuItem("Details Page", InvitationPageOne(), path: InvitationPageOne.path),
+      SubMenuItem("Details Page", InvitationPage(), path: InvitationPage.path),
     ],
   ),
-  /*
+  */
   MenuItem(
     title: "Ecommerce",
     icon: Icons.shopping_basket,
     items: [
-      SubMenuItem("Cart One", CartOnePage(), path: CartOnePage.path),
-      SubMenuItem("Cart Two", CartTwoPage(), path: CartTwoPage.path),
-      SubMenuItem("Checkout One", CheckoutOnePage(), path: CheckoutOnePage.path),
+      SubMenuItem("Cart 1", Cart1Page(), path: Cart1Page.path),
+      SubMenuItem("Cart 2", Cart2Page(), path: Cart2Page.path),
+      SubMenuItem("Checkout", CheckoutPage(), path: CheckoutPage.path),
       SubMenuItem("Confirm Order", ConfirmOrderPage(), path: ConfirmOrderPage.path),
-      SubMenuItem("Rounded Details Page", EcommerceDetailThreePage(), path: EcommerceDetailThreePage.path),
-      SubMenuItem("Ecommerce One", EcommerceOnePage(), path: EcommerceOnePage.path),
-      SubMenuItem("Ecommerce Two", EcommerceTwoPage(), path: EcommerceTwoPage.path),
-      SubMenuItem("Ecommerce Four", EcommerceFourPage(), path: EcommerceFourPage.path),
-      SubMenuItem("Ecommerce Grocery", EcommerceFivePage(), path: EcommerceFivePage.path),
-      SubMenuItem("Ecommerce Details One", EcommerceDetailOnePage(), path: EcommerceDetailOnePage.path),
-      SubMenuItem("Ecommerce Details Two", EcommerceDetailTwoPage(), path: EcommerceDetailTwoPage.path),
+      SubMenuItem("Ecommerce 1", Ecommerce1Page(), path: Ecommerce1Page.path),
+      SubMenuItem("Ecommerce 2", Ecommerce2Page(), path: Ecommerce2Page.path),
+      SubMenuItem("Ecommerce 3", Ecommerce3Page(), path: Ecommerce3Page.path),
+      SubMenuItem("Ecommerce 4", Ecommerce4Page(), path: Ecommerce4Page.path),
+      SubMenuItem("Ecommerce Details 1", EcommerceDetail1Page(), path: EcommerceDetail1Page.path),
+      SubMenuItem("Ecommerce Details 2", EcommerceDetail2Page(), path: EcommerceDetail2Page.path),
+      SubMenuItem("Ecommerce Details 3", EcommerceDetail3Page(), path: EcommerceDetail3Page.path),
     ],
   ),
+  /*
   MenuItem(
     title: "Blog",
     icon: Icons.pages,
