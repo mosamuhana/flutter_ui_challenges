@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class DashboardTwoPage extends StatelessWidget {
-  static final String path = "lib/src/pages/dashboard/dash2.dart";
+class Dashboard2Page extends StatelessWidget {
+  static final String path = "lib/src/pages/dashboard/dashboard2/page.dart";
 
   final String progressTitle = 'Overall\nDaily Progress';
   final int progressPercent = 55;

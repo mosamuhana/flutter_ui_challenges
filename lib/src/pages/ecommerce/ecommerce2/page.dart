@@ -1,246 +1,154 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/constants.dart';
-import '../../../../core/ui_constants.dart';
+import 'data.dart';
+import 'shop_item_card.dart';
 
-class Ecommerce2Page extends StatelessWidget {
+class Ecommerce2Page extends StatefulWidget {
   static final String path = "lib/src/pages/ecommerce/ecommerce2/page.dart";
+
+  @override
+  _Ecommerce2PageState createState() => _Ecommerce2PageState();
+}
+
+class _Ecommerce2PageState extends State<Ecommerce2Page> {
+  int currentIndex = 0;
+  List<BottomNavigationBarItem> bottomNavItems;
+
+  @override
+  void initState() {
+    super.initState();
+
+    bottomNavItems = <BottomNavigationBarItem>[
+      BottomNavigationBarItem(icon: _categoryIcon, label: "Shop"),
+      BottomNavigationBarItem(icon: _favoriteBorderIcon, label: "Favorites"),
+      BottomNavigationBarItem(icon: _notificationsIcon, label: "Notifications"),
+      BottomNavigationBarItem(icon: _locationOnIcon, label: "Near me"),
+      BottomNavigationBarItem(icon: _settingsIcon, label: "Settings"),
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: _filterListIcon,
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: _shoppingCartIcon,
-          ),
-        ],
-        backgroundColor: Colors.white70,
-        leading: IconButton(
-          onPressed: () {},
-          icon: _menuIcon,
-        ),
-        title: Text(
-          'Shopping',
-          style: _blackStyle,
-        ),
-        centerTitle: true,
-        bottom: _bottomBar,
-      ),
+      appBar: _appBar,
       body: SafeArea(
-        child: ListView.builder(
-          itemCount: _shopItems.length + 1,
-          itemBuilder: (_, i) => i == 0 ? _listFirstItem : _ShopItemCard(item: _shopItems[i - 1]),
-        ),
+        child: _buildContent(context),
       ),
-      bottomNavigationBar: _bottomNavigationBar,
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: currentIndex,
+        onTap: (i) => setState(() => currentIndex = i),
+        type: BottomNavigationBarType.fixed,
+        fixedColor: Colors.red,
+        items: bottomNavItems,
+      ),
     );
   }
 
-  Widget get _bottomNavigationBar {
-    return BottomNavigationBar(
-      items: <BottomNavigationBarItem>[
-        BottomNavigationBarItem(icon: _categoryIcon, title: Text("Shop")),
-        BottomNavigationBarItem(icon: _favoriteBorderIcon, title: Text("Favorites")),
-        BottomNavigationBarItem(icon: _notificationsIcon, title: Text("Notifications")),
-        BottomNavigationBarItem(icon: _locationOnIcon, title: Text("Near me")),
-        BottomNavigationBarItem(icon: _settingsIcon, title: Text("Settings")),
+  Widget _buildContent(BuildContext context) {
+    if (currentIndex > 0) {
+      return otherPage;
+    }
+
+    return ListView.builder(
+      itemCount: shopItems.length + 1,
+      itemBuilder: (_, i) => i == 0 ? _listHeader : ShopItemCard(item: shopItems[i - 1]),
+    );
+  }
+
+  Widget get otherPage {
+    var item = bottomNavItems[currentIndex];
+    var label = item.label;
+    var icon = (item.icon as Icon).icon;
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, size: 80),
+          _hbox20,
+          Text(label, style: _blackS30Style),
+        ],
+      ),
+    );
+  }
+
+  Widget get _appBar {
+    return AppBar(
+      automaticallyImplyLeading: false,
+      actions: [
+        IconButton(
+          onPressed: () {},
+          icon: _filterListIcon,
+        ),
+        IconButton(
+          onPressed: () {},
+          icon: _shoppingCartIcon,
+        ),
       ],
-      currentIndex: 0,
-      type: BottomNavigationBarType.fixed,
-      fixedColor: Colors.red,
-    );
-  }
-
-  PreferredSize get _bottomBar {
-    return PreferredSize(
-      child: Container(
-        padding: _insetsAll10,
-        child: Card(
-          child: Container(
-            child: TextField(
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                icon: IconButton(
-                  icon: _searchIcon,
-                  onPressed: () {},
-                ),
-                suffixIcon: IconButton(
-                  icon: _micIcon,
-                  onPressed: () {},
+      backgroundColor: Colors.white70,
+      leading: IconButton(
+        onPressed: () {},
+        icon: _menuIcon,
+      ),
+      title: Text('Shopping', style: _black87Style),
+      centerTitle: true,
+      bottom: PreferredSize(
+        child: Container(
+          padding: _insets10,
+          child: Card(
+            child: Container(
+              child: TextField(
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  icon: IconButton(
+                    icon: _searchIcon,
+                    onPressed: () => print('Search'),
+                  ),
+                  suffixIcon: IconButton(
+                    icon: _micIcon,
+                    onPressed: () => print('Mic'),
+                  ),
                 ),
               ),
             ),
           ),
         ),
+        preferredSize: Size.fromHeight(80),
       ),
-      preferredSize: Size.fromHeight(80),
     );
   }
 
-  Widget get _listFirstItem {
+  Widget get _listHeader {
     return Container(
-      padding: EdgeInsets.all(20),
+      padding: _insets20,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            "Branded Bucket",
-            style: _s18Style,
-          ),
-          Text(
-            "See All",
-            style: _greyStyle,
-          ),
+          Text("Branded Bucket", style: _s18Style),
+          Text("See All", style: _greyStyle),
         ],
       ),
     );
   }
+
+  final _hbox20 = SizedBox(height: 20);
+
+  final _black87Style = TextStyle(color: Colors.black87);
+  final _s18Style = TextStyle(fontSize: 18);
+  final _greyStyle = TextStyle(color: Colors.grey.shade500);
+  final _blackS30Style = TextStyle(color: Colors.black, fontSize: 30);
+
+  final _filterListIcon = Icon(Icons.filter_list, color: Colors.grey.shade700);
+  final _shoppingCartIcon = Icon(Icons.shopping_cart, color: Colors.grey.shade700);
+  final _menuIcon = Icon(Icons.menu, color: Colors.grey.shade700);
+  final _categoryIcon = Icon(Icons.category);
+  final _favoriteBorderIcon = Icon(Icons.favorite_border);
+  final _notificationsIcon = Icon(Icons.notifications);
+  final _locationOnIcon = Icon(Icons.location_on);
+  final _settingsIcon = Icon(Icons.settings);
+  final _micIcon = Icon(Icons.mic);
+  final _searchIcon = Icon(Icons.search);
+
+  final _insets10 = EdgeInsets.all(10);
+  final _insets20 = EdgeInsets.all(20);
 }
-
-// ----------------------------------------------------------------------------------
-// Private Widgets ------------------------------------------------------------------
-// ----------------------------------------------------------------------------------
-
-class _ShopItemCard extends StatelessWidget {
-  final _ShopItem item;
-
-  const _ShopItemCard({Key key, this.item}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(left: 10, right: 10),
-      margin: EdgeInsets.only(bottom: 20),
-      height: 300,
-      child: Row(
-        children: [
-          Expanded(
-            child: Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(image: NetworkImage(item.image), fit: BoxFit.cover),
-                borderRadius: BorderRadius.all(Radius.circular(10)),
-                boxShadow: [
-                  BoxShadow(color: Colors.grey, offset: Offset(5, 5), blurRadius: 10),
-                ],
-              ),
-            ),
-          ),
-          Expanded(
-            child: Container(
-              padding: EdgeInsets.all(20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    item.title,
-                    style: _bold22Style,
-                  ),
-                  hSizedBox10,
-                  Text(
-                    item.category,
-                    style: _grey18Style,
-                  ),
-                  hSizedBox20,
-                  Text(
-                    "\$${item.price}",
-                    style: _red30Style,
-                  ),
-                  hSizedBox20,
-                  Text(
-                    item.tags,
-                    style: _grey18H1_5Style,
-                  )
-                ],
-              ),
-              margin: EdgeInsets.only(top: 20, bottom: 20),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(bottomRight: Radius.circular(10), topRight: Radius.circular(10)),
-                color: Colors.white,
-                boxShadow: [
-                  BoxShadow(color: Colors.grey, offset: Offset(5, 5), blurRadius: 10),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-// ----------------------------------------------------------------------------------
-// Private Data ---------------------------------------------------------------------
-// ----------------------------------------------------------------------------------
-
-final _shopItems = <_ShopItem>[
-  _ShopItem(
-    title: "Kappa Velour",
-    category: "Bucket",
-    price: 5500,
-    tags: "#Cotton #polyster #Branded design",
-    image: '$STORE_BASE_URL/img%2F1.jpg?alt=media',
-  ),
-  _ShopItem(
-    title: "North Salty",
-    category: "Bucket",
-    price: 67000,
-    tags: "#Cotton #polyster #Branded design",
-    image: '$STORE_BASE_URL/img%2F2.jpg?alt=media',
-  ),
-  _ShopItem(
-    title: "Mest Takel",
-    category: "Bucket",
-    price: 67000,
-    tags: "#Cotton #polyster #Branded design",
-    image: '$STORE_BASE_URL/img%2F3.jpg?alt=media',
-  ),
-];
-
-class _ShopItem {
-  final String title;
-  final String category;
-  final int price;
-  final String tags;
-  final String image;
-  _ShopItem({
-    this.title,
-    this.category,
-    this.price,
-    this.tags,
-    this.image,
-  });
-}
-
-// ----------------------------------------------------------------------------------
-// Private Static Contents ----------------------------------------------------------
-// ----------------------------------------------------------------------------------
-
-const _blackStyle = TextStyle(color: Colors.black87);
-const _s18Style = TextStyle(fontSize: 18);
-final _greyStyle = TextStyle(color: Colors.grey.shade500);
-const _bold22Style = TextStyle(fontSize: 22, fontWeight: FontWeight.w700);
-const _grey18Style = TextStyle(color: Colors.grey, fontSize: 18);
-const _red30Style = TextStyle(color: Colors.red, fontSize: 30);
-const _grey18H1_5Style = TextStyle(fontSize: 18, color: Colors.grey, height: 1.5);
-
-final _filterListIcon = Icon(Icons.filter_list, color: Colors.grey.shade700);
-final _shoppingCartIcon = Icon(Icons.shopping_cart, color: Colors.grey.shade700);
-final _menuIcon = Icon(Icons.menu, color: Colors.grey.shade700);
-
-const _categoryIcon = Icon(Icons.category);
-const _favoriteBorderIcon = Icon(Icons.favorite_border);
-const _notificationsIcon = Icon(Icons.notifications);
-const _locationOnIcon = Icon(Icons.location_on);
-const _settingsIcon = Icon(Icons.settings);
-const _micIcon = Icon(Icons.mic);
-const _searchIcon = Icon(Icons.search);
-
-const _insetsAll10 = EdgeInsets.all(10);

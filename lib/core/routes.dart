@@ -56,15 +56,15 @@ import '../src/pages/ecommerce/ecommerce_detail1/page.dart';
 import '../src/pages/ecommerce/ecommerce_detail2/page.dart';
 import '../src/pages/ecommerce/ecommerce_detail3/page.dart';
 
-import '../src/pages/blog/article1.dart';
-import '../src/pages/blog/article2.dart';
-import '../src/pages/blog/bhome1.dart';
-import '../src/pages/blog/news1.dart';
-import '../src/pages/blog/sports_news1.dart';
+import '../src/pages/blog/article1/page.dart';
+import '../src/pages/blog/article2/page.dart';
+import '../src/pages/blog/blog_home/page.dart';
+import '../src/pages/blog/news_home/page.dart';
+import '../src/pages/blog/sports_news_home/page.dart';
 
-import '../src/pages/dashboard/dash1.dart';
-import '../src/pages/dashboard/dash2.dart';
-import '../src/pages/dashboard/dash3.dart';
+import '../src/pages/dashboard/dashboard1/page.dart';
+import '../src/pages/dashboard/dashboard2/page.dart';
+import '../src/pages/dashboard/dashboard3/page.dart';
 
 import '../src/pages/food/avocado.dart';
 import '../src/pages/food/cake_details.dart';
@@ -212,7 +212,6 @@ final List<dynamic> pages = [
       SubMenuItem("Details Page", InvitationPage(), path: InvitationPage.path),
     ],
   ),
-  */
   MenuItem(
     title: "Ecommerce",
     icon: Icons.shopping_basket,
@@ -230,27 +229,28 @@ final List<dynamic> pages = [
       SubMenuItem("Ecommerce Details 3", EcommerceDetail3Page(), path: EcommerceDetail3Page.path),
     ],
   ),
-  /*
   MenuItem(
     title: "Blog",
     icon: Icons.pages,
     items: [
-      SubMenuItem("News Home", NewsHomeOnePage(), path: NewsHomeOnePage.path),
-      SubMenuItem("Sports News Home", SportsNewsOnePage(), path: SportsNewsOnePage.path),
-      SubMenuItem("Blog Home One", BlogHomeOnePage(), path: BlogHomeOnePage.path),
-      SubMenuItem("Article One", ArticleOnePage(), path: ArticleOnePage.path),
-      SubMenuItem("Article Two", ArticleTwoPage(), path: ArticleTwoPage.path),
+      SubMenuItem("News Home", NewsHomePage(), path: NewsHomePage.path),
+      SubMenuItem("Sports News Home", SportsNewsHomePage(), path: SportsNewsHomePage.path),
+      SubMenuItem("Blog Home", BlogHomePage(), path: BlogHomePage.path),
+      SubMenuItem("Article 1", Article1Page(), path: Article1Page.path),
+      SubMenuItem("Article 2", Article2Page(), path: Article2Page.path),
     ],
   ),
+  */
   MenuItem(
     title: "Dashboard",
     icon: Icons.dashboard,
     items: [
-      SubMenuItem("Dashboard One", DashboardOnePage(), path: DashboardOnePage.path),
-      SubMenuItem("Dashboard Two", DashboardTwoPage(), path: DashboardTwoPage.path),
-      SubMenuItem("Dashboard Three", DashboardThreePage(), path: DashboardThreePage.path),
+      SubMenuItem("Dashboard 1", Dashboard1Page(), path: Dashboard1Page.path),
+      SubMenuItem("Dashboard 2", Dashboard2Page(), path: Dashboard2Page.path),
+      SubMenuItem("Dashboard 3", Dashboard3Page(), path: Dashboard3Page.path),
     ],
   ),
+  /*
   MenuItem(
     title: "Food",
     icon: Icons.fastfood,

@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/constants.dart';
+import '../../../../core/constants.dart';
 
-class DashboardThreePage extends StatefulWidget {
-  static final String path = "lib/src/pages/dashboard/dash3.dart";
+class Dashboard3Page extends StatefulWidget {
+  static final String path = "lib/src/pages/dashboard/dashboard3/page.dart";
 
   @override
-  _DashboardThreePageState createState() => _DashboardThreePageState();
+  _Dashboard3PageState createState() => _Dashboard3PageState();
 }
 
-class _DashboardThreePageState extends State<DashboardThreePage> {
+class _Dashboard3PageState extends State<Dashboard3Page> {
   int currentNavIndex = 0;
 
   final avatarImage = '$STORE_BASE_URL/img%2F1.jpg?alt=media';
