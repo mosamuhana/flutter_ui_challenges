@@ -12,32 +12,9 @@ class FoodOrderCheckoutPage extends StatefulWidget {
 }
 
 class _FoodOrderCheckoutPageState extends State<FoodOrderCheckoutPage> {
-  Order order;
-  double total = 0;
-  double vat = 0;
+  final List<OrderItem> orderItems = getOrderItems();
 
-  @override
-  void initState() {
-    super.initState();
-    order = getOrder();
-    calc();
-  }
-
-  void calc() {
-    double v = order.vat / 100.0;
-    double t = 0;
-    for (var item in order.items) {
-      var p = getProduct(item.productId);
-      t += p.price * item.quantity;
-    }
-    vat = t * v;
-    total = t - vat;
-  }
-
-  void update() {
-    calc();
-    setState(() {});
-  }
+  final vat = 10; // 10 %
 
   @override
   Widget build(BuildContext context) {
@@ -58,11 +35,8 @@ class _FoodOrderCheckoutPageState extends State<FoodOrderCheckoutPage> {
             children: [
               Text("My Order", style: _blackBoldS24Style),
               _hbox30,
-              for (var item in order.items) ...[
-                OrderListItem(
-                  item: item,
-                  onChange: (i) => update(),
-                ),
+              for (var item in orderItems) ...[
+                OrderListItem(item: item),
                 _hbox20,
               ],
               _hDivider,
@@ -85,9 +59,9 @@ class _FoodOrderCheckoutPageState extends State<FoodOrderCheckoutPage> {
     return Row(
       children: [
         _wbox40,
-        Text("VAT (${order.vat} %)", style: _greyBoldS20Style),
+        Text("VAT (10%)", style: _greyBoldS20Style),
         _spacer,
-        Text("\$ ${vat.toStringAsFixed(2)}", style: _greyBoldS20Style),
+        Text("\$2", style: _greyBoldS20Style),
         _wbox20,
       ],
     );
@@ -99,7 +73,7 @@ class _FoodOrderCheckoutPageState extends State<FoodOrderCheckoutPage> {
         _wbox40,
         Text("Total", style: _blackBoldS20Style),
         _spacer,
-        Text("\$ ${total.toStringAsFixed(2)}", style: _indigoBoldS20Style),
+        Text("\$49", style: _indigoBoldS20Style),
         _wbox20,
       ],
     );
