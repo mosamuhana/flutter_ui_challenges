@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../../core/widgets.dart';
-import 'recipe_details.dart';
-import 'data/recipe_data.dart' show Recipe, recipeList;
+import '../../../../core/widgets.dart';
+import '../recipe_details/page.dart';
+import '../food_delivery/recipe_data.dart' show Recipe, recipeList;
 
 class RecipeSinglePage extends StatelessWidget {
-  static final String path = "lib/src/pages/food/recipe_single.dart";
+  static final String path = "lib/src/pages/food/recipe_single/page.dart";
 
   final Recipe recipe = recipeList[4];
   final String recipeCategory = 'Vegetarian';

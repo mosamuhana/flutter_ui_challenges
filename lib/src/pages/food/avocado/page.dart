@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../../core/constants.dart';
+import '../../../../core/constants.dart';
 
 class AvocadoPage extends StatefulWidget {
-  static final String path = "lib/src/pages/food/avocado.dart";
+  static final String path = "lib/src/pages/food/avocado/page.dart";
 
   @override
   _AvocadoPageState createState() => _AvocadoPageState();

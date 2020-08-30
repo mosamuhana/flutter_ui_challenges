@@ -2,11 +2,11 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
-import 'recipe_single.dart';
-import 'data/recipe_data.dart' show Recipe, recipeList;
+import '../recipe_single/page.dart';
+import '../food_delivery/recipe_data.dart' show Recipe, recipeList;
 
 class RecipeListPage extends StatefulWidget {
-  static final String path = "lib/src/pages/food/recipe_list.dart";
+  static final String path = "lib/src/pages/food/recipe_list/page.dart";
 
   @override
   _RecipeListPageState createState() => _RecipeListPageState();

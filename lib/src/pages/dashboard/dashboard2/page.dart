@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import 'tile_container.dart';
+
 class Dashboard2Page extends StatelessWidget {
   static final String path = "lib/src/pages/dashboard/dashboard2/page.dart";
 
@@ -68,7 +70,7 @@ class Dashboard2Page extends StatelessWidget {
         Expanded(
           child: Column(
             children: [
-              _TileContainer(
+              TileContainer(
                 backgroundColor: Colors.blue,
                 color: Colors.white,
                 title: '9,850',
@@ -77,7 +79,7 @@ class Dashboard2Page extends StatelessWidget {
                 icon: FontAwesomeIcons.walking,
               ),
               _hbox10,
-              _TileContainer(
+              TileContainer(
                 backgroundColor: Colors.green,
                 color: Colors.white,
                 title: '70 bpm',
@@ -92,7 +94,7 @@ class Dashboard2Page extends StatelessWidget {
         Expanded(
           child: Column(
             children: [
-              _TileContainer(
+              TileContainer(
                 backgroundColor: Colors.red,
                 color: Colors.white,
                 title: '2,430',
@@ -101,7 +103,7 @@ class Dashboard2Page extends StatelessWidget {
                 icon: FontAwesomeIcons.fire,
               ),
               _hbox10,
-              _TileContainer(
+              TileContainer(
                 backgroundColor: Colors.yellow,
                 color: Colors.black,
                 title: '15 kms',
@@ -115,70 +117,16 @@ class Dashboard2Page extends StatelessWidget {
       ],
     );
   }
+
+  final _hbox10 = SizedBox(height: 10);
+  final _hbox20 = SizedBox(height: 20);
+  final _hbox50 = SizedBox(height: 50);
+  final _wbox10 = SizedBox(width: 10);
+  final _wbox20 = SizedBox(width: 20);
+
+  final _whiteS20Style = TextStyle(color: Colors.white, fontSize: 20);
+  final _greyS16Style = TextStyle(color: Colors.grey, fontSize: 16);
+
+  final _insets8 = EdgeInsets.all(8);
+  final _insets16 = EdgeInsets.all(16);
 }
-
-// ----------------------------------------------------------------------------------
-// Private Widgets ------------------------------------------------------------------
-// ----------------------------------------------------------------------------------
-
-class _TileContainer extends StatelessWidget {
-  final Color color;
-  final Color backgroundColor;
-  final double height;
-  final String title;
-  final String subtitle;
-  final IconData icon;
-
-  const _TileContainer({
-    Key key,
-    this.color = Colors.white,
-    @required this.backgroundColor,
-    @required this.height,
-    @required this.title,
-    @required this.subtitle,
-    @required this.icon,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final titleStyle = Theme.of(context).textTheme.headline4.copyWith(color: color, fontSize: 24);
-
-    return Container(
-      height: height,
-      color: backgroundColor,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ListTile(
-            title: Text(title, style: titleStyle),
-            trailing: Icon(icon, color: color),
-          ),
-          Padding(
-            padding: _insetsL16,
-            child: Text(
-              subtitle,
-              style: TextStyle(color: color),
-            ),
-          )
-        ],
-      ),
-    );
-  }
-}
-
-// ----------------------------------------------------------------------------------
-// Private Static Contents ----------------------------------------------------------
-// ----------------------------------------------------------------------------------
-
-const _hbox10 = SizedBox(height: 10);
-const _hbox20 = SizedBox(height: 20);
-const _hbox50 = SizedBox(height: 50);
-const _wbox10 = SizedBox(width: 10);
-const _wbox20 = SizedBox(width: 20);
-
-const _whiteS20Style = TextStyle(color: Colors.white, fontSize: 20);
-const _greyS16Style = TextStyle(color: Colors.grey, fontSize: 16);
-
-const _insets8 = EdgeInsets.all(8);
-const _insets16 = EdgeInsets.all(16);
-const _insetsL16 = EdgeInsets.only(left: 16);

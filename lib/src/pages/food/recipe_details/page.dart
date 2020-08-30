@@ -3,10 +3,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_ui_challenges/core/constants.dart';
 
-import 'data/recipe_data.dart' show Recipe, recipeList;
+import '../food_delivery/recipe_data.dart' show Recipe, recipeList;
 
 class RecipeDetailsPage extends StatelessWidget {
-  static final String path = "lib/src/pages/food/recipe_details.dart";
+  static final String path = "lib/src/pages/food/recipe_details/page.dart";
 
   final Recipe recipe = recipeList[4];
 

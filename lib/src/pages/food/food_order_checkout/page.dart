@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/constants.dart';
+import '../../../../core/constants.dart';
 
-class FoodCheckoutOnePage extends StatelessWidget {
-  static final String path = "lib/src/pages/food/food_checkout.dart";
+class FoodOrderCheckoutPage extends StatelessWidget {
+  static final String path = "lib/src/pages/food/food_order_checkout/page.dart";
 
   @override
   Widget build(BuildContext context) {

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
-import '../../../core/widgets.dart';
-import 'data/recipe_data.dart';
+import '../../../../core/widgets.dart';
+import 'recipe_data.dart';
 
 class FoodDeliveryHomePage extends StatefulWidget {
-  static final String path = "lib/src/pages/food/food_delivery.dart";
+  static final String path = "lib/src/pages/food/food_delivery/page.dart";
 
   @override
   _FoodDeliveryHomePageState createState() => _FoodDeliveryHomePageState();

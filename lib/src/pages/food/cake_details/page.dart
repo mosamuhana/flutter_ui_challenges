@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/constants.dart';
-import '../../../core/widgets.dart';
+import '../../../../core/constants.dart';
+import '../../../../core/widgets.dart';
 
 class CakeDetailsPage extends StatefulWidget {
-  static final String path = "lib/src/pages/food/cake_details.dart";
+  static final String path = "lib/src/pages/food/cake_details/page.dart";
 
   @override
   _CakeDetailsPageState createState() => _CakeDetailsPageState();

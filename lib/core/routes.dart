@@ -66,13 +66,13 @@ import '../src/pages/dashboard/dashboard1/page.dart';
 import '../src/pages/dashboard/dashboard2/page.dart';
 import '../src/pages/dashboard/dashboard3/page.dart';
 
-import '../src/pages/food/avocado.dart';
-import '../src/pages/food/cake_details.dart';
-import '../src/pages/food/food_delivery.dart';
-import '../src/pages/food/food_checkout.dart';
-import '../src/pages/food/recipe_details.dart';
-import '../src/pages/food/recipe_list.dart';
-import '../src/pages/food/recipe_single.dart';
+import '../src/pages/food/avocado/page.dart';
+import '../src/pages/food/cake_details/page.dart';
+import '../src/pages/food/food_delivery/page.dart';
+import '../src/pages/food/food_order_checkout/page.dart';
+import '../src/pages/food/recipe_details/page.dart';
+import '../src/pages/food/recipe_list/page.dart';
+import '../src/pages/food/recipe_single/page.dart';
 
 import '../src/pages/quiz_app/check_answers.dart';
 import '../src/pages/quiz_app/models/demo_values.dart';
@@ -240,7 +240,6 @@ final List<dynamic> pages = [
       SubMenuItem("Article 2", Article2Page(), path: Article2Page.path),
     ],
   ),
-  */
   MenuItem(
     title: "Dashboard",
     icon: Icons.dashboard,
@@ -250,12 +249,12 @@ final List<dynamic> pages = [
       SubMenuItem("Dashboard 3", Dashboard3Page(), path: Dashboard3Page.path),
     ],
   ),
-  /*
+  */
   MenuItem(
     title: "Food",
     icon: Icons.fastfood,
     items: [
-      SubMenuItem("Food Order Checkout", FoodCheckoutOnePage(), path: FoodCheckoutOnePage.path),
+      SubMenuItem("Food Order Checkout", FoodOrderCheckoutPage(), path: FoodOrderCheckoutPage.path),
       SubMenuItem("Fruits Add to Cart", AvocadoPage(), path: AvocadoPage.path),
       SubMenuItem("Cake Details", CakeDetailsPage(), path: CakeDetailsPage.path),
       SubMenuItem("Recipe List", RecipeListPage(), path: RecipeListPage.path),
@@ -264,6 +263,7 @@ final List<dynamic> pages = [
       SubMenuItem("Food Delivery", FoodDeliveryHomePage(), path: FoodDeliveryHomePage.path),
     ],
   ),
+  /*
   MenuItem(
     title: "Quiz app",
     icon: FontAwesomeIcons.question,
