@@ -6,7 +6,7 @@ import 'room_widget.dart';
 import 'data.dart';
 
 class HotelHomePage extends StatelessWidget {
-  static final String path = "lib/src/pages/hotel/page.dart";
+  static final String path = "lib/src/apps/hotel/page.dart";
 
   final rooms = getRooms();
 

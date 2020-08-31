@@ -5,7 +5,7 @@ import 'data.dart';
 import 'quiz_options.dart';
 
 class QuizHomePage extends StatelessWidget {
-  static final String path = "lib/src/pages/quiz_app/home.dart";
+  static final String path = "lib/src/apps/quiz_app/home.dart";
 
   final List<Color> tileColors = [
     Colors.green,

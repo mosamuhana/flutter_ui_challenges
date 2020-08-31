@@ -1,0 +1,9 @@
+export 'profile1/page.dart';
+export 'profile2/page.dart';
+export 'profile3/page.dart';
+export 'profile4/page.dart';
+export 'profile5/page.dart';
+export 'profile6/page.dart';
+export 'profile7/page.dart';
+export 'profile8/page.dart';
+export 'profile9/page.dart';

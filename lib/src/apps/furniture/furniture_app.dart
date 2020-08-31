@@ -12,18 +12,14 @@ class FurnitureApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       initialRoute: '/',
-      routes: <String, WidgetBuilder>{
-        '/': (BuildContext context) => SafeArea(
-              child: SafeArea(
-                child: Profile(),
-              ),
-            ),
-        '/furniture': (BuildContext context) => SafeArea(
-              child: SafeArea(
-                child: Furniture(),
-              ),
-            ),
-      },
+      routes: routes,
     );
+  }
+
+  Map<String, WidgetBuilder> get routes {
+    return {
+      '/': (BuildContext context) => SafeArea(child: SafeArea(child: Profile())),
+      '/furniture': (BuildContext context) => SafeArea(child: SafeArea(child: Furniture())),
+    };
   }
 }

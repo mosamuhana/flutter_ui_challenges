@@ -17,10 +17,12 @@ class SpringySliderPage extends StatelessWidget {
           elevation: 0,
           textTheme: _textTheme,
           iconTheme: _iconTheme,
+          /*
           leading: IconButton(
             icon: _menuIcon,
             onPressed: () {},
           ),
+          */
           actions: [
             _buildTextButton("Settings", true),
           ],

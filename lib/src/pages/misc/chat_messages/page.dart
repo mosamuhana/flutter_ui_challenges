@@ -8,6 +8,7 @@ import 'user.dart';
 
 class ChatMessaagesPage extends StatefulWidget {
   static final String path = "lib/src/pages/misc/chat_messages/page.dart";
+
   @override
   _ChatMessaagesPageState createState() => _ChatMessaagesPageState();
 }

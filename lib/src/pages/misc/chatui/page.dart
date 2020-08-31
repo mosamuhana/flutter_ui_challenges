@@ -1,55 +1,93 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/constants.dart';
-import 'friend.dart';
+import 'data.dart';
+import 'models.dart';
 import 'online_person_action.dart';
 
 class ChatUiPage extends StatelessWidget {
   static final String path = "lib/src/pages/misc/chatui/page.dart";
 
+  final List<Friend> _friends = getFriends();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFF363846),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      body: Stack(
         children: [
           Padding(
-            padding: _insetsL20T40R20B20,
-            child: Text('Chats', style: _whiteBoldS26Style),
+            padding: _insetsTop,
+            child: _content,
           ),
-          _topList,
-          Padding(
-            padding: _insetsL20T0R20B0,
-            child: Text('Newsfeed', style: _whiteS18Style),
-          ),
-          Padding(
-            padding: _insetsL20T10R20B10,
-            child: TextField(
-              decoration: InputDecoration(
-                hintText: 'Search your friends...',
-                hintStyle: _white54Style,
-                filled: true,
-                fillColor: Color(0xFF414350),
-                suffixIcon: Icon(Icons.search, color: Colors.white70),
-                border: InputBorder.none,
-              ),
-            ),
-          ),
-          Flexible(
-            child: SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              physics: BouncingScrollPhysics(),
-              child: Padding(
-                padding: _insetsH20,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: _friends.map((x) => createTile(x)).toList(),
-                ),
-              ),
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: AppBar(
+              elevation: 0,
+              backgroundColor: Colors.transparent,
+              title: Text('Chats', style: _whiteBoldS26Style),
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget get _content {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _topList,
+        Padding(
+          padding: _insetsL20T0R20B0,
+          child: Text('Newsfeed', style: _whiteS18Style),
+        ),
+        Padding(
+          padding: _insetsL20T10R20B10,
+          child: TextField(
+            decoration: InputDecoration(
+              hintText: 'Search your friends...',
+              hintStyle: _white54Style,
+              filled: true,
+              fillColor: Color(0xFF414350),
+              suffixIcon: Icon(Icons.search, color: Colors.white70),
+              border: InputBorder.none,
+            ),
+          ),
+        ),
+        Flexible(
+          child: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            physics: BouncingScrollPhysics(),
+            child: Padding(
+              padding: _insetsH20,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: _friends.map((x) => createTile(x)).toList(),
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget get _topList {
+    return Padding(
+      padding: _insets20,
+      child: Container(
+        decoration: _topListDecoration,
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          physics: BouncingScrollPhysics(),
+          child: Padding(
+            padding: _insets8,
+            child: Row(
+              children: _friends.map((x) => OnlinePersonAction(image: x.image, color: x.color)).toList(),
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -121,25 +159,6 @@ class ChatUiPage extends StatelessWidget {
     );
   }
 
-  Widget get _topList {
-    return Padding(
-      padding: _insets20,
-      child: Container(
-        decoration: _topListDecoration,
-        child: SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          physics: BouncingScrollPhysics(),
-          child: Padding(
-            padding: _insets8,
-            child: Row(
-              children: _friends.map((x) => OnlinePersonAction(image: x.image, color: x.color)).toList(),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
   final _hbox10 = SizedBox(height: 10);
   final _wbox10 = SizedBox(width: 10);
   final _wbox6 = SizedBox(width: 6);
@@ -150,7 +169,7 @@ class ChatUiPage extends StatelessWidget {
   final _white30Style = TextStyle(color: Colors.white30);
   final _white70S16Style = TextStyle(color: Colors.white70, fontSize: 16);
 
-  final _insetsL20T40R20B20 = EdgeInsets.fromLTRB(20, 40, 20, 20);
+  final _insetsTop = EdgeInsets.only(top: kToolbarHeight);
   final _insetsL20T0R20B0 = EdgeInsets.fromLTRB(20, 0, 20, 0);
   final _insetsL20T10R20B10 = EdgeInsets.fromLTRB(20, 10, 20, 10);
   final _insets8 = EdgeInsets.all(8);
@@ -171,55 +190,3 @@ class ChatUiPage extends StatelessWidget {
   final _callButtonDecoration = BoxDecoration(color: Color(0xFF414350), borderRadius: BorderRadius.circular(50));
   final _videoButtonDecoration = BoxDecoration(color: Color(0xFF414350), borderRadius: BorderRadius.circular(50));
 }
-
-final List<Friend> _friends = [
-  Friend(
-    name: 'John',
-    image: '$STORE_BASE_URL/img%2F1.jpg?alt=media',
-    message: 'Hello, how are you?',
-    msgTime: '1 hr.',
-    color: Colors.greenAccent,
-  ),
-  Friend(
-    name: 'RIna',
-    image: '$STORE_BASE_URL/img%2F4.jpg?alt=media',
-    message: 'Hello, how are you?',
-    msgTime: '1 hr.',
-    color: Colors.yellowAccent,
-  ),
-  Friend(
-    name: 'Brad',
-    image: '$STORE_BASE_URL/img%2F6.jpg?alt=media',
-    message: 'Hello, how are you?',
-    msgTime: '1 hr.',
-    color: Colors.redAccent,
-  ),
-  Friend(
-    name: 'Don',
-    image: '$STORE_BASE_URL/img%2F7.jpg?alt=media',
-    message: 'Hello, how are you?',
-    msgTime: '1 hr.',
-    color: Colors.yellowAccent,
-  ),
-  Friend(
-    name: 'Dev',
-    image: '$STORE_BASE_URL/img%2Fdev_damodar.jpg?alt=media&token=aaf47b41-3485-4bab-bcb6-2e472b9afee6',
-    message: 'Hello, how are you?',
-    msgTime: '1 hr.',
-    color: Colors.greenAccent,
-  ),
-  Friend(
-    name: 'Mukambo',
-    image: '$STORE_BASE_URL/img%2Fdev_sudip.jpg?alt=media',
-    message: 'Hello, how are you?',
-    msgTime: '1 hr.',
-    color: Colors.blueAccent,
-  ),
-  Friend(
-    name: 'Sid',
-    image: '$STORE_BASE_URL/img%2Fdev_sid.png?alt=media',
-    message: 'Hello, how are you?',
-    msgTime: '1 hr.',
-    color: Colors.cyanAccent,
-  ),
-];

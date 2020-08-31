@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../gwidgets/gtypography.dart';
+import '../widgets/grocery_title.dart';
 
 class GroceryProfileTabView extends StatelessWidget {
   @override
@@ -8,30 +8,36 @@ class GroceryProfileTabView extends StatelessWidget {
     return Container(
       color: Colors.white,
       child: ListView(
-        padding: EdgeInsets.all(10.0),
-        children: <Widget>[
+        padding: _insets10,
+        children: [
           ListTile(
             onTap: () {},
-            leading: Icon(Icons.edit),
+            leading: _editIcon,
             title: GroceryTitle(text: "My Orders"),
           ),
           ListTile(
             onTap: () {},
-            leading: Icon(Icons.favorite_border),
+            leading: _favoriteBorderIcon,
             title: GroceryTitle(text: "My Favorite"),
           ),
           ListTile(
             onTap: () {},
-            leading: Icon(Icons.account_balance_wallet),
+            leading: _accountBalanceWalletIcon,
             title: GroceryTitle(text: "Payment Details"),
           ),
           ListTile(
             onTap: () {},
-            leading: Icon(Icons.settings),
+            leading: _settingsIcon,
             title: GroceryTitle(text: "My Account"),
           ),
         ],
       ),
     );
   }
+
+  final _insets10 = EdgeInsets.all(10);
+  final _editIcon = Icon(Icons.edit);
+  final _settingsIcon = Icon(Icons.settings);
+  final _favoriteBorderIcon = Icon(Icons.favorite_border);
+  final _accountBalanceWalletIcon = Icon(Icons.account_balance_wallet);
 }

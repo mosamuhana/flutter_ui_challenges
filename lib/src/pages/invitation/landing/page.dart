@@ -34,7 +34,7 @@ class InvitationLandingPage extends StatelessWidget {
               child: Column(
                 children: [
                   Expanded(
-                    child: Center(child: PNetworkImage(INVITE)),
+                    child: Center(child: PNetworkImage(_inviteImageUrl)),
                   ),
                   _hbox20,
                   _buildAccountButton(context),
@@ -115,8 +115,8 @@ class InvitationLandingPage extends StatelessWidget {
   );
 
   final _insetsH20V8 = EdgeInsets.symmetric(horizontal: 20, vertical: 8);
-}
 
-const INVITE = "$STORE_BASE_URL/img%2Finvite.png?alt=media";
+  final _inviteImageUrl = "$STORE_BASE_URL/img%2Finvite.png?alt=media";
+}
 
 const _primaryColor = Color(0xffE20056);

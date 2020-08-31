@@ -69,22 +69,18 @@ class _LoaderTwoState extends State<LoaderTwo> with SingleTickerProviderStateMix
       ),
     );
 
-    controller.addListener(() {
-      var v = controller.value;
-      if (v >= 0.75 && v <= 1) {
-        setState(() => radius = animationRadiusIn.value * widget.centralDotRadius);
-      } else if (v >= 0 && v <= 0.25) {
-        setState(() => radius = animationRadiusOut.value * widget.centralDotRadius);
-      }
-    });
+    controller.addListener(_onAnimation);
 
     controller.repeat();
   }
 
   @override
   void dispose() {
-    super.dispose();
+    controller.stop();
+    controller.removeListener(_onAnimation);
     controller.dispose();
+
+    super.dispose();
   }
 
   @override
@@ -138,5 +134,14 @@ class _LoaderTwoState extends State<LoaderTwo> with SingleTickerProviderStateMix
         decoration: BoxDecoration(color: widget.colors[index], shape: BoxShape.circle),
       ),
     );
+  }
+
+  void _onAnimation() {
+    var v = controller.value;
+    if (v >= 0.75 && v <= 1) {
+      setState(() => radius = animationRadiusIn.value * widget.centralDotRadius);
+    } else if (v >= 0 && v <= 0.25) {
+      setState(() => radius = animationRadiusOut.value * widget.centralDotRadius);
+    }
   }
 }

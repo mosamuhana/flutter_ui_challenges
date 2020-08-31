@@ -17,18 +17,18 @@ class _LoaderOneState extends State<LoaderOne> with SingleTickerProviderStateMix
     super.initState();
     controller = AnimationController(vsync: this, duration: Duration(milliseconds: 1200));
     animation = CurvedAnimation(parent: controller, curve: Curves.elasticOut);
-    animation.addListener(() {
-      setState(() {});
-    });
-
-    animation.addStatusListener((AnimationStatus status) {});
+    animation.addListener(_onAnimation);
+    animation.addStatusListener(_onAnimationStatus);
     controller.repeat();
   }
 
   @override
   void dispose() {
-    super.dispose();
+    controller.stop();
+    animation.removeListener(_onAnimation);
+    animation.removeStatusListener(_onAnimationStatus);
     controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -61,6 +61,12 @@ class _LoaderOneState extends State<LoaderOne> with SingleTickerProviderStateMix
       ),
     );
   }
+
+  void _onAnimation() {
+    setState(() {});
+  }
+
+  void _onAnimationStatus(AnimationStatus status) {}
 
   final _hbox5 = SizedBox(height: 5);
 }

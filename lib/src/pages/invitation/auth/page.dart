@@ -53,7 +53,7 @@ class _InvitationAuthPageState extends State<InvitationAuthPage> {
           Container(
             alignment: Alignment.topCenter,
             height: (MediaQuery.of(context).size.height / 2) - 150,
-            child: PNetworkImage(INVITE, fit: BoxFit.contain),
+            child: PNetworkImage(_inviteImageUrl, fit: BoxFit.contain),
           ),
           _hbox10,
           _formContainer,
@@ -145,6 +145,6 @@ class _InvitationAuthPageState extends State<InvitationAuthPage> {
       topRight: Radius.circular(10),
     ),
   );
-}
 
-const INVITE = "$STORE_BASE_URL/img%2Finvite.png?alt=media";
+  final _inviteImageUrl = "$STORE_BASE_URL/img%2Finvite.png?alt=media";
+}

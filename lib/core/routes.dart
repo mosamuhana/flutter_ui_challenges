@@ -1,113 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../src/pages/animations/bottom_reveal_animation/page.dart';
-import '../src/pages/animations/fancy_appbar_animation/page.dart';
-import '../src/pages/animations/animated_bottom_bar/page.dart';
-import '../src/pages/animations/animated_list_one/page.dart';
-import '../src/pages/animations/hero_animation/page.dart';
-
-import '../src/pages/profile/profile1/page.dart';
-import '../src/pages/profile/profile2/page.dart';
-import '../src/pages/profile/profile3/page.dart';
-import '../src/pages/profile/profile4/page.dart';
-import '../src/pages/profile/profile5/page.dart';
-import '../src/pages/profile/profile6/page.dart';
-import '../src/pages/profile/profile7/page.dart';
-import '../src/pages/profile/profile8/page.dart';
-import '../src/pages/profile/profile9/page.dart';
-
-import '../src/pages/login/auth1/page.dart';
-import '../src/pages/login/auth2/page.dart';
-import '../src/pages/login/auth3/page.dart';
-import '../src/pages/login/login1/page.dart';
-import '../src/pages/login/login2/page.dart';
-import '../src/pages/login/login3/page.dart';
-import '../src/pages/login/login4/page.dart';
-import '../src/pages/login/login5/page.dart';
-import '../src/pages/login/login6/page.dart';
-import '../src/pages/login/login7/page.dart';
-import '../src/pages/login/signup1/page.dart';
-import '../src/pages/login/signup2/page.dart';
-
-import '../src/pages/settings/settings1/page.dart';
-import '../src/pages/settings/settings2/page.dart';
-import '../src/pages/settings/settings3/page.dart';
-
-import '../src/pages/bike/details.dart';
-import '../src/pages/bike/page.dart';
-
-import '../src/pages/lists/list1/page.dart';
-import '../src/pages/lists/list2/page.dart';
-
-import '../src/pages/invitation/auth/page.dart';
-import '../src/pages/invitation/landing/page.dart';
-import '../src/pages/invitation/invitation/page.dart';
-
-import '../src/pages/ecommerce/cart1/page.dart';
-import '../src/pages/ecommerce/cart2/page.dart';
-import '../src/pages/ecommerce/checkout/page.dart';
-import '../src/pages/ecommerce/confirm_order/page.dart';
-import '../src/pages/ecommerce/ecommerce1/page.dart';
-import '../src/pages/ecommerce/ecommerce2/page.dart';
-import '../src/pages/ecommerce/ecommerce3/page.dart';
-import '../src/pages/ecommerce/ecommerce4/page.dart';
-import '../src/pages/ecommerce/ecommerce_detail1/page.dart';
-import '../src/pages/ecommerce/ecommerce_detail2/page.dart';
-import '../src/pages/ecommerce/ecommerce_detail3/page.dart';
-
-import '../src/pages/blog/article1/page.dart';
-import '../src/pages/blog/article2/page.dart';
-import '../src/pages/blog/blog_home/page.dart';
-import '../src/pages/blog/news_home/page.dart';
-import '../src/pages/blog/sports_news_home/page.dart';
-
-import '../src/pages/dashboard/dashboard1/page.dart';
-import '../src/pages/dashboard/dashboard2/page.dart';
-import '../src/pages/dashboard/dashboard3/page.dart';
-
-import '../src/pages/food/avocado/page.dart';
-import '../src/pages/food/cake_details/page.dart';
-import '../src/pages/food/food_delivery/page.dart';
-import '../src/pages/food/food_order_checkout/page.dart';
-import '../src/pages/food/recipe_list/page.dart';
-
-import '../src/apps/quiz_app/check_answers.dart';
-import '../src/apps/quiz_app/data.dart';
-import '../src/apps/quiz_app/home.dart';
-import '../src/apps/quiz_app/quiz_finished.dart';
-import '../src/apps/quiz_app/quiz_page.dart';
-
-import '../src/pages/todo/todo_home1/page.dart';
-import '../src/pages/todo/todo_home2/page.dart';
-import '../src/pages/todo/todo_home3/page.dart';
-import '../src/pages/todo/todo_home4/page.dart';
-
-import '../src/pages/travel/index.dart';
-
-import '../src/pages/hotel/index.dart';
-
-import '../src/pages/navigation/dark_drawer_menu/page.dart';
-import '../src/pages/navigation/light_drawer_menu/page.dart';
-import '../src/pages/navigation/hidden_menu/page.dart';
-import '../src/pages/navigation/menu_one/page.dart';
-import '../src/pages/navigation/fancy_bottom_navigation/page.dart';
-
-import '../src/pages/onboarding/index.dart';
-
-import '../src/apps/khalti/main.dart';
-import '../src/apps/grocery/ghome.dart';
-import '../src/apps/nic_asia/nic_asia_app.dart';
-import '../src/apps/furniture/furniture_app.dart';
-
-import '../src/pages/dialogs/alert_dialogs/page.dart';
-
-import '../src/pages/misc/index.dart';
-
+import '../src/pages/index.dart';
+import '../src/apps/index.dart';
 import 'models.dart';
 
 final List<dynamic> pages = [
   /*
+
   MenuItem(
     title: "Animations",
     icon: FontAwesomeIcons.truckMoving,
@@ -237,16 +137,6 @@ final List<dynamic> pages = [
     ],
   ),
   MenuItem(
-    title: "Quiz app",
-    icon: FontAwesomeIcons.question,
-    items: [
-      SubMenuItem("Quiz Home", QuizHomePage(), path: QuizHomePage.path),
-      //SubMenuItem("Quiz Page", QuizPage(questions: demoQuestions, category: categories[9]), path: QuizPage.path),
-      //SubMenuItem("Quiz Result", QuizFinishedPage(questions: demoQuestions, answers: demoAnswers), path: QuizFinishedPage.path),
-      //SubMenuItem("Check Answers", CheckAnswersPage(questions: demoQuestions, answers: demoAnswers), path: CheckAnswersPage.path),
-    ],
-  ),
-  MenuItem(
     title: "Todo",
     icon: FontAwesomeIcons.tasks,
     items: [
@@ -264,14 +154,6 @@ final List<dynamic> pages = [
       SubMenuItem("Travel Home 2", TravelHome2Page(), path: TravelHome2Page.path),
       SubMenuItem("Travel Nepal", TravelNepalPage(), path: TravelNepalPage.path),
       SubMenuItem("Travel Destination Detail", TravelDestinationDetailPage(), path: TravelDestinationDetailPage.path),
-    ],
-  ),
-  MenuItem(
-    title: "Hotel",
-    icon: Icons.hotel,
-    items: [
-      SubMenuItem("Hotel Home", HotelHomePage(), path: HotelHomePage.path),
-      //SubMenuItem("Room Details", HotelDetailsPage(), path: HotelDetailsPage.path),
     ],
   ),
   MenuItem(
@@ -298,11 +180,9 @@ final List<dynamic> pages = [
       SubMenuItem("Smart Wallet Onboarding", SmartWalletOnboardingPage(), path: SmartWalletOnboardingPage.path),
     ],
   ),
-  */
   MenuItem(
     title: "Miscellaneous",
     items: [
-      // ................
       SubMenuItem('Image Crop', ImageCropPage(), path: ImageCropPage.path, icon: Icons.crop),
       SubMenuItem("Gallery One", GalleryOnePage(), path: GalleryOnePage.path),
       SubMenuItem('Music player One', MusicPlayerOnePage(), path: MusicPlayerOnePage.path),
@@ -319,18 +199,19 @@ final List<dynamic> pages = [
       SubMenuItem('BottomSheet Awesome', BottomSheetAwesome(), path: BottomSheetAwesome.path),
     ],
   ),
-  /*
+  */
   MenuItem(
     title: "Apps (Clones)",
     items: [
-      SubMenuItem('Khalti App', KhaltiApp(), path: KhaltiApp.path),
+      SubMenuItem("Hotel App", HotelHomePage(), path: HotelHomePage.path),
+      SubMenuItem("Quiz App", QuizHomePage(), path: QuizHomePage.path),
       SubMenuItem("Grocery UI Kit", GroceryHomePage(), path: GroceryHomePage.path),
-      SubMenuItem("Bank App Clone", NicAsiaApp(), path: NicAsiaApp.path),
       SubMenuItem("Furniture App", FurnitureApp(), path: FurnitureApp.path),
+      SubMenuItem('Khalti App', KhaltiApp(), path: KhaltiApp.path),
+      SubMenuItem("Bank App Clone", NicAsiaApp(), path: NicAsiaApp.path),
     ],
     icon: Icons.account_balance_wallet,
   ),
-  */
 ];
 
 SubMenuItem getItemForKey(String key) {

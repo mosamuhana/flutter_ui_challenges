@@ -12,18 +12,12 @@ class Profile extends StatelessWidget {
     return Material(
       color: Colors.white,
       child: Padding(
-        padding: const EdgeInsets.only(
-          left: 20.0,
-          right: 20.0,
-          top: 30.0,
-        ),
+        padding: EdgeInsets.only(left: 20, right: 20, top: 30),
         child: Column(
           //mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            TitleLarge(
-              title: 'Center',
-            ),
+            TitleLarge(title: 'Center'),
             hSizedBox20,
             ProfileDetail(),
             hSizedBox30,
