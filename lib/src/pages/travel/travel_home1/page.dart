@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/constants.dart';
 import '../../../../core/widgets.dart';
-import '../destination/page.dart';
+import '../travel_destination_detail/page.dart';
+import '../models.dart';
+import '../data.dart';
 
 class TravelHome1Page extends StatefulWidget {
   static final String path = "lib/src/pages/travel/travel_home1/page.dart";
@@ -12,12 +13,21 @@ class TravelHome1Page extends StatefulWidget {
 }
 
 class _TravelHome1PageState extends State<TravelHome1Page> {
-  final user = _User(name: 'Raj Kumar', image: _imageAvatar);
-  final List<_TravelPlace> places = _travelPlaces;
-  final List<bool> favorites = _travelPlaces.map((x) => false).toList();
   final List<String> items = ['Jomsom', 'Palpa', 'Namche'];
 
+  User user;
+  List<TravelPlace> places;
+  List<bool> favorites;
+
   int _currentNavIndex = 0;
+
+  @override
+  void initState() {
+    user = getUser(1);
+    places = getTravelPlaces();
+    favorites = places.map((x) => false).toList();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -167,7 +177,7 @@ class _TravelHome1PageState extends State<TravelHome1Page> {
     );
   }
 
-  void _openDestinationPage() => Navigator.push(context, MaterialPageRoute(builder: (_) => DestinationPage()));
+  void _openDestinationPage() => Navigator.push(context, MaterialPageRoute(builder: (_) => TravelDestinationDetailPage()));
 
   final _boldS18Style = TextStyle(fontSize: 18, fontWeight: FontWeight.bold);
   final _greyStyle = TextStyle(color: Colors.grey.shade700);
@@ -193,33 +203,3 @@ class _TravelHome1PageState extends State<TravelHome1Page> {
   final _favoriteBorderIcon = Icon(Icons.favorite_border, color: Colors.white);
   final _favoriteIcon = Icon(Icons.favorite, color: Colors.red);
 }
-
-class _User {
-  final String name;
-  final String image;
-  _User({this.name, this.image});
-}
-
-class _TravelPlace {
-  final String name;
-  final String image;
-  final String subtitle;
-  _TravelPlace({this.name, this.image, this.subtitle});
-}
-
-const String _imageAvatar = '$STORE_BASE_URL/img%2F7.jpg?alt=media';
-const String _imageKathmandu1 = '$STORE_BASE_URL/travel%2Fkathmandu1.jpg?alt=media';
-const String _imageFewalake = '$STORE_BASE_URL/travel%2Ffewalake.jpg?alt=media';
-
-final _travelPlaces = <_TravelPlace>[
-  _TravelPlace(
-    name: 'Kathmandu',
-    image: _imageKathmandu1,
-    subtitle: '90 places worth to visit',
-  ),
-  _TravelPlace(
-    name: 'Pokhara',
-    image: _imageFewalake,
-    subtitle: '40 places worth to visit',
-  ),
-];

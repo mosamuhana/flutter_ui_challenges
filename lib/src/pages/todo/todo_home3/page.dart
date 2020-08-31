@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../core/constants.dart';
+import 'wiki_category.dart';
 
 class TodoHome3Page extends StatelessWidget {
   static final String path = "lib/src/pages/todo/todo_home3/page.dart";
@@ -11,9 +12,10 @@ class TodoHome3Page extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.black),
         backgroundColor: Colors.white,
         elevation: 0,
-        leading: _verticalMenuIcon,
+        //leading: _verticalMenuIcon,
         actions: [
           Padding(
             padding: _insetsH16V12,
@@ -21,6 +23,10 @@ class TodoHome3Page extends StatelessWidget {
               maxRadius: 15,
               backgroundImage: NetworkImage(_avatars[0]),
             ),
+          ),
+          Padding(
+            padding: _insetsH16V12,
+            child: _verticalMenuIcon,
           ),
         ],
       ),
@@ -50,26 +56,23 @@ class TodoHome3Page extends StatelessWidget {
   }
 
   Widget get _verticalMenuIcon {
-    return Padding(
-      padding: _insetsL16,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Container(
-            height: 4,
-            width: 18,
-            decoration: _circularDecoration,
-          ),
-          _hbox4,
-          Container(
-            height: 4,
-            width: 12,
-            decoration: _circularDecoration,
-          ),
-        ],
-      ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          height: 4,
+          width: 18,
+          decoration: _circularDecoration,
+        ),
+        _hbox4,
+        Container(
+          height: 4,
+          width: 12,
+          decoration: _circularDecoration,
+        ),
+      ],
     );
   }
 
@@ -107,7 +110,7 @@ class TodoHome3Page extends StatelessWidget {
         Row(
           children: [
             Expanded(
-              child: _WikiCategory(
+              child: WikiCategory(
                 icon: FontAwesomeIcons.calendarCheck,
                 label: "All Wikis",
                 color: Colors.deepOrange.withOpacity(0.7),
@@ -115,7 +118,7 @@ class TodoHome3Page extends StatelessWidget {
             ),
             _wbox16,
             Expanded(
-              child: _WikiCategory(
+              child: WikiCategory(
                 icon: FontAwesomeIcons.lock,
                 label: "My private notes",
                 color: Colors.blue.withOpacity(0.6),
@@ -127,7 +130,7 @@ class TodoHome3Page extends StatelessWidget {
         Row(
           children: [
             Expanded(
-              child: _WikiCategory(
+              child: WikiCategory(
                 icon: FontAwesomeIcons.bookmark,
                 label: "Bookmarked wikis",
                 color: Colors.indigo.withOpacity(0.7),
@@ -135,7 +138,7 @@ class TodoHome3Page extends StatelessWidget {
             ),
             _wbox16,
             Expanded(
-              child: _WikiCategory(
+              child: WikiCategory(
                 icon: FontAwesomeIcons.file,
                 label: "Templates",
                 color: Colors.greenAccent,
@@ -202,48 +205,35 @@ class TodoHome3Page extends StatelessWidget {
       ],
     );
   }
+
+  final _hbox4 = SizedBox(height: 4);
+  final _hbox5 = SizedBox(height: 5);
+  final _hbox10 = SizedBox(height: 10);
+  final _hbox16 = SizedBox(height: 16);
+  final _hbox20 = SizedBox(height: 20);
+  final _wbox10 = SizedBox(width: 10);
+  final _wbox16 = SizedBox(width: 16);
+
+  final _deepOrangeStyle = TextStyle(color: Colors.deepOrange);
+  final _greyBoldStyle = TextStyle(color: Colors.grey.shade700, fontWeight: FontWeight.bold);
+
+  final _insetsH16V12 = EdgeInsets.symmetric(vertical: 12, horizontal: 16);
+  final _insets8 = EdgeInsets.all(8);
+  final _insets16 = EdgeInsets.all(16);
+
+  final _floatingActionButtonShape = RoundedRectangleBorder(borderRadius: BorderRadius.circular(10));
+
+  final _circularDecoration = BoxDecoration(color: Colors.black, borderRadius: BorderRadius.circular(2));
+
+  final _addCircleOutlineIcon = Icon(Icons.add_circle_outline);
+  final _homeIcon = Icon(Icons.home);
+  final _messageIcon = Icon(Icons.message);
+  final _moreVertIcon = Icon(Icons.more_vert);
+  final _addIcon = Icon(Icons.add);
+  final _circleIcon = Icon(FontAwesomeIcons.circle, size: 16);
+
+  final _spacer = Spacer();
 }
-
-// ----------------------------------------------------------------------------------
-// Private Widgets ------------------------------------------------------------------
-// ----------------------------------------------------------------------------------
-
-class _WikiCategory extends StatelessWidget {
-  final IconData icon;
-  final String label;
-  final Color color;
-  const _WikiCategory({Key key, this.icon, this.label, this.color}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          padding: _insets26,
-          alignment: Alignment.centerRight,
-          child: Opacity(opacity: 0.3, child: Icon(icon, size: 40, color: Colors.white)),
-          decoration: BoxDecoration(color: color, borderRadius: _circularBorder20),
-        ),
-        Padding(
-          padding: _insets16,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(icon, color: Colors.white),
-              _hbox16,
-              Text(label, style: _whiteBoldStyle),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-// ----------------------------------------------------------------------------------
-// Private Static Data --------------------------------------------------------------
-// ----------------------------------------------------------------------------------
 
 const List<String> _avatars = [
   '$STORE_BASE_URL/img%2F1.jpg?alt=media',
@@ -251,37 +241,3 @@ const List<String> _avatars = [
   '$STORE_BASE_URL/img%2F7.jpg?alt=media',
   '$STORE_BASE_URL/img%2Fdev_damodar.jpg?alt=media&token=aaf47b41-3485-4bab-bcb6-2e472b9afee6',
 ];
-
-const _hbox4 = SizedBox(height: 4);
-const _hbox5 = SizedBox(height: 5);
-const _hbox10 = SizedBox(height: 10);
-const _hbox16 = SizedBox(height: 16);
-const _hbox20 = SizedBox(height: 20);
-const _wbox10 = SizedBox(width: 10);
-const _wbox16 = SizedBox(width: 16);
-
-const _deepOrangeStyle = TextStyle(color: Colors.deepOrange);
-final _greyBoldStyle = TextStyle(color: Colors.grey.shade700, fontWeight: FontWeight.bold);
-final _whiteBoldStyle = TextStyle(color: Colors.white, fontWeight: FontWeight.bold);
-
-const _insetsL16 = EdgeInsets.only(left: 16);
-const _insetsH16V12 = EdgeInsets.symmetric(vertical: 12, horizontal: 16);
-const _insets8 = EdgeInsets.all(8);
-const _insets16 = EdgeInsets.all(16);
-const _insets26 = EdgeInsets.all(26);
-
-const _circularBorder10 = BorderRadius.all(Radius.circular(10));
-const _circularBorder20 = BorderRadius.all(Radius.circular(20));
-
-const _floatingActionButtonShape = RoundedRectangleBorder(borderRadius: _circularBorder10);
-
-const _circularDecoration = BoxDecoration(color: Colors.black, borderRadius: BorderRadius.all(Radius.circular(2)));
-
-const _addCircleOutlineIcon = Icon(Icons.add_circle_outline);
-const _homeIcon = Icon(Icons.home);
-const _messageIcon = Icon(Icons.message);
-const _moreVertIcon = Icon(Icons.more_vert);
-const _addIcon = Icon(Icons.add);
-const _circleIcon = Icon(FontAwesomeIcons.circle, size: 16);
-
-const _spacer = Spacer();

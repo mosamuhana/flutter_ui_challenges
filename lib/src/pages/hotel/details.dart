@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '_data.dart' show roomList;
-import '_rating_widget.dart';
+import 'models.dart';
+import 'rating_widget.dart';
 
 class HotelDetailsPage extends StatelessWidget {
-  static final String path = "lib/src/pages/hotel/details.dart";
+  final Room room;
 
-  final room = roomList[2];
+  HotelDetailsPage({Key key, @required this.room}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

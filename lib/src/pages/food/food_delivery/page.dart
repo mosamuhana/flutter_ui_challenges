@@ -2,16 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
 import '../../../../core/widgets.dart';
-import 'recipe_data.dart';
+import 'models.dart';
+import 'data.dart';
 
-class FoodDeliveryHomePage extends StatefulWidget {
+class FoodDeliveryPage extends StatefulWidget {
   static final String path = "lib/src/pages/food/food_delivery/page.dart";
 
   @override
-  _FoodDeliveryHomePageState createState() => _FoodDeliveryHomePageState();
+  _FoodDeliveryPageState createState() => _FoodDeliveryPageState();
 }
 
-class _FoodDeliveryHomePageState extends State<FoodDeliveryHomePage> {
+class _FoodDeliveryPageState extends State<FoodDeliveryPage> {
+  final List<Recipe> sliderItems = getSliderItems();
+  final List<RestaurantSpecialOffer> restaurantSpecialOffers = getRestaurantSpecialOffers();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -201,32 +205,24 @@ class _FoodDeliveryHomePageState extends State<FoodDeliveryHomePage> {
       ),
     );
   }
+
+  final _hbox5 = SizedBox(height: 5);
+  final _hbox10 = SizedBox(height: 10);
+
+  final _whiteStyle = TextStyle(color: Colors.white);
+  final _blackStyle = TextStyle(color: Colors.black);
+  final _s12Style = TextStyle(fontSize: 12);
+  final _s14Style = TextStyle(fontSize: 14);
+  final _redS16Style = TextStyle(fontSize: 16, color: Colors.red);
+
+  final _shoppingCartIcon = Icon(Icons.shopping_cart);
+  final _searchIcon = Icon(Icons.search);
+  final _favoriteBorderIcon = Icon(Icons.favorite_border);
+  final _addShoppingCartIcon = Icon(Icons.add_shopping_cart);
+
+  final _insetsL20T20 = EdgeInsets.only(left: 20, top: 20);
+  final _insetsL20R20T20 = EdgeInsets.only(left: 20, right: 20, top: 30);
+  final _insetsH20V10 = EdgeInsets.symmetric(vertical: 10, horizontal: 20);
+
+  final _outlineInputBorder = OutlineInputBorder(borderRadius: BorderRadius.circular(5));
 }
-
-// ----------------------------------------------------------------------------------
-// Private Static Contents ----------------------------------------------------------
-// ----------------------------------------------------------------------------------
-
-const _hbox5 = SizedBox(height: 5);
-const _hbox10 = SizedBox(height: 10);
-
-const _whiteStyle = TextStyle(color: Colors.white);
-const _blackStyle = TextStyle(color: Colors.black);
-const _s12Style = TextStyle(fontSize: 12);
-const _s14Style = TextStyle(fontSize: 14);
-const _redS16Style = TextStyle(fontSize: 16, color: Colors.red);
-
-const _shoppingCartIcon = Icon(Icons.shopping_cart);
-const _searchIcon = Icon(Icons.search);
-const _favoriteBorderIcon = Icon(Icons.favorite_border);
-const _addShoppingCartIcon = Icon(Icons.add_shopping_cart);
-
-const _insetsL20T20 = EdgeInsets.only(left: 20, top: 20);
-const _insetsL20R20T20 = EdgeInsets.only(left: 20, right: 20, top: 30);
-const _insetsH20V10 = EdgeInsets.symmetric(vertical: 10, horizontal: 20);
-
-const _circularRadius5 = Radius.circular(5);
-
-const _circularBorder5 = BorderRadius.all(_circularRadius5);
-
-const _outlineInputBorder = OutlineInputBorder(borderRadius: _circularBorder5);

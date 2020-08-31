@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '_header_footer_widget.dart';
+import 'header_footer_widget.dart';
 
 class TodoHome2Page extends StatelessWidget {
   static final String path = "lib/src/pages/todo/todo_home2/page.dart";
@@ -158,7 +158,6 @@ class TodoHome2Page extends StatelessWidget {
     );
   }
 
-  // Private Resources
   final _hbox5 = SizedBox(height: 5);
   final _hbox20 = SizedBox(height: 20);
   final _wbox5 = SizedBox(width: 5);
@@ -178,7 +177,3 @@ class TodoHome2Page extends StatelessWidget {
 
   final _radius20 = Radius.circular(20);
 }
-
-// ----------------------------------------------------------------------------------
-// Private Static Data --------------------------------------------------------------
-// ----------------------------------------------------------------------------------

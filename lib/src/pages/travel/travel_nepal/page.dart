@@ -3,6 +3,7 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 
 import '../../../../core/constants.dart';
 import '../../../../core/widgets.dart';
+import '../data.dart';
 
 class TravelNepalPage extends StatefulWidget {
   static final String path = "lib/src/pages/travel/travel_nepal/page.dart";
@@ -12,10 +13,16 @@ class TravelNepalPage extends StatefulWidget {
 }
 
 class _TravelNepalPageState extends State<TravelNepalPage> {
-  final _images = <String>[_fewalake, _kathmandu1, _fishtail, _mountEverest, _kathmandu2];
-  final _tags = <String>['Pokhara', 'Everest base camp', 'Lumbini', 'Annapurna', 'Kathmandu', '10+'];
+  List<String> _images;
+  List<String> _tags;
+  int selectedTagIndex = 0;
 
-  int _selectedTag = 0;
+  @override
+  void initState() {
+    _images = getImages();
+    _tags = getTags();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +33,7 @@ class _TravelNepalPageState extends State<TravelNepalPage> {
             height: 300,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: NetworkImage(_mountEverest),
+                image: NetworkImage(MOUNT_EVEREST),
                 fit: BoxFit.cover,
               ),
             ),
@@ -102,9 +109,9 @@ class _TravelNepalPageState extends State<TravelNepalPage> {
 
   Widget get _frequentlySearched {
     Widget createTag(int index) {
-      var selected = _selectedTag == index;
+      var selected = selectedTagIndex == index;
       return InkWell(
-        onTap: () => setState(() => _selectedTag = index),
+        onTap: () => setState(() => selectedTagIndex = index),
         child: Chip(
           backgroundColor: selected ? Colors.red : null,
           label: Text(_tags[index].toUpperCase(), style: selected ? _whiteStyle : null),
@@ -156,8 +163,4 @@ class _TravelNepalPageState extends State<TravelNepalPage> {
   );
 }
 
-const String _mountEverest = '$STORE_BASE_URL/travel%2Fmount_everest.jpg?alt=media';
-const String _fewalake = '$STORE_BASE_URL/travel%2Ffewalake.jpg?alt=media';
-const String _kathmandu1 = '$STORE_BASE_URL/travel%2Fkathmandu1.jpg?alt=media';
-const String _kathmandu2 = '$STORE_BASE_URL/travel%2Fkathmandu2.jpg?alt=media';
-const String _fishtail = '$STORE_BASE_URL/travel%2Ffishtail.jpg?alt=media';
+const MOUNT_EVEREST = '$STORE_BASE_URL/travel%2Fmount_everest.jpg?alt=media';

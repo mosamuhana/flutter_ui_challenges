@@ -70,28 +70,23 @@ import '../src/pages/food/avocado/page.dart';
 import '../src/pages/food/cake_details/page.dart';
 import '../src/pages/food/food_delivery/page.dart';
 import '../src/pages/food/food_order_checkout/page.dart';
-import '../src/pages/food/recipe_details/page.dart';
 import '../src/pages/food/recipe_list/page.dart';
-import '../src/pages/food/recipe_single/page.dart';
 
-import '../src/pages/quiz_app/check_answers.dart';
-import '../src/pages/quiz_app/models/demo_values.dart';
-import '../src/pages/quiz_app/home.dart';
-import '../src/pages/quiz_app/quiz_finished.dart';
-import '../src/pages/quiz_app/quiz_page.dart';
+import '../src/apps/quiz_app/check_answers.dart';
+import '../src/apps/quiz_app/data.dart';
+import '../src/apps/quiz_app/home.dart';
+import '../src/apps/quiz_app/quiz_finished.dart';
+import '../src/apps/quiz_app/quiz_page.dart';
 
 import '../src/pages/todo/todo_home1/page.dart';
 import '../src/pages/todo/todo_home2/page.dart';
 import '../src/pages/todo/todo_home3/page.dart';
 import '../src/pages/todo/todo_home4/page.dart';
 
-import '../src/pages/travel/travel_home1/page.dart';
-import '../src/pages/travel/travel_home2/page.dart';
-import '../src/pages/travel/destination/page.dart';
-import '../src/pages/travel/travel_nepal/page.dart';
+import '../src/pages/travel/index.dart';
 
 import '../src/pages/hotel/details.dart';
-import '../src/pages/hotel/home.dart';
+import '../src/pages/hotel/page.dart';
 
 import '../src/pages/navigation/dark_drawer_menu.dart';
 import '../src/pages/navigation/light_drawer_menu.dart';
@@ -249,7 +244,6 @@ final List<dynamic> pages = [
       SubMenuItem("Dashboard 3", Dashboard3Page(), path: Dashboard3Page.path),
     ],
   ),
-  */
   MenuItem(
     title: "Food",
     icon: Icons.fastfood,
@@ -258,22 +252,17 @@ final List<dynamic> pages = [
       SubMenuItem("Fruits Add to Cart", AvocadoPage(), path: AvocadoPage.path),
       SubMenuItem("Cake Details", CakeDetailsPage(), path: CakeDetailsPage.path),
       SubMenuItem("Recipe List", RecipeListPage(), path: RecipeListPage.path),
-      SubMenuItem("Recipe Single", RecipeSinglePage(), path: RecipeSinglePage.path),
-      SubMenuItem("Recipe Details", RecipeDetailsPage(), path: RecipeDetailsPage.path),
-      SubMenuItem("Food Delivery", FoodDeliveryHomePage(), path: FoodDeliveryHomePage.path),
+      SubMenuItem("Food Delivery", FoodDeliveryPage(), path: FoodDeliveryPage.path),
     ],
   ),
-  /*
   MenuItem(
     title: "Quiz app",
     icon: FontAwesomeIcons.question,
     items: [
       SubMenuItem("Quiz Home", QuizHomePage(), path: QuizHomePage.path),
-      SubMenuItem("Quiz Page", QuizPage(questions: demoQuestions, category: categories[9]), path: QuizPage.path),
-      SubMenuItem("Quiz Result", QuizFinishedPage(questions: demoQuestions, answers: demoAnswers),
-          path: QuizFinishedPage.path),
-      SubMenuItem("Check Answers", CheckAnswersPage(questions: demoQuestions, answers: demoAnswers),
-          path: CheckAnswersPage.path),
+      //SubMenuItem("Quiz Page", QuizPage(questions: demoQuestions, category: categories[9]), path: QuizPage.path),
+      //SubMenuItem("Quiz Result", QuizFinishedPage(questions: demoQuestions, answers: demoAnswers), path: QuizFinishedPage.path),
+      //SubMenuItem("Check Answers", CheckAnswersPage(questions: demoQuestions, answers: demoAnswers), path: CheckAnswersPage.path),
     ],
   ),
   MenuItem(
@@ -283,7 +272,6 @@ final List<dynamic> pages = [
       SubMenuItem("Todo Home 1", TodoHome1Page(), path: TodoHome1Page.path),
       SubMenuItem("Todo Home 2", TodoHome2Page(), path: TodoHome2Page.path),
       SubMenuItem("Todo Home 3", TodoHome3Page(), path: TodoHome3Page.path),
-      // ***********************************
       SubMenuItem("Todo Home 4", TodoHome4Page(), path: TodoHome4Page.path),
     ],
   ),
@@ -294,17 +282,19 @@ final List<dynamic> pages = [
       SubMenuItem("Travel Home 1", TravelHome1Page(), path: TravelHome1Page.path),
       SubMenuItem("Travel Home 2", TravelHome2Page(), path: TravelHome2Page.path),
       SubMenuItem("Travel Nepal", TravelNepalPage(), path: TravelNepalPage.path),
-      SubMenuItem("Travel Destination Detail", DestinationPage(), path: DestinationPage.path),
+      SubMenuItem("Travel Destination Detail", TravelDestinationDetailPage(), path: TravelDestinationDetailPage.path),
     ],
   ),
+  */
   MenuItem(
     title: "Hotel",
     icon: Icons.hotel,
     items: [
       SubMenuItem("Hotel Home", HotelHomePage(), path: HotelHomePage.path),
-      SubMenuItem("Room Details", HotelDetailsPage(), path: HotelDetailsPage.path),
+      //SubMenuItem("Room Details", HotelDetailsPage(), path: HotelDetailsPage.path),
     ],
   ),
+  /*
   MenuItem(
     title: "Navigation",
     icon: Icons.menu,
