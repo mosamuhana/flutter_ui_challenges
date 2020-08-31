@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-import '_fancy_bottom_navigation.dart';
-import '_nav_item.dart';
+import 'fancy_bottom_navigation.dart';
+import 'nav_item.dart';
 
 class FancyBottomNavigationPage extends StatefulWidget {
   static final String path = "lib/src/pages/navigation/fancy_bottom_navigation/page.dart";

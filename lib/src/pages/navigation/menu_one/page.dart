@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/constants.dart';
+import '../../../../core/constants.dart';
 
 class MenuOnePage extends StatelessWidget {
-  static final String path = "lib/src/pages/navigation/menu_one.dart";
+  static final String path = "lib/src/pages/navigation/menu_one/page.dart";
 
   final avatarImage = '$STORE_BASE_URL/img%2F1.jpg?alt=media';
 

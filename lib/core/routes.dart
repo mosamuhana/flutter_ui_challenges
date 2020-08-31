@@ -85,13 +85,12 @@ import '../src/pages/todo/todo_home4/page.dart';
 
 import '../src/pages/travel/index.dart';
 
-import '../src/pages/hotel/details.dart';
-import '../src/pages/hotel/page.dart';
+import '../src/pages/hotel/index.dart';
 
-import '../src/pages/navigation/dark_drawer_menu.dart';
-import '../src/pages/navigation/light_drawer_menu.dart';
-import '../src/pages/navigation/hidden_menu.dart';
-import '../src/pages/navigation/menu_one.dart';
+import '../src/pages/navigation/dark_drawer_menu/page.dart';
+import '../src/pages/navigation/light_drawer_menu/page.dart';
+import '../src/pages/navigation/hidden_menu/page.dart';
+import '../src/pages/navigation/menu_one/page.dart';
 import '../src/pages/navigation/fancy_bottom_navigation/page.dart';
 
 import '../src/pages/onboarding/onboarding1.dart';
@@ -285,7 +284,6 @@ final List<dynamic> pages = [
       SubMenuItem("Travel Destination Detail", TravelDestinationDetailPage(), path: TravelDestinationDetailPage.path),
     ],
   ),
-  */
   MenuItem(
     title: "Hotel",
     icon: Icons.hotel,
@@ -294,7 +292,7 @@ final List<dynamic> pages = [
       //SubMenuItem("Room Details", HotelDetailsPage(), path: HotelDetailsPage.path),
     ],
   ),
-  /*
+  */
   MenuItem(
     title: "Navigation",
     icon: Icons.menu,
@@ -306,6 +304,7 @@ final List<dynamic> pages = [
       SubMenuItem("Fancy Bottom Navigation", FancyBottomNavigationPage(), path: FancyBottomNavigationPage.path),
     ],
   ),
+  /*
   MenuItem(
     title: "Onboarding",
     icon: Icons.info,

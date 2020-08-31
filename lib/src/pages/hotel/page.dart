@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'category_widget.dart';
-import 'details.dart';
+import 'hotel_details.dart';
 import 'room_widget.dart';
 import 'data.dart';
 
@@ -122,6 +122,6 @@ class HotelHomePage extends StatelessWidget {
   final _restaurantIcon = Icon(Icons.restaurant, color: Colors.white);
   final _localCafeIcon = Icon(Icons.local_cafe, color: Colors.white);
   final _searchIcon = Icon(Icons.search);
-  final _menuIcon = Icon(Icons.menu, color: Colors.white);
+  //final _menuIcon = Icon(Icons.menu, color: Colors.white);
   final _favoriteBorderIcon = Icon(Icons.favorite_border, color: Colors.white);
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '_nav_item.dart';
+import 'nav_item.dart';
 
 class FancyBottomNavigation extends StatefulWidget {
   final int currentIndex;

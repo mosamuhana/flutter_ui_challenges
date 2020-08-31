@@ -5,25 +5,21 @@ class CategoryWidget extends StatelessWidget {
   final String title;
   final Color backgroundColor;
 
-  BoxDecoration _decoration;
-
   CategoryWidget({
     Key key,
     @required this.icon,
     @required this.title,
     this.backgroundColor,
-  }) : super(key: key) {
-    _decoration = BoxDecoration(color: backgroundColor, borderRadius: BorderRadius.circular(5));
-  }
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {},
       child: Container(
-        decoration: _decoration,
-        margin: EdgeInsets.symmetric(vertical: 10),
-        padding: EdgeInsets.all(10),
+        decoration: BoxDecoration(color: backgroundColor, borderRadius: _circularBorder5),
+        margin: _insetsV10,
+        padding: _insets10,
         width: 100,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -39,4 +35,7 @@ class CategoryWidget extends StatelessWidget {
 
   final _hbox5 = SizedBox(height: 5);
   final _whiteStyle = TextStyle(color: Colors.white);
+  final _circularBorder5 = BorderRadius.circular(5);
+  final _insetsV10 = EdgeInsets.symmetric(vertical: 10);
+  final _insets10 = EdgeInsets.all(10);
 }
