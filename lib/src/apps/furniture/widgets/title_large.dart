@@ -1,4 +1,4 @@
-import '../utils/constant.dart';
+import '../constant.dart';
 import 'package:flutter/material.dart';
 
 class TitleLarge extends StatelessWidget {
@@ -9,9 +9,7 @@ class TitleLarge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: icon != null
-          ? MainAxisAlignment.spaceBetween
-          : MainAxisAlignment.start,
+      mainAxisAlignment: icon != null ? MainAxisAlignment.spaceBetween : MainAxisAlignment.start,
       children: <Widget>[
         Text(
           title,

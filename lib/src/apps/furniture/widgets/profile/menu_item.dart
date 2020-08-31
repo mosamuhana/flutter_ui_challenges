@@ -1,5 +1,7 @@
-import '../../utils/constant.dart';
 import 'package:flutter/material.dart';
+
+import '../../constant.dart';
+import '../../models.dart';
 
 class MenuItem extends StatelessWidget {
   final ProfileMenu menu;

@@ -1,10 +1,13 @@
 import 'dart:math';
 
-import '../../utils/constant.dart';
+import '../../constant.dart';
 import 'package:flutter/material.dart';
+
+import '../../models.dart';
 
 class FurnitureCategory extends StatelessWidget {
   final FurnitureCatg item;
+
   FurnitureCategory({@required this.item});
   @override
   Widget build(BuildContext context) {
@@ -22,14 +25,11 @@ class FurnitureCategory extends StatelessWidget {
                   BoxShadow(
                     color: Color(0xFFD1DCFF),
                     blurRadius: 5.0, // has the effect of softening the shadow
-                    spreadRadius:
-                        -1.0, // has the effect of extending the shadow
+                    spreadRadius: -1.0, // has the effect of extending the shadow
                     offset: Offset(10.0, 10.0),
                   )
               ],
-              color: item.elivation
-                  ? profile_info_background
-                  : profile_info_categories_background,
+              color: item.elivation ? profile_info_background : profile_info_categories_background,
               borderRadius: BorderRadius.all(Radius.circular(10.0)),
             ),
             child: Transform.rotate(
@@ -37,8 +37,7 @@ class FurnitureCategory extends StatelessWidget {
               child: Icon(
                 item.icon,
                 size: 30.0,
-                color:
-                    item.elivation ? Colors.white : furnitureCateDisableColor,
+                color: item.elivation ? Colors.white : furnitureCateDisableColor,
               ),
             ),
           ),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'core/pages/about.dart';
 import 'core/pages/home.dart';
-import 'new_home.dart';
+import 'startup.page.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.red,
         accentColor: Colors.indigo,
       ),
-      home: NewHomePage(),
+      home: StartupPage(),
       routes: {
         // "auth_home": (_) => AuthHomePage(),
         "challenge_home": (_) => HomePage(),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../utils/constant.dart';
+import '../constant.dart';
 
 class ProfileImage extends StatelessWidget {
   final double height, width;

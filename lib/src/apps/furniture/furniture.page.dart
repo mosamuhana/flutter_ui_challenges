@@ -1,17 +1,25 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/ui_constants.dart';
-import '../utils/constant.dart';
-import '../widgets/furniture/bottomItem.dart';
-import '../widgets/furniture/furniture_category.dart';
-import '../widgets/furniture/item_navigation.dart';
-import '../widgets/furniture/lamp.dart';
-import '../widgets/title_large.dart';
-import '../widgets/title_small.dart';
+import '../../../core/ui_constants.dart';
+import 'constant.dart';
+import 'widgets/furniture/bottomItem.dart';
+import 'widgets/furniture/furniture_category.dart';
+import 'widgets/furniture/item_navigation.dart';
+import 'widgets/furniture/lamp.dart';
+import 'widgets/title_large.dart';
+import 'widgets/title_small.dart';
 
-class Furniture extends StatelessWidget {
+class FurniturePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    return SafeArea(
+      child: SafeArea(
+        child: _buildContent(context),
+      ),
+    );
+  }
+
+  Widget _buildContent(BuildContext context) {
     //Size deviceSize = MediaQuery.of(context).size;
     return Material(
       color: Colors.white,
@@ -86,6 +94,7 @@ class Furniture extends StatelessWidget {
       index: index,
     ),
   );
+
   final buildFurnitureCategories = Container(
     height: 100.0,
     //color: Colors.red,

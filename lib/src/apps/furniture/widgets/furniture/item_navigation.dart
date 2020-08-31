@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../core/ui_constants.dart';
-import '../../utils/constant.dart';
+import '../../constant.dart';
 
 class ItemNavigation extends StatelessWidget {
   @override

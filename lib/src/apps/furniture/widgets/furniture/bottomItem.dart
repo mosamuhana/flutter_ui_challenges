@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/ui_constants.dart';
 import '../../../../../core/widgets.dart';
-import '../../utils/constant.dart';
+import '../../constant.dart';
 import '../../widgets/furniture/custom_side_button.dart';
 
 class BottomItem extends StatelessWidget {

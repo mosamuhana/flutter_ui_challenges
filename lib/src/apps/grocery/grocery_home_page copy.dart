@@ -73,18 +73,26 @@ class GroceryHomePageState extends State<GroceryHomePage> {
       child: Container(
         margin: _insetsT20,
         child: AppBar(
-          iconTheme: IconThemeData(color: Colors.black),
           elevation: 0,
           backgroundColor: Colors.transparent,
-          title: Row(
-            children: [
-              PNetworkImage(deliveryIcon),
-              _wbox10,
-              Expanded(
-                child: _searchField,
+          title: Container(
+            child: Card(
+              child: Container(
+                child: TextField(
+                  decoration: InputDecoration(
+                    contentPadding: _insetsH20V15,
+                    hintText: "Search products",
+                    border: InputBorder.none,
+                    suffixIcon: IconButton(
+                      onPressed: () {},
+                      icon: _searchIcon,
+                    ),
+                  ),
+                ),
               ),
-            ],
+            ),
           ),
+          leading: PNetworkImage(deliveryIcon),
         ),
       ),
     );
@@ -93,34 +101,12 @@ class GroceryHomePageState extends State<GroceryHomePage> {
   Widget _buildAppBar(String title) {
     return AppBar(
       bottom: _appBarBottom,
-      //automaticallyImplyLeading: false,
+      automaticallyImplyLeading: false,
       backgroundColor: Colors.white,
       elevation: 0,
       title: Text(title, style: _blackStyle),
-      leading: BackButton(
-        color: Colors.black,
-        onPressed: () => setState(() => currentIndex = 0),
-      ),
     );
   }
-
-  Widget get _searchField {
-    return Card(
-      child: TextField(
-        decoration: InputDecoration(
-          contentPadding: _insetsH20V15,
-          hintText: "Search products",
-          border: InputBorder.none,
-          suffixIcon: IconButton(
-            onPressed: () {},
-            icon: _searchIcon,
-          ),
-        ),
-      ),
-    );
-  }
-
-  final _wbox10 = SizedBox(width: 10);
 
   final _blackStyle = TextStyle(color: Colors.black);
 

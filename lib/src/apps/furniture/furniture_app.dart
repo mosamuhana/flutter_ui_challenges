@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'pages/furniture.dart';
-import 'pages/profile.dart';
+import 'furniture.page.dart';
+import 'profile.page.dart';
 
 class FurnitureApp extends StatelessWidget {
   static final String path = "lib/src/furniture_app/furniture_app.dart";
@@ -18,8 +18,8 @@ class FurnitureApp extends StatelessWidget {
 
   Map<String, WidgetBuilder> get routes {
     return {
-      '/': (BuildContext context) => SafeArea(child: SafeArea(child: Profile())),
-      '/furniture': (BuildContext context) => SafeArea(child: SafeArea(child: Furniture())),
+      '/': (BuildContext context) => ProfilePage(),
+      '/furniture': (BuildContext context) => FurniturePage(),
     };
   }
 }

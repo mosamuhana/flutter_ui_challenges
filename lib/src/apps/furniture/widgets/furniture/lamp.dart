@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/ui_constants.dart';
 import '../../../../../core/widgets.dart';
-import '../../utils/constant.dart';
+import '../../constant.dart';
 import '../../widgets/furniture/custom_side_button.dart';
+import '../../models.dart';
 
 class Lamp extends StatelessWidget {
   final ProfileMenu item;

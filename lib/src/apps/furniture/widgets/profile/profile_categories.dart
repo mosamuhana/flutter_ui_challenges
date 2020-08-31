@@ -1,7 +1,9 @@
-import '../../utils/constant.dart';
-import '../../widgets/profile/category.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+
+import '../../constant.dart';
+import '../../models.dart';
+import '../../widgets/profile/category.dart';
 
 class ProfileCategories extends StatelessWidget {
   @override

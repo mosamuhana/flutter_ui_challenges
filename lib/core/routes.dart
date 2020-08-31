@@ -180,6 +180,7 @@ final List<dynamic> pages = [
       SubMenuItem("Smart Wallet Onboarding", SmartWalletOnboardingPage(), path: SmartWalletOnboardingPage.path),
     ],
   ),
+  */
   MenuItem(
     title: "Miscellaneous",
     items: [
@@ -199,13 +200,12 @@ final List<dynamic> pages = [
       SubMenuItem('BottomSheet Awesome', BottomSheetAwesome(), path: BottomSheetAwesome.path),
     ],
   ),
-  */
   MenuItem(
     title: "Apps (Clones)",
     items: [
-      SubMenuItem("Hotel App", HotelHomePage(), path: HotelHomePage.path),
-      SubMenuItem("Quiz App", QuizHomePage(), path: QuizHomePage.path),
-      SubMenuItem("Grocery UI Kit", GroceryHomePage(), path: GroceryHomePage.path),
+      //SubMenuItem("Hotel App", HotelHomePage(), path: HotelHomePage.path),
+      //SubMenuItem("Quiz App", QuizHomePage(), path: QuizHomePage.path),
+      //SubMenuItem("Grocery UI Kit", GroceryHomePage(), path: GroceryHomePage.path),
       SubMenuItem("Furniture App", FurnitureApp(), path: FurnitureApp.path),
       SubMenuItem('Khalti App', KhaltiApp(), path: KhaltiApp.path),
       SubMenuItem("Bank App Clone", NicAsiaApp(), path: NicAsiaApp.path),

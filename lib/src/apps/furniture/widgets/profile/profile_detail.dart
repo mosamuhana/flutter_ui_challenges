@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../core/ui_constants.dart';
-import '../../utils/constant.dart';
+import '../../constant.dart';
 import '../../widgets/profile_image.dart';
 
 class ProfileDetail extends StatelessWidget {

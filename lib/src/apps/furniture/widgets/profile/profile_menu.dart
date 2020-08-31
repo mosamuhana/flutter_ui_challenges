@@ -1,4 +1,4 @@
-import '../../utils/constant.dart';
+import '../../constant.dart';
 import '../../widgets/profile/menu_item.dart';
 import 'package:flutter/material.dart';
 

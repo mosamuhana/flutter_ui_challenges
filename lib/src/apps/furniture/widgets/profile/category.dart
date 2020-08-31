@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../core/ui_constants.dart';
-import '../../utils/constant.dart';
+import '../../constant.dart';
+import '../../models.dart';
 
 class Category extends StatelessWidget {
   final Catg catg;
