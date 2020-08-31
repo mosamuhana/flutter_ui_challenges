@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
-import '../../../core/constants.dart';
-import '../../../core/widgets.dart';
+import '../../../../core/constants.dart';
+import '../../../../core/widgets.dart';
 
 class Onboarding5Page extends StatefulWidget {
-  static final String path = "lib/src/pages/onboarding/onboarding5.dart";
+  static final String path = "lib/src/pages/onboarding/onboarding5/page.dart";
 
   @override
   _Onboarding5PageState createState() => _Onboarding5PageState();

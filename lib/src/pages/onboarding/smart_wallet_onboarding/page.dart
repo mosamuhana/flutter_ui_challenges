@@ -3,7 +3,7 @@ import 'package:intro_views_flutter/Models/page_view_model.dart';
 import 'package:intro_views_flutter/intro_views_flutter.dart';
 
 class SmartWalletOnboardingPage extends StatelessWidget {
-  static final String path = "lib/src/pages/onboarding/smart_wallet_onboarding.dart";
+  static final String path = "lib/src/pages/onboarding/smart_wallet_onboarding/page.dart";
 
   final logoImage = 'assets/smwallet/logo.png';
 

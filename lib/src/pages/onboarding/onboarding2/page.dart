@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../../core/constants.dart';
-import '../../../core/widgets.dart';
+import '../../../../core/constants.dart';
+import '../../../../core/widgets.dart';
 
 class Onboarding2Page extends StatefulWidget {
-  static final String path = "lib/src/pages/onboarding/onboarding2.dart";
+  static final String path = "lib/src/pages/onboarding/onboarding2/page.dart";
 
   @override
   _Onboarding2PageState createState() => _Onboarding2PageState();

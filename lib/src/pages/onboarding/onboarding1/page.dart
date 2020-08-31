@@ -2,19 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../../core/constants.dart';
-import '../../../core/widgets.dart';
+import '../../../../core/constants.dart';
+import '../../../../core/widgets.dart';
 
-class Onboarding3Page extends StatefulWidget {
-  static final String path = "lib/src/pages/onboarding/onboarding3.dart";
+class Onboarding1Page extends StatefulWidget {
+  static final String path = "lib/src/pages/onboarding/onboarding1/page.dart";
 
   @override
-  _Onboarding3PageState createState() => _Onboarding3PageState();
+  _Onboarding1PageState createState() => _Onboarding1PageState();
 }
 
-class _Onboarding3PageState extends State<Onboarding3Page> {
+class _Onboarding1PageState extends State<Onboarding1Page> {
   final _swiperController = SwiperController();
-  final int _pageCount = 3;
   int _currentIndex = 0;
 
   final _items = <_Item>[
@@ -43,32 +42,22 @@ class _Onboarding3PageState extends State<Onboarding3Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
+      backgroundColor: Colors.deepPurple,
+      body: Column(
         children: [
-          Container(
-            alignment: Alignment.center,
-            child: PNetworkImage(
-              _backgroundImage,
-              fit: BoxFit.contain,
+          Expanded(
+            child: Swiper(
+              index: _currentIndex,
+              controller: _swiperController,
+              itemCount: _items.length,
+              loop: false,
+              pagination: _swiperPagination,
+              onIndexChanged: (i) => setState(() => _currentIndex = i),
+              itemBuilder: (_, i) => _buildItem(_items[i]),
             ),
           ),
-          Column(
-            children: [
-              Expanded(
-                child: Swiper(
-                  index: _currentIndex,
-                  controller: _swiperController,
-                  itemCount: _pageCount,
-                  loop: false,
-                  pagination: _swiperPagination,
-                  onIndexChanged: (i) => setState(() => _currentIndex = i),
-                  itemBuilder: (_, i) => _buildItem(_items[i]),
-                ),
-              ),
-              _hbox10,
-              _bottomButtons,
-            ],
-          ),
+          _hbox10,
+          _bottomButtons,
         ],
       ),
     );
@@ -81,11 +70,12 @@ class _Onboarding3PageState extends State<Onboarding3Page> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           FlatButton(
-            textColor: Colors.grey.shade700,
+            textColor: Colors.white70,
             child: Text("Skip"),
             onPressed: () => Navigator.of(context).pushReplacementNamed('challenge_home'),
           ),
           IconButton(
+            color: Colors.white,
             icon: canNext ? _arrowCircleRightIcon : _checkCircleIcon,
             onPressed: () async {
               if (canNext) {
@@ -94,7 +84,7 @@ class _Onboarding3PageState extends State<Onboarding3Page> {
                 Navigator.of(context).pushReplacementNamed('challenge_home');
               }
             },
-          ),
+          )
         ],
       ),
     );
@@ -103,16 +93,15 @@ class _Onboarding3PageState extends State<Onboarding3Page> {
   Widget _buildItem(_Item item) {
     return Container(
       width: double.infinity,
-      margin: _insets50,
+      margin: _insetsL16T50R16B40,
       padding: _insets16,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(30),
+        borderRadius: _circularBorder30,
         image: DecorationImage(
           image: NetworkImage(item.image),
           fit: BoxFit.cover,
           colorFilter: ColorFilter.mode(Colors.black38, BlendMode.multiply),
         ),
-        boxShadow: [_shadow1],
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
@@ -131,19 +120,20 @@ class _Onboarding3PageState extends State<Onboarding3Page> {
   final _hbox10 = SizedBox(height: 10);
   final _hbox30 = SizedBox(height: 30);
 
+  final _insetsL16T50R16B40 = EdgeInsets.fromLTRB(16, 50, 16, 40);
   final _insets16 = EdgeInsets.all(16);
-  final _insets50 = EdgeInsets.all(50);
   final _insetsR16B10 = EdgeInsets.only(right: 16, bottom: 10);
+
+  final _circularBorder30 = BorderRadius.circular(30);
 
   final _whiteW500S20Style = TextStyle(color: Colors.white, fontWeight: FontWeight.w500, fontSize: 20);
 
   final _arrowCircleRightIcon = Icon(FontAwesomeIcons.arrowCircleRight, size: 40);
   final _checkCircleIcon = Icon(FontAwesomeIcons.checkCircle, size: 40);
 
-  final _shadow1 = BoxShadow(blurRadius: 10, spreadRadius: 5, offset: Offset(5, 5), color: Colors.black26);
-
   final _swiperPagination = SwiperPagination(
     builder: CustomPaginationBuilder(
+      activeColor: Colors.white,
       activeSize: Size(10, 20),
       size: Size(10, 15),
       color: Colors.grey.shade600,
@@ -156,5 +146,3 @@ class _Item {
   final String image;
   _Item({this.title, this.image});
 }
-
-const _backgroundImage = '$STORE_BASE_URL/img%2Fphotographer.jpg?alt=media';

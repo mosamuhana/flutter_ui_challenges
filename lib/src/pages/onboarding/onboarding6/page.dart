@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/constants.dart';
-import '../../../core/widgets.dart';
+import '../../../../core/constants.dart';
+import '../../../../core/widgets.dart';
 
 class Onboarding6Page extends StatelessWidget {
-  static final String path = "lib/src/pages/onboarding/onboarding6.dart";
+  static final String path = "lib/src/pages/onboarding/onboarding6/page.dart";
 
   final backgroundImage = photographer;
   final cardImage = ledge;

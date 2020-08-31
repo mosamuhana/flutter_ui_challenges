@@ -93,13 +93,7 @@ import '../src/pages/navigation/hidden_menu/page.dart';
 import '../src/pages/navigation/menu_one/page.dart';
 import '../src/pages/navigation/fancy_bottom_navigation/page.dart';
 
-import '../src/pages/onboarding/onboarding1.dart';
-import '../src/pages/onboarding/onboarding2.dart';
-import '../src/pages/onboarding/onboarding3.dart';
-import '../src/pages/onboarding/onboarding4.dart';
-import '../src/pages/onboarding/onboarding5.dart';
-import '../src/pages/onboarding/onboarding6.dart';
-import '../src/pages/onboarding/smart_wallet_onboarding.dart';
+import '../src/pages/onboarding/index.dart';
 
 import '../src/apps/khalti/main.dart';
 import '../src/apps/grocery/ghome.dart';
@@ -108,19 +102,7 @@ import '../src/apps/furniture/furniture_app.dart';
 
 import '../src/pages/dialogs/alert_dialogs/page.dart';
 
-import '../src/pages/misc/bottom_sheet_awesome/page.dart';
-import '../src/pages/misc/chat_messages/page.dart';
-import '../src/pages/misc/chatui/page.dart';
-import '../src/pages/misc/image_crop/page.dart';
-import '../src/pages/misc/form_elements/page.dart';
-import '../src/pages/misc/gallery_one/page.dart';
-import '../src/pages/misc/image_popup/page.dart';
-import '../src/pages/misc/loaders/page.dart';
-import '../src/pages/misc/musicplayer_one/page.dart';
-import '../src/pages/misc/musicplayer_two/page.dart';
-import '../src/pages/misc/sliders/page.dart';
-import '../src/pages/misc/sliver_app_bar/page.dart';
-import '../src/pages/misc/springy_slider_page/page.dart';
+import '../src/pages/misc/index.dart';
 
 import 'models.dart';
 
@@ -292,7 +274,6 @@ final List<dynamic> pages = [
       //SubMenuItem("Room Details", HotelDetailsPage(), path: HotelDetailsPage.path),
     ],
   ),
-  */
   MenuItem(
     title: "Navigation",
     icon: Icons.menu,
@@ -304,7 +285,6 @@ final List<dynamic> pages = [
       SubMenuItem("Fancy Bottom Navigation", FancyBottomNavigationPage(), path: FancyBottomNavigationPage.path),
     ],
   ),
-  /*
   MenuItem(
     title: "Onboarding",
     icon: Icons.info,
@@ -318,6 +298,7 @@ final List<dynamic> pages = [
       SubMenuItem("Smart Wallet Onboarding", SmartWalletOnboardingPage(), path: SmartWalletOnboardingPage.path),
     ],
   ),
+  */
   MenuItem(
     title: "Miscellaneous",
     items: [
@@ -338,6 +319,7 @@ final List<dynamic> pages = [
       SubMenuItem('BottomSheet Awesome', BottomSheetAwesome(), path: BottomSheetAwesome.path),
     ],
   ),
+  /*
   MenuItem(
     title: "Apps (Clones)",
     items: [

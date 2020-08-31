@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flare_flutter/flare_actor.dart';
 
 class Onboarding4Page extends StatelessWidget {
-  static final String path = "lib/src/pages/onboarding/onboarding4.dart";
+  static final String path = "lib/src/pages/onboarding/onboarding4/page.dart";
 
   @override
   Widget build(BuildContext context) {

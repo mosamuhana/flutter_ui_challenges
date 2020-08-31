@@ -1,9 +1,8 @@
-import 'dart:ui' as ui;
-
 import 'package:flutter/material.dart';
 import 'package:crop/crop.dart';
 
 import 'centered_rectangular_slider_track_shape.dart';
+import 'crop_result_page.dart';
 
 class ImageCropPage extends StatefulWidget {
   static final String path = "lib/src/pages/misc/image_crop/page.dart";
@@ -87,27 +86,8 @@ class _ImageCropPageState extends State<ImageCropPage> {
     final cropped = await _cropKey.currentState.crop();
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => _CropResult(image: cropped),
+        builder: (context) => CropResultPage(image: cropped),
         fullscreenDialog: true,
-      ),
-    );
-  }
-}
-
-class _CropResult extends StatelessWidget {
-  final ui.Image image;
-
-  const _CropResult({Key key, @required this.image}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Crop Result'),
-        centerTitle: true,
-      ),
-      body: Center(
-        child: RawImage(image: image),
       ),
     );
   }
