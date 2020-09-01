@@ -78,7 +78,7 @@ class GroceryHomePageState extends State<GroceryHomePage> {
           backgroundColor: Colors.transparent,
           title: Row(
             children: [
-              PNetworkImage(deliveryIcon),
+              CustomImage(deliveryIcon),
               _wbox10,
               Expanded(
                 child: _searchField,

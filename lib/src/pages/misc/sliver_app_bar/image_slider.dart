@@ -16,7 +16,7 @@ class ImageSlider extends StatelessWidget {
       child: Container(
         child: Swiper(
           autoplay: true,
-          itemBuilder: (context, index) => PNetworkImage(images[index], fit: BoxFit.cover),
+          itemBuilder: (context, index) => CustomImage(images[index], fit: BoxFit.cover),
           itemCount: images.length,
           pagination: SwiperPagination(),
         ),

@@ -72,7 +72,7 @@ class _TravelNepalPageState extends State<TravelNepalPage> {
           (image) => Container(
             child: ClipRRect(
               borderRadius: _circularBorder5,
-              child: PNetworkImage(image, fit: BoxFit.cover),
+              child: CustomImage(image, fit: BoxFit.cover),
             ),
           ),
         )

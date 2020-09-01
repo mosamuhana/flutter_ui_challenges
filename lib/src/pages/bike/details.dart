@@ -57,7 +57,7 @@ class _DetailsPageState extends State<DetailsPage> {
         Container(
           height: 250,
           width: double.infinity,
-          child: PNetworkImage(item.image, fit: BoxFit.cover),
+          child: CustomImage(item.image, fit: BoxFit.cover),
         ),
         Positioned(
           left: 20,

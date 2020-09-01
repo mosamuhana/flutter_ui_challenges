@@ -120,7 +120,7 @@ class _TravelDestinationDetailPageState extends State<TravelDestinationDetailPag
             children: [
               ClipRRect(
                 borderRadius: _circularBorder5,
-                child: PNetworkImage(places[i].image, height: 80, fit: BoxFit.cover),
+                child: CustomImage(places[i].image, height: 80, fit: BoxFit.cover),
               ),
               _hbox5,
               Text(places[i].title),
@@ -147,7 +147,7 @@ class _TravelDestinationDetailPageState extends State<TravelDestinationDetailPag
           Expanded(
             child: ClipRRect(
               borderRadius: _circularBorder5,
-              child: PNetworkImage(
+              child: CustomImage(
                 images[imageIndex],
                 height: 180,
                 fit: BoxFit.cover,
@@ -164,7 +164,7 @@ class _TravelDestinationDetailPageState extends State<TravelDestinationDetailPag
                   onTap: () => setState(() => imageIndex = i),
                   child: ClipRRect(
                     borderRadius: _circularBorder5,
-                    child: PNetworkImage(images[i], fit: BoxFit.cover),
+                    child: CustomImage(images[i], fit: BoxFit.cover),
                   ),
                 );
               }),

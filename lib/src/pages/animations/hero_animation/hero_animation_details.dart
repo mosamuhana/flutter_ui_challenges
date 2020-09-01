@@ -43,7 +43,7 @@ class HeroAnimationDetails extends StatelessWidget {
   Widget get _imageHero {
     return Hero(
       tag: product.imageTag,
-      child: PNetworkImage(product.image, fit: BoxFit.cover),
+      child: CustomImage(product.image, fit: BoxFit.cover),
     );
   }
 

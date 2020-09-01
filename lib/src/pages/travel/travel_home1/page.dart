@@ -131,7 +131,7 @@ class _TravelHome1PageState extends State<TravelHome1Page> {
             children: [
               ClipRRect(
                 borderRadius: _circularBorder5,
-                child: PNetworkImage(place.image, fit: BoxFit.cover),
+                child: CustomImage(place.image, fit: BoxFit.cover),
               ),
               Positioned(
                 right: 10,

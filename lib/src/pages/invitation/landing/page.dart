@@ -34,7 +34,7 @@ class InvitationLandingPage extends StatelessWidget {
               child: Column(
                 children: [
                   Expanded(
-                    child: Center(child: PNetworkImage(_inviteImageUrl)),
+                    child: Center(child: CustomImage(_inviteImageUrl)),
                   ),
                   _hbox20,
                   _buildAccountButton(context),

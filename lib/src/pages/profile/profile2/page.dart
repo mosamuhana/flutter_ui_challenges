@@ -64,7 +64,7 @@ class Profile2Page extends StatelessWidget {
                   padding: _insetsH20V10,
                   child: ClipRRect(
                     borderRadius: _circularBorder5,
-                    child: PNetworkImage(imageUrl, fit: BoxFit.cover),
+                    child: CustomImage(imageUrl, fit: BoxFit.cover),
                   ),
                 ),
             ],
@@ -150,7 +150,7 @@ class Profile2Page extends StatelessWidget {
                 Expanded(
                   child: ClipRRect(
                     borderRadius: _circularBorder5,
-                    child: PNetworkImage(item.image, fit: BoxFit.cover),
+                    child: CustomImage(item.image, fit: BoxFit.cover),
                   ),
                 ),
                 _hbox5,

@@ -17,7 +17,7 @@ class Signup1Page extends StatelessWidget {
               children: [
                 _hbox10,
                 CircleAvatar(
-                  child: PNetworkImage(ORIGAMI),
+                  child: CustomImage(ORIGAMI),
                   maxRadius: 50,
                   backgroundColor: Colors.transparent,
                 ),

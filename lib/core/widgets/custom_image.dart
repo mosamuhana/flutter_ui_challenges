@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class PNetworkImage extends StatelessWidget {
+class CustomImage extends StatelessWidget {
   final String image;
   final BoxFit fit;
   final double width, height;
 
-  const PNetworkImage(
+  const CustomImage(
     this.image, {
     Key key,
     this.fit,
@@ -17,8 +17,6 @@ class PNetworkImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Image.network(
       image,
-      // placeholder: (context, url) => Center(child: CircularProgressIndicator()),
-      // errorWidget: (context, url, error) => Image.asset('assets/placeholder.jpg',fit: BoxFit.cover,),
       fit: fit,
       width: width,
       height: height,

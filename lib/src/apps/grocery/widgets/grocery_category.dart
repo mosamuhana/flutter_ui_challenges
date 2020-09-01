@@ -27,7 +27,7 @@ class GroceryCategory extends StatelessWidget {
         width: 100,
         child: Column(
           children: <Widget>[
-            PNetworkImage(item.image),
+            CustomImage(item.image),
             Text(item.title),
           ],
         ),

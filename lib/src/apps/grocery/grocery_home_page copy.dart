@@ -92,7 +92,7 @@ class GroceryHomePageState extends State<GroceryHomePage> {
               ),
             ),
           ),
-          leading: PNetworkImage(deliveryIcon),
+          leading: CustomImage(deliveryIcon),
         ),
       ),
     );

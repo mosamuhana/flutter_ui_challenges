@@ -19,7 +19,7 @@ class Onboarding6Page extends StatelessWidget {
         children: [
           Container(
             alignment: Alignment.center,
-            child: PNetworkImage(backgroundImage, fit: BoxFit.contain),
+            child: CustomImage(backgroundImage, fit: BoxFit.contain),
           ),
           Column(
             children: [

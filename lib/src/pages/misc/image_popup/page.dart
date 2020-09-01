@@ -31,7 +31,7 @@ class ImagePopupPage extends StatelessWidget {
               },
               child: Container(
                 height: 100,
-                child: PNetworkImage(
+                child: CustomImage(
                   image,
                   fit: BoxFit.cover,
                 ),

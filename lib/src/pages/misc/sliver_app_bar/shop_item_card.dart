@@ -20,7 +20,7 @@ class ShopItemCard extends StatelessWidget {
             Expanded(
               child: Hero(
                 tag: item.tag,
-                child: PNetworkImage(item.image, fit: BoxFit.cover),
+                child: CustomImage(item.image, fit: BoxFit.cover),
               ),
             ),
             _hbox10,

@@ -49,7 +49,7 @@ class Profile6Page extends StatelessWidget {
       body: Stack(
         fit: StackFit.expand,
         children: [
-          PNetworkImage(developer.backdropPhoto, fit: BoxFit.cover),
+          CustomImage(developer.backdropPhoto, fit: BoxFit.cover),
           BackdropFilter(
             filter: ui.ImageFilter.blur(sigmaX: 5, sigmaY: 5),
             child: Container(
@@ -92,7 +92,7 @@ class Profile6Page extends StatelessWidget {
       margin: _insetsL16T32,
       padding: _insets3,
       child: ClipOval(
-        child: PNetworkImage(developer.avatar),
+        child: CustomImage(developer.avatar),
       ),
     );
   }

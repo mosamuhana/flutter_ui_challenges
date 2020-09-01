@@ -39,7 +39,7 @@ class BottomItem extends StatelessWidget {
                       ),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(20.0),
-                        child: PNetworkImage(
+                        child: CustomImage(
                           lampsImage[2]['image'],
                           fit: BoxFit.cover,
                         ),

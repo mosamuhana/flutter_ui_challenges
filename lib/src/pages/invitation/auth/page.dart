@@ -53,7 +53,7 @@ class _InvitationAuthPageState extends State<InvitationAuthPage> {
           Container(
             alignment: Alignment.topCenter,
             height: (MediaQuery.of(context).size.height / 2) - 150,
-            child: PNetworkImage(_inviteImageUrl, fit: BoxFit.contain),
+            child: CustomImage(_inviteImageUrl, fit: BoxFit.contain),
           ),
           _hbox10,
           _formContainer,

@@ -51,7 +51,7 @@ class BorderedContainer extends StatelessWidget {
         if (child != null) ...[
           _hbox10,
           child,
-        ]
+        ],
       ],
     );
   }

@@ -25,7 +25,7 @@ class CityCard extends StatelessWidget {
         Container(
           width: 160,
           height: 210,
-          child: PNetworkImage(city.image, fit: BoxFit.cover),
+          child: CustomImage(city.image, fit: BoxFit.cover),
         ),
         Positioned(
           left: 0,

@@ -29,7 +29,7 @@ class FashionItemPage extends StatelessWidget {
                 Expanded(
                   child: Hero(
                     tag: tag,
-                    child: PNetworkImage(item.image, fit: BoxFit.cover),
+                    child: CustomImage(item.image, fit: BoxFit.cover),
                   ),
                 ),
                 SizedBox(height: 10),

@@ -24,7 +24,7 @@ class CartItem extends StatelessWidget {
                 children: [
                   Container(
                     height: 80,
-                    child: PNetworkImage(item.image),
+                    child: CustomImage(item.image),
                   ),
                   _wbox10,
                   Expanded(

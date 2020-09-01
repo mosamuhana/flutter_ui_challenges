@@ -18,7 +18,7 @@ class ProductCard extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            PNetworkImage(product.image, height: 80),
+            CustomImage(product.image, height: 80),
             _hbox5,
             Text(product.title, style: _bold18Style),
             Container(

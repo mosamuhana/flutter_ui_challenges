@@ -44,7 +44,7 @@ class Login1Page extends StatelessWidget {
         _hbox50,
         Container(
           width: 200,
-          child: PNetworkImage(ROCKET),
+          child: CustomImage(ROCKET),
         ),
         _hbox50,
         ListTile(

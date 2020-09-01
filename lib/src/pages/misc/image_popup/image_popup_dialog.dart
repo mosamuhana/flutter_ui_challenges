@@ -22,7 +22,7 @@ class ImagePopupDialog extends StatelessWidget {
           Expanded(
             child: Container(
               width: double.infinity,
-              child: PNetworkImage(image, fit: BoxFit.contain),
+              child: CustomImage(image, fit: BoxFit.contain),
             ),
           ),
           Row(

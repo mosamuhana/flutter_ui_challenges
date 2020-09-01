@@ -127,7 +127,7 @@ class _IntroItem extends StatelessWidget {
                     borderRadius: _circularBorder20,
                     child: Material(
                       elevation: 4,
-                      child: PNetworkImage(item.image, fit: BoxFit.cover),
+                      child: CustomImage(item.image, fit: BoxFit.cover),
                     ),
                   ),
                 ),

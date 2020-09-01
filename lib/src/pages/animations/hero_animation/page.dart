@@ -82,7 +82,7 @@ class _HeroAnimationPageState extends State<HeroAnimationPage> with SingleTicker
                 tag: product.imageTag,
                 child: ClipRRect(
                   borderRadius: _circularBorder20,
-                  child: PNetworkImage(product.image, fit: BoxFit.cover),
+                  child: CustomImage(product.image, fit: BoxFit.cover),
                 ),
               ),
             ),

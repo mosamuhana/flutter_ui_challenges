@@ -41,7 +41,7 @@ class GroceryNewArrivalItem extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Center(child: PNetworkImage(item.image, height: 150)),
+            Center(child: CustomImage(item.image, height: 150)),
             GroceryTitle(text: item.title),
             GrocerySubtitle(text: item.package),
           ],

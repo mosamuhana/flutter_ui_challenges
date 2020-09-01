@@ -35,7 +35,7 @@ class SliverAppBarPage extends StatelessWidget {
       pinned: true,
       flexibleSpace: FlexibleSpaceBar(
         title: Text('Welcome To Shop'),
-        background: PNetworkImage(imageUrl, fit: BoxFit.cover),
+        background: CustomImage(imageUrl, fit: BoxFit.cover),
       ),
       actions: [
         IconButton(

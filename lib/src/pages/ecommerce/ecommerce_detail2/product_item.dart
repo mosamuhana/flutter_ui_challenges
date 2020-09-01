@@ -23,7 +23,7 @@ class ProductItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        PNetworkImage(item.image),
+        CustomImage(item.image),
         Padding(
           padding: _insetsH10V5,
           child: Row(

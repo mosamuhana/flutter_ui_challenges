@@ -40,7 +40,7 @@ class _GroceryCartItemState extends State<GroceryCartItem> {
           _wbox10,
           Container(
             height: 80,
-            child: PNetworkImage(item.image, height: 80),
+            child: CustomImage(item.image, height: 80),
           ),
           _wbox10,
           _details,

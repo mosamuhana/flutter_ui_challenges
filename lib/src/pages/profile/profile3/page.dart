@@ -32,7 +32,7 @@ class Profile3Page extends StatelessWidget {
             SizedBox(
               height: 250,
               width: double.infinity,
-              child: PNetworkImage(profile.image, fit: BoxFit.cover),
+              child: CustomImage(profile.image, fit: BoxFit.cover),
             ),
             Container(
               margin: _insetsL16T200R16B16,

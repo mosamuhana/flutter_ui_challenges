@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/widgets.dart';
+import 'bool_list_tile.dart';
 
 class FormElementsPage extends StatefulWidget {
   static final String path = "lib/src/pages/misc/form_elements/page.dart";
@@ -19,19 +19,19 @@ class _FormElementsPageState extends State<FormElementsPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            PCheckboxListTile(
+            BoolListTile(
               title: "Download over wifi",
               value: downloadOverWifi,
               onChanged: (value) => setState(() => downloadOverWifi = value),
             ),
             _divider,
-            PCheckboxListTile(
+            BoolListTile(
               title: "Download over wifi",
               value: false,
               onChanged: (value) {},
             ),
             _divider,
-            PCheckboxListTile(
+            BoolListTile(
               title: "Download over wifi",
               value: true,
               onChanged: (value) {},

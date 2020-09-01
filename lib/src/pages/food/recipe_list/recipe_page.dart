@@ -118,7 +118,7 @@ class RecipePage extends StatelessWidget {
       ),
       child: SizedBox(
         height: _imageHeight,
-        child: PNetworkImage(recipe.image, fit: BoxFit.cover),
+        child: CustomImage(recipe.image, fit: BoxFit.cover),
       ),
     );
   }

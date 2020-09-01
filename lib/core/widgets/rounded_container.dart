@@ -17,7 +17,7 @@ class RoundedContainer extends StatelessWidget {
     this.width,
     this.height,
     this.color = Colors.white,
-    this.padding = const EdgeInsets.all(16.0),
+    this.padding = const EdgeInsets.all(16),
     this.margin,
     this.borderRadius,
     this.alignment,
@@ -31,7 +31,7 @@ class RoundedContainer extends StatelessWidget {
       color: color,
       elevation: elevation ?? 0,
       clipBehavior: Clip.antiAlias,
-      shape: RoundedRectangleBorder(borderRadius: borderRadius ?? BorderRadius.circular(20.0)),
+      shape: RoundedRectangleBorder(borderRadius: borderRadius ?? BorderRadius.circular(20)),
       child: Container(
         alignment: alignment,
         height: height,

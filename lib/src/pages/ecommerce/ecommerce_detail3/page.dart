@@ -17,7 +17,7 @@ class EcommerceDetail3Page extends StatelessWidget {
           children: [
             Container(
               height: double.infinity,
-              child: PNetworkImage(product.image, fit: BoxFit.cover),
+              child: CustomImage(product.image, fit: BoxFit.cover),
             ),
             _pageContent,
             Positioned(

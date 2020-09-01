@@ -114,7 +114,7 @@ class _EcommerceDetail1PageState extends State<EcommerceDetail1Page> {
     return GestureDetector(
       child: Column(
         children: [
-          PNetworkImage(
+          CustomImage(
             product.image,
             height: 130,
             width: 200,

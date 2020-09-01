@@ -7,18 +7,28 @@ import '../helper.dart';
 enum SocialType { facebook, github, youtube, instagram, twitter }
 
 class SocialIconButton extends StatelessWidget {
-  final String name;
   final SocialType type;
+  final String name;
   final Color color;
+  final VoidCallback onPressed;
 
   const SocialIconButton({
     Key key,
+    @required this.type,
     this.name,
     this.color,
-    @required this.type,
+    this.onPressed,
   }) : super(key: key);
 
-  Color _getColor() {
+  Widget build(BuildContext context) {
+    return IconButton(
+      color: color ?? _color,
+      icon: Icon(icon),
+      onPressed: url == null ? null : (onPressed != null ? onPressed : _onPressed),
+    );
+  }
+
+  Color get _color {
     switch (type) {
       case SocialType.facebook:
         return Colors.indigo;
@@ -65,15 +75,6 @@ class SocialIconButton extends StatelessWidget {
         return 'https://twitter.com/$name';
     }
     return null;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      color: color ?? _getColor(),
-      icon: Icon(icon),
-      onPressed: url == null ? null : _onPressed,
-    );
   }
 
   void _onPressed() async {

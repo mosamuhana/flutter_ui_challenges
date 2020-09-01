@@ -25,7 +25,7 @@ class VideoCard extends StatelessWidget {
               borderRadius: _circularBorder8,
               child: Stack(
                 children: [
-                  PNetworkImage(
+                  CustomImage(
                     video.thumbnail,
                     width: 175,
                     height: 175,

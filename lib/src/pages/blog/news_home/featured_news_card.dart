@@ -29,7 +29,7 @@ class FeaturedNewsCard extends StatelessWidget {
               flex: 2,
               child: Container(
                 color: Colors.red,
-                child: PNetworkImage(
+                child: CustomImage(
                   item.image,
                   fit: BoxFit.cover,
                   height: 210,

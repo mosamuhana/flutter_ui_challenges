@@ -35,7 +35,7 @@ class Lamp extends StatelessWidget {
                 ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(20.0),
-                  child: PNetworkImage(
+                  child: CustomImage(
                     lampsImage[index]['image'],
                     fit: BoxFit.cover,
                   ),

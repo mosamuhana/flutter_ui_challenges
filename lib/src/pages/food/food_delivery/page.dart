@@ -83,7 +83,7 @@ class _FoodDeliveryPageState extends State<FoodDeliveryPage> {
               itemCount: sliderItems.length,
               autoplay: true,
               curve: Curves.easeIn,
-              itemBuilder: (_, i) => PNetworkImage(sliderItems[i].image, fit: BoxFit.cover),
+              itemBuilder: (_, i) => CustomImage(sliderItems[i].image, fit: BoxFit.cover),
             ),
           ),
           Container(
@@ -120,7 +120,7 @@ class _FoodDeliveryPageState extends State<FoodDeliveryPage> {
                 Container(
                   height: 130,
                   width: double.infinity,
-                  child: PNetworkImage(specialOffer.image, fit: BoxFit.cover),
+                  child: CustomImage(specialOffer.image, fit: BoxFit.cover),
                 ),
                 _hbox10,
                 Text(specialOffer.name, style: nameStyle),
@@ -158,7 +158,7 @@ class _FoodDeliveryPageState extends State<FoodDeliveryPage> {
                 Container(
                   height: 150,
                   width: double.infinity,
-                  child: PNetworkImage(item.image, fit: BoxFit.cover),
+                  child: CustomImage(item.image, fit: BoxFit.cover),
                 ),
                 _hbox10,
                 Row(

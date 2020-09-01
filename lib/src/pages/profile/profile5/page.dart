@@ -38,7 +38,7 @@ class Profile5Page extends StatelessWidget {
                         margin: _insetsL30T10R30,
                         child: ClipRRect(
                           borderRadius: _circularBorder30,
-                          child: PNetworkImage(profile.image, fit: BoxFit.cover),
+                          child: CustomImage(profile.image, fit: BoxFit.cover),
                         ),
                       ),
                       Container(

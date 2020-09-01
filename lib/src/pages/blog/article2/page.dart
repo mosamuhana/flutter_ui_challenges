@@ -28,7 +28,7 @@ class Article2Page extends StatelessWidget {
               Container(
                 height: 300,
                 width: double.infinity,
-                child: PNetworkImage(article.image, fit: BoxFit.cover),
+                child: CustomImage(article.image, fit: BoxFit.cover),
               ),
               _buildDetails(context),
             ],

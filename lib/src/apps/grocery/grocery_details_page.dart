@@ -52,7 +52,7 @@ class GroceryDetailsPage extends StatelessWidget {
                           ),
                           Container(
                             width: MediaQuery.of(context).size.width,
-                            child: PNetworkImage(item.image, height: 200),
+                            child: CustomImage(item.image, height: 200),
                           ),
                           _hbox10,
                           GroceryTitle(text: item.title),

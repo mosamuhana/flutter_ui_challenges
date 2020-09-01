@@ -47,7 +47,7 @@ class _Onboarding3PageState extends State<Onboarding3Page> {
         children: [
           Container(
             alignment: Alignment.center,
-            child: PNetworkImage(
+            child: CustomImage(
               _backgroundImage,
               fit: BoxFit.contain,
             ),

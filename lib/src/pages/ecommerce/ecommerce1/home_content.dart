@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
 
 import '../../../../core/widgets.dart';
 import 'models.dart';
@@ -159,7 +160,7 @@ class HomeContentPage extends StatelessWidget {
     return Expanded(
       child: Column(
         children: [
-          PNetworkImage(item.image),
+          CustomImage(item.image),
           _hbox10,
           Text(item.title, softWrap: true),
           _hbox10,
@@ -237,7 +238,7 @@ class HomeContentPage extends StatelessWidget {
           subtitle: Text(item.subtitle),
           trailing: Container(
             width: 50,
-            child: PNetworkImage(item.image, fit: BoxFit.cover),
+            child: CustomImage(item.image, fit: BoxFit.cover),
           ),
         ),
       ),
@@ -269,4 +270,24 @@ class HomeContentPage extends StatelessWidget {
       side: BorderSide(width: 1, style: BorderStyle.solid, color: Colors.red),
     ),
   );
+}
+
+class ImageListSlider extends StatelessWidget {
+  final List<String> images;
+  final EdgeInsetsGeometry padding;
+
+  const ImageListSlider({Key key, this.images, this.padding}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: padding,
+      child: Swiper(
+        autoplay: true,
+        itemBuilder: (_, i) => CustomImage(images[i], fit: BoxFit.cover),
+        itemCount: images.length,
+        pagination: SwiperPagination(),
+      ),
+    );
+  }
 }

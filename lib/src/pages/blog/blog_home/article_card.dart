@@ -29,7 +29,7 @@ class ArticleCard extends StatelessWidget {
                   height: 100,
                   color: Colors.blue,
                   width: 80,
-                  child: PNetworkImage(item.image, fit: BoxFit.cover),
+                  child: CustomImage(item.image, fit: BoxFit.cover),
                 ),
                 _wbox20,
                 Expanded(

@@ -54,7 +54,7 @@ class _CakeDetailsPageState extends State<CakeDetailsPage> {
                 child: Row(
                   children: [
                     Expanded(
-                      child: PNetworkImage(order.product.image),
+                      child: CustomImage(order.product.image),
                     ),
                     _quantity,
                     _wbox10,
@@ -178,7 +178,7 @@ class _CakeDetailsPageState extends State<CakeDetailsPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            PNetworkImage(item.image),
+            CustomImage(item.image),
             Text(item.title, style: _whiteStyle),
           ],
         ),
@@ -202,7 +202,7 @@ class _CakeDetailsPageState extends State<CakeDetailsPage> {
       child: Row(
         children: [
           _wbox20,
-          PNetworkImage(MAP_IMAGE, height: 50),
+          CustomImage(MAP_IMAGE, height: 50),
           _wbox20,
           Expanded(
             child: Column(

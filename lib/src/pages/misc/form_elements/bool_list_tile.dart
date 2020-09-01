@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class PCheckboxListTile extends StatelessWidget {
+class BoolListTile extends StatelessWidget {
   final bool value;
   final String title;
   final ValueChanged<bool> onChanged;
   final Color selectedColor;
   final Color color;
 
-  PCheckboxListTile({
+  BoolListTile({
     Key key,
     @required this.value,
     @required this.title,

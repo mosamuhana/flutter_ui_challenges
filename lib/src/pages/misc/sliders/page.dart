@@ -40,7 +40,7 @@ class SlidersPage extends StatelessWidget {
         itemBuilder: (_, i) {
           return ClipRRect(
             borderRadius: _circularBorder10,
-            child: PNetworkImage(images[i], fit: BoxFit.cover),
+            child: CustomImage(images[i], fit: BoxFit.cover),
           );
         },
       ),
@@ -59,7 +59,7 @@ class SlidersPage extends StatelessWidget {
         itemBuilder: (_, i) {
           return ClipRRect(
             borderRadius: _circularBorder10,
-            child: PNetworkImage(images[i], fit: BoxFit.cover),
+            child: CustomImage(images[i], fit: BoxFit.cover),
           );
         },
       ),

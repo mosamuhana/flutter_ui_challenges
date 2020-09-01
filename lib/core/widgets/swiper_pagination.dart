@@ -10,25 +10,25 @@ class CustomPaginationBuilder extends SwiperPlugin {
 
   final Key key;
 
-  const CustomPaginationBuilder(
-      {this.activeColor,
-      this.color,
-      this.key,
-      this.size: const Size(10.0, 2.0),
-      this.activeSize: const Size(10.0, 2.0),
-      this.space: 3.0});
+  const CustomPaginationBuilder({
+    this.activeColor,
+    this.color,
+    this.key,
+    this.size: const Size(10, 2),
+    this.activeSize: const Size(10, 2),
+    this.space: 3,
+  });
 
   @override
   Widget build(BuildContext context, SwiperPluginConfig config) {
     ThemeData themeData = Theme.of(context);
     Color activeColor = this.activeColor ?? themeData.primaryColor;
     Color color = this.color ?? themeData.scaffoldBackgroundColor;
-
     List<Widget> list = [];
 
     if (config.itemCount > 20) {
       print(
-          "The itemCount is too big, we suggest use FractionPaginationBuilder instead of DotSwiperPaginationBuilder in this sitituation");
+          'The itemCount is too big, we suggest use FractionPaginationBuilder instead of DotSwiperPaginationBuilder in this sitituation');
     }
 
     int itemCount = config.itemCount;
@@ -44,7 +44,7 @@ class CustomPaginationBuilder extends SwiperPlugin {
           child: Container(
             decoration: BoxDecoration(
               color: active ? activeColor : color,
-              borderRadius: BorderRadius.circular(10.0),
+              borderRadius: BorderRadius.circular(10),
             ),
             key: Key("pagination_$i"),
             margin: EdgeInsets.all(space),
@@ -54,13 +54,13 @@ class CustomPaginationBuilder extends SwiperPlugin {
     }
 
     if (config.scrollDirection == Axis.vertical) {
-      return new Column(
+      return Column(
         key: key,
         mainAxisSize: MainAxisSize.min,
         children: list,
       );
     } else {
-      return new Row(
+      return Row(
         key: key,
         mainAxisSize: MainAxisSize.min,
         children: list,

@@ -47,7 +47,7 @@ class Profile7Page extends StatelessWidget {
                       child: CircleAvatar(
                         radius: 50,
                         backgroundColor: Colors.white,
-                        child: PNetworkImage(profile.image),
+                        child: CustomImage(profile.image),
                       ),
                     ),
                     _hbox5,

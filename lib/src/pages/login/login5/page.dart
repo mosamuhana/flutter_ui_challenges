@@ -38,7 +38,7 @@ class Login5Page extends StatelessWidget {
     return Column(
       children: [
         _hbox40,
-        PNetworkImage(LOGO, height: 80),
+        CustomImage(LOGO, height: 80),
         _hbox20,
         Text("GOOD IN FOOD", style: _white70BoldS24Style),
         _hbox40,
