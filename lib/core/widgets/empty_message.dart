@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../res/text_styles.dart';
-
 class EmptyMessage extends StatelessWidget {
   final String message;
 
-  const EmptyMessage({
-    Key key,
-    this.message = "",
-  }) : super(key: key);
+  const EmptyMessage({Key key, this.message = ''}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +14,7 @@ class EmptyMessage extends StatelessWidget {
         children: <Widget>[
           Text(
             message,
-            style: shadedTitle,
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.grey.shade600),
             textAlign: TextAlign.center,
           ),
         ],

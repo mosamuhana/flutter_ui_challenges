@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../res/text_styles.dart';
 import 'main_menu.dart';
 
 class HomePage extends StatefulWidget {
@@ -22,7 +21,7 @@ class _HomePageState extends State<HomePage> {
           backgroundColor: Colors.grey.shade300,
           brightness: Brightness.light,
           iconTheme: IconThemeData(color: Colors.black),
-          title: Text('Ui Challenges', style: blackText),
+          title: Text('Ui Challenges', style: _blackStyle),
           elevation: 0,
         ),
         body: MainMenu(),
@@ -30,4 +29,6 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+
+  final _blackStyle = TextStyle(color: Colors.black);
 }
