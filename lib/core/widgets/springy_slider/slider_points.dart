@@ -31,13 +31,13 @@ class SliderPoints extends StatelessWidget {
         final pointsYouHave = 100 - pointsYouNeed;
 
         return Stack(
-          children: <Widget>[
+          children: [
             Positioned(
-              left: 30.0,
+              left: 30,
               top: sliderY - 10.0 - (40.0 * pointsYouNeedPercent),
               child: FractionalTranslation(
                 translation: Offset(0.0, -1.0),
-                child: new Points(
+                child: _Points(
                   points: pointsYouNeed,
                   isAboveSlider: true,
                   isPointsYouNeed: true,
@@ -46,9 +46,9 @@ class SliderPoints extends StatelessWidget {
               ),
             ),
             Positioned(
-              left: 30.0,
+              left: 30,
               top: sliderY + 10.0 + (40.0 * pointsYouHavePercent),
-              child: new Points(
+              child: _Points(
                 points: pointsYouHave,
                 isAboveSlider: false,
                 isPointsYouNeed: false,
@@ -62,13 +62,13 @@ class SliderPoints extends StatelessWidget {
   }
 }
 
-class Points extends StatelessWidget {
+class _Points extends StatelessWidget {
   final int points;
   final bool isAboveSlider;
   final bool isPointsYouNeed;
   final Color color;
 
-  Points({
+  _Points({
     this.points,
     this.isAboveSlider = true,
     this.isPointsYouNeed = true,
@@ -82,15 +82,12 @@ class Points extends StatelessWidget {
 
     return Row(
       crossAxisAlignment: isAboveSlider ? CrossAxisAlignment.end : CrossAxisAlignment.start,
-      children: <Widget>[
+      children: [
         FractionalTranslation(
           translation: Offset(-0.05 * percent, isAboveSlider ? 0.18 : -0.18),
           child: Text(
             '$points',
-            style: TextStyle(
-              fontSize: pointTextSize,
-              color: color,
-            ),
+            style: TextStyle(fontSize: pointTextSize, color: color),
           ),
         ),
         Padding(
@@ -98,27 +95,21 @@ class Points extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
+            children: [
               Padding(
                 padding: EdgeInsets.only(bottom: 4.0),
                 child: Text(
                   'POINTS',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: color,
-                  ),
+                  style: TextStyle(fontWeight: FontWeight.bold, color: color),
                 ),
               ),
               Text(
                 isPointsYouNeed ? 'YOU NEED' : 'YOU HAVE',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: color,
-                ),
+                style: TextStyle(fontWeight: FontWeight.bold, color: color),
               ),
             ],
           ),
-        )
+        ),
       ],
     );
   }

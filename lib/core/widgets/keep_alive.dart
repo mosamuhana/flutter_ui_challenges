@@ -2,22 +2,18 @@ import 'package:flutter/material.dart';
 
 // This widget is always kept alive, so that when tab is switched back, its
 // child's state is still preserved.
-class AlwaysAliveWidget extends StatefulWidget {
+class AlwaysAlive extends StatefulWidget {
   final Widget child;
 
-  const AlwaysAliveWidget({
-    Key key,
-    @required this.child,
-  }) : super(key: key);
+  const AlwaysAlive({Key key, @required this.child}) : super(key: key);
 
   @override
-  _AlwaysAliveWidgetState createState() => _AlwaysAliveWidgetState();
+  _AlwaysAliveState createState() => _AlwaysAliveState();
 }
 
-class _AlwaysAliveWidgetState extends State<AlwaysAliveWidget> with AutomaticKeepAliveClientMixin<AlwaysAliveWidget> {
+class _AlwaysAliveState extends State<AlwaysAlive> with AutomaticKeepAliveClientMixin<AlwaysAlive> {
   @override
   Widget build(BuildContext context) {
-    // TODO: (ME) added super.build(context);
     super.build(context);
     return this.widget.child;
   }

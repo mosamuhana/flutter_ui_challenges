@@ -8,59 +8,89 @@ import '../github.dart';
 import '../helper.dart';
 import '../res/code_highlighter.dart';
 
-const _textStyle = TextStyle(fontFamily: 'monospace', fontSize: 12.0);
-
-class MyCodeView extends StatefulWidget {
+class CodeView extends StatefulWidget {
   final String path;
 
-  MyCodeView({@required this.path});
+  CodeView({@required this.path});
 
   @override
-  MyCodeViewState createState() => MyCodeViewState();
+  _CodeViewState createState() => _CodeViewState();
 }
 
-class MyCodeViewState extends State<MyCodeView> {
+class _CodeViewState extends State<CodeView> {
+  DartSyntaxHighlighter _syntaxHighlighter;
   double _textScaleFactor = 1.0;
 
-  Widget _getCodeView(String codeContent, BuildContext context) {
-    final style = Theme.of(context).brightness == Brightness.dark
-        ? SyntaxHighlighterStyle.darkThemeStyle()
-        : SyntaxHighlighterStyle.lightThemeStyle();
+  SyntaxHighlighter get syntaxHighlighter {
+    if (_syntaxHighlighter == null) {
+      final style = Theme.of(context).brightness == Brightness.dark
+          ? SyntaxHighlighterStyle.darkThemeStyle()
+          : SyntaxHighlighterStyle.lightThemeStyle();
 
-    final formatedCode = DartSyntaxHighlighter(style).format(codeContent);
-    final text = TextSpan(style: _textStyle, children: <TextSpan>[formatedCode]);
+      _syntaxHighlighter = DartSyntaxHighlighter(style);
+    }
+    return _syntaxHighlighter;
+  }
 
-    return Padding(
-      padding: EdgeInsets.all(4.0),
-      child: Container(
-        constraints: BoxConstraints.expand(),
-        child: Scrollbar(
-          child: SingleChildScrollView(
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: RichText(
-                textScaleFactor: this._textScaleFactor,
-                text: text,
-              ),
-            ),
-          ),
-        ),
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: _body,
+      floatingActionButton: AnimatedFloatingActionButton(
+        fabButtons: _floatingButtons,
+        colorStartAnimation: Colors.indigo,
+        colorEndAnimation: Colors.red,
+        animatedIconData: AnimatedIcons.menu_close,
       ),
     );
   }
 
-  List<Widget> _buildFloatingButtons() {
+  Widget get _body {
+    return FutureBuilder(
+      future: Github.getFileContent(widget.path),
+      builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+        if (snapshot.hasError) {
+          return Center(child: Text('Error loading source code from ${Github.getFileUrl(widget.path)}'));
+        }
+
+        if (!snapshot.hasData) {
+          return Center(child: CircularProgressIndicator());
+        }
+
+        final formatedCode = syntaxHighlighter.format(snapshot.data);
+        final text = TextSpan(style: _textStyle, children: [formatedCode]);
+
+        return Padding(
+          padding: EdgeInsets.all(4),
+          child: Container(
+            constraints: BoxConstraints.expand(),
+            child: Scrollbar(
+              child: SingleChildScrollView(
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: RichText(textScaleFactor: this._textScaleFactor, text: text),
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  List<Widget> get _floatingButtons {
     String remoteUrl = Github.getFileUrl(widget.path);
 
-    return <Widget>[
+    return [
       FloatingActionButton(
         heroTag: "copy",
         child: Icon(Icons.content_copy),
         tooltip: 'Copy code link to clipboard',
         onPressed: () async {
           await Clipboard.setData(ClipboardData(text: remoteUrl));
-          final snackBar = SnackBar(content: Text('Code link copied to Clipboard!'));
-          Scaffold.of(context).showSnackBar(snackBar);
+          Scaffold.of(context).showSnackBar(
+            SnackBar(content: Text('Code link copied to Clipboard!')),
+          );
         },
       ),
       FloatingActionButton(
@@ -84,31 +114,5 @@ class MyCodeViewState extends State<MyCodeView> {
     ];
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: FutureBuilder(
-        future: Github.getFileContent(widget.path),
-        builder: _builder,
-      ),
-      floatingActionButton: AnimatedFloatingActionButton(
-        fabButtons: _buildFloatingButtons(),
-        colorStartAnimation: Colors.indigo,
-        colorEndAnimation: Colors.red,
-        animatedIconData: AnimatedIcons.menu_close,
-      ),
-    );
-  }
-
-  Widget _builder(BuildContext context, AsyncSnapshot<String> snapshot) {
-    if (snapshot.hasError) {
-      return Center(child: Text('Error loading source code from ${Github.getFileUrl(widget.path)}'));
-    }
-
-    if (!snapshot.hasData) {
-      return Center(child: CircularProgressIndicator());
-    }
-
-    return _getCodeView(snapshot.data, context);
-  }
+  final _textStyle = TextStyle(fontFamily: 'monospace', fontSize: 12);
 }

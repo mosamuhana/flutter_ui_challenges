@@ -19,19 +19,18 @@ class SliderClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     switch (controller.state) {
-      case SpringySliderState.idle:
-        return _clipIdle(size);
       case SpringySliderState.dragging:
         return _clipDragging(size);
       case SpringySliderState.springing:
         return _clipSpringing(size);
+      //case SpringySliderState.idle:
+      default:
+        return _clipIdle(size);
     }
-
-    return _clipIdle(size);
   }
 
   Path _clipIdle(Size size) {
-    Path rect = new Path();
+    Path rect = Path();
 
     final top = paddingTop;
     final bottom = size.height;
@@ -39,7 +38,7 @@ class SliderClipper extends CustomClipper<Path> {
     final percentFromBottom = 1.0 - controller.sliderValue;
 
     rect.addRect(
-      new Rect.fromLTRB(
+      Rect.fromLTRB(
         0.0,
         top + (percentFromBottom * height),
         size.width,
@@ -51,7 +50,7 @@ class SliderClipper extends CustomClipper<Path> {
   }
 
   Path _clipDragging(Size size) {
-    Path compositePath = new Path();
+    Path compositePath = Path();
 
     final top = paddingTop;
     final bottom = size.height - paddingBottom;
@@ -79,7 +78,7 @@ class SliderClipper extends CustomClipper<Path> {
     final thickeningFactor = excessDrag * height * 0.05;
     final controlPointWidth = (200.0 * thickeningFactor).abs() + baseControlPointWidth;
 
-    final rect = new Path();
+    final rect = Path();
     rect.moveTo(leftPoint.x, leftPoint.y);
     rect.lineTo(rightPoint.x, rightPoint.y);
     rect.lineTo(rightPoint.x, size.height);
@@ -89,7 +88,7 @@ class SliderClipper extends CustomClipper<Path> {
 
     compositePath.addPath(rect, const Offset(0.0, 0.0));
 
-    final curve = new Path();
+    final curve = Path();
     curve.moveTo(crestPoint.x, crestPoint.y);
     curve.quadraticBezierTo(
       crestPoint.x - controlPointWidth,
@@ -119,7 +118,7 @@ class SliderClipper extends CustomClipper<Path> {
   }
 
   Path _clipSpringing(Size size) {
-    Path compositePath = new Path();
+    Path compositePath = Path();
 
     final top = paddingTop;
     final bottom = size.height - paddingBottom;
@@ -145,7 +144,7 @@ class SliderClipper extends CustomClipper<Path> {
 
     final controlPointWidth = 100.0;
 
-    final rect = new Path();
+    final rect = Path();
     rect.moveTo(leftPoint.x, leftPoint.y);
     rect.lineTo(rightPoint.x, rightPoint.y);
     rect.lineTo(rightPoint.x, size.height);
@@ -155,7 +154,7 @@ class SliderClipper extends CustomClipper<Path> {
 
     compositePath.addPath(rect, const Offset(0.0, 0.0));
 
-    final leftCurve = new Path();
+    final leftCurve = Path();
     leftCurve.moveTo(troughPoint.x, troughPoint.y);
     leftCurve.quadraticBezierTo(
       troughPoint.x - controlPointWidth,
@@ -181,7 +180,7 @@ class SliderClipper extends CustomClipper<Path> {
 
     compositePath.addPath(leftCurve, const Offset(0.0, 0.0));
 
-    final rightCurve = new Path();
+    final rightCurve = Path();
     rightCurve.moveTo(crestPoint.x, crestPoint.y);
     rightCurve.quadraticBezierTo(
       crestPoint.x - controlPointWidth,
@@ -211,7 +210,5 @@ class SliderClipper extends CustomClipper<Path> {
   }
 
   @override
-  bool shouldReclip(CustomClipper<Path> oldClipper) {
-    return true;
-  }
+  bool shouldReclip(CustomClipper<Path> oldClipper) => true;
 }

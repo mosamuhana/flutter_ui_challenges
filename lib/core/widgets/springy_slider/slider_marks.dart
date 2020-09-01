@@ -20,21 +20,21 @@ class SliderMarks extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
-      painter: new SliderMarksPainter(
+      painter: _SliderMarksPainter(
         markCount: markCount,
         markColor: markColor,
         backgroundColor: backgroundColor,
-        markThickness: 2.0,
+        markThickness: 2,
         paddingTop: paddingTop,
         paddingBottom: paddingBottom,
-        paddingRight: 20.0,
+        paddingRight: 20,
       ),
       child: Container(),
     );
   }
 }
 
-class SliderMarksPainter extends CustomPainter {
+class _SliderMarksPainter extends CustomPainter {
   final double largeMarkWidth = 30.0;
   final double smallMarkWidth = 10.0;
 
@@ -48,7 +48,7 @@ class SliderMarksPainter extends CustomPainter {
   final Paint markPaint;
   final Paint backgroundPaint;
 
-  SliderMarksPainter({
+  _SliderMarksPainter({
     this.markCount,
     this.markColor,
     this.backgroundColor,
@@ -56,24 +56,19 @@ class SliderMarksPainter extends CustomPainter {
     this.paddingTop,
     this.paddingBottom,
     this.paddingRight,
-  })  : markPaint = new Paint()
+  })  : markPaint = Paint()
           ..color = markColor
           ..strokeWidth = markThickness
           ..style = PaintingStyle.stroke
           ..strokeCap = StrokeCap.round,
-        backgroundPaint = new Paint()
+        backgroundPaint = Paint()
           ..color = backgroundColor
           ..style = PaintingStyle.fill;
 
   @override
   void paint(Canvas canvas, Size size) {
     canvas.drawRect(
-      Rect.fromLTWH(
-        0.0,
-        0.0,
-        size.width,
-        size.height,
-      ),
+      Rect.fromLTWH(0.0, 0.0, size.width, size.height),
       backgroundPaint,
     );
 
@@ -91,15 +86,13 @@ class SliderMarksPainter extends CustomPainter {
       final markY = i * gap + paddingTop;
 
       canvas.drawLine(
-        new Offset(size.width - paddingRight - markWidth, markY),
-        new Offset(size.width - paddingRight, markY),
+        Offset(size.width - paddingRight - markWidth, markY),
+        Offset(size.width - paddingRight, markY),
         markPaint,
       );
     }
   }
 
   @override
-  bool shouldRepaint(CustomPainter oldDelegate) {
-    return true;
-  }
+  bool shouldRepaint(CustomPainter oldDelegate) => true;
 }

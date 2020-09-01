@@ -72,7 +72,7 @@ class SpringySliderController extends ChangeNotifier {
     notifyListeners();
   }
 
-  void onDragStart(double draggingHorizontalPercent) {
+  void startDrag(double draggingHorizontalPercent) {
     if (_springTicker != null) {
       _springTicker
         ..stop()
@@ -86,7 +86,7 @@ class SpringySliderController extends ChangeNotifier {
     notifyListeners();
   }
 
-  void onDragEnd() {
+  void endDrag() {
     _state = SpringySliderState.springing;
 
     _springingPercent = _sliderPercent;

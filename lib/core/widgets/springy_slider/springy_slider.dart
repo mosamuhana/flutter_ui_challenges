@@ -49,7 +49,7 @@ class _SpringySliderState extends State<SpringySlider> with TickerProviderStateM
   @override
   Widget build(BuildContext context) {
     return SliderDragger(
-      sliderController: sliderController,
+      controller: sliderController,
       paddingTop: paddingTop,
       paddingBottom: paddingBottom,
       child: Stack(
@@ -62,7 +62,7 @@ class _SpringySliderState extends State<SpringySlider> with TickerProviderStateM
             paddingBottom: paddingBottom,
           ),
           SliderGoo(
-            sliderController: sliderController,
+            controller: sliderController,
             paddingTop: paddingTop,
             paddingBottom: paddingBottom,
             child: SliderMarks(

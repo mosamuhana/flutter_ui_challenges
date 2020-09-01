@@ -4,13 +4,13 @@ import 'slider_clipper.dart';
 import 'springy_slider_controller.dart';
 
 class SliderGoo extends StatelessWidget {
-  final SpringySliderController sliderController;
+  final SpringySliderController controller;
   final double paddingTop;
   final double paddingBottom;
   final Widget child;
 
   SliderGoo({
-    this.sliderController,
+    this.controller,
     this.paddingTop,
     this.paddingBottom,
     this.child,
@@ -20,7 +20,7 @@ class SliderGoo extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipPath(
       clipper: SliderClipper(
-        controller: sliderController,
+        controller: controller,
         paddingTop: paddingTop,
         paddingBottom: paddingBottom,
       ),
