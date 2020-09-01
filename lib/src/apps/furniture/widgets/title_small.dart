@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/ui_constants.dart';
 import '../constant.dart';
 
 class TitleSmall extends StatelessWidget {
@@ -19,7 +18,7 @@ class TitleSmall extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        wSizedBox10,
+        _wbox10,
         Text(
           '. $subTitle',
           style: TextStyle(
@@ -32,4 +31,6 @@ class TitleSmall extends StatelessWidget {
       ],
     );
   }
+
+  final _wbox10 = SizedBox(width: 10.0);
 }

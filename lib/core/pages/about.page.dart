@@ -4,14 +4,15 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../github.dart';
 import '../helper.dart';
 import '../models.dart';
-import '../data/developers_list.dart';
-import '../ui_constants.dart';
+import 'data.dart';
 
 const _about_title = 'About Flutter UI Challenges';
 const _about_description =
     "Flutter UI Challenges is our effort to replicate various UIs in flutter and share it with you for free.";
 
 class AboutPage extends StatelessWidget {
+  final developersList = getDevelopers();
+
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -36,7 +37,7 @@ class AboutPage extends StatelessWidget {
               decoration: BoxDecoration(color: Colors.grey.shade200),
               child: Text(_about_description),
             ),
-            hSizedBox20,
+            _hbox20,
             _buildButton(
               title: 'Github',
               desc: 'Find codes to all the UIs in our github repository.',
@@ -44,7 +45,7 @@ class AboutPage extends StatelessWidget {
               url: Github.repositoryUrl,
               style: style,
             ),
-            hSizedBox20,
+            _hbox20,
             _buildButton(
               title: 'Youtube',
               desc:
@@ -53,11 +54,11 @@ class AboutPage extends StatelessWidget {
               url: Github.youtubeChannel,
               style: style,
             ),
-            hSizedBox20,
+            _hbox20,
             Text("Contributors", style: style),
-            hSizedBox10,
+            _hbox10,
             ...developersList.map(_buildHeader).toList(),
-            hSizedBox10,
+            _hbox10,
             MaterialButton(
               color: Colors.grey.shade200,
               onPressed: () => tryLaunchUrl(Github.privacyUrl),
@@ -88,7 +89,7 @@ class AboutPage extends StatelessWidget {
                 child: CircleAvatar(radius: 35.0, backgroundImage: NetworkImage(developer.imageUrl)),
               ),
             ),
-            wSizedBox20,
+            _wbox20,
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -96,13 +97,13 @@ class AboutPage extends StatelessWidget {
                   developer.name,
                   style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
                 ),
-                hSizedBox10,
+                _hbox10,
                 Text(developer.profession),
-                hSizedBox5,
+                _hbox5,
                 Row(
                   children: <Widget>[
                     Icon(FontAwesomeIcons.map, size: 12.0, color: Colors.black54),
-                    wSizedBox10,
+                    _wbox10,
                     Text(developer.address, style: TextStyle(color: Colors.black54)),
                   ],
                 ),
@@ -126,14 +127,21 @@ class AboutPage extends StatelessWidget {
           Row(
             children: <Widget>[
               Icon(icon, color: Colors.red),
-              wSizedBox10,
+              _wbox10,
               Text(title, style: style),
             ],
           ),
-          hSizedBox10,
+          _hbox10,
           Text(desc),
         ],
       ),
     );
   }
+
+  final _wbox10 = SizedBox(width: 10.0);
+  final _wbox20 = SizedBox(width: 20.0);
+
+  final _hbox5 = SizedBox(height: 5.0);
+  final _hbox10 = SizedBox(height: 10.0);
+  final _hbox20 = SizedBox(height: 20.0);
 }

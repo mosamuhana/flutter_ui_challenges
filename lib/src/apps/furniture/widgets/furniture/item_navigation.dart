@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/ui_constants.dart';
 import '../../constant.dart';
 
 class ItemNavigation extends StatelessWidget {
@@ -16,13 +15,13 @@ class ItemNavigation extends StatelessWidget {
             shape: BoxShape.circle,
           ),
         ),
-        wSizedBox5,
+        _wbox5,
         Container(
           height: 5.0,
           width: 20.0,
           decoration: BoxDecoration(color: Colors.blue[700], borderRadius: BorderRadius.circular(10.0)),
         ),
-        wSizedBox5,
+        _wbox5,
         Container(
           height: 6.0,
           width: 6.0,
@@ -31,7 +30,7 @@ class ItemNavigation extends StatelessWidget {
             shape: BoxShape.circle,
           ),
         ),
-        wSizedBox5,
+        _wbox5,
         Container(
           height: 6.0,
           width: 6.0,
@@ -43,4 +42,6 @@ class ItemNavigation extends StatelessWidget {
       ],
     );
   }
+
+  final _wbox5 = SizedBox(width: 5.0);
 }

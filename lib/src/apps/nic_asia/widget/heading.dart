@@ -1,10 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/ui_constants.dart';
-
 class Heading extends StatelessWidget {
   final String title;
+
   Heading({this.title});
 
   @override
@@ -12,7 +11,7 @@ class Heading extends StatelessWidget {
     return Row(
       children: <Widget>[
         Image.asset('assets/nicasiaassets/fill_1_copy.png', height: 20.0),
-        wSizedBox15,
+        _wbox15,
         Expanded(
           child: Text(
             title.toUpperCase(),
@@ -26,4 +25,6 @@ class Heading extends StatelessWidget {
       ],
     );
   }
+
+  final _wbox15 = SizedBox(width: 15);
 }

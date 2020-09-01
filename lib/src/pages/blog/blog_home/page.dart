@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../../../core/ui_constants.dart';
 import 'data.dart';
 import 'article_card.dart';
 import 'article.dart';
@@ -101,7 +100,7 @@ class _BlogHomePageState extends State<BlogHomePage> {
       padding: _insets16,
       itemCount: _articles.length,
       itemBuilder: (_, i) => ArticleCard(item: _articles[i]),
-      separatorBuilder: (context, index) => hSizedBox15,
+      separatorBuilder: (context, index) => _hbox15,
     );
   }
 
@@ -124,6 +123,8 @@ class _BlogHomePageState extends State<BlogHomePage> {
 
   final _insets8 = EdgeInsets.all(8);
   final _insets16 = EdgeInsets.all(16);
+
+  final _hbox15 = SizedBox(height: 15);
 }
 
 final _primaryColor = Color(0xffFD6592);

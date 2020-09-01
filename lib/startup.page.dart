@@ -9,24 +9,6 @@ class StartupPage extends StatefulWidget {
 }
 
 class _StartupPageState extends State<StartupPage> with SingleTickerProviderStateMixin {
-  bool dialogShowing;
-  bool showNewUiDialog;
-  AnimationController _animationController;
-
-  @override
-  void initState() {
-    _animationController = AnimationController(vsync: this, duration: Duration(milliseconds: 800));
-    dialogShowing = false;
-    showNewUiDialog = false;
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _animationController.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

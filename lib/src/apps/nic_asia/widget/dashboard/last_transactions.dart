@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../core/ui_constants.dart';
 import '../../util/constant.dart';
 import '../../widget/dashboard/transaction.dart';
 import '../../widget/heading.dart';
@@ -13,9 +12,9 @@ class LastTransactions extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        hSizedBox10,
+        _hbox10,
         Heading(title: 'Last transactions'),
-        hSizedBox25,
+        _hbox25,
         Flexible(
           child: Container(
             // color: Colors.red,
@@ -32,4 +31,7 @@ class LastTransactions extends StatelessWidget {
       ],
     );
   }
+
+  final _hbox10 = SizedBox(height: 10);
+  final _hbox25 = SizedBox(height: 25);
 }

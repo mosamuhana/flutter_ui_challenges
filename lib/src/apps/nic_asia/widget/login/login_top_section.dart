@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import '../../../../../core/ui_constants.dart';
 import '../../util/constant.dart';
 
 class LoginTopSection extends StatelessWidget {
@@ -20,11 +19,11 @@ class LoginTopSection extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.max,
         children: <Widget>[
-          hSizedBox10,
+          _hbox10,
           Container(
             child: Image.asset('assets/nicasiaassets/brand_alternate.png'),
           ),
-          hSizedBox15,
+          _hbox15,
           Container(
             height: deviceSize.height < 700 ? deviceSize.height * 0.19 : deviceSize.height * 0.18,
             child: GridView.count(
@@ -33,7 +32,7 @@ class LoginTopSection extends StatelessWidget {
                   .map((item) => Column(
                         children: <Widget>[
                           Image.asset('$path${item['name']}.png', height: 50.0),
-                          hSizedBox10,
+                          _hbox10,
                           Text(
                             item['title'],
                             style: TextStyle(color: Colors.white),
@@ -47,4 +46,7 @@ class LoginTopSection extends StatelessWidget {
       ),
     );
   }
+
+  final _hbox10 = SizedBox(height: 10);
+  final _hbox15 = SizedBox(height: 15);
 }

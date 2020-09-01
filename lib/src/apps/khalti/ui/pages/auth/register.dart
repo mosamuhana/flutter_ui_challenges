@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../core/ui_constants.dart';
+//import '../../../../../../core/ui_constants.dart';
 import '../../../res/colors.dart';
 import '../../../res/typography.dart';
 
@@ -19,13 +19,13 @@ class RegisterPage extends StatelessWidget {
             children: <Widget>[
               Text("Full Name", style: smallText),
               _buildTextField(),
-              hSizedBox20,
+              _hbox20,
               Text("Mobile Number", style: smallText),
               _buildTextField(),
-              hSizedBox20,
+              _hbox20,
               Text("Email (Optional)", style: smallText),
               _buildTextField(),
-              hSizedBox20,
+              _hbox20,
               Text("Date Type", style: smallText),
               Row(
                 children: <Widget>[
@@ -45,10 +45,10 @@ class RegisterPage extends StatelessWidget {
                   Spacer(),
                 ],
               ),
-              hSizedBox10,
+              _hbox10,
               Text("Date of Birth (YYYY-MM-DD)", style: smallText),
               _buildTextField(),
-              hSizedBox20,
+              _hbox20,
               Text("Date Type", style: smallText),
               Row(
                 children: <Widget>[
@@ -75,15 +75,15 @@ class RegisterPage extends StatelessWidget {
                   Spacer(),
                 ],
               ),
-              hSizedBox10,
+              _hbox10,
               Text("Password", style: smallText),
               _buildTextField(obscureText: true),
-              hSizedBox20,
+              _hbox20,
               Text("Confirm Password", style: smallText),
               _buildTextField(obscureText: true),
-              hSizedBox20,
+              _hbox20,
               Text("By signing up you agree to the Terms & Conditions", style: smallText),
-              hSizedBox10,
+              _hbox10,
               SizedBox(
                 width: double.infinity,
                 child: RaisedButton(
@@ -93,17 +93,17 @@ class RegisterPage extends StatelessWidget {
                   onPressed: () {},
                 ),
               ),
-              hSizedBox10,
+              _hbox10,
               Row(
                 children: <Widget>[
                   Expanded(child: Divider(color: Colors.grey.shade600)),
-                  wSizedBox10,
+                  _wbox10,
                   Text("Already have an account?", style: smallText),
-                  wSizedBox10,
+                  _wbox10,
                   Expanded(child: Divider(color: Colors.grey.shade600)),
                 ],
               ),
-              hSizedBox20,
+              _hbox20,
               GestureDetector(
                 child: SizedBox(
                   width: double.infinity,
@@ -115,7 +115,7 @@ class RegisterPage extends StatelessWidget {
                 ),
                 onTap: () => Navigator.pushNamedAndRemoveUntil(context, 'login', (Route<dynamic> route) => false),
               ),
-              hSizedBox20,
+              _hbox20,
             ],
           ),
         ),
@@ -128,4 +128,8 @@ class RegisterPage extends StatelessWidget {
       obscureText: obscureText,
     );
   }
+
+  final _hbox10 = SizedBox(height: 10.0);
+  final _hbox20 = SizedBox(height: 20.0);
+  final _wbox10 = SizedBox(width: 10.0);
 }

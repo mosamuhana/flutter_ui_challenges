@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/ui_constants.dart';
 import 'shop_item.dart';
 
 class ShopItemCard extends StatelessWidget {
@@ -46,11 +45,11 @@ class ShopItemCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(item.title, style: _w700S22Style),
-            hSizedBox10,
+            _hbox10,
             Text(item.category, style: _greyS18Style),
-            hSizedBox20,
+            _hbox20,
             Text("\$${item.price}", style: _redS30Style),
-            hSizedBox20,
+            _hbox20,
             Text(item.tags, style: _greyS18Style2)
           ],
         ),
@@ -79,4 +78,7 @@ class ShopItemCard extends StatelessWidget {
       BoxShadow(color: Colors.grey, offset: Offset(5, 5), blurRadius: 10),
     ],
   );
+
+  final _hbox10 = SizedBox(height: 10);
+  final _hbox20 = SizedBox(height: 20);
 }

@@ -5,9 +5,7 @@ import '../src/pages/index.dart';
 import '../src/apps/index.dart';
 import 'models.dart';
 
-final List<dynamic> pages = [
-  /*
-
+final List<MenuItem> pages = [
   MenuItem(
     title: "Animations",
     icon: FontAwesomeIcons.truckMoving,
@@ -180,7 +178,6 @@ final List<dynamic> pages = [
       SubMenuItem("Smart Wallet Onboarding", SmartWalletOnboardingPage(), path: SmartWalletOnboardingPage.path),
     ],
   ),
-  */
   MenuItem(
     title: "Miscellaneous",
     items: [
@@ -203,9 +200,9 @@ final List<dynamic> pages = [
   MenuItem(
     title: "Apps (Clones)",
     items: [
-      //SubMenuItem("Hotel App", HotelHomePage(), path: HotelHomePage.path),
-      //SubMenuItem("Quiz App", QuizHomePage(), path: QuizHomePage.path),
-      //SubMenuItem("Grocery UI Kit", GroceryHomePage(), path: GroceryHomePage.path),
+      SubMenuItem("Hotel App", HotelHomePage(), path: HotelHomePage.path),
+      SubMenuItem("Quiz App", QuizHomePage(), path: QuizHomePage.path),
+      SubMenuItem("Grocery UI Kit", GroceryHomePage(), path: GroceryHomePage.path),
       SubMenuItem("Furniture App", FurnitureApp(), path: FurnitureApp.path),
       SubMenuItem('Khalti App', KhaltiApp(), path: KhaltiApp.path),
       SubMenuItem("Bank App Clone", NicAsiaApp(), path: NicAsiaApp.path),
@@ -213,18 +210,3 @@ final List<dynamic> pages = [
     icon: Icons.account_balance_wallet,
   ),
 ];
-
-SubMenuItem getItemForKey(String key) {
-  SubMenuItem item;
-  List<dynamic> _pages = List<dynamic>.from(pages);
-  _pages.forEach((page) {
-    if (page is SubMenuItem && page.title == key) {
-      item = page;
-    } else if (page is MenuItem) {
-      page.items.forEach((sub) {
-        if (sub.title == key) item = sub;
-      });
-    }
-  });
-  return item;
-}

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/constants.dart';
-import '../../../../core/ui_constants.dart';
+//import '../../../../core/ui_constants.dart';
 
 class PaymentSuccessDialog extends StatelessWidget {
   final _avatarImage = '$STORE_BASE_URL/img%2F3.jpg?alt=media';
@@ -33,7 +33,7 @@ class PaymentSuccessDialog extends StatelessWidget {
                     Text("9:10 AM"),
                   ],
                 ),
-                hSizedBox20,
+                _hbox20,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -52,7 +52,7 @@ class PaymentSuccessDialog extends StatelessWidget {
                     )
                   ],
                 ),
-                hSizedBox20,
+                _hbox20,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -66,7 +66,7 @@ class PaymentSuccessDialog extends StatelessWidget {
                     Text("COMPLETED", style: _greyS14Style)
                   ],
                 ),
-                hSizedBox20,
+                _hbox20,
                 Container(
                   padding: _insets10,
                   decoration: _cardDecoration,
@@ -76,7 +76,7 @@ class PaymentSuccessDialog extends StatelessWidget {
                         backgroundColor: Colors.green,
                         child: _accountBalanceWalletIcon,
                       ),
-                      wSizedBox10,
+                      _wbox10,
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -94,6 +94,9 @@ class PaymentSuccessDialog extends StatelessWidget {
       ),
     );
   }
+
+  final _wbox10 = SizedBox(width: 10);
+  final _hbox20 = SizedBox(height: 20.0);
 
   final _greyS12Style = TextStyle(color: Colors.grey, fontSize: 12);
   final _greyS14Style = TextStyle(color: Colors.grey, fontSize: 14);

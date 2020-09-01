@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
-import '../../../../../core/ui_constants.dart';
 import '../../res/colors.dart';
 import '../../res/constants.dart';
 
@@ -138,4 +137,9 @@ class _IntroPageState extends State<IntroPage> {
       ),
     );
   }
+
+  final wSizedBox10 = SizedBox(width: 10.0);
+  final wSizedBox20 = SizedBox(width: 20.0);
+  final hSizedBox10 = SizedBox(height: 10.0);
+  final hSizedBox20 = SizedBox(height: 20.0);
 }

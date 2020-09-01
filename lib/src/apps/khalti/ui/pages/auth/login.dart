@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../core/ui_constants.dart';
 import '../../../res/colors.dart';
 import '../../../res/constants.dart';
 import '../../../res/typography.dart';
@@ -25,7 +24,7 @@ class LoginPage extends StatelessWidget {
                     Row(
                       children: <Widget>[
                         Icon(Icons.perm_contact_calendar),
-                        wSizedBox10,
+                        _wbox10,
                         Expanded(
                           child: TextField(
                             decoration: InputDecoration(hintText: "Mobile or Email"),
@@ -33,11 +32,11 @@ class LoginPage extends StatelessWidget {
                         ),
                       ],
                     ),
-                    hSizedBox20,
+                    _hbox20,
                     Row(
                       children: <Widget>[
                         Icon(Icons.lock),
-                        wSizedBox10,
+                        _wbox10,
                         Expanded(
                           child: TextField(
                             obscureText: true,
@@ -51,7 +50,7 @@ class LoginPage extends StatelessWidget {
                         ),
                       ],
                     ),
-                    hSizedBox30,
+                    _hbox30,
                     Container(
                       margin: const EdgeInsets.symmetric(horizontal: 16.0),
                       width: double.infinity,
@@ -62,7 +61,7 @@ class LoginPage extends StatelessWidget {
                         onPressed: () => Navigator.pushReplacementNamed(context, 'home'),
                       ),
                     ),
-                    hSizedBox20,
+                    _hbox20,
                     GestureDetector(
                       child: Text(
                         "Forgot Password".toUpperCase(),
@@ -72,17 +71,17 @@ class LoginPage extends StatelessWidget {
                         Navigator.pushNamed(context, 'recover');
                       },
                     ),
-                    hSizedBox20,
+                    _hbox20,
                     Row(
                       children: <Widget>[
                         Expanded(child: Divider(color: Colors.grey.shade600)),
-                        wSizedBox10,
+                        _wbox10,
                         Text("Not a member?", style: smallText),
-                        wSizedBox10,
+                        _wbox10,
                         Expanded(child: Divider(color: Colors.grey.shade600)),
                       ],
                     ),
-                    hSizedBox20,
+                    _hbox20,
                     GestureDetector(
                       child: Text(
                         "Create Account".toUpperCase(),
@@ -92,7 +91,7 @@ class LoginPage extends StatelessWidget {
                         Navigator.pushNamed(context, 'register');
                       },
                     ),
-                    hSizedBox20,
+                    _hbox20,
                   ],
                 ),
               ),
@@ -110,4 +109,8 @@ class LoginPage extends StatelessWidget {
       ),
     );
   }
+
+  final _wbox10 = SizedBox(width: 10.0);
+  final _hbox20 = SizedBox(height: 20.0);
+  final _hbox30 = SizedBox(height: 30.0);
 }

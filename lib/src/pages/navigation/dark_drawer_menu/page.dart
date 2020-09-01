@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/constants.dart';
-import '../../../../core/utils/oval-right-clipper.dart';
+import '../../../../core/oval_right_clipper.dart';
 
 class DarkDrawerMenuPage extends StatefulWidget {
   static final String path = "lib/src/pages/navigation/dark_drawer_menu/page.dart";

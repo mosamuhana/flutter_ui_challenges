@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/ui_constants.dart';
 import '../util/constant.dart';
 import '../widget/dashboard/categories.dart';
 import '../widget/dashboard/last_transactions.dart';
@@ -185,4 +184,7 @@ class Dashboard extends StatelessWidget {
       ],
     );
   }
+
+  final wSizedBox5 = SizedBox(width: 5);
+  final hSizedBox15 = SizedBox(height: 15);
 }

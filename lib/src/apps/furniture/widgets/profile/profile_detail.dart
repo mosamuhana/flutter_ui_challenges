@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/ui_constants.dart';
 import '../../constant.dart';
 import '../../widgets/profile_image.dart';
 
@@ -32,7 +31,7 @@ class ProfileDetail extends StatelessWidget {
                   height: 60.0,
                   width: 60.0,
                 ),
-                wSizedBox15,
+                _wbox15,
                 Column(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,7 +46,7 @@ class ProfileDetail extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        wSizedBox15,
+                        _wbox15,
                         Icon(Icons.border_color, color: Colors.white, size: 15.0)
                       ],
                     ),
@@ -63,7 +62,7 @@ class ProfileDetail extends StatelessWidget {
                 ),
               ],
             ),
-            hSizedBox15,
+            _hbox15,
             Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -79,7 +78,7 @@ class ProfileDetail extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      hSizedBox5,
+                      _hbox5,
                       Text(
                         item['name'],
                         style: TextStyle(
@@ -97,4 +96,8 @@ class ProfileDetail extends StatelessWidget {
       ),
     );
   }
+
+  final _hbox5 = SizedBox(height: 5);
+  final _hbox15 = SizedBox(height: 15);
+  final _wbox15 = SizedBox(width: 15);
 }

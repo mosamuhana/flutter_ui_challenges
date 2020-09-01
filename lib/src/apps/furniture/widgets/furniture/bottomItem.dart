@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/ui_constants.dart';
 import '../../../../../core/widgets.dart';
 import '../../constant.dart';
 import '../../widgets/furniture/custom_side_button.dart';
@@ -32,7 +31,7 @@ class BottomItem extends StatelessWidget {
                 ),
                 child: Row(
                   children: <Widget>[
-                    wSizedBox15,
+                    _wbox15,
                     Container(
                       height: 110.0,
                       decoration: BoxDecoration(
@@ -83,7 +82,7 @@ class BottomItem extends StatelessWidget {
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              wSizedBox5,
+                              _wbox5,
                               Padding(
                                 padding: const EdgeInsets.only(top: 5.0),
                                 child: Text(
@@ -117,4 +116,7 @@ class BottomItem extends StatelessWidget {
       ],
     );
   }
+
+  final _wbox5 = SizedBox(width: 5.0);
+  final _wbox15 = SizedBox(width: 15.0);
 }

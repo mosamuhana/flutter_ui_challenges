@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import './colors.dart';
-import './text_styles.dart';
+import '../constants.dart';
+import 'text_styles.dart';
 
 final ThemeData defaultTheme = buildDefaultTheme();
 

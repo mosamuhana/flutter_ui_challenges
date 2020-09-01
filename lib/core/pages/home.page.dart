@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
           elevation: 0,
         ),
         body: MainMenu(),
-        bottomNavigationBar: null,
+        //bottomNavigationBar: null,
       ),
     );
   }

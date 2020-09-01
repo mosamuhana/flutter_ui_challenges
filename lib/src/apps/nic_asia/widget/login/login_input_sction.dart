@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/ui_constants.dart';
 import '../../util/constant.dart';
 import '../../widget/login/custome_input.dart';
 
@@ -26,13 +25,13 @@ class LoginInputSection extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 25.0),
                   child: Column(
                     children: <Widget>[
-                      hSizedBox25,
+                      _hbox25,
                       CustomInputField(
                         textHint: 'Mobile number',
                         keyboardType: TextInputType.number,
                         showInputText: false,
                       ),
-                      hSizedBox15,
+                      _hbox15,
                       CustomInputField(
                         textHint: 'Password',
                         showInputText: true,
@@ -86,7 +85,7 @@ class LoginInputSection extends StatelessWidget {
                           ],
                         ),
                       ),
-                      hSizedBox15,
+                      _hbox15,
                       Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -101,7 +100,7 @@ class LoginInputSection extends StatelessWidget {
                           ),
                         ],
                       ),
-                      hSizedBox25,
+                      _hbox25,
                     ],
                   ),
                 ),
@@ -112,4 +111,7 @@ class LoginInputSection extends StatelessWidget {
       ),
     );
   }
+
+  final _hbox15 = SizedBox(height: 15);
+  final _hbox25 = SizedBox(height: 25);
 }

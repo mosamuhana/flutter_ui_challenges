@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/ui_constants.dart';
 import '../../widget/login/login_input_sction.dart';
 import '../../widget/login/login_top_section.dart';
 
@@ -26,14 +25,7 @@ class LoginContainer extends StatelessWidget {
               ),
             ),
             Column(
-              children: <Widget>[
-                hSizedBox25,
-                buildLogo(deviceSize),
-                hSizedBox20,
-                LoginTopSection(),
-                hSizedBox30,
-                LoginInputSection()
-              ],
+              children: <Widget>[_hbox25, buildLogo(deviceSize), _hbox20, LoginTopSection(), _hbox30, LoginInputSection()],
             )
           ],
         ),
@@ -67,4 +59,8 @@ class LoginContainer extends StatelessWidget {
       ],
     );
   }
+
+  final _hbox20 = SizedBox(height: 20);
+  final _hbox25 = SizedBox(height: 25);
+  final _hbox30 = SizedBox(height: 30);
 }

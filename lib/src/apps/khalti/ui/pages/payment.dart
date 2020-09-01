@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/ui_constants.dart';
-
 class Payment extends StatefulWidget {
   @override
   _PaymentState createState() => _PaymentState();
@@ -18,7 +16,7 @@ class _PaymentState extends State<Payment> {
       body: Container(
         child: Column(
           children: <Widget>[
-            hSizedBox20,
+            _hbox20,
             Container(
               margin: EdgeInsets.all(20),
               child: TextField(
@@ -31,7 +29,7 @@ class _PaymentState extends State<Payment> {
                 keyboardType: TextInputType.number,
               ),
             ),
-            hSizedBox20,
+            _hbox20,
             RaisedButton(
               onPressed: () {},
               child: Text('Pay', style: TextStyle(color: Colors.white)),
@@ -46,4 +44,6 @@ class _PaymentState extends State<Payment> {
       ),
     );
   }
+
+  final _hbox20 = SizedBox(height: 20);
 }

@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/ui_constants.dart';
+//import '../../../../../core/ui_constants.dart';
 import '../../../../../core/widgets.dart';
 import '../../constant.dart';
 import '../../widgets/furniture/custom_side_button.dart';
 import '../../models.dart';
 
 class Lamp extends StatelessWidget {
-  final ProfileMenu item;
   final int index;
+  final ProfileMenu item;
+
   Lamp({this.item, this.index});
+
   @override
   Widget build(BuildContext context) {
     Size deviceSize = MediaQuery.of(context).size;
@@ -92,7 +94,7 @@ class Lamp extends StatelessWidget {
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  hSizedBox5,
+                                  _hbox5,
                                   Text(
                                     'Matter made',
                                     style: TextStyle(
@@ -103,7 +105,7 @@ class Lamp extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                              hSizedBox10,
+                              _hbox10,
                               Row(
                                 // crossAxisAlignment: CrossAxisAlignment.end,
                                 children: <Widget>[
@@ -157,4 +159,7 @@ class Lamp extends StatelessWidget {
       ),
     );
   }
+
+  final _hbox5 = SizedBox(height: 5);
+  final _hbox10 = SizedBox(height: 10);
 }

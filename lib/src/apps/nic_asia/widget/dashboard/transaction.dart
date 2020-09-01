@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/ui_constants.dart';
 import '../../util/constant.dart';
 
 class Transaction extends StatelessWidget {
@@ -48,7 +47,7 @@ class Transaction extends StatelessWidget {
                     ),
                   ],
                 ),
-                hSizedBox5,
+                _hbox5,
                 Text(
                   transaction.date.toUpperCase(),
                   style: TextStyle(fontWeight: FontWeight.w500, fontSize: 10.0),
@@ -60,4 +59,6 @@ class Transaction extends StatelessWidget {
       ),
     );
   }
+
+  final _hbox5 = SizedBox(height: 5);
 }

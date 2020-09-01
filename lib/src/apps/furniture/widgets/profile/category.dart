@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/ui_constants.dart';
 import '../../constant.dart';
 import '../../models.dart';
 
@@ -49,7 +48,7 @@ class Category extends StatelessWidget {
                 : SizedBox(),
           ],
         ),
-        hSizedBox10,
+        _hbox10,
         Text(
           catg.name,
           style: TextStyle(fontSize: 13.0),
@@ -57,4 +56,6 @@ class Category extends StatelessWidget {
       ],
     );
   }
+
+  final _hbox10 = SizedBox(height: 10);
 }

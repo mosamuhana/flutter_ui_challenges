@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../../../../core/ui_constants.dart';
+//import '../../../../../core/ui_constants.dart';
 import '../../model/home_menu_item.dart';
 import '../../res/constants.dart';
 import '../../res/typography.dart';
@@ -193,7 +193,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
             color: Colors.purple.shade300,
           ),
         ),
-        hSizedBox5,
+        _hbox5,
         Text(
           label,
           style: smallText,
@@ -215,12 +215,12 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
             size: 28,
             color: Colors.purple.shade300,
           ),
-          hSizedBox10,
+          _hbox10,
           Text(
             label,
             style: smallText,
           ),
-          if (subtitle != null) hSizedBox5,
+          if (subtitle != null) _hbox5,
           if (subtitle != null)
             Container(
               padding: const EdgeInsets.symmetric(
@@ -238,4 +238,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
       ),
     );
   }
+
+  final _hbox5 = SizedBox(height: 5);
+  final _hbox10 = SizedBox(height: 10);
 }

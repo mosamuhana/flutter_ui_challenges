@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/ui_constants.dart';
 import '../../util/constant.dart';
 import '../../widget/dashboard/category.dart';
 import '../heading.dart';
@@ -11,9 +10,9 @@ class Categories extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        hSizedBox10,
+        _hbox10,
         Heading(title: 'would you like to?'),
-        hSizedBox25,
+        _hbox25,
         Flexible(
           fit: FlexFit.loose,
           child: GridView.count(
@@ -27,4 +26,7 @@ class Categories extends StatelessWidget {
       ],
     );
   }
+
+  final _hbox10 = SizedBox(height: 10);
+  final _hbox25 = SizedBox(height: 25);
 }

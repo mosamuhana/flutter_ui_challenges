@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/ui_constants.dart';
+//import '../../../core/ui_constants.dart';
 import 'constant.dart';
 import 'widgets/furniture/bottomItem.dart';
 import 'widgets/furniture/furniture_category.dart';
@@ -49,7 +49,7 @@ class FurniturePage extends StatelessWidget {
                 title: 'Modern',
               ),
             ),
-            hSizedBox20,
+            _hbox20,
             buildLampsWithSlider(),
             Padding(
               padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 10.0),
@@ -58,9 +58,9 @@ class FurniturePage extends StatelessWidget {
                 title: 'Popular',
               ),
             ),
-            hSizedBox15,
+            _hbox15,
             BottomItem(),
-            hSizedBox10,
+            _hbox10,
           ],
         ),
       ),
@@ -106,4 +106,8 @@ class FurniturePage extends StatelessWidget {
       ),
     ),
   );
+
+  final _hbox10 = SizedBox(height: 10);
+  final _hbox15 = SizedBox(height: 15);
+  final _hbox20 = SizedBox(height: 20);
 }

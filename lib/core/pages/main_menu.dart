@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../src/pages/bike/details.dart';
-import '../enums.dart';
 import '../models.dart';
 import '../routes.dart';
 import '../widgets.dart';
@@ -22,60 +20,40 @@ class _MainMenuState extends State<MainMenu> {
 
   @override
   Widget build(BuildContext context) {
-    final children = pages
-        .map(
-          (page) => page is MenuItem ? _buildExpandableMenu(page, context) : _buildSubMenuContainer(page, context),
-        )
-        .toList();
-
     return ListView(
       physics: BouncingScrollPhysics(),
-      children: children,
+      children: List.generate(pages.length, (i) => _buildExpandableMenu(pages[i], context)),
     );
   }
 
   Widget _buildExpandableMenu(MenuItem page, BuildContext context) {
-    final double hMargin = _isExpanded(page.title) ? 0.0 : 8.0;
-    final children = page.items.map((item) => _buildSubMenu(item, context)).toList();
-
     return RoundedContainer(
-      margin: EdgeInsets.symmetric(horizontal: hMargin, vertical: 4.0),
-      padding: const EdgeInsets.all(0),
+      margin: EdgeInsets.symmetric(horizontal: _isExpanded(page.title) ? 0 : 8, vertical: 4),
+      padding: _insets0,
       elevation: 0,
       child: ExpansionTile(
-        onExpansionChanged: (b) => setState(() => _expandedData[page.title] = b),
+        onExpansionChanged: (value) => setState(() => _expandedData[page.title] = value),
         leading: Icon(page.icon),
-        title: Text(
-          page.fullTitle,
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black87),
-        ),
-        children: children,
+        title: Text(page.fullTitle, style: _black87BoldStyle),
+        children: List.generate(page.items.length, (i) => _buildSubMenu(page.items[i], context)),
       ),
-    );
-  }
-
-  Widget _buildSubMenuContainer(SubMenuItem page, BuildContext context) {
-    return BorderedContainer(
-      margin: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
-      padding: const EdgeInsets.all(0),
-      child: _buildSubMenu(page, context),
     );
   }
 
   Widget _buildSubMenu(SubMenuItem item, BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 32.0),
+      padding: _insetsL32,
       child: ListTile(
-        leading: Icon(Icons.arrow_right, color: Colors.deepOrange),
-        contentPadding: EdgeInsets.all(0),
+        leading: _arrowRightIcon,
+        contentPadding: _insets0,
         dense: false,
         isThreeLine: false,
         trailing: Row(
           mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
+          children: [
             IconButton(
               icon: Icon(Icons.code),
-              onPressed: () => _openPage(context, item, OpenMode.CODE),
+              onPressed: () => _openPage(context, item, isPreview: true),
             ),
           ],
         ),
@@ -83,18 +61,23 @@ class _MainMenuState extends State<MainMenu> {
           item.title,
           style: Theme.of(context).textTheme.subtitle1.copyWith(color: Colors.black87),
         ),
-        onTap: () => _openPage(context, item, OpenMode.PREVIEW),
+        onTap: () => _openPage(context, item),
       ),
     );
   }
 
-  void _openPage(BuildContext context, SubMenuItem item, OpenMode mode) {
+  void _openPage(BuildContext context, SubMenuItem item, {bool isPreview = false}) {
     Widget page = item.page;
-    if (mode == OpenMode.CODE) {
+    if (isPreview) {
       page = DesignPreviewPage(page: item.page, title: item.title, path: item.path);
     }
     Navigator.push(context, MaterialPageRoute(builder: (_) => page));
   }
 
   bool _isExpanded(String title) => _expandedData[title] != null && _expandedData[title];
+
+  final _insets0 = EdgeInsets.all(0);
+  final _insetsL32 = EdgeInsets.only(left: 32);
+  final _black87BoldStyle = TextStyle(fontWeight: FontWeight.bold, color: Colors.black87);
+  final _arrowRightIcon = Icon(Icons.arrow_right, color: Colors.deepOrange);
 }

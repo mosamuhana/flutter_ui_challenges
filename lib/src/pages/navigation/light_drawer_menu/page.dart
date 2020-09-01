@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/constants.dart';
-import '../../../../core/utils/oval-right-clipper.dart';
+import '../../../../core/oval_right_clipper.dart';
 
 class LightDrawerMenuPage extends StatelessWidget {
   static final String path = "lib/src/pages/navigation/light_drawer_menu/page.dart";

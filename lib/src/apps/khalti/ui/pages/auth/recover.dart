@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../core/ui_constants.dart';
 import '../../../res/colors.dart';
 import '../../../res/constants.dart';
 import '../../../res/typography.dart';
@@ -23,11 +22,11 @@ class RecoverPasswordPage extends StatelessWidget {
                 child: Column(
                   children: <Widget>[
                     Text("Recover Password", style: TextStyle(fontSize: 20.0)),
-                    hSizedBox10,
+                    _hbox10,
                     Text("We will send the Confirmation Code through SMS\nPlease type your Mobile number below."),
-                    hSizedBox20,
+                    _hbox20,
                     TextField(decoration: InputDecoration(hintText: "Mobile Number")),
-                    hSizedBox20,
+                    _hbox20,
                     SizedBox(
                       width: double.infinity,
                       child: RaisedButton(
@@ -37,17 +36,17 @@ class RecoverPasswordPage extends StatelessWidget {
                         onPressed: () {},
                       ),
                     ),
-                    hSizedBox20,
+                    _hbox20,
                     Row(
                       children: <Widget>[
                         Expanded(child: Divider(color: Colors.grey.shade600)),
-                        wSizedBox10,
+                        _wbox10,
                         Text("Having problems?", style: smallText),
-                        wSizedBox10,
+                        _wbox10,
                         Expanded(child: Divider(color: Colors.grey.shade600)),
                       ],
                     ),
-                    hSizedBox20,
+                    _hbox20,
                     GestureDetector(
                       child: Text(
                         "Contact Us".toUpperCase(),
@@ -55,7 +54,7 @@ class RecoverPasswordPage extends StatelessWidget {
                       ),
                       onTap: () {},
                     ),
-                    hSizedBox20,
+                    _hbox20,
                   ],
                 ),
               ),
@@ -73,4 +72,8 @@ class RecoverPasswordPage extends StatelessWidget {
       ),
     );
   }
+
+  final _wbox10 = SizedBox(width: 10.0);
+  final _hbox10 = SizedBox(height: 10.0);
+  final _hbox20 = SizedBox(height: 20.0);
 }
