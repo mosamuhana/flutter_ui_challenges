@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'slider_controller.dart';
+import 'springy_slider_controller.dart';
 
 class SliderDragger extends StatefulWidget {
   final SpringySliderController sliderController;

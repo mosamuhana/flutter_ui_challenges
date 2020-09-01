@@ -2,23 +2,23 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-import 'slider_controller.dart';
+import 'springy_slider_controller.dart';
 import 'slider_state.dart';
 
 class SliderClipper extends CustomClipper<Path> {
-  final SpringySliderController sliderController;
+  final SpringySliderController controller;
   final double paddingTop;
   final double paddingBottom;
 
   SliderClipper({
-    this.sliderController,
+    this.controller,
     this.paddingTop,
     this.paddingBottom,
   });
 
   @override
   Path getClip(Size size) {
-    switch (sliderController.state) {
+    switch (controller.state) {
       case SpringySliderState.idle:
         return _clipIdle(size);
       case SpringySliderState.dragging:
@@ -36,7 +36,7 @@ class SliderClipper extends CustomClipper<Path> {
     final top = paddingTop;
     final bottom = size.height;
     final height = (bottom - paddingBottom) - top;
-    final percentFromBottom = 1.0 - sliderController.sliderValue;
+    final percentFromBottom = 1.0 - controller.sliderValue;
 
     rect.addRect(
       new Rect.fromLTRB(
@@ -56,8 +56,8 @@ class SliderClipper extends CustomClipper<Path> {
     final top = paddingTop;
     final bottom = size.height - paddingBottom;
     final height = bottom - top;
-    final basePercentFromBottom = 1.0 - sliderController.sliderValue;
-    final dragPercentFromBottom = 1.0 - sliderController.draggingPercent;
+    final basePercentFromBottom = 1.0 - controller.sliderValue;
+    final dragPercentFromBottom = 1.0 - controller.draggingPercent;
 
     final baseY = top + (basePercentFromBottom * height);
     final leftX = -0.15 * size.width;
@@ -65,15 +65,15 @@ class SliderClipper extends CustomClipper<Path> {
     final rightX = 1.15 * size.width;
     final rightPoint = Point(rightX, baseY);
 
-    final dragX = sliderController.draggingHorizontalPercent * size.width;
+    final dragX = controller.draggingHorizontalPercent * size.width;
     final dragY = top + (dragPercentFromBottom * height);
     final crestPoint = Point(dragX, dragY.clamp(top, bottom));
 
     double excessDrag = 0.0;
-    if (sliderController.draggingPercent < 0.0) {
-      excessDrag = sliderController.draggingPercent;
-    } else if (sliderController.draggingPercent > 1.0) {
-      excessDrag = sliderController.draggingPercent - 1.0;
+    if (controller.draggingPercent < 0.0) {
+      excessDrag = controller.draggingPercent;
+    } else if (controller.draggingPercent > 1.0) {
+      excessDrag = controller.draggingPercent - 1.0;
     }
     final baseControlPointWidth = 150.0;
     final thickeningFactor = excessDrag * height * 0.05;
@@ -124,8 +124,8 @@ class SliderClipper extends CustomClipper<Path> {
     final top = paddingTop;
     final bottom = size.height - paddingBottom;
     final height = bottom - top;
-    final basePercentFromBottom = 1.0 - sliderController.springingPercent;
-    final crestSpringPercentFromBottom = 1.0 - sliderController.crestSpringingPercent;
+    final basePercentFromBottom = 1.0 - controller.springingPercent;
+    final crestSpringPercentFromBottom = 1.0 - controller.crestSpringingPercent;
 
     final baseY = top + (basePercentFromBottom * height);
     final leftX = -0.85 * size.width;

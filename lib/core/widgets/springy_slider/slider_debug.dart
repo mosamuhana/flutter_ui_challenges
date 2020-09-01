@@ -16,17 +16,13 @@ class SliderDebug extends StatelessWidget {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         final height = constraints.maxHeight - paddingTop - paddingBottom;
-
         return Stack(
-          children: <Widget>[
+          children: [
             Positioned(
-              left: 0.0,
-              right: 0.0,
+              left: 0,
+              right: 0,
               top: height * (1.0 - sliderPercent) + paddingTop,
-              child: Container(
-                height: 2.0,
-                color: Colors.black,
-              ),
+              child: Container(height: 2, color: Colors.black),
             )
           ],
         );

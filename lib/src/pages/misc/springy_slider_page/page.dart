@@ -59,15 +59,16 @@ class SpringySliderPage extends StatelessWidget {
     );
   }
 
-  Widget get _springySlider => SpringySlider(markCount: 12, positiveColor: Colors.pink, negativeColor: Colors.white);
+  //Widget get _springySlider => SpringySlider(markCount: 12, positiveColor: Colors.pink, negativeColor: Colors.white);
+  final _springySlider = SpringySlider(markCount: 12, positiveColor: Colors.pink, negativeColor: Colors.white);
 
   final _whiteBoldS12Style = TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 12);
   final _pinkBoldS12Style = TextStyle(color: Colors.pink, fontWeight: FontWeight.bold, fontSize: 12);
 
   final _insetsH16V10 = EdgeInsets.symmetric(horizontal: 16, vertical: 10);
 
-  final _menuIcon = Icon(Icons.menu);
-
   final _textTheme = TextTheme(headline6: TextStyle(color: Colors.pink, fontWeight: FontWeight.bold, fontSize: 18));
   final _iconTheme = IconThemeData(color: Colors.pink);
+
+  //final _menuIcon = Icon(Icons.menu);
 }

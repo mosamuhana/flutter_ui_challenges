@@ -5,17 +5,8 @@ import 'package:flutter/scheduler.dart';
 import 'slider_state.dart';
 
 class SpringySliderController extends ChangeNotifier {
-  final SpringDescription sliderSpring = new SpringDescription(
-    mass: 1.0,
-    stiffness: 1000.0,
-    damping: 30.0,
-  );
-
-  final SpringDescription crestSpring = new SpringDescription(
-    mass: 1.0,
-    stiffness: 5.0,
-    damping: 0.5,
-  );
+  final SpringDescription sliderSpring = SpringDescription(mass: 1, stiffness: 1000, damping: 30);
+  final SpringDescription crestSpring = SpringDescription(mass: 1, stiffness: 5, damping: 0.5);
 
   final TickerProvider _vsync;
 
@@ -49,12 +40,11 @@ class SpringySliderController extends ChangeNotifier {
   // Elapsed time that has passed since the start of the spring.
   double _springTime;
 
-  SpringySliderController({
-    double sliderPercent = 0.0,
-    vsync,
-  })  : _vsync = vsync,
+  SpringySliderController({double sliderPercent = 0, vsync})
+      : _vsync = vsync,
         _sliderPercent = sliderPercent;
 
+  @override
   void dispose() {
     if (_springTicker != null) {
       _springTicker.dispose();
@@ -123,11 +113,11 @@ class SpringySliderController extends ChangeNotifier {
       return;
     }
 
-    _sliderSpringSimulation = new SpringSimulation(
+    _sliderSpringSimulation = SpringSimulation(
       sliderSpring,
       _springStartPercent,
       _springEndPercent,
-      0.0,
+      0,
     );
 
     final crestSpringNormal = (_crestSpringingEndPercent - _crestSpringingStartPercent) /
@@ -139,7 +129,7 @@ class SpringySliderController extends ChangeNotifier {
       0.5 * crestSpringNormal,
     );
 
-    _springTime = 0.0;
+    _springTime = 0;
 
     _springTicker = _vsync.createTicker(_springTick)..start();
 

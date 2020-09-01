@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'slider_clipper.dart';
-import 'slider_controller.dart';
+import 'springy_slider_controller.dart';
 
 class SliderGoo extends StatelessWidget {
   final SpringySliderController sliderController;
@@ -20,7 +20,7 @@ class SliderGoo extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipPath(
       clipper: SliderClipper(
-        sliderController: sliderController,
+        controller: sliderController,
         paddingTop: paddingTop,
         paddingBottom: paddingBottom,
       ),
