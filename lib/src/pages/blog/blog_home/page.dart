@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -78,7 +80,7 @@ class _BlogHomePageState extends State<BlogHomePage> {
     return AppBar(
       centerTitle: true,
       title: Text('Categories'),
-      leading: _categoryIcon,
+      leading: Platform.isWindows ? null : _categoryIcon,
       actions: [
         IconButton(
           icon: _searchIcon,

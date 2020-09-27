@@ -16,18 +16,31 @@ class _List2PageState extends State<List2Page> {
 
     return Scaffold(
       backgroundColor: Color(0xfff0f0f0),
-      body: SingleChildScrollView(
-        child: Container(
-          height: size.height,
-          width: size.width,
-          child: Stack(
-            children: [
-              _list,
-              _header,
-              _search,
-            ],
+      body: Stack(
+        children: [
+          SingleChildScrollView(
+            child: Container(
+              height: size.height,
+              width: size.width,
+              child: Stack(
+                children: [
+                  _list,
+                  _header,
+                  _search,
+                ],
+              ),
+            ),
           ),
-        ),
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: AppBar(
+              elevation: 0,
+              backgroundColor: Colors.transparent,
+            ),
+          ),
+        ],
       ),
     );
   }

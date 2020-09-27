@@ -38,6 +38,7 @@ class _SportsNewsHomePageState extends State<SportsNewsHomePage> {
   ];
 
   var categories = <String>['Football', 'Basketball', 'Hockey'];
+
   var categoryIcons = <IconData>[
     FontAwesomeIcons.footballBall,
     FontAwesomeIcons.basketballBall,
@@ -49,9 +50,10 @@ class _SportsNewsHomePageState extends State<SportsNewsHomePage> {
     return Scaffold(
       backgroundColor: _bgColor,
       appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.black),
         backgroundColor: Colors.transparent,
         elevation: 0,
-        automaticallyImplyLeading: false,
+        //automaticallyImplyLeading: false,
         title: Text("Feed", style: _blackS30Style),
         actions: [
           IconButton(

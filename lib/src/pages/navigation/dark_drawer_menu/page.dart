@@ -83,7 +83,10 @@ class _DarkDrawerMenuPageState extends State<DarkDrawerMenuPage> {
                     alignment: Alignment.centerRight,
                     child: IconButton(
                       icon: Icon(Icons.power_settings_new, color: _activeColor),
-                      onPressed: () => Navigator.pop(context),
+                      onPressed: () {
+                        Navigator.pop(context);
+                        Navigator.pop(context);
+                      },
                     ),
                   ),
                   Container(

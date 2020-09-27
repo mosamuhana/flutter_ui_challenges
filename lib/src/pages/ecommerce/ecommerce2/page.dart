@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'data.dart';
@@ -74,7 +73,6 @@ class _Ecommerce2PageState extends State<Ecommerce2Page> {
 
   Widget get _appBar {
     return AppBar(
-      automaticallyImplyLeading: false,
       actions: [
         IconButton(
           onPressed: () {},
@@ -86,10 +84,13 @@ class _Ecommerce2PageState extends State<Ecommerce2Page> {
         ),
       ],
       backgroundColor: Colors.white70,
+      /*
+      automaticallyImplyLeading: false,
       leading: IconButton(
         onPressed: () {},
         icon: _menuIcon,
       ),
+      */
       title: Text('Shopping', style: _black87Style),
       centerTitle: true,
       bottom: PreferredSize(

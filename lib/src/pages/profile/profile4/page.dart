@@ -46,7 +46,7 @@ class Profile4Page extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        automaticallyImplyLeading: false,
+        //automaticallyImplyLeading: false,
         actions: [
           IconButton(
             icon: _commentDotsIcon,

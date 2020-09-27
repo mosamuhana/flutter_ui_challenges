@@ -45,7 +45,16 @@ class SmartWalletOnboardingPage extends StatelessWidget {
               top: 20,
               left: MediaQuery.of(context).size.width / 2 - 50,
               child: Image.asset(logoImage, width: 100),
-            )
+            ),
+            Positioned(
+              top: 0,
+              left: 0,
+              right: 0,
+              child: AppBar(
+                elevation: 0,
+                backgroundColor: Colors.transparent,
+              ),
+            ),
           ],
         ),
       ),

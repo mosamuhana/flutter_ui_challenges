@@ -19,14 +19,13 @@ dependencies:
   charts_flutter: ^0.9.0
   animated_floatactionbuttons: ^0.1.0
   intl: ^0.16.1
-  flare_flutter: ^1.8.3
+  flare_flutter: ^2.0.6
   cached_network_image: ^2.3.1
   flutter_staggered_grid_view: ^0.3.2
-  crop: ^0.1.2
+  crop: ^0.4.1
   share: ^0.6.5
-  http:
-  faker:
-
+  http: ^0.12.2
+  faker: ^1.2.1
 
 dev_dependencies:
   flutter_test:

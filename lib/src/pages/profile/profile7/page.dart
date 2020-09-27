@@ -29,57 +29,70 @@ class Profile7Page extends StatelessWidget {
         onPressed: () => Navigator.pop(context),
       ),
       body: SafeArea(
-        child: ListView(
+        child: Stack(
           children: [
-            Stack(
+            ListView(
               children: [
-                _backHeader,
-                Positioned(
-                  top: 10,
-                  right: 20,
-                  child: _settingsIcon,
-                ),
-                Column(
+                Stack(
                   children: [
-                    Container(
-                      height: 90,
-                      margin: _insetsT60,
-                      child: CircleAvatar(
-                        radius: 50,
-                        backgroundColor: Colors.white,
-                        child: CustomImage(profile.image),
-                      ),
+                    _backHeader,
+                    Positioned(
+                      top: 10,
+                      right: 20,
+                      child: _settingsIcon,
                     ),
-                    _hbox5,
-                    Text(
-                      '${profile.name}',
-                      style: _whiteW500S20Style,
-                      textAlign: TextAlign.center,
-                    ),
-                    _hbox5,
-                    Text(
-                      '${profile.location}',
-                      style: _whiteW400S16Style,
-                      textAlign: TextAlign.center,
-                    ),
-                    Container(
-                      margin: _insetsT77,
-                      padding: _insets10,
-                      child: Card(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            _buildCounter('Photos', '150'),
-                            _buildCounter('Followers', '2,000'),
-                            _buildCounter('Followings', '5,000'),
-                          ],
+                    Column(
+                      children: [
+                        Container(
+                          height: 90,
+                          margin: _insetsT60,
+                          child: CircleAvatar(
+                            radius: 50,
+                            backgroundColor: Colors.white,
+                            child: CustomImage(profile.image),
+                          ),
                         ),
-                      ),
+                        _hbox5,
+                        Text(
+                          '${profile.name}',
+                          style: _whiteW500S20Style,
+                          textAlign: TextAlign.center,
+                        ),
+                        _hbox5,
+                        Text(
+                          '${profile.location}',
+                          style: _whiteW400S16Style,
+                          textAlign: TextAlign.center,
+                        ),
+                        Container(
+                          margin: _insetsT77,
+                          padding: _insets10,
+                          child: Card(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                _buildCounter('Photos', '150'),
+                                _buildCounter('Followers', '2,000'),
+                                _buildCounter('Followings', '5,000'),
+                              ],
+                            ),
+                          ),
+                        ),
+                        _userInfoList,
+                      ],
                     ),
-                    _userInfoList,
                   ],
                 ),
               ],
+            ),
+            Positioned(
+              top: 0,
+              left: 0,
+              right: 0,
+              child: AppBar(
+                elevation: 0,
+                backgroundColor: Colors.transparent,
+              ),
             ),
           ],
         ),

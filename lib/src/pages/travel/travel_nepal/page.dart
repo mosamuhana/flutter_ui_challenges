@@ -61,6 +61,15 @@ class _TravelNepalPageState extends State<TravelNepalPage> {
               _frequentlySearched,
             ],
           ),
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: AppBar(
+              elevation: 0,
+              backgroundColor: Colors.transparent,
+            ),
+          ),
         ],
       ),
     );

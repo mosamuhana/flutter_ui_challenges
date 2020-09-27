@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
@@ -39,7 +41,7 @@ class _FoodDeliveryPageState extends State<FoodDeliveryPage> {
         headline6: Theme.of(context).textTheme.headline6.merge(_blackStyle),
       ),
       iconTheme: IconThemeData(color: Colors.lightGreen),
-      automaticallyImplyLeading: false,
+      automaticallyImplyLeading: Platform.isWindows,
       backgroundColor: Colors.white,
       expandedHeight: 130,
       floating: true,

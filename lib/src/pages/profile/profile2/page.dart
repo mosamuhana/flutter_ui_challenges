@@ -69,6 +69,15 @@ class Profile2Page extends StatelessWidget {
                 ),
             ],
           ),
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: AppBar(
+              elevation: 0,
+              backgroundColor: Colors.transparent,
+            ),
+          ),
         ],
       ),
     );

@@ -16,7 +16,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      navigatorKey: _navKey,
       debugShowCheckedModeBanner: false,
       title: 'Flutter UIs',
       theme: ThemeData(
@@ -25,6 +24,7 @@ class MyApp extends StatelessWidget {
         accentColor: Colors.indigo,
       ),
       home: StartupPage(),
+      navigatorKey: _navKey,
       routes: {
         // "auth_home": (_) => AuthHomePage(),
         "challenge_home": (_) => HomePage(),

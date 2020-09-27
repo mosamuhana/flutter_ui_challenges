@@ -19,6 +19,10 @@ class NewsHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.blue,
+        elevation: 0,
+      ),
       body: ListView(
         children: [
           _featuredNews,

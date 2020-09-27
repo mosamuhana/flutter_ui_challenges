@@ -12,83 +12,199 @@ class ImageCropPage extends StatefulWidget {
 }
 
 class _ImageCropPageState extends State<ImageCropPage> {
-  final _cropKey = GlobalKey<CropState>();
-  double _rotation = 0;
+  final imagePath = 'assets/placeholder.jpg';
+  final originalAspectRatio = 1920 / 1280.0; // 1000 / 667.0;
+  CropController controller;
+
+  CropShape _shape = CropShape.box;
+  SliderThemeData _sliderThemeData;
+
+  @override
+  void initState() {
+    controller = CropController(
+      aspectRatio: originalAspectRatio,
+      rotation: 0,
+      scale: 1,
+    );
+    super.initState();
+  }
+
+  SliderThemeData get sliderThemeData {
+    if (_sliderThemeData == null) {
+      _sliderThemeData = Theme.of(context).sliderTheme.copyWith(trackShape: CenteredRectangularSliderTrackShape());
+    }
+    return _sliderThemeData;
+  }
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return Scaffold(
       appBar: AppBar(
         title: Text('Crop Demo'),
         centerTitle: true,
         actions: [
           IconButton(
-            onPressed: _cropImage,
+            onPressed: _onCrop,
             tooltip: 'Crop',
-            icon: Icon(Icons.crop),
+            icon: _cropIcon,
           )
         ],
       ),
       body: Column(
         children: [
-          Expanded(
-            child: Crop(
-              key: _cropKey,
-              child: Image.asset('assets/placeholder.jpg'),
-              aspectRatio: 1920 / 1280.0,
-            ),
-          ),
-          Row(
-            children: [
-              IconButton(
-                icon: Icon(Icons.undo),
-                tooltip: 'Undo',
-                onPressed: () {
-                  _cropKey.currentState.rotation = 0;
-                  _cropKey.currentState.scale = 1;
-                  _cropKey.currentState.offset = Offset.zero;
-                  _rotation = 0;
-                  setState(() {});
-                },
-              ),
-              Expanded(
-                child: SliderTheme(
-                  data: theme.sliderTheme.copyWith(trackShape: CenteredRectangularSliderTrackShape()),
-                  child: Slider(
-                    divisions: 91,
-                    value: _rotation,
-                    min: -45,
-                    max: 45,
-                    label: '$_rotation°',
-                    onChanged: (n) {
-                      _rotation = n.roundToDouble();
-                      _cropKey.currentState.rotation = _rotation;
-                      setState(() {});
-                    },
-                  ),
-                ),
-              ),
-              IconButton(
-                icon: Icon(Icons.aspect_ratio),
-                tooltip: 'Aspect Ratio',
-                onPressed: () {},
-              ),
-            ],
-          ),
+          _imageCropper,
+          _bottomBar,
         ],
       ),
     );
   }
 
-  void _cropImage() async {
-    final cropped = await _cropKey.currentState.crop();
+  Widget get _imageCropper {
+    return Expanded(
+      child: Container(
+        color: Colors.black,
+        padding: _insets8,
+        child: Crop(
+          onChanged: (x) => _debugDecomposition(x),
+          controller: controller,
+          shape: _shape,
+          child: Image.asset(imagePath, fit: BoxFit.cover),
+          foreground: IgnorePointer(
+            child: Container(
+              alignment: Alignment.bottomRight,
+              child: Text('Foreground Object', style: _redStyle),
+            ),
+          ),
+          helper: _shape == CropShape.box ? _boxContainer : null,
+        ),
+      ),
+    );
+  }
+
+  Widget get _bottomBar {
+    return Row(
+      children: [
+        IconButton(
+          icon: _undoIcon,
+          tooltip: 'Undo',
+          onPressed: _onUndo,
+        ),
+        _slider,
+        _shapeButton,
+        _aspectRatioButton,
+      ],
+    );
+  }
+
+  Widget get _aspectRatioButton {
+    return PopupMenuButton<double>(
+      icon: _aspectRatioIcon,
+      itemBuilder: (context) => [
+        PopupMenuItem(
+          child: Text("Original"),
+          value: originalAspectRatio,
+        ),
+        PopupMenuDivider(),
+        PopupMenuItem(
+          child: Text("16:9"),
+          value: 16.0 / 9.0,
+        ),
+        PopupMenuItem(
+          child: Text("4:3"),
+          value: 4.0 / 3.0,
+        ),
+        PopupMenuItem(
+          child: Text("1:1"),
+          value: 1,
+        ),
+        PopupMenuItem(
+          child: Text("3:4"),
+          value: 3.0 / 4.0,
+        ),
+        PopupMenuItem(
+          child: Text("9:16"),
+          value: 9.0 / 16.0,
+        ),
+      ],
+      tooltip: 'Aspect Ratio',
+      onSelected: _onAspectRatioChanged,
+    );
+  }
+
+  Widget get _shapeButton {
+    return PopupMenuButton<CropShape>(
+      icon: _cropFreeIcon,
+      itemBuilder: (context) => [
+        PopupMenuItem(
+          child: Text("Box"),
+          value: CropShape.box,
+        ),
+        PopupMenuItem(
+          child: Text("Oval"),
+          value: CropShape.oval,
+        ),
+      ],
+      tooltip: 'Crop Shape',
+      onSelected: _onShapeChanged,
+    );
+  }
+
+  Widget get _slider {
+    return Expanded(
+      child: SliderTheme(
+        data: sliderThemeData,
+        child: Slider(
+          divisions: 361,
+          value: controller.rotation,
+          min: -180,
+          max: 180,
+          label: '${controller.rotation}°',
+          onChanged: _onRotationChanged,
+        ),
+      ),
+    );
+  }
+
+  void _onUndo() {
+    controller.rotation = 0;
+    controller.scale = 1;
+    controller.offset = Offset.zero;
+  }
+
+  void _onCrop() async {
+    final pixelRatio = MediaQuery.of(context).devicePixelRatio;
+    final croppedImage = await controller.crop(pixelRatio: pixelRatio);
+
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => CropResultPage(image: cropped),
+        builder: (context) => CropResultPage(image: croppedImage),
         fullscreenDialog: true,
       ),
     );
   }
+
+  void _onRotationChanged(double rotation) {
+    controller.rotation = rotation.roundToDouble();
+  }
+
+  void _onShapeChanged(CropShape shape) {
+    _shape = shape;
+    setState(() {});
+  }
+
+  void _onAspectRatioChanged(double aspectRatio) {
+    controller.aspectRatio = aspectRatio;
+  }
+
+  final _redStyle = TextStyle(color: Colors.red);
+  final _insets8 = EdgeInsets.all(8);
+  final _aspectRatioIcon = Icon(Icons.aspect_ratio);
+  final _cropIcon = Icon(Icons.crop);
+  final _undoIcon = Icon(Icons.undo);
+  final _cropFreeIcon = Icon(Icons.crop_free);
+  final _boxContainer = Container(decoration: BoxDecoration(border: Border.all(color: Colors.white, width: 2)));
+}
+
+void _debugDecomposition(MatrixDecomposition decomposition) {
+  print("Scale : ${decomposition.scale}, Rotation: ${decomposition.rotation}, translation: ${decomposition.translation}");
 }
